@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amauri & Ester | Nosso Casamento</title>
+
+<style>
+:root{
+  --verona-main:#c97c5d;
+  --verona-light:#f4ede8;
+  --verona-soft:#e8cfc2;
+  --text-dark:#4a3b36;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Georgia, serif;}
+
+body{
+  background:var(--verona-light);
+  color:var(--text-dark);
+}
+
+header{
+  min-height:100vh;
+  background:linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35));
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:white;
+}
+
+header h1{font-size:3rem;}
+header p{margin:10px 0 20px;font-size:1.2rem;}
+
+.countdown{
+  display:flex;
+  gap:20px;
+  margin-top:20px;
+}
+.countdown div{
+  background:rgba(255,255,255,.2);
+  padding:15px;
+  border-radius:8px;
+}
+
+nav{
+  position:sticky;
+  top:0;
+  background:white;
+  padding:15px;
+  text-align:center;
+  z-index:10;
+}
+
+nav a{
+  margin:0 15px;
+  text-decoration:none;
+  color:var(--verona-main);
+  font-weight:bold;
+}
+
+section{
+  padding:80px 10%;
+  text-align:center;
+}
+
+h2{
+  color:var(--verona-main);
+  margin-bottom:30px;
+}
+
+.gifts{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:25px;
+}
+
+.gift{
+  background:white;
+  border-radius:12px;
+  padding:20px;
+}
+
+.gift-img{
+  height:150px;
+  background:var(--verona-soft);
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:0.9rem;
+  margin-bottom:15px;
+}
+
+.gift p{
+  margin:8px 0;
+  font-weight:bold;
+}
+
+.gift button, .gift a{
+  width:100%;
+  padding:10px;
+  margin-top:8px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:bold;
+  display:block;
+  text-decoration:none;
+  text-align:center;
+}
+
+.pix{background:var(--verona-main);color:white;}
+.card{background:#555;color:white;}
+
+footer{
+  padding:30px;
+  background:var(--verona-soft);
+  text-align:center;
+}
+
+@media(max-width:768px){
+  header h1{font-size:2.2rem;}
+}
+</style>
+</head>
+
+<body>
+
+<header id="inicio">
+  <h1>Amauri & Ester</h1>
+  <p>29 de maio de 2027</p>
+
+  <div class="countdown">
+    <div><span id="days">0</span><br>Dias</div>
+    <div><span id="hours">0</span><br>Horas</div>
+    <div><span id="minutes">0</span><br>Min</div>
+    <div><span id="seconds">0</span><br>Seg</div>
+  </div>
+</header>
+
+<nav>
+  <a href="#inicio">Início</a>
+  <a href="#historia">Nossa História</a>
+  <a href="#evento">Evento</a>
+  <a href="#presentes">Presentes</a>
+</nav>
+
+<section id="historia">
+  <h2>Nossa História</h2>
+  <p><em>Esse espaço foi deixado em branco para vocês escreverem juntos 🤍</em></p>
+</section>
+
+<section id="evento">
+  <h2>O Evento</h2>
+  <p><strong>📅 Data:</strong> 29/05/2027</p>
+  <p><strong>⏰ Horário:</strong> 10h</p>
+  <p><strong>📍 Local:</strong> Várzea da Palma – MG (a definir)</p>
+</section>
+
+<section id="presentes">
+  <h2>Lista de Presentes</h2>
+
+  <div class="gifts">
+
+    <!-- PRESENTES -->
+    <!-- Basta duplicar este bloco se quiser adicionar mais no futuro -->
+
+    <!-- vou listar TODOS abaixo -->
+<div class="gift"><div class="gift-img">Imagem em breve</div><h3>Só para não dizer que não dei nada</h3><p>R$ 31,99</p><button class="pix" onclick="pix()">Pagar com Pix</button><a href="#" class="card">Pagar com cartão</a></div>
+    <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Lenço para a noiva não borrar toda a maquiagem</h3><p>R$ 56,99</p><button class="pix" onclick="pix()">Pagar com Pix</button><a href="#" class="card">Pagar com cartão</a></div>
+    <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Toma aqui uns 50 reais</h3><p>R$ 50,00</p><button class="pix" onclick="pix()">Pagar com Pix</button><a href="#" class="card">Pagar com cartão</a></div>
+    <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Kit calmante para não se estressar com o noivo</h3><p>R$ 75,64</p><button class="pix" onclick="pix()">Pagar com Pix</button><a href="#" class="card">Pagar com cartão</a></div>
+    <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Kit compra essencial para a noiva</h3><p>R$ 86,00</p><button class="pix" onclick="pix()">Pagar com Pix</button><a href="#" class="card">Pagar com cartão</a></div>
+
+    <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Acessório para cortar a unha do dedão do pé do noivo</h3><p>R$ 77,71</p><button class="pix" onclick="pix()">Pagar com Pix</button><a href="#" class="card">Pagar com cartão</a></div>
+    <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Sal para a pressão da noiva não abaixar no dia da festa</h3><p>R$ 101,54</p><button class="pix" onclick="pix()">Pagar com Pix</button><a href="#" class="card">Pagar com cartão</a></div>
+    <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Primeiro lugar na fila do buffet</h3><p>R$ 93,25</p><button class="pix" onclick="pix()">Pagar com Pix</button><a href="#" class="card">Pagar com cartão</a></div>
+
+    <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Cobertor para a noiva estar sempre coberta de razão</h3><p>R$ 129,52</p><button class="pix" onclick="pix()">Pagar com Pix</button><a href="#" class="card">Pagar com cartão</a></div>
+
+    <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Taxa para a noiva não jogar o buquê para a sua namorada</h3><p>R$ 134,70</p><button class="pix" onclick="pix()">Pagar com Pix</button><a href="#" class="card">Pagar com cartão</a></div>
+
+    <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Calendário para o noivo não esquecer datas especiais</h3><p>R$ 155,42</p><button class="pix" onclick="pix()">Pagar com Pix</button><a href="#" class="card">Pagar com cartão</a></div>
+
+    <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Capacete contra rolo de macarrão</h3><p>R$ 155,42</p><button class="pix" onclick="pix()">Pagar com Pix</button><a href="#" class="card">Pagar com cartão</a></div>
+
+    <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Estoque de café para o noivo</h3><p>R$ 165,79</p><button class="pix" onclick="pix()">Pagar com Pix</button><a href="#" class="card">Pagar com cartão</a></div>
+
+    <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Taxa para a noiva jogar o buquê na sua direção</h3><p>R$ 160,61</p><button class="pix" onclick="pix()">Pagar com Pix</button><a href="#" class="card">Pagar com cartão</a></div>
+
+    <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Cobertor para o noivo estar sempre coberto de razão</h3><p>R$ 165,79</p><button class="pix" onclick="pix()">Pagar com Pix</button><a href="#" class="card">Pagar com cartão</a></div>
+
+    <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Despertador para o noivo (super necessário)</h3><p>R$ 55,42</p><button class="pix" onclick="pix()">Pagar com Pix</button><a href="#" class="card">Pagar com cartão</a></div>
+
+    <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Rolo de macarrão caso o noivo não se comporte</h3><p>R$ 155,42</p><button class="pix" onclick="pix()">Pagar com Pix</button><a href="#" class="card">Pagar com cartão</a></div>
+
+    <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Diária do pedreiro para construção da nossa casa</h3><p>R$ 176,15</p><button class="pix" onclick="pix()">Pagar com Pix</button><a href="#" class="card">Pagar com cartão</a></div>
+
+    <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Vale compra para a noiva gastar na Shein</h3><p>R$ 212,41</p><button class="pix" onclick="pix()">Pagar com Pix</button><a href="#" class="card">Pagar com cartão</a></div>
+
+    <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Vale camisa do ano do Cruzeiro</h3><p>R$ 399,90</p><button class="pix" onclick="pix()">Pagar com Pix</button><a href="#" class="card">Pagar com cartão</a></div>
+
+    <div class="gift"><div class="gift-img">Imagem em breve</div><h3>1 ano de Netflix para os noivos</h3><p>R$ 341,93</p><button class="pix" onclick="pix()">Pagar com Pix</button><a href="#" class="card">Pagar com cartão</a></div>
+
+    <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Psicólogo pros noivos não surtarem</h3><p>R$ 538,80</p><button class="pix" onclick="pix()">Pagar com Pix</button><a href="#" class="card">Pagar com cartão</a></div>
+
+    <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Ajuda grande na lua de mel</h3><p>R$ 1.554,25</p><button class="pix" onclick="pix()">Pagar com Pix</button><a href="#" class="card">Pagar com cartão</a></div>
+
+  </div>
+</section>
+
+<footer>
+  <p>Amauri & Ester • 29/05/2027 🤍</p>
+</footer>
+
+<script>
+const targetDate = new Date("2027-05-29T10:00:00").getTime();
+setInterval(()=>{
+  const now=new Date().getTime();
+  const diff=targetDate-now;
+  document.getElementById("days").innerText=Math.floor(diff/(1000*60*60*24));
+  document.getElementById("hours").innerText=Math.floor(diff/(1000*60*60)%24);
+  document.getElementById("minutes").innerText=Math.floor(diff/(1000*60)%60);
+  document.getElementById("seconds").innerText=Math.floor(diff/1000%60);
+},1000);
+
+function pix(){
+  alert("Pix CPF: 014.439.376-06\nAmauri Mourão Pereira\nBanco: Nubank\n\nApós o pagamento, envie o comprovante.");
+}
+</script>
+
+</body>
+</html>
