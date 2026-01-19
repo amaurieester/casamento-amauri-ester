@@ -3,83 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amauri & Ester | Casamento</title>
+<title>Amauri & Ester | Save the Date</title>
 
 <style>
 :root{
   --main:#c97c5d;
-  --light:#f4ede8;
-  --soft:#e8cfc2;
+  --soft:#f4ede8;
   --dark:#4a3b36;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:Georgia, serif;}
-body{background:var(--light);color:var(--dark);line-height:1.6}
+body{background:var(--soft);color:var(--dark);line-height:1.6}
 
-/* HEADER + SLIDESHOW */
-header{
+/* HERO */
+.hero{
   min-height:100vh;
-  padding:40px 20px;
   display:flex;
-  flex-direction:column;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   text-align:center;
-  color:white;
-  position:relative;
-  overflow:hidden;
+  padding:40px 20px;
+  background:linear-gradient(135deg,#e8cfc2,#f4ede8);
 }
-.slideshow{position:absolute;inset:0;z-index:-2}
-.slideshow img{
-  position:absolute;
-  width:100%;height:100%;
-  object-fit:cover;
-  opacity:0;
-  transition:opacity 1.5s ease-in-out;
-}
-.slideshow img.active{opacity:1}
-header::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.45);
-  z-index:-1;
-}
-header h1{font-size:clamp(2.2rem,6vw,3rem)}
-header p{margin-top:10px;font-size:1.1rem}
-
-/* COUNTDOWN */
-.countdown{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:15px;
-  margin-top:30px;
-  max-width:320px;
-}
-.countdown div{
-  background:rgba(255,255,255,.25);
-  padding:15px;
-  border-radius:10px;
-}
+.hero p{letter-spacing:2px}
+.hero h1{font-size:clamp(2.5rem,6vw,4rem);color:var(--main)}
+.hero h2{margin:10px 0;font-weight:normal}
 
 /* NAV */
 nav{
-  position:sticky;top:0;
+  position:sticky;
+  top:0;
   background:white;
   padding:12px;
   text-align:center;
   z-index:10;
 }
 nav a{
-  margin:6px 8px;
+  margin:6px 12px;
   text-decoration:none;
   color:var(--main);
   font-weight:bold;
 }
 
 /* SECTIONS */
-section{padding:60px 20px;text-align:center}
-h2{color:var(--main);margin-bottom:25px}
+section{padding:70px 20px;text-align:center}
+h3{font-size:2rem;color:var(--main);margin-bottom:25px}
 
 /* PRESENTES */
 .gifts{
@@ -93,32 +61,37 @@ h2{color:var(--main);margin-bottom:25px}
   padding:20px;
 }
 .gift-img{
-  height:160px;
-  background:var(--soft);
+  height:150px;
+  background:#e8cfc2;
   border-radius:12px;
   display:flex;
   align-items:center;
   justify-content:center;
-  margin-bottom:15px;
-  font-size:.9rem;
+  font-size:.85rem;
+  margin-bottom:12px;
 }
-.gift p{font-weight:bold}
+.gift p{margin:6px 0;font-weight:bold}
 .gift button,.gift a{
   width:100%;
   padding:12px;
-  margin-top:10px;
+  margin-top:8px;
   border:none;
-  border-radius:8px;
-  cursor:pointer;
+  border-radius:10px;
   font-weight:bold;
+  cursor:pointer;
   text-decoration:none;
   display:block;
 }
 .pix{background:var(--main);color:white}
 .card{background:#555;color:white}
 
-/* FOOTER */
-footer{padding:25px;background:var(--soft);text-align:center}
+/* MAP */
+.map iframe{
+  width:100%;
+  height:350px;
+  border:0;
+  border-radius:18px;
+}
 
 /* MODAL PIX */
 .modal{
@@ -131,19 +104,19 @@ footer{padding:25px;background:var(--soft);text-align:center}
 }
 .modal-content{
   background:white;
-  max-width:400px;
+  max-width:380px;
   margin:auto;
   padding:25px;
-  border-radius:20px;
+  border-radius:22px;
   text-align:center;
 }
-.qr img{width:180px}
-.copy-btn{background:#2ecc71;color:white;margin-top:12px}
-.copy-msg{display:none;color:#2ecc71;margin-top:8px;font-weight:bold}
+.modal-content img{width:180px;margin:15px 0}
+.copy-btn{background:#2ecc71;color:white}
+.copy-msg{display:none;color:#2ecc71;margin-top:8px}
 
+/* RESPONSIVO */
 @media(min-width:768px){
-  .countdown{grid-template-columns:repeat(4,1fr);max-width:520px}
-  section{padding:80px 8%}
+  section{padding:80px 10%}
   .gifts{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
 }
 </style>
@@ -151,117 +124,141 @@ footer{padding:25px;background:var(--soft);text-align:center}
 
 <body>
 
-<header id="inicio">
-  <div class="slideshow">
-    <img src="foto1.jpg" class="active">
-    <img src="foto2.jpg">
-    <img src="foto3.jpg">
+<!-- SAVE THE DATE -->
+<div class="hero" id="inicio">
+  <div>
+    <p>SAVE THE DATE</p>
+    <h1>Amauri & Ester</h1>
+    <h2>29/05/2027</h2>
+    <p>Várzea da Palma – MG</p>
   </div>
-
-  <h1>Amauri & Ester</h1>
-  <p>29 de maio de 2027</p>
-
-  <div class="countdown">
-    <div><span id="days">0</span><br>Dias</div>
-    <div><span id="hours">0</span><br>Horas</div>
-    <div><span id="minutes">0</span><br>Min</div>
-    <div><span id="seconds">0</span><br>Seg</div>
-  </div>
-</header>
+</div>
 
 <nav>
   <a href="#inicio">Início</a>
-  <a href="#historia">Nossa História</a>
   <a href="#evento">Evento</a>
   <a href="#presentes">Presentes</a>
   <a href="#confirmacao">Confirmação</a>
 </nav>
 
-<section id="historia">
-  <h2>Nossa História</h2>
-  <p><em>Espaço reservado para escreverem juntos 🤍</em></p>
-</section>
-
+<!-- EVENTO -->
 <section id="evento">
-  <h2>O Evento</h2>
+  <h3>O Evento</h3>
+  <p><strong>Matriz Nossa Senhora da Conceição</strong></p>
+  <p>📍 Praça Frei Jorge, nº 1480 – Várzea da Palma/MG</p>
   <p>📅 29/05/2027 • ⏰ 10h</p>
-  <p>📍 Várzea da Palma – MG (a definir)</p>
+
+  <div class="map" style="margin-top:25px">
+    <iframe src="https://www.google.com/maps?q=Matriz%20Nossa%20Senhora%20da%20Concei%C3%A7%C3%A3o%20V%C3%A1rzea%20da%20Palma%20MG&output=embed"></iframe>
+  </div>
 </section>
 
+<!-- PRESENTES -->
 <section id="presentes">
-<h2>Lista de Presentes</h2>
+<h3>Lista de Presentes</h3>
+
 <div class="gifts">
 
-<!-- TODOS OS PRESENTES -->
-<div class="gift"><div class="gift-img">Foto</div><h3>Só para não dizer que não dei nada</h3><p>R$ 31,99</p><button class="pix" onclick="openPix()">Pix</button><a class="card" href="https://link.mercadopago.com.br/presenteamaurieester" target="_blank">Cartão</a></div>
-<div class="gift"><div class="gift-img">Foto</div><h3>Lenço para a noiva não borrar a maquiagem</h3><p>R$ 56,99</p><button class="pix" onclick="openPix()">Pix</button><a class="card" href="https://link.mercadopago.com.br/presenteamaurieester" target="_blank">Cartão</a></div>
-<div class="gift"><div class="gift-img">Foto</div><h3>Toma aqui uns 50 reais</h3><p>R$ 50,00</p><button class="pix" onclick="openPix()">Pix</button><a class="card" href="https://link.mercadopago.com.br/presenteamaurieester" target="_blank">Cartão</a></div>
-<div class="gift"><div class="gift-img">Foto</div><h3>Kit calmante para o noivo</h3><p>R$ 75,64</p><button class="pix" onclick="openPix()">Pix</button><a class="card" href="https://link.mercadopago.com.br/presenteamaurieester" target="_blank">Cartão</a></div>
-<div class="gift"><div class="gift-img">Foto</div><h3>Kit compra essencial para a noiva</h3><p>R$ 86,00</p><button class="pix" onclick="openPix()">Pix</button><a class="card" href="https://link.mercadopago.com.br/presenteamaurieester" target="_blank">Cartão</a></div>
-<div class="gift"><div class="gift-img">Foto</div><h3>Acessório para cortar unha do dedão do noivo</h3><p>R$ 77,71</p><button class="pix" onclick="openPix()">Pix</button><a class="card" href="https://link.mercadopago.com.br/presenteamaurieester" target="_blank">Cartão</a></div>
-<div class="gift"><div class="gift-img">Foto</div><h3>Sal para pressão da noiva não abaixar</h3><p>R$ 101,54</p><button class="pix" onclick="openPix()">Pix</button><a class="card" href="https://link.mercadopago.com.br/presenteamaurieester" target="_blank">Cartão</a></div>
-<div class="gift"><div class="gift-img">Foto</div><h3>Primeiro lugar na fila do buffet</h3><p>R$ 93,25</p><button class="pix" onclick="openPix()">Pix</button><a class="card" href="https://link.mercadopago.com.br/presenteamaurieester" target="_blank">Cartão</a></div>
-<div class="gift"><div class="gift-img">Foto</div><h3>Cobertor para a noiva estar coberta de razão</h3><p>R$ 129,52</p><button class="pix" onclick="openPix()">Pix</button><a class="card" href="https://link.mercadopago.com.br/presenteamaurieester" target="_blank">Cartão</a></div>
-<div class="gift"><div class="gift-img">Foto</div><h3>Taxa para a noiva não jogar o buquê</h3><p>R$ 134,70</p><button class="pix" onclick="openPix()">Pix</button><a class="card" href="https://link.mercadopago.com.br/presenteamaurieester" target="_blank">Cartão</a></div>
-<div class="gift"><div class="gift-img">Foto</div><h3>Calendário para o noivo não esquecer datas</h3><p>R$ 155,42</p><button class="pix" onclick="openPix()">Pix</button><a class="card" href="https://link.mercadopago.com.br/presenteamaurieester" target="_blank">Cartão</a></div>
-<div class="gift"><div class="gift-img">Foto</div><h3>Capacete contra rolo de macarrão</h3><p>R$ 155,42</p><button class="pix" onclick="openPix()">Pix</button><a class="card" href="https://link.mercadopago.com.br/presenteamaurieester" target="_blank">Cartão</a></div>
-<div class="gift"><div class="gift-img">Foto</div><h3>Rolo de macarrão</h3><p>R$ 155,42</p><button class="pix" onclick="openPix()">Pix</button><a class="card" href="https://link.mercadopago.com.br/presenteamaurieester" target="_blank">Cartão</a></div>
-<div class="gift"><div class="gift-img">Foto</div><h3>Estoque de café para o noivo</h3><p>R$ 165,79</p><button class="pix" onclick="openPix()">Pix</button><a class="card" href="https://link.mercadopago.com.br/presenteamaurieester" target="_blank">Cartão</a></div>
-<div class="gift"><div class="gift-img">Foto</div><h3>Taxa para a noiva jogar o buquê em você</h3><p>R$ 160,61</p><button class="pix" onclick="openPix()">Pix</button><a class="card" href="https://link.mercadopago.com.br/presenteamaurieester" target="_blank">Cartão</a></div>
-<div class="gift"><div class="gift-img">Foto</div><h3>Diária do pedreiro da nossa casa</h3><p>R$ 176,15</p><button class="pix" onclick="openPix()">Pix</button><a class="card" href="https://link.mercadopago.com.br/presenteamaurieester" target="_blank">Cartão</a></div>
-<div class="gift"><div class="gift-img">Foto</div><h3>Vale compra Shein</h3><p>R$ 212,41</p><button class="pix" onclick="openPix()">Pix</button><a class="card" href="https://link.mercadopago.com.br/presenteamaurieester" target="_blank">Cartão</a></div>
-<div class="gift"><div class="gift-img">Foto</div><h3>Camisa do Cruzeiro</h3><p>R$ 399,90</p><button class="pix" onclick="openPix()">Pix</button><a class="card" href="https://link.mercadopago.com.br/presenteamaurieester" target="_blank">Cartão</a></div>
-<div class="gift"><div class="gift-img">Foto</div><h3>1 ano de Netflix</h3><p>R$ 341,93</p><button class="pix" onclick="openPix()">Pix</button><a class="card" href="https://link.mercadopago.com.br/presenteamaurieester" target="_blank">Cartão</a></div>
-<div class="gift"><div class="gift-img">Foto</div><h3>Psicólogo para os noivos</h3><p>R$ 538,80</p><button class="pix" onclick="openPix()">Pix</button><a class="card" href="https://link.mercadopago.com.br/presenteamaurieester" target="_blank">Cartão</a></div>
-<div class="gift"><div class="gift-img">Foto</div><h3>Ajuda na lua de mel</h3><p>R$ 1.554,25</p><button class="pix" onclick="openPix()">Pix</button><a class="card" href="https://link.mercadopago.com.br/presenteamaurieester" target="_blank">Cartão</a></div>
+<!-- PRESENTES (TODOS) -->
+<script>
+const presentes = [
+["Só para não dizer que não dei nada","51,99"],
+["Lenço para a noiva não borrar a maquiagem","76,99"],
+["Toma aqui uns 50 reais","50,00"],
+["Kit calmante para a noiva","95,64"],
+["Kit compra essencial para a noiva","106,00"],
+["Acessório para cortar a unha do dedão do noivo","117,71"],
+["Sal para a pressão da noiva","121,54"],
+["Primeiro lugar na fila do buffet","133,25"],
+["Cobertor para a noiva estar sempre coberta de razão","149,52"],
+["Taxa para não jogar o buquê","154,70"],
+["Calendário para o noivo não esquecer datas","165,42"],
+["Capacete contra rolo de macarrão","185,42"],
+["Estoque de café para o noivo","205,79"],
+["Taxa para o buquê vir na sua direção","216,61"],
+["Cobertor para o noivo estar coberto de razão","230,79"],
+["Despertador para o noivo","155,42"],
+["Rolo de macarrão disciplinador","185,42"],
+["Diária do pedreiro","176,15"],
+["Vale compra SHEIN","212,41"],
+["Camisa do Cruzeiro","399,90"],
+["1 ano de Netflix","341,93"],
+["Psicólogo para os noivos","538,80"],
+["Ajuda na lua de mel","1.554,25"],
+
+["Adote os boletos dos primeiros meses","821,10"],
+["Ajuda financeira para o futuro casal","405,08"],
+["Ajuda para aposentadoria dos noivos","3.612,84"],
+["Ajuda para mobiliar a casa","1.204,28"],
+["Ajuda para mobiliar a casa","547,40"],
+["Lingeries novas para a noiva","60,21"],
+["Pijamas novos para a noiva","131,38"],
+["Cervejeira para o noivo","920,51"],
+["Renovar guarda-roupa da noiva","93,06"],
+["Piscina para o casal","656,88"],
+["Cuecas novas para o noivo","60,21"],
+["Pijamas novos para o noivo","131,38"],
+["Aluguel de bebê para treinamento","164,22"],
+["Aspirador de pó","131,38"],
+["Ajuda para comprar TV","671,07"],
+["Ajuda para comprar Geladeira","781,92"],
+["Cama box casal","486,87"],
+["Roupas de cama","162,89"],
+["Guarda-roupa novo","341,25"],
+["Fogão","264,86"],
+["Máquina de lavar","400,25"],
+["Mesa de jantar","230,90"],
+["Cafeteira elétrica","110,21"],
+["Churrasqueira","120,90"],
+["Jogo de panelas","82,61"],
+["Jogo de taças","62,99"]
+];
+
+document.write(presentes.map(p=>`
+<div class="gift">
+  <div class="gift-img">Foto do presente</div>
+  <p>${p[0]}</p>
+  <p>R$ ${p[1]}</p>
+  <button class="pix" onclick="openPix()">Pix</button>
+  <a class="card" href="https://link.mercadopago.com.br/presenteamaurieester" target="_blank">Cartão</a>
+</div>
+`).join(""));
+</script>
 
 </div>
 </section>
 
+<!-- CONFIRMAÇÃO -->
 <section id="confirmacao">
-  <h2>Confirmação de Presença</h2>
-  <a class="card" href="https://docs.google.com/forms/d/e/1FAIpQLSf4goBLjMg9tv6LAgfYVz9G1Mk7NGscCFhcDWsj0LsRerNrzQ/viewform" target="_blank">Confirmar presença</a>
+<h3>Confirmação de Presença</h3>
+<a class="card" href="https://docs.google.com/forms/d/e/1FAIpQLSf4goBLjMg9tv6LAgfYVz9G1Mk7NGscCFhcDWsj0LsRerNrzQ/viewform" target="_blank">
+Confirmar presença
+</a>
 </section>
 
-<footer>
-  <p>Amauri & Ester • 29/05/2027 🤍</p>
+<footer style="padding:25px;text-align:center;background:#e8cfc2">
+Amauri & Ester • 29/05/2027 🤍
 </footer>
 
-<div id="pixModal" class="modal">
-  <div class="modal-content">
-    <h3>Pagamento via Pix</h3>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=01443937606">
-    <p><strong>Pix:</strong> <span id="pixKey">01443937606</span><br>Amauri Mourão Pereira<br>Nubank</p>
-    <button class="copy-btn" onclick="copyPix()">Copiar Pix</button>
-    <div id="copyMsg" class="copy-msg">Pix copiado! 💚</div>
-    <p style="margin-top:10px;font-style:italic">Agradecemos o apoio e a colaboração 🤍</p>
-    <button class="pix" onclick="closePix()">Fechar</button>
-  </div>
+<!-- MODAL PIX -->
+<div class="modal" id="pixModal">
+<div class="modal-content">
+<h3>Pagamento via Pix</h3>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=01443937606">
+<p><strong>Pix:</strong> <span id="pixKey">01443937606</span><br>Amauri Mourão Pereira<br>Nubank</p>
+<button class="copy-btn" onclick="copyPix()">Copiar Pix</button>
+<div id="copyMsg" class="copy-msg">Pix copiado com sucesso 🤍</div>
+<p style="margin-top:10px;font-style:italic">Agradecemos o apoio e a colaboração 🤍</p>
+<button class="pix" onclick="closePix()">Fechar</button>
+</div>
 </div>
 
 <script>
-const targetDate=new Date("2027-05-29T10:00:00").getTime();
-setInterval(()=>{
- const d=targetDate-new Date().getTime();
- days.innerText=Math.floor(d/86400000);
- hours.innerText=Math.floor(d/3600000%24);
- minutes.innerText=Math.floor(d/60000%60);
- seconds.innerText=Math.floor(d/1000%60);
-},1000);
-
-const slides=document.querySelectorAll(".slideshow img");
-let current=0;
-setInterval(()=>{
- slides[current].classList.remove("active");
- current=(current+1)%slides.length;
- slides[current].classList.add("active");
-},5000);
-
 function openPix(){pixModal.style.display="flex";copyMsg.style.display="none";}
 function closePix(){pixModal.style.display="none";}
 function copyPix(){
- navigator.clipboard.writeText(pixKey.innerText);
- copyMsg.style.display="block";
+  navigator.clipboard.writeText(pixKey.innerText);
+  copyMsg.style.display="block";
 }
 </script>
 
