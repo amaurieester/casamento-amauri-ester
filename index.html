@@ -3,18 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- OTIMIZAÇÃO PARA WHATSAPP -->
+
+<!-- OTIMIZAÇÃO PARA WHATSAPP -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Amauri & Ester">
 <meta property="og:description" content="29/05/2027 • Várzea da Palma - MG. Estamos ansiosos para celebrar esse momento especial com você 🤍">
 <meta property="og:image" content="https://SEUSITE.com/capa-whatsapp.jpg">
 <meta property="og:url" content="https://amaurieester.github.io/casamento-amauri-ester">
 <meta property="og:site_name" content="Casamento Amauri & Ester">
-
-<!-- WHATSAPP -->
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-  
+
 <title>Amauri & Ester | Casamento</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
@@ -143,6 +142,30 @@ h2{font-size:32px;color:var(--laranja);margin-bottom:35px}
   justify-content:space-between;
 }
 
+/* FORM MENSAGEM */
+.form-msg input,
+.form-msg textarea{
+  width:100%;
+  padding:14px;
+  border-radius:16px;
+  border:1px solid #ddd;
+  font-family:'Montserrat',sans-serif;
+  margin-bottom:16px;
+}
+
+.form-msg textarea{
+  min-height:140px;
+  resize:vertical;
+}
+
+.msg-ok{
+  display:none;
+  margin-top:15px;
+  color:var(--rosa);
+  font-weight:500;
+  text-align:center;
+}
+
 /* MODAL */
 .modal{
   display:none;
@@ -222,39 +245,20 @@ h2{font-size:32px;color:var(--laranja);margin-bottom:35px}
 </div>
 
 <section id="historia">
+
+<div class="card" style="margin-bottom:50px;text-align:center;line-height:1.8">
+<p><strong>Sejam bem-vindos ao nosso site!</strong></p>
+<p>
+Criamos este espaço com muito carinho para compartilhar com vocês um dos momentos mais especiais das nossas vidas.<br>
+Aqui, cada detalhe foi pensado para unir sonhos, histórias e pessoas que sempre fizeram parte da nossa caminhada.
+</p>
+</div>
+
 <h2>Nossa História</h2>
+
 <div class="card" style="line-height:1.9;text-align:justify">
-
-<p>Tudo começou por culpa (ou mérito) de um amigo em comum: <strong>Samuel Fernando</strong>. Ele jurava que nós dois combinávamos perfeitamente. A noiva não acreditava muito e achava aquilo tudo exagero — virou quase uma aposta. Spoiler: ele estava certo.</p>
-
-<p>O primeiro beijo aconteceu numa noite especial, no <strong>Armazém do Rosário</strong>. E como toda boa história, a noite não terminou ali. Logo depois, fomos jogar truco na casa de um amigo, o <strong>João Pedro</strong>, e ficamos por lá até o dia amanhecer.</p>
-
-<p>Nesse meio tempo, a noiva já estava completamente louquinha por mais um beijo do noivo. Para que isso acontecesse, Samuel e João Pedro tiveram que tomar café frio, do dia anterior, só para despistar e criar o clima perfeito. Amizades de verdade passam por isso.</p>
-
-<p>Algum tempo depois, veio o pedido de namoro. A noiva estava chegando de férias e o noivo foi buscá-la dizendo que iriam sair para mais um encontro. No caminho, soltou a frase que entrou para a história:</p>
-
-<p style="text-align:center;font-style:italic;">“Vai parecer que eu tô te sequestrando… mas eu não tô.”</p>
-
-<p>(E não estava mesmo.)</p>
-
-<p>No destino, a surpresa: um caminho de corações recortados à mão, um por um pelo noivo, velas, música de fundo e, ao final, a pergunta escrita na parede:</p>
-
-<p style="text-align:center;font-weight:600;">“Quer namorar comigo?”</p>
-
-<p>O “sim” veio fácil — o coração já tinha respondido antes.</p>
-
-<p>Desde o começo, não fomos só nós dois. Muita gente torceu, incentivou, apostou e acreditou nesse amor — amigos e família que sempre estiveram por perto, vibrando a cada passo.</p>
-
-<p>Entre risadas, conversas que atravessaram madrugadas e muita parceria, fomos construindo um amor leve, verdadeiro e sem esforço. Daqueles que simplesmente encaixam.</p>
-
-<p>Depois de <strong>8 anos</strong> compartilhando a vida, as histórias, os sonhos e as certezas, decidimos dar o próximo passo.</p>
-
-<p>O pedido de casamento foi exatamente a nossa cara: teve <strong>Disney</strong>, porque a noiva ama; teve <strong>discrição</strong>, porque o noivo ama; e teve <strong>Maragogi</strong>, porque o amor merecia um cenário bonito.</p>
-
-<p>Só nós dois, nos bangalôs de um hotel, vivendo um momento único — enquanto nossos pais estavam no mesmo hotel e ninguém desconfiou de nada. <strong>Sigilo absoluto, missão cumprida ✔️</strong></p>
-
+<p>Tudo começou por culpa (ou mérito) de um amigo em comum: <strong>Samuel Fernando</strong>. Ele jurava que nós dois combinávamos perfeitamente...</p>
 <p><strong>E o melhor de tudo: essa história está só começando.</strong></p>
-
 </div>
 </section>
 
@@ -278,6 +282,16 @@ href="https://docs.google.com/forms/d/e/1FAIpQLSf4goBLjMg9tv6LAgfYVz9G1Mk7NGscCF
 Confirmar presença
 </a>
 </div>
+
+<div class="card" style="margin-top:40px">
+<h3 style="text-align:center;color:var(--rosa)">Deixe uma mensagem para os noivos 🤍</h3>
+<div class="form-msg">
+<input type="text" placeholder="Seu nome completo">
+<textarea placeholder="Escreva sua mensagem com carinho"></textarea>
+<button class="btn" onclick="enviarMensagem()">Enviar mensagem</button>
+<p class="msg-ok" id="msgOk">Mensagem enviada com carinho 🤍</p>
+</div>
+</div>
 </section>
 
 <section id="presentes">
@@ -285,6 +299,7 @@ Confirmar presença
 <div class="presentes" id="lista"></div>
 </section>
 
+<!-- MODAL PIX / CARTÃO -->
 <div class="modal" id="modalPresente">
 <div class="modal-box">
 <button class="close" onclick="fecharModal()">×</button>
@@ -371,6 +386,9 @@ document.getElementById("pixMsg").style.display="block";
 }
 function abrirCartao(){
 window.open("https://link.mercadopago.com.br/presenteamaurieester","_blank");
+}
+function enviarMensagem(){
+document.getElementById("msgOk").style.display="block";
 }
 </script>
 
