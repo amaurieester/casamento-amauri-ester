@@ -1096,3 +1096,74 @@
                 document.getElementById('mensagem').value = '';
                 
                 // Rol
+                // Rolagem suave após envio
+                document.getElementById('confirmacao').scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                
+                // Resetar formulário após 5 segundos
+                setTimeout(() => {
+                    document.getElementById('msgSuccess').style.display = 'none';
+                }, 5000);
+            }, 1500); // Simula delay de rede
+        }
+        
+        // ANIMAÇÃO DE SCROLL SUAVE
+        function scrollParaSecao(id) {
+            const elemento = document.getElementById(id);
+            if (elemento) {
+                window.scrollTo({
+                    top: elemento.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        }
+        
+        // DETECTAR SCROLL PARA ANIMAÇÕES
+        function animarAoRolar() {
+            const cards = document.querySelectorAll('.card, .presente-card');
+            
+            cards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (cardTop < windowHeight * 0.85) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        }
+        
+        // INICIALIZAR ANIMAÇÕES
+        window.addEventListener('scroll', animarAoRolar);
+        window.addEventListener('load', animarAoRolar);
+        
+        // ESTILOS INICIAIS PARA ANIMAÇÃO
+        document.querySelectorAll('.card, .presente-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+        
+        // CONFIGURAÇÃO DE DATA E HORA LOCAL
+        function formatarData(data) {
+            const opcoes = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                timeZone: 'America/Sao_Paulo'
+            };
+            return data.toLocaleDateString('pt-BR', opcoes);
+        }
+        
+        // EXIBIR DATA FORMATADA
+        const dataFormatada = formatarData(dataCasamento);
+        const elementosData = document.querySelectorAll('.data-formatada');
+        elementosData.forEach(el => {
+            el.textContent = dataFormatada;
+        });
+    </script>
+</body>
+</html>
