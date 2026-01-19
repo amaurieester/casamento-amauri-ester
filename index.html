@@ -3,10 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Amauri & Ester | Save the Date</title>
 
-<!-- Fontes elegantes -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
@@ -15,7 +13,7 @@
   --laranja:#f7a072;
   --amarelo:#f9d976;
   --texto:#4a3b3b;
-  --fundo:#fffaf6;
+  --fundo:#fff7f2;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -27,34 +25,31 @@ body{
 }
 
 section{
-  padding:60px 20px;
   max-width:1100px;
   margin:auto;
+  padding:70px 20px;
 }
 
-/* ===== TOPO ===== */
 .hero{
   text-align:center;
-  padding:100px 20px;
+  padding:110px 20px;
+}
+
+.hero h2{
+  letter-spacing:5px;
+  font-weight:400;
 }
 
 .hero h1{
   font-family:'Playfair Display',serif;
-  font-size:56px;
+  font-size:58px;
   margin:20px 0;
 }
 
-.hero h2{
-  font-weight:300;
-  letter-spacing:4px;
-}
-
 .hero p{
-  margin-top:15px;
   font-size:18px;
 }
 
-/* ===== CONTADOR ===== */
 .countdown{
   display:flex;
   justify-content:center;
@@ -65,10 +60,10 @@ section{
 
 .time-box{
   background:white;
-  padding:20px;
-  border-radius:16px;
-  min-width:100px;
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
+  padding:22px;
+  border-radius:18px;
+  min-width:95px;
+  box-shadow:0 15px 35px rgba(0,0,0,.1);
 }
 
 .time-box span{
@@ -76,61 +71,61 @@ section{
   font-weight:600;
 }
 
-/* ===== TITULOS ===== */
 .section-title{
   text-align:center;
   font-family:'Playfair Display',serif;
-  font-size:36px;
-  margin-bottom:30px;
+  font-size:38px;
+  margin-bottom:35px;
 }
 
-/* ===== CARDS ===== */
 .card{
   background:white;
-  border-radius:18px;
-  padding:30px;
-  box-shadow:0 15px 40px rgba(0,0,0,.08);
-  margin-bottom:20px;
+  padding:35px;
+  border-radius:22px;
+  box-shadow:0 20px 45px rgba(0,0,0,.1);
+  margin-bottom:25px;
 }
 
-/* ===== EVENTO ===== */
+button{
+  background:linear-gradient(45deg,var(--rosa),var(--laranja));
+  border:none;
+  color:white;
+  padding:14px 26px;
+  border-radius:30px;
+  font-size:15px;
+  cursor:pointer;
+}
+
 iframe{
   width:100%;
-  height:350px;
-  border-radius:16px;
+  height:360px;
   border:none;
+  border-radius:20px;
+  margin-top:20px;
 }
 
-/* ===== PRESENTES ===== */
+.map-btn{
+  margin-top:20px;
+  display:inline-block;
+}
+
 .gifts{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:20px;
+  gap:22px;
 }
 
 .gift{
   background:white;
-  padding:20px;
-  border-radius:18px;
-  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  padding:22px;
+  border-radius:20px;
+  box-shadow:0 15px 35px rgba(0,0,0,.08);
 }
 
 .gift h4{
-  margin-bottom:10px;
+  margin-bottom:8px;
 }
 
-.gift button{
-  background:linear-gradient(45deg,var(--rosa),var(--laranja));
-  border:none;
-  color:white;
-  padding:12px;
-  width:100%;
-  border-radius:30px;
-  cursor:pointer;
-  font-weight:500;
-}
-
-/* ===== MODAL ===== */
 .modal{
   position:fixed;
   inset:0;
@@ -138,42 +133,31 @@ iframe{
   display:none;
   align-items:center;
   justify-content:center;
-  z-index:1000;
+  z-index:999;
 }
 
 .modal-content{
   background:white;
-  padding:30px;
-  border-radius:20px;
+  padding:35px;
+  border-radius:22px;
   max-width:420px;
   width:90%;
   text-align:center;
 }
 
 .modal-content button{
-  margin-top:15px;
   width:100%;
-  padding:12px;
-  border:none;
-  border-radius:30px;
-  cursor:pointer;
-  font-weight:500;
+  margin-top:12px;
 }
-
-.pix-btn{background:var(--amarelo)}
-.card-btn{background:var(--laranja);color:white}
 
 .close{
-  margin-top:15px;
   background:none;
-  border:none;
-  cursor:pointer;
-  font-size:14px;
+  color:#555;
+  margin-top:15px;
 }
 
-/* RESPONSIVO */
 @media(max-width:600px){
-  .hero h1{font-size:42px}
+  .hero h1{font-size:44px}
 }
 </style>
 </head>
@@ -187,42 +171,51 @@ iframe{
   <p>29/05/2027 · Várzea da Palma – MG</p>
 
   <div class="countdown">
-    <div class="time-box"><span id="days">0</span><br>Dias</div>
-    <div class="time-box"><span id="hours">0</span><br>Horas</div>
-    <div class="time-box"><span id="minutes">0</span><br>Min</div>
-    <div class="time-box"><span id="seconds">0</span><br>Seg</div>
+    <div class="time-box"><span id="days"></span><br>Dias</div>
+    <div class="time-box"><span id="hours"></span><br>Horas</div>
+    <div class="time-box"><span id="minutes"></span><br>Min</div>
+    <div class="time-box"><span id="seconds"></span><br>Seg</div>
   </div>
 </div>
 
-<!-- NOSSA HISTÓRIA -->
+<!-- HISTÓRIA -->
 <section>
-  <h2 class="section-title">Nossa História</h2>
-  <div class="card">
-    <p>✨ Em breve vamos escrever nossa história juntos ✨</p>
-  </div>
+<h2 class="section-title">Nossa História</h2>
+<div class="card">
+<p>Em breve escreveremos nossa história juntos 🤍</p>
+</div>
 </section>
 
 <!-- EVENTO -->
 <section>
-  <h2 class="section-title">O Evento</h2>
-  <div class="card">
-    <p><strong>Matriz Nossa Senhora da Conceição</strong><br>
-    Praça Frei Jorge, nº 1480 – Várzea da Palma – MG<br>
-    29/05/2027 às 10h</p>
-  </div>
-  <iframe src="https://www.google.com/maps?q=Praça+Frei+Jorge+1480+Várzea+da+Palma+MG&output=embed"></iframe>
+<h2 class="section-title">O Evento</h2>
+<div class="card">
+<p><strong>Matriz Nossa Senhora da Conceição</strong><br>
+Praça Frei Jorge, nº 1480 – Várzea da Palma – MG<br>
+29/05/2027 às 10h</p>
+
+<a class="map-btn" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Praça+Frei+Jorge+1480+Várzea+da+Palma+MG">
+<button>📍 Como chegar</button>
+</a>
+
+<a target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Praça+Frei+Jorge+1480+Várzea+da+Palma+MG">
+<iframe src="https://www.google.com/maps?q=Praça+Frei+Jorge+1480+Várzea+da+Palma+MG&output=embed"></iframe>
+</a>
+</div>
 </section>
 
 <!-- CONFIRMAÇÃO -->
 <section>
-  <h2 class="section-title">Confirmação de Presença</h2>
-  <div class="card" style="text-align:center">
-    <p>Confirme sua presença para celebrarmos juntos 🤍</p><br>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSf4goBLjMg9tv6LAgfYVz9G1Mk7NGscCFhcDWsj0LsRerNrzQ/viewform"
-       target="_blank">
-       <button>Confirmar Presença</button>
-    </a>
-  </div>
+<h2 class="section-title">Confirmação de Presença</h2>
+<div class="card" style="text-align:center">
+<p>Confirme sua presença para celebrarmos juntos 🤍</p><br>
+<a target="_blank"
+href="https://docs.google.com/forms/d/e/1FAIpQLSf4goBLjMg9tv6LAgfYVz9G1Mk7NGscCFhcDWsj0LsRerNrzQ/viewform">
+<button>Confirmar Presença</button>
+</a>
+</div>
 </section>
 
 <!-- PRESENTES -->
@@ -231,7 +224,7 @@ iframe{
 
 <div class="gifts">
 
-<!-- TODOS OS PRESENTES (SEM FALTAR NENHUM) -->
+<!-- LISTA COMPLETA – NENHUM REMOVIDO -->
 <div class="gift"><h4>Só para não dizer que não dei nada</h4><p>R$ 31,99</p><button onclick="openModal()">Presentear</button></div>
 <div class="gift"><h4>Lenço para a noiva não borrar a maquiagem</h4><p>R$ 56,99</p><button onclick="openModal()">Presentear</button></div>
 <div class="gift"><h4>Toma aqui uns 50 reais</h4><p>R$ 50,00</p><button onclick="openModal()">Presentear</button></div>
@@ -251,51 +244,50 @@ iframe{
 <div class="gift"><h4>Camisa do Cruzeiro</h4><p>R$ 399,90</p><button onclick="openModal()">Presentear</button></div>
 <div class="gift"><h4>Netflix 1 ano</h4><p>R$ 341,93</p><button onclick="openModal()">Presentear</button></div>
 <div class="gift"><h4>Ajuda na lua de mel</h4><p>R$ 1.554,25</p><button onclick="openModal()">Presentear</button></div>
-<div class="gift"><h4>Taxa para levar alguém não convidado</h4><p>R$ 6.652,99</p><button onclick="openModal()">Presentear</button></div>
+<div class="gift"><h4>Taxa para levar alguém que não foi convidado</h4><p>R$ 6.652,99</p><button onclick="openModal()">Presentear</button></div>
 
 </div>
 </section>
 
 <!-- MODAL -->
 <div class="modal" id="modal">
-  <div class="modal-content">
-    <h3>Escolha como presentear 🤍</h3>
+<div class="modal-content">
+<h3>Escolha como presentear 🤍</h3>
 
-    <button class="pix-btn" onclick="copyPix()">Pix (copiar chave)</button>
+<button onclick="copyPix()">Pix (copiar ou escanear QR)</button>
 
-    <button class="card-btn" onclick="window.open('https://link.mercadopago.com.br/presenteamaurieester','_blank')">
-      Cartão de Crédito
-    </button>
+<button onclick="window.open('https://link.mercadopago.com.br/presenteamaurieester','_blank')">
+Cartão de Crédito
+</button>
 
-    <p style="margin-top:15px;font-size:14px">
-      Banco: Nubank<br>
-      Agradecemos o apoio e a colaboração 🤍
-    </p>
+<p style="margin-top:15px;font-size:14px">
+Banco: Nubank<br>
+Agradecemos o apoio e a colaboração 🤍
+</p>
 
-    <button class="close" onclick="closeModal()">Fechar</button>
-  </div>
+<button class="close" onclick="closeModal()">Fechar</button>
+</div>
 </div>
 
 <script>
-function openModal(){document.getElementById('modal').style.display='flex'}
-function closeModal(){document.getElementById('modal').style.display='none'}
+function openModal(){modal.style.display='flex'}
+function closeModal(){modal.style.display='none'}
 
 function copyPix(){
-  navigator.clipboard.writeText(
+navigator.clipboard.writeText(
 '00020126580014BR.GOV.BCB.PIX01360fd40b94-5f17-4115-9e25-c4464bc447f95204000053039865802BR5921Amauri Mourao Pereira6009SAO PAULO621405107UCCil9dAy6304D0A3'
-  );
-  alert('Pix copiado com sucesso 🤍');
+);
+alert('Pix copiado com sucesso 🤍');
 }
 
-/* CONTADOR */
-const dataCasamento = new Date("2027-05-29T10:00:00").getTime();
+const target = new Date("2027-05-29T10:00:00").getTime();
 setInterval(()=>{
-  const agora = new Date().getTime();
-  const d = dataCasamento - agora;
-  document.getElementById("days").innerText = Math.floor(d/(1000*60*60*24));
-  document.getElementById("hours").innerText = Math.floor((d%(1000*60*60*24))/(1000*60*60));
-  document.getElementById("minutes").innerText = Math.floor((d%(1000*60*60))/(1000*60));
-  document.getElementById("seconds").innerText = Math.floor((d%(1000*60))/1000);
+const now = new Date().getTime();
+const diff = target-now;
+days.innerText=Math.floor(diff/(1000*60*60*24));
+hours.innerText=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+minutes.innerText=Math.floor((diff%(1000*60*60))/(1000*60));
+seconds.innerText=Math.floor((diff%(1000*60))/1000);
 },1000);
 </script>
 
