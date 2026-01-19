@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obrigado! - Casamento Amauri & Ester</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #d16c7c, #f08a5d);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        h1 { font-size: 2.5rem; margin-bottom: 20px; }
+        p { font-size: 1.2rem; margin-bottom: 15px; line-height: 1.6; }
+        .heart { 
+            font-size: 4rem; 
+            animation: pulse 1.5s infinite;
+            display: block;
+            margin: 20px 0;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 30px;
+            background: white;
+            color: #d16c7c;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heart">💖</div>
+        <h1>Mensagem Enviada com Sucesso!</h1>
+        <p>Obrigado pelo seu carinho e por compartilhar esse momento conosco.</p>
+        <p>Sua mensagem é muito especial para nós! 💍</p>
+        <p>Estamos ansiosos para celebrar nosso amor com você.</p>
+        <div style="margin-top: 40px; font-style: italic; font-size: 1.5rem;">
+            Com amor,<br>Amauri & Ester
+        </div>
+        <a href="index.html" class="btn">Voltar ao Site do Casamento</a>
+    </div>
+</body>
+</html>
