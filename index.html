@@ -1,425 +1,1098 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- OTIMIZAÇÃO PARA WHATSAPP -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="Amauri & Ester">
-<meta property="og:description" content="29/05/2027 • Várzea da Palma - MG. Estamos ansiosos para celebrar esse momento especial com você 🤍">
-<meta property="og:image" content="https://SEUSITE.com/capa-whatsapp.jpg">
-<meta property="og:url" content="https://amaurieester.github.io/casamento-amauri-ester">
-<meta property="og:site_name" content="Casamento Amauri & Ester">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-
-<title>Amauri & Ester | Casamento</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --rosa:#d16c7c;
-  --laranja:#f08a5d;
-  --fundo:#fff6f2;
-}
-
-*{box-sizing:border-box;margin:0;padding:0}
-
-body{
-  font-family:'Montserrat',sans-serif;
-  background:var(--fundo);
-  color:#444;
-}
-
-/* MENU */
-.menu{
-  position:sticky;
-  top:15px;
-  margin:15px auto;
-  max-width:900px;
-  background:rgba(255,255,255,.92);
-  backdrop-filter:blur(6px);
-  border-radius:40px;
-  padding:14px 28px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:18px;
-  box-shadow:0 10px 25px rgba(0,0,0,.08);
-  z-index:1000;
-}
-
-.menu a{
-  text-decoration:none;
-  color:var(--rosa);
-  font-size:14px;
-  font-weight:500;
-  white-space:nowrap;
-}
-
-@media (max-width:768px){
-  .menu{
-    overflow-x:auto;
-    justify-content:flex-start;
-    gap:22px;
-  }
-  .menu::-webkit-scrollbar{display:none;}
-  .menu a{font-size:15px;}
-}
-
-section{
-  padding:80px 20px;
-  max-width:1100px;
-  margin:auto;
-}
-
-h1,h2{
-  font-family:'Playfair Display',serif;
-  text-align:center;
-}
-
-h1{font-size:44px}
-h2{font-size:32px;color:var(--laranja);margin-bottom:35px}
-
-.card{
-  background:#fff;
-  border-radius:24px;
-  padding:40px;
-  box-shadow:0 15px 40px rgba(0,0,0,.08);
-}
-
-/* TOPO */
-.topo{
-  background:linear-gradient(135deg,var(--rosa),var(--laranja));
-  color:#fff;
-  text-align:center;
-  padding:100px 20px;
-}
-
-.countdown{
-  display:flex;
-  justify-content:center;
-  gap:18px;
-  margin-top:35px;
-  flex-wrap:wrap;
-}
-
-.time{
-  background:rgba(255,255,255,.25);
-  padding:16px 24px;
-  border-radius:18px;
-  min-width:90px;
-}
-
-/* BOTÕES */
-.btn{
-  display:inline-block;
-  margin-top:20px;
-  padding:14px 36px;
-  border-radius:30px;
-  background:linear-gradient(135deg,var(--rosa),var(--laranja));
-  color:#fff;
-  border:none;
-  cursor:pointer;
-}
-
-/* PRESENTES */
-.presentes{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:22px;
-}
-
-.presente{
-  background:#fff;
-  border-radius:22px;
-  padding:26px;
-  box-shadow:0 10px 25px rgba(0,0,0,.08);
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-
-/* FORM MENSAGEM */
-.form-msg input,
-.form-msg textarea{
-  width:100%;
-  padding:14px;
-  border-radius:16px;
-  border:1px solid #ddd;
-  font-family:'Montserrat',sans-serif;
-  margin-bottom:16px;
-}
-
-.form-msg textarea{
-  min-height:140px;
-  resize:vertical;
-}
-
-.msg-ok{
-  display:none;
-  margin-top:15px;
-  color:var(--rosa);
-  font-weight:500;
-  text-align:center;
-}
-
-/* MODAL */
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-  backdrop-filter:blur(6px);
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-}
-
-.modal-box{
-  background:#fff;
-  border-radius:26px;
-  padding:36px;
-  max-width:380px;
-  width:90%;
-  text-align:center;
-  position:relative;
-}
-
-.modal-box img{
-  width:200px;
-  margin:20px auto;
-}
-
-.copy{
-  width:100%;
-  padding:14px;
-  border-radius:28px;
-  border:none;
-  background:linear-gradient(135deg,var(--laranja),#ffd56b);
-  color:#fff;
-  cursor:pointer;
-}
-
-.success{
-  display:none;
-  margin-top:14px;
-  color:var(--rosa);
-}
-
-.close{
-  position:absolute;
-  top:15px;
-  right:18px;
-  font-size:22px;
-  border:none;
-  background:none;
-  cursor:pointer;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO OTIMIZADO -->
+    <title>Amauri & Ester | Casamento 29/05/2027 - Várzea da Palma - MG</title>
+    <meta name="description" content="Celebre conosco nosso casamento! 29 de maio de 2027 em Várzea da Palma - MG. Confirmação de presença, lista de presentes e nossa história de amor.">
+    <meta name="keywords" content="casamento, Amauri, Ester, Várzea da Palma, 29/05/2027, lista de presentes">
+    <meta name="author" content="Amauri & Ester">
+    
+    <!-- OPEN GRAPH PARA REDES SOCIAIS -->
+    <meta property="og:title" content="Amauri & Ester | Casamento">
+    <meta property="og:description" content="29/05/2027 • Várzea da Palma - MG. Estamos ansiosos para celebrar esse momento especial com você 🤍">
+    <meta property="og:image" content="https://SEUSITE.com/capa-whatsapp.jpg">
+    <meta property="og:url" content="https://amaurieester.github.io/casamento-amauri-ester">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Casamento Amauri & Ester">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- TWITTER CARDS -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Amauri & Ester | Casamento">
+    <meta name="twitter:description" content="29/05/2027 • Várzea da Palma - MG">
+    
+    <!-- FAVICON -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- STYLES -->
+    <style>
+        :root {
+            --rosa: #d16c7c;
+            --laranja: #f08a5d;
+            --laranja-claro: #ffd56b;
+            --fundo: #fff6f2;
+            --branco: #ffffff;
+            --cinza: #444444;
+            --cinza-claro: #666666;
+            --sombra: rgba(0, 0, 0, 0.08);
+            --sombra-hover: rgba(0, 0, 0, 0.12);
+            --transicao: all 0.3s ease;
+            --borda-redonda: 24px;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--fundo);
+            color: var(--cinza);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* TIPOGRAFIA */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+        }
+        
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--laranja);
+            margin-bottom: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, var(--rosa), var(--laranja));
+            border-radius: 2px;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+        }
+        
+        /* MENU PRINCIPAL */
+        .menu {
+            position: sticky;
+            top: 15px;
+            margin: 15px auto;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 40px;
+            padding: 16px 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: clamp(1rem, 3vw, 2.5rem);
+            box-shadow: 0 10px 30px var(--sombra);
+            z-index: 1000;
+            transition: var(--transicao);
+        }
+        
+        .menu:hover {
+            box-shadow: 0 15px 40px var(--sombra-hover);
+        }
+        
+        .menu a {
+            text-decoration: none;
+            color: var(--rosa);
+            font-weight: 500;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            white-space: nowrap;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transicao);
+        }
+        
+        .menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--rosa), var(--laranja));
+            transition: width 0.3s ease;
+        }
+        
+        .menu a:hover::after {
+            width: 100%;
+        }
+        
+        .menu a:hover {
+            color: var(--laranja);
+        }
+        
+        @media (max-width: 768px) {
+            .menu {
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding: 14px 24px;
+                margin: 10px 15px;
+                gap: 1.8rem;
+                scrollbar-width: none;
+            }
+            
+            .menu::-webkit-scrollbar {
+                display: none;
+            }
+        }
+        
+        /* SEÇÕES */
+        section {
+            padding: clamp(4rem, 8vw, 6rem) 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .card {
+            background: var(--branco);
+            border-radius: var(--borda-redonda);
+            padding: clamp(2rem, 5vw, 3rem);
+            box-shadow: 0 15px 40px var(--sombra);
+            transition: var(--transicao);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px var(--sombra-hover);
+        }
+        
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, var(--rosa), var(--laranja));
+            color: var(--branco);
+            text-align: center;
+            padding: clamp(6rem, 12vw, 10rem) 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+        }
+        
+        .hero-date {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-top: 1.5rem;
+            opacity: 0.95;
+        }
+        
+        /* COUNTDOWN */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: clamp(0.8rem, 2vw, 1.5rem);
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .time-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .time {
+            background: rgba(255, 255, 255, 0.2);
+            padding: clamp(1rem, 2vw, 1.5rem) clamp(1.2rem, 3vw, 2rem);
+            border-radius: 20px;
+            min-width: clamp(80px, 10vw, 100px);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .time-value {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            display: block;
+        }
+        
+        .time-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+        
+        /* BOTÕES */
+        .btn {
+            display: inline-block;
+            padding: clamp(0.8rem, 2vw, 1rem) clamp(2rem, 4vw, 2.5rem);
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--rosa), var(--laranja));
+            color: var(--branco);
+            border: none;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: var(--transicao);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(209, 108, 124, 0.3);
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .btn:hover::after {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(209, 108, 124, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(-1px);
+        }
+        
+        /* LISTA DE PRESENTES */
+        .presentes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .presente-card {
+            background: var(--branco);
+            border-radius: 20px;
+            padding: 1.8rem;
+            box-shadow: 0 10px 25px var(--sombra);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transicao);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .presente-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px var(--sombra-hover);
+        }
+        
+        .presente-titulo {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--cinza);
+            line-height: 1.4;
+        }
+        
+        .presente-valor {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--laranja);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* FORMULÁRIOS */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: var(--transicao);
+            background: var(--branco);
+        }
+        
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--rosa);
+            box-shadow: 0 0 0 3px rgba(209, 108, 124, 0.1);
+        }
+        
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .msg-success {
+            display: none;
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(209, 108, 124, 0.1);
+            border-radius: 12px;
+            color: var(--rosa);
+            font-weight: 500;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal-content {
+            background: var(--branco);
+            border-radius: var(--borda-redonda);
+            padding: clamp(2rem, 5vw, 3rem);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            animation: slideUp 0.4s ease;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 1.8rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            color: var(--cinza-claro);
+            transition: var(--transicao);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .modal-close:hover {
+            color: var(--rosa);
+            background: rgba(209, 108, 124, 0.1);
+        }
+        
+        .modal-title {
+            color: var(--laranja);
+            margin-bottom: 1.5rem;
+        }
+        
+        .payment-options {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .payment-btn {
+            padding: 1rem 2rem;
+            border: 2px solid var(--laranja);
+            background: transparent;
+            color: var(--laranja);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transicao);
+            min-width: 140px;
+        }
+        
+        .payment-btn:hover {
+            background: var(--laranja);
+            color: var(--branco);
+        }
+        
+        .payment-btn.active {
+            background: var(--laranja);
+            color: var(--branco);
+        }
+        
+        .pix-container {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .qrcode-container {
+            margin: 1.5rem auto;
+            padding: 1.5rem;
+            background: #f8f8f8;
+            border-radius: 12px;
+            display: inline-block;
+        }
+        
+        .qrcode-placeholder {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            color: var(--cinza-claro);
+            font-size: 0.9rem;
+        }
+        
+        .pix-info {
+            background: rgba(240, 138, 93, 0.1);
+            padding: 1rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+        
+        .pix-key {
+            font-family: monospace;
+            font-size: 0.9rem;
+            word-break: break-all;
+            background: rgba(0, 0, 0, 0.05);
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            color: var(--cinza);
+        }
+        
+        .copy-btn {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 50px;
+            border: none;
+            background: linear-gradient(135deg, var(--laranja), var(--laranja-claro));
+            color: var(--branco);
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: var(--transicao);
+        }
+        
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(240, 138, 93, 0.3);
+        }
+        
+        .copy-success {
+            display: none;
+            color: var(--rosa);
+            font-weight: 500;
+            margin-top: 1rem;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        /* ANIMAÇÕES */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* FOOTER */
+        footer {
+            background: linear-gradient(135deg, var(--rosa), var(--laranja));
+            color: var(--branco);
+            text-align: center;
+            padding: 3rem 20px;
+            margin-top: 4rem;
+        }
+        
+        .footer-heart {
+            color: #ff6b6b;
+            animation: heartbeat 1.5s ease infinite;
+            display: inline-block;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* UTILITIES */
+        .text-center { text-align: center; }
+        .mt-1 { margin-top: 1rem; }
+        .mt-2 { margin-top: 2rem; }
+        .mt-3 { margin-top: 3rem; }
+        .mb-1 { margin-bottom: 1rem; }
+        .mb-2 { margin-bottom: 2rem; }
+        .mb-3 { margin-bottom: 3rem; }
+        
+        /* LOADING */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(209, 108, 124, 0.2);
+            border-top-color: var(--rosa);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* ACCESSIBILITY */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- NAVEGAÇÃO -->
+    <nav class="menu" aria-label="Navegação principal">
+        <a href="#inicio">Início</a>
+        <a href="#historia">Nossa História</a>
+        <a href="#evento">Evento</a>
+        <a href="#confirmacao">Confirmação</a>
+        <a href="#presentes">Presentes</a>
+    </nav>
 
-<nav class="menu">
-<a href="#inicio">Início</a>
-<a href="#historia">Nossa História</a>
-<a href="#evento">Evento</a>
-<a href="#confirmacao">Confirmação</a>
-<a href="#presentes">Presentes</a>
-</nav>
+    <!-- HERO SECTION -->
+    <header class="hero" id="inicio">
+        <div class="hero-content">
+            <p class="hero-subtitle">Save the date</p>
+            <h1>Amauri & Ester</h1>
+            <p class="hero-date">29 de Maio de 2027 • Várzea da Palma - MG</p>
+            
+            <div class="countdown">
+                <div class="time-unit">
+                    <div class="time">
+                        <span class="time-value" id="dias">00</span>
+                        <span class="time-label">Dias</span>
+                    </div>
+                </div>
+                <div class="time-unit">
+                    <div class="time">
+                        <span class="time-value" id="horas">00</span>
+                        <span class="time-label">Horas</span>
+                    </div>
+                </div>
+                <div class="time-unit">
+                    <div class="time">
+                        <span class="time-value" id="minutos">00</span>
+                        <span class="time-label">Minutos</span>
+                    </div>
+                </div>
+                <div class="time-unit">
+                    <div class="time">
+                        <span class="time-value" id="segundos">00</span>
+                        <span class="time-label">Segundos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-<div class="topo" id="inicio">
-<p>SAVE THE DATE</p>
-<h1>Amauri & Ester</h1>
-<p>29/05/2027 • Várzea da Palma - MG</p>
+    <!-- NOSSA HISTÓRIA -->
+    <section id="historia">
+        <div class="text-center mb-3">
+            <h2>Nossa História</h2>
+        </div>
 
-<div class="countdown">
-<div class="time" id="dias"></div>
-<div class="time" id="horas"></div>
-<div class="time" id="minutos"></div>
-<div class="time" id="segundos"></div>
-</div>
-</div>
+        <div class="card mb-3">
+            <p class="text-center"><strong>Sejam bem-vindos ao nosso site!</strong></p>
+            <p class="text-center">
+                Criamos este espaço com muito carinho para compartilhar com vocês um dos momentos mais especiais das nossas vidas.<br>
+                Aqui, cada detalhe foi pensado para unir sonhos, histórias e pessoas que sempre fizeram parte da nossa caminhada.
+            </p>
+        </div>
 
-<section id="historia">
+        <div class="card">
+            <p>Tudo começou por culpa (ou mérito) de um amigo em comum: <strong>Samuel Fernando</strong>. Ele jurava que nós dois combinávamos perfeitamente. A noiva não acreditava muito e achava aquilo tudo exagero — virou quase uma aposta. Spoiler: ele estava certo.</p>
 
-<div class="card" style="margin-bottom:50px;text-align:center;line-height:1.8">
-<p><strong>Sejam bem-vindos ao nosso site!</strong></p>
-<p>
-Criamos este espaço com muito carinho para compartilhar com vocês um dos momentos mais especiais das nossas vidas.<br>
-Aqui, cada detalhe foi pensado para unir sonhos, histórias e pessoas que sempre fizeram parte da nossa caminhada.
-</p>
-</div>
+            <p>O primeiro beijo aconteceu numa noite especial, no <strong>Armazém do Rosário</strong>. E como toda boa história, a noite não terminou ali. Logo depois, fomos jogar truco na casa de um amigo, o <strong>João Pedro</strong>, e ficamos por lá até o dia amanhecer.</p>
 
-<h2>Nossa História</h2>
+            <p>Nesse meio tempo, a noiva já estava completamente louquinha por mais um beijo do noivo. Para que isso acontecesse, Samuel e João Pedro tiveram que tomar café frio, do dia anterior, só para despistar e criar o clima perfeito. Amizades de verdade passam por isso.</p>
 
-<div class="card" style="line-height:1.9;text-align:justify">
-<p>Tudo começou por culpa (ou mérito) de um amigo em comum: <strong>Samuel Fernando</strong>. Ele jurava que nós dois combinávamos perfeitamente. A noiva não acreditava muito e achava aquilo tudo exagero — virou quase uma aposta. Spoiler: ele estava certo.</p>
+            <p>Algum tempo depois, veio o pedido de namoro. A noiva estava chegando de férias e o noivo foi buscá-la dizendo que iriam sair para mais um encontro. No caminho, soltou a frase que entrou para a história:</p>
 
-<p>O primeiro beijo aconteceu numa noite especial, no <strong>Armazém do Rosário</strong>. E como toda boa história, a noite não terminou ali. Logo depois, fomos jogar truco na casa de um amigo, o <strong>João Pedro</strong>, e ficamos por lá até o dia amanhecer.</p>
+            <p class="text-center" style="font-style: italic; color: var(--rosa); padding: 1rem; background: rgba(209, 108, 124, 0.05); border-radius: 12px;">
+                "Vai parecer que eu tô te sequestrando… mas eu não tô."
+            </p>
 
-<p>Nesse meio tempo, a noiva já estava completamente louquinha por mais um beijo do noivo. Para que isso acontecesse, Samuel e João Pedro tiveram que tomar café frio, do dia anterior, só para despistar e criar o clima perfeito. Amizades de verdade passam por isso.</p>
+            <p>(E não estava mesmo.)</p>
 
-<p>Algum tempo depois, veio o pedido de namoro. A noiva estava chegando de férias e o noivo foi buscá-la dizendo que iriam sair para mais um encontro. No caminho, soltou a frase que entrou para a história:</p>
+            <p>No destino, a surpresa: um caminho de corações recortados à mão, um por um pelo noivo, velas, música de fundo e, ao final, a pergunta escrita na parede:</p>
 
-<p style="text-align:center;font-style:italic;">“Vai parecer que eu tô te sequestrando… mas eu não tô.”</p>
+            <p class="text-center" style="font-weight: 600; color: var(--laranja); font-size: 1.2rem; margin: 1.5rem 0;">
+                "Quer namorar comigo?"
+            </p>
 
-<p>(E não estava mesmo.)</p>
+            <p>O "sim" veio fácil — o coração já tinha respondido antes.</p>
 
-<p>No destino, a surpresa: um caminho de corações recortados à mão, um por um pelo noivo, velas, música de fundo e, ao final, a pergunta escrita na parede:</p>
+            <p>Desde o começo, não fomos só nós dois. Muita gente torceu, incentivou, apostou e acreditou nesse amor — amigos e família que sempre estiveram por perto, vibrando a cada passo.</p>
 
-<p style="text-align:center;font-weight:600;">“Quer namorar comigo?”</p>
+            <p>Entre risadas, conversas que atravessaram madrugadas e muita parceria, fomos construindo um amor leve, verdadeiro e sem esforço. Daqueles que simplesmente encaixam.</p>
 
-<p>O “sim” veio fácil — o coração já tinha respondido antes.</p>
+            <p>Depois de <strong>8 anos</strong> compartilhando a vida, as histórias, os sonhos e as certezas, decidimos dar o próximo passo.</p>
 
-<p>Desde o começo, não fomos só nós dois. Muita gente torceu, incentivou, apostou e acreditou nesse amor — amigos e família que sempre estiveram por perto, vibrando a cada passo.</p>
+            <p>O pedido de casamento foi exatamente a nossa cara: teve <strong>Disney</strong>, porque a noiva ama; teve <strong>discrição</strong>, porque o noivo ama; e teve <strong>Maragogi</strong>, porque o amor merecia um cenário bonito.</p>
 
-<p>Entre risadas, conversas que atravessaram madrugadas e muita parceria, fomos construindo um amor leve, verdadeiro e sem esforço. Daqueles que simplesmente encaixam.</p>
+            <p>Só nós dois, nos bangalôs de um hotel, vivendo um momento único — enquanto nossos pais estavam no mesmo hotel e ninguém desconfiou de nada. <strong>Sigilo absoluto, missão cumprida ✔️</strong></p>
 
-<p>Depois de <strong>8 anos</strong> compartilhando a vida, as histórias, os sonhos e as certezas, decidimos dar o próximo passo.</p>
+            <p class="text-center mt-3" style="font-weight: 600; color: var(--rosa); font-size: 1.3rem;">
+                E o melhor de tudo: essa história está só começando.
+            </p>
+        </div>
+    </section>
 
-<p>O pedido de casamento foi exatamente a nossa cara: teve <strong>Disney</strong>, porque a noiva ama; teve <strong>discrição</strong>, porque o noivo ama; e teve <strong>Maragogi</strong>, porque o amor merecia um cenário bonito.</p>
+    <!-- EVENTO -->
+    <section id="evento">
+        <div class="text-center mb-3">
+            <h2>O Evento</h2>
+        </div>
+        
+        <div class="card text-center">
+            <h3 style="color: var(--rosa); margin-bottom: 1rem;">Matriz Nossa Senhora da Conceição</h3>
+            <p>Praça Frei Jorge, nº 1480<br>Várzea da Palma - MG</p>
+            <div class="mt-2">
+                <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Matriz+Nossa+Senhora+da+Conceicao+Varzea+da+Palma+MG" target="_blank" rel="noopener">
+                    Ver no mapa
+                </a>
+            </div>
+        </div>
+    </section>
 
-<p>Só nós dois, nos bangalôs de um hotel, vivendo um momento único — enquanto nossos pais estavam no mesmo hotel e ninguém desconfiou de nada. <strong>Sigilo absoluto, missão cumprida ✔️</strong></p>
+    <!-- CONFIRMAÇÃO DE PRESENÇA -->
+    <section id="confirmacao">
+        <div class="text-center mb-3">
+            <h2>Confirmação de Presença</h2>
+        </div>
+        
+        <div class="card text-center mb-3">
+            <p class="mb-2">Para confirmar sua presença no nosso grande dia, por favor clique no botão abaixo:</p>
+            <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSf4goBLjMg9tv6LAgfYVz9G1Mk7NGscCFhcDWsj0LsRerNrzQ/viewform" target="_blank" rel="noopener">
+                Confirmar presença
+            </a>
+        </div>
 
-<p><strong>E o melhor de tudo: essa história está só começando.</strong></p>
+        <div class="card">
+            <h3 class="text-center" style="color: var(--rosa); margin-bottom: 2rem;">Deixe uma mensagem para os noivos 🤍</h3>
+            
+            <div class="form-container">
+                <div class="form-group">
+                    <input type="text" class="form-input" id="nome" placeholder="Seu nome completo *" required>
+                </div>
+                
+                <div class="form-group">
+                    <textarea class="form-textarea" id="mensagem" placeholder="Escreva sua mensagem com carinho *" required></textarea>
+                </div>
+                
+                <button class="btn" onclick="enviarMensagem()" style="width: 100%;">
+                    Enviar mensagem
+                </button>
+                
+                <div class="msg-success" id="msgSuccess">
+                    <p>Mensagem enviada com carinho! Muito obrigado pelo carinho 🤍</p>
+                </div>
+                
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Enviando sua mensagem...</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-</div>
-</section>
+    <!-- LISTA DE PRESENTES -->
+    <section id="presentes">
+        <div class="text-center mb-3">
+            <h2>Lista de Presentes</h2>
+            <p>Escolha um presente que faça parte da nossa nova vida juntos</p>
+        </div>
+        
+        <div class="presentes-grid" id="lista-presentes"></div>
+    </section>
 
-<section id="evento">
-<h2>O Evento</h2>
-<div class="card" style="text-align:center">
-<p><strong>Matriz Nossa Senhora da Conceição</strong></p>
-<p>Praça Frei Jorge, nº 1480<br>Várzea da Palma - MG</p>
-<a class="btn" target="_blank"
-href="https://www.google.com/maps/search/?api=1&query=Matriz+Nossa+Senhora+da+Conceicao+Varzea+da+Palma+MG">
-Ver no mapa
-</a>
-</div>
-</section>
+    <!-- MODAL DE PAGAMENTO -->
+    <div class="modal" id="modalPresente">
+        <div class="modal-content">
+            <button class="modal-close" onclick="fecharModal()" aria-label="Fechar modal">×</button>
+            
+            <h3 class="modal-title" id="modalTitulo">Escolha a forma de pagamento</h3>
+            
+            <div class="payment-options">
+                <button class="payment-btn active" onclick="mostrarPix()" id="btnPix">
+                    Pix
+                </button>
+                <button class="payment-btn" onclick="abrirCartao()" id="btnCartao">
+                    Cartão
+                </button>
+            </div>
+            
+            <div class="pix-container" id="pixContainer">
+                <div class="qrcode-container">
+                    <div class="qrcode-placeholder">
+                        QR Code Pix<br>
+                        (imagem será adicionada)
+                    </div>
+                </div>
+                
+                <div class="pix-info">
+                    <p><strong>Beneficiário:</strong> Amauri Mourão Pereira</p>
+                    <p><strong>Banco:</strong> Nubank</p>
+                    <p><strong>Chave Pix (copie e cole):</strong></p>
+                    <div class="pix-key" id="pixKey">
+                        00020126580014BR.GOV.BCB.PIX01360fd40b94-5f17-4115-9e25-c4464bc447f95204000053039865802BR5921Amauri Mourao Pereira6009SAO PAULO621405107UCCil9dAy6304D0A3
+                    </div>
+                </div>
+                
+                <button class="copy-btn" onclick="copiarPix()" id="copyBtn">
+                    Copiar Chave Pix
+                </button>
+                
+                <p class="copy-success" id="copySuccess">
+                    ✔ Chave Pix copiada! Agradecemos o apoio e a colaboração 🤍
+                </p>
+            </div>
+        </div>
+    </div>
 
-<section id="confirmacao">
-<h2>Confirmação de Presença</h2>
-<div class="card" style="text-align:center">
-<a class="btn" target="_blank"
-href="https://docs.google.com/forms/d/e/1FAIpQLSf4goBLjMg9tv6LAgfYVz9G1Mk7NGscCFhcDWsj0LsRerNrzQ/viewform">
-Confirmar presença
-</a>
-</div>
+    <!-- RODAPÉ -->
+    <footer>
+        <p>Com amor, Amauri & Ester</p>
+        <p class="mt-1">29 de Maio de 2027</p>
+        <p class="mt-2">
+            <span class="footer-heart">💍</span><br>
+            Mal podemos esperar para celebrar com vocês!
+        </p>
+    </footer>
 
-<div class="card" style="margin-top:40px">
-<h3 style="text-align:center;color:var(--rosa)">Deixe uma mensagem para os noivos 🤍</h3>
-<div class="form-msg">
-<input type="text" placeholder="Seu nome completo">
-<textarea placeholder="Escreva sua mensagem com carinho"></textarea>
-<button class="btn" onclick="enviarMensagem()">Enviar mensagem</button>
-<p class="msg-ok" id="msgOk">Mensagem enviada com carinho 🤍</p>
-</div>
-</div>
-</section>
-
-<section id="presentes">
-<h2>Lista de Presentes</h2>
-<div class="presentes" id="lista"></div>
-</section>
-
-<!-- MODAL PIX / CARTÃO -->
-<div class="modal" id="modalPresente">
-<div class="modal-box">
-<button class="close" onclick="fecharModal()">×</button>
-<h3>Escolha a forma de pagamento</h3>
-
-<button class="btn" onclick="mostrarPix()">Pix</button>
-<button class="btn" onclick="abrirCartao()">Cartão</button>
-
-<div id="pixBox" style="display:none;">
-<img src="pix-qrcode.png">
-<p><strong>Amauri Mourão Pereira</strong></p>
-<p>Banco: Nubank</p>
-<p id="pixKey" style="font-size:12px;word-break:break-all;">
-00020126580014BR.GOV.BCB.PIX01360fd40b94-5f17-4115-9e25-c4464bc447f95204000053039865802BR5921Amauri Mourao Pereira6009SAO PAULO621405107UCCil9dAy6304D0A3
-</p>
-<button class="copy" onclick="copiarPix()">Copiar Pix</button>
-<p class="success" id="pixMsg">✔ Agradecemos o apoio e a colaboração 🤍</p>
-</div>
-</div>
-</div>
-
-<script>
-const data=new Date("2027-05-29T10:00:00");
-setInterval(()=>{
-const now=new Date();
-const d=data-now;
-dias.innerHTML=Math.floor(d/86400000)+" dias";
-horas.innerHTML=Math.floor(d/3600000)%24+" h";
-minutos.innerHTML=Math.floor(d/60000)%60+" min";
-segundos.innerHTML=Math.floor(d/1000)%60+" s";
-},1000);
-
-const presentes=[
-["Adote os boletos dos primeiros meses juntos",821.10],
-["Ajuda financeira para o futuro casal",405.08],
-["Ajuda para a aposentadoria dos noivos",3612.84],
-["Ajuda para mobiliar a casa",1204.28],
-["Ajuda para mobiliar a casa",547.40],
-["Ajude a noiva a comprar lingeries novas",60.21],
-["Ajude a noiva a comprar novos pijamas",131.38],
-["Ajude o noivo a comprar uma cervejeira",920.51],
-["Ajude a noiva a renovar o guarda-roupa",93.06],
-["Ajude o casal ter uma piscina em casa",656.88],
-["Ajude o noivo a comprar cuecas novas",60.21],
-["Ajude o noivo a comprar pijamas novos",131.38],
-["Aluguel de um bebê para treinamento",164.22],
-["Aspirador de pó",131.38],
-["Ajude a comprar uma TV",671.07],
-["Ajude a comprar uma Geladeira",781.92],
-["Ajude a comprar uma Cama box de casal",486.87],
-["Ajude a comprar Roupas de cama",162.89],
-["Ajude a comprar um Guarda-roupa novo",341.25],
-["Ajude a comprar um Fogão",264.86],
-["Ajude a comprar uma Máquina de lavar",400.25],
-["Ajude a comprar uma Mesa de jantar",230.90],
-["Ajude a comprar uma Cafeteira elétrica",110.21],
-["Ajude a comprar uma Churrasqueira",120.90],
-["Ajude a comprar um Jogo de panelas",82.61],
-["Ajude a comprar um Jogo de taças",62.99],
-["Taxa para levar alguém que não foi convidado",6652.99]
-];
-
-lista.innerHTML=presentes.map(p=>`
-<div class="presente">
-<strong>${p[0]}</strong>
-<span>R$ ${p[1].toFixed(2)}</span>
-<button class="btn" onclick="abrirModal()">Presentear</button>
-</div>`).join("");
-
-function abrirModal(){
-document.getElementById("modalPresente").style.display="flex";
-}
-function fecharModal(){
-document.getElementById("modalPresente").style.display="none";
-document.getElementById("pixBox").style.display="none";
-document.getElementById("pixMsg").style.display="none";
-}
-function mostrarPix(){
-document.getElementById("pixBox").style.display="block";
-}
-function copiarPix(){
-navigator.clipboard.writeText(document.getElementById("pixKey").innerText);
-document.getElementById("pixMsg").style.display="block";
-}
-function abrirCartao(){
-window.open("https://link.mercadopago.com.br/presenteamaurieester","_blank");
-}
-function enviarMensagem(){
-document.getElementById("msgOk").style.display="block";
-}
-</script>
-
-</body>
-</html>
-
+    <script>
+        // DADOS DO CASAMENTO
+        const dataCasamento = new Date("2027-05-29T10:00:00");
+        let presenteSelecionado = { titulo: "", valor: 0 };
+        
+        // LISTA DE PRESENTES
+        const presentes = [
+            ["Adote os boletos dos primeiros meses juntos", 821.10],
+            ["Ajuda financeira para o futuro casal", 405.08],
+            ["Ajuda para a aposentadoria dos noivos", 3612.84],
+            ["Ajuda para mobiliar a casa", 1204.28],
+            ["Ajuda para mobiliar a casa", 547.40],
+            ["Ajude a noiva a comprar lingeries novas", 60.21],
+            ["Ajude a noiva a comprar novos pijamas", 131.38],
+            ["Ajude o noivo a comprar uma cervejeira", 920.51],
+            ["Ajude a noiva a renovar o guarda-roupa", 93.06],
+            ["Ajude o casal ter uma piscina em casa", 656.88],
+            ["Ajude o noivo a comprar cuecas novas", 60.21],
+            ["Ajude o noivo a comprar pijamas novos", 131.38],
+            ["Aluguel de um bebê para treinamento", 164.22],
+            ["Aspirador de pó", 131.38],
+            ["Ajude a comprar uma TV", 671.07],
+            ["Ajude a comprar uma Geladeira", 781.92],
+            ["Ajude a comprar uma Cama box de casal", 486.87],
+            ["Ajude a comprar Roupas de cama", 162.89],
+            ["Ajude a comprar um Guarda-roupa novo", 341.25],
+            ["Ajude a comprar um Fogão", 264.86],
+            ["Ajude a comprar uma Máquina de lavar", 400.25],
+            ["Ajude a comprar uma Mesa de jantar", 230.90],
+            ["Ajude a comprar uma Cafeteira elétrica", 110.21],
+            ["Ajude a comprar uma Churrasqueira", 120.90],
+            ["Ajude a comprar um Jogo de panelas", 82.61],
+            ["Ajude a comprar um Jogo de taças", 62.99],
+            ["Taxa para levar alguém que não foi convidado", 6652.99]
+        ];
+        
+        // INICIALIZAÇÃO
+        document.addEventListener('DOMContentLoaded', function() {
+            // Contador regressivo
+            atualizarContador();
+            setInterval(atualizarContador, 1000);
+            
+            // Renderizar lista de presentes
+            renderizarPresentes();
+            
+            // Smooth scroll para links do menu
+            document.querySelectorAll('.menu a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            window.scrollTo({
+                                top: target.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+            
+            // Fechar modal ao clicar fora
+            document.getElementById('modalPresente').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    fecharModal();
+                }
+            });
+            
+            // Tecla ESC fecha modal
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    fecharModal();
+                }
+            });
+        });
+        
+        // FUNÇÕES
+        function atualizarContador() {
+            const agora = new Date();
+            const diferenca = dataCasamento - agora;
+            
+            if (diferenca > 0) {
+                const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+                
+                document.getElementById('dias').textContent = dias.toString().padStart(2, '0');
+                document.getElementById('horas').textContent = horas.toString().padStart(2, '0');
+                document.getElementById('minutos').textContent = minutos.toString().padStart(2, '0');
+                document.getElementById('segundos').textContent = segundos.toString().padStart(2, '0');
+            } else {
+                document.querySelector('.countdown').innerHTML = '<p style="font-size: 1.5rem;">O grande dia chegou! 🎉</p>';
+            }
+        }
+        
+        function renderizarPresentes() {
+            const container = document.getElementById('lista-presentes');
+            container.innerHTML = '';
+            
+            presentes.forEach((presente, index) => {
+                const [titulo, valor] = presente;
+                
+                const card = document.createElement('div');
+                card.className = 'presente-card';
+                card.innerHTML = `
+                    <div>
+                        <h3 class="presente-titulo">${titulo}</h3>
+                        <p class="presente-valor">R$ ${valor.toFixed(2).replace('.', ',')}</p>
+                    </div>
+                    <button class="btn" onclick="selecionarPresente('${titulo}', ${valor})">
+                        Presentear
+                    </button>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+        
+        function selecionarPresente(titulo, valor) {
+            presenteSelecionado = { titulo, valor };
+            
+            // Atualizar título do modal
+            document.getElementById('modalTitulo').textContent = titulo;
+            
+            // Mostrar modal
+            document.getElementById('modalPresente').style.display = 'flex';
+            
+            // Resetar estado do modal
+            document.getElementById('pixContainer').style.display = 'none';
+            document.getElementById('copySuccess').style.display = 'none';
+            
+            // Ativar botão Pix
+            document.getElementById('btnPix').classList.add('active');
+            document.getElementById('btnCartao').classList.remove('active');
+        }
+        
+        function mostrarPix() {
+            // Ativar botão Pix
+            document.getElementById('btnPix').classList.add('active');
+            document.getElementById('btnCartao').classList.remove('active');
+            
+            // Mostrar container do Pix
+            document.getElementById('pixContainer').style.display = 'block';
+        }
+        
+        function abrirCartao() {
+            // Ativar botão Cartão
+            document.getElementById('btnCartao').classList.add('active');
+            document.getElementById('btnPix').classList.remove('active');
+            
+            // Esconder container do Pix
+            document.getElementById('pixContainer').style.display = 'none';
+            
+            // Redirecionar para página de cartão (substitua pela sua URL)
+            window.open('https://link.mercadopago.com.br/presenteamaurieester', '_blank');
+        }
+        
+        function copiarPix() {
+            const pixKey = document.getElementById('pixKey').textContent;
+            
+            navigator.clipboard.writeText(pixKey).then(() => {
+                const successMsg = document.getElementById('copySuccess');
+                const copyBtn = document.getElementById('copyBtn');
+                
+                // Mostrar mensagem de sucesso
+                successMsg.style.display = 'block';
+                copyBtn.textContent = 'Chave Copiada!';
+                copyBtn.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
+                
+                // Resetar após 3 segundos
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                    copyBtn.textContent = 'Copiar Chave Pix';
+                    copyBtn.style.background = 'linear-gradient(135deg, var(--laranja), var(--laranja-claro))';
+                }, 3000);
+            }).catch(err => {
+                console.error('Erro ao copiar: ', err);
+                alert('Não foi possível copiar a chave Pix. Por favor, copie manualmente.');
+            });
+        }
+        
+        function fecharModal() {
+            document.getElementById('modalPresente').style.display = 'none';
+        }
+        
+        function enviarMensagem() {
+            const nome = document.getElementById('nome').value.trim();
+            const mensagem = document.getElementById('mensagem').value.trim();
+            
+            // Validação simples
+            if (!nome || !mensagem) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+            
+            // Mostrar loading
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('msgSuccess').style.display = 'none';
+            
+            // Simular envio (substitua por sua lógica real)
+            setTimeout(() => {
+                // Aqui você faria uma requisição para seu backend
+                // Exemplo com fetch:
+                /*
+                fetch('sua-api.com/mensagens', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nome, mensagem })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Sucesso
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('msgSuccess').style.display = 'block';
+                    document.getElementById('nome').value = '';
+                    document.getElementById('mensagem').value = '';
+                })
+                .catch(error => {
+                    // Erro
+                    document.getElementById('loading').style.display = 'none';
+                    alert('Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.');
+                });
+                */
+                
+                // Simulação de sucesso
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('msgSuccess').style.display = 'block';
+                document.getElementById('nome').value = '';
+                document.getElementById('mensagem').value = '';
+                
+                // Rol
