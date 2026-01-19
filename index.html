@@ -22,6 +22,42 @@ body{
   color:#444;
 }
 
+/* MENU */
+.menu{
+  position:sticky;
+  top:15px;
+  margin:15px auto;
+  max-width:900px;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(6px);
+  border-radius:40px;
+  padding:14px 28px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  z-index:1000;
+}
+
+.menu a{
+  text-decoration:none;
+  color:var(--rosa);
+  font-size:14px;
+  font-weight:500;
+  white-space:nowrap;
+}
+
+@media (max-width:768px){
+  .menu{
+    overflow-x:auto;
+    justify-content:flex-start;
+    gap:22px;
+  }
+  .menu::-webkit-scrollbar{display:none;}
+  .menu a{font-size:15px;}
+}
+
 section{
   padding:80px 20px;
   max-width:1100px;
@@ -43,31 +79,6 @@ h2{font-size:32px;color:var(--laranja);margin-bottom:35px}
   box-shadow:0 15px 40px rgba(0,0,0,.08);
 }
 
-/* MENU FIXO */
-.menu{
-  position:sticky;
-  top:15px;
-  margin:15px auto;
-  max-width:780px;
-  background:rgba(255,255,255,.92);
-  backdrop-filter:blur(6px);
-  border-radius:40px;
-  padding:14px 28px;
-  display:flex;
-  justify-content:space-between;
-  box-shadow:0 10px 25px rgba(0,0,0,.08);
-  z-index:1000;
-}
-
-.menu a{
-  text-decoration:none;
-  color:var(--rosa);
-  font-size:14px;
-  font-weight:500;
-}
-
-.menu a:hover{color:var(--laranja)}
-
 /* TOPO */
 .topo{
   background:linear-gradient(135deg,var(--rosa),var(--laranja));
@@ -75,8 +86,6 @@ h2{font-size:32px;color:var(--laranja);margin-bottom:35px}
   text-align:center;
   padding:100px 20px;
 }
-
-.topo p{letter-spacing:3px;margin-bottom:10px}
 
 .countdown{
   display:flex;
@@ -96,12 +105,11 @@ h2{font-size:32px;color:var(--laranja);margin-bottom:35px}
 /* BOTÕES */
 .btn{
   display:inline-block;
-  margin-top:25px;
+  margin-top:20px;
   padding:14px 36px;
   border-radius:30px;
   background:linear-gradient(135deg,var(--rosa),var(--laranja));
   color:#fff;
-  text-decoration:none;
   border:none;
   cursor:pointer;
 }
@@ -123,7 +131,7 @@ h2{font-size:32px;color:var(--laranja);margin-bottom:35px}
   justify-content:space-between;
 }
 
-/* PIX MODAL */
+/* MODAL */
 .modal{
   display:none;
   position:fixed;
@@ -145,7 +153,10 @@ h2{font-size:32px;color:var(--laranja);margin-bottom:35px}
   position:relative;
 }
 
-.modal-box img{width:200px;margin:20px auto}
+.modal-box img{
+  width:200px;
+  margin:20px auto;
+}
 
 .copy{
   width:100%;
@@ -199,92 +210,40 @@ h2{font-size:32px;color:var(--laranja);margin-bottom:35px}
 </div>
 
 <section id="historia">
-  <h2>Nossa História</h2>
+<h2>Nossa História</h2>
+<div class="card" style="line-height:1.9;text-align:justify">
 
-  <div class="card" style="line-height:1.9; text-align:justify; font-size:16px;">
-    <p>
-      Tudo começou por culpa (ou mérito) de um amigo em comum: <strong>Samuel Fernando</strong>.
-      Ele jurava que nós dois combinávamos perfeitamente. A noiva não acreditava muito e achava
-      aquilo tudo exagero — virou quase uma aposta. Spoiler: ele estava certo.
-    </p>
+<p>Tudo começou por culpa (ou mérito) de um amigo em comum: <strong>Samuel Fernando</strong>. Ele jurava que nós dois combinávamos perfeitamente. A noiva não acreditava muito e achava aquilo tudo exagero — virou quase uma aposta. Spoiler: ele estava certo.</p>
 
-    <p>
-      O primeiro beijo aconteceu numa noite especial, no <strong>Armazém do Rosário</strong>.
-      E como toda boa história, a noite não terminou ali. Logo depois, fomos jogar truco
-      na casa de um amigo, o <strong>João Pedro</strong>, e ficamos por lá até o dia amanhecer.
-    </p>
+<p>O primeiro beijo aconteceu numa noite especial, no <strong>Armazém do Rosário</strong>. E como toda boa história, a noite não terminou ali. Logo depois, fomos jogar truco na casa de um amigo, o <strong>João Pedro</strong>, e ficamos por lá até o dia amanhecer.</p>
 
-    <p>
-      Nesse meio tempo, a noiva já estava completamente louquinha por mais um beijo do noivo.
-      Para que isso acontecesse, Samuel e João Pedro tiveram que tomar café frio, do dia anterior,
-      só para despistar e criar o clima perfeito. Amizades de verdade passam por isso.
-    </p>
+<p>Nesse meio tempo, a noiva já estava completamente louquinha por mais um beijo do noivo. Para que isso acontecesse, Samuel e João Pedro tiveram que tomar café frio, do dia anterior, só para despistar e criar o clima perfeito. Amizades de verdade passam por isso.</p>
 
-    <p>
-      Algum tempo depois, veio o pedido de namoro. A noiva estava chegando de férias e o noivo
-      foi buscá-la dizendo que iriam sair para mais um encontro. No caminho, soltou a frase que
-      entrou para a história:
-    </p>
+<p>Algum tempo depois, veio o pedido de namoro. A noiva estava chegando de férias e o noivo foi buscá-la dizendo que iriam sair para mais um encontro. No caminho, soltou a frase que entrou para a história:</p>
 
-    <p style="text-align:center; font-style:italic; margin:20px 0;">
-      “Vai parecer que eu tô te sequestrando… mas eu não tô.”
-    </p>
+<p style="text-align:center;font-style:italic;">“Vai parecer que eu tô te sequestrando… mas eu não tô.”</p>
 
-    <p>
-      (E não estava mesmo.)
-    </p>
+<p>(E não estava mesmo.)</p>
 
-    <p>
-      No destino, a surpresa: um caminho de corações recortados à mão, um por um pelo noivo,
-      velas, música de fundo e, ao final, a pergunta escrita na parede:
-    </p>
+<p>No destino, a surpresa: um caminho de corações recortados à mão, um por um pelo noivo, velas, música de fundo e, ao final, a pergunta escrita na parede:</p>
 
-    <p style="text-align:center; font-weight:600; margin:20px 0;">
-      “Quer namorar comigo?”
-    </p>
+<p style="text-align:center;font-weight:600;">“Quer namorar comigo?”</p>
 
-    <p>
-      O “sim” veio fácil — o coração já tinha respondido antes.
-    </p>
+<p>O “sim” veio fácil — o coração já tinha respondido antes.</p>
 
-    <p>
-      Desde o começo, não fomos só nós dois. Muita gente torceu, incentivou, apostou e acreditou
-      nesse amor — amigos e família que sempre estiveram por perto, vibrando a cada passo.
-    </p>
+<p>Desde o começo, não fomos só nós dois. Muita gente torceu, incentivou, apostou e acreditou nesse amor — amigos e família que sempre estiveram por perto, vibrando a cada passo.</p>
 
-    <p>
-      Entre risadas, conversas que atravessaram madrugadas e muita parceria, fomos construindo
-      um amor leve, verdadeiro e sem esforço. Daqueles que simplesmente encaixam.
-    </p>
+<p>Entre risadas, conversas que atravessaram madrugadas e muita parceria, fomos construindo um amor leve, verdadeiro e sem esforço. Daqueles que simplesmente encaixam.</p>
 
-    <p>
-      Depois de <strong>8 anos</strong> compartilhando a vida, as histórias, os sonhos e as certezas,
-      decidimos dar o próximo passo.
-    </p>
+<p>Depois de <strong>8 anos</strong> compartilhando a vida, as histórias, os sonhos e as certezas, decidimos dar o próximo passo.</p>
 
-    <p>
-      O pedido de casamento foi exatamente a nossa cara:
-      teve <strong>Disney</strong>, porque a noiva ama;
-      teve <strong>discrição</strong>, porque o noivo ama;
-      e teve <strong>Maragogi</strong>, porque o amor merecia um cenário bonito.
-    </p>
+<p>O pedido de casamento foi exatamente a nossa cara: teve <strong>Disney</strong>, porque a noiva ama; teve <strong>discrição</strong>, porque o noivo ama; e teve <strong>Maragogi</strong>, porque o amor merecia um cenário bonito.</p>
 
-    <p>
-      Só nós dois, nos bangalôs de um hotel, vivendo um momento único — enquanto nossos pais
-      estavam no mesmo hotel e ninguém desconfiou de nada.
-      <strong>Sigilo absoluto, missão cumprida ✔️</strong>
-    </p>
+<p>Só nós dois, nos bangalôs de um hotel, vivendo um momento único — enquanto nossos pais estavam no mesmo hotel e ninguém desconfiou de nada. <strong>Sigilo absoluto, missão cumprida ✔️</strong></p>
 
-    <p>
-      Agora, escolhemos oficializar tudo isso.
-      Este casamento é a celebração do nosso amor, da nossa história e de todas as pessoas
-      que sempre torceram por nós.
-    </p>
+<p><strong>E o melhor de tudo: essa história está só começando.</strong></p>
 
-    <p style="font-weight:600;">
-      E o melhor de tudo: essa história está só começando.
-    </p>
-  </div>
+</div>
 </section>
 
 <section id="evento">
@@ -303,7 +262,7 @@ Ver no mapa
 <h2>Confirmação de Presença</h2>
 <div class="card" style="text-align:center">
 <a class="btn" target="_blank"
-href="https://docs.google.com/forms/">
+href="https://docs.google.com/forms/d/e/1FAIpQLSf4goBLjMg9tv6LAgfYVz9G1Mk7NGscCFhcDWsj0LsRerNrzQ/viewform">
 Confirmar presença
 </a>
 </div>
@@ -314,18 +273,24 @@ Confirmar presença
 <div class="presentes" id="lista"></div>
 </section>
 
-<div class="modal" id="pix">
+<div class="modal" id="modalPresente">
 <div class="modal-box">
-<button class="close" onclick="fechar()">×</button>
-<h3>Pagamento via Pix</h3>
+<button class="close" onclick="fecharModal()">×</button>
+<h3>Escolha a forma de pagamento</h3>
+
+<button class="btn" onclick="mostrarPix()">Pix</button>
+<button class="btn" onclick="abrirCartao()">Cartão</button>
+
+<div id="pixBox" style="display:none;">
 <img src="pix-qrcode.png">
 <p><strong>Amauri Mourão Pereira</strong></p>
 <p>Banco: Nubank</p>
-<p id="chave" style="font-size:12px">
-00020126580014BR.GOV.BCB.PIX01360fd40b94-5f17-4115-9e25-c4464bc447f9...
+<p id="pixKey" style="font-size:12px;word-break:break-all;">
+00020126580014BR.GOV.BCB.PIX01360fd40b94-5f17-4115-9e25-c4464bc447f95204000053039865802BR5921Amauri Mourao Pereira6009SAO PAULO621405107UCCil9dAy6304D0A3
 </p>
-<button class="copy" onclick="copiar()">Copiar Pix</button>
-<p class="success" id="ok">✔ Pix copiado com sucesso 🤍</p>
+<button class="copy" onclick="copiarPix()">Copiar Pix</button>
+<p class="success" id="pixMsg">✔ Agradecemos o apoio e a colaboração 🤍</p>
+</div>
 </div>
 </div>
 
@@ -374,14 +339,27 @@ lista.innerHTML=presentes.map(p=>`
 <div class="presente">
 <strong>${p[0]}</strong>
 <span>R$ ${p[1].toFixed(2)}</span>
-<button class="btn" onclick="pix.style.display='flex'">Presentear</button>
+<button class="btn" onclick="abrirModal()">Presentear</button>
 </div>`).join("");
 
-function copiar(){
-navigator.clipboard.writeText(document.getElementById("chave").innerText);
-document.getElementById("ok").style.display="block";
+function abrirModal(){
+document.getElementById("modalPresente").style.display="flex";
 }
-function fechar(){pix.style.display="none";}
+function fecharModal(){
+document.getElementById("modalPresente").style.display="none";
+document.getElementById("pixBox").style.display="none";
+document.getElementById("pixMsg").style.display="none";
+}
+function mostrarPix(){
+document.getElementById("pixBox").style.display="block";
+}
+function copiarPix(){
+navigator.clipboard.writeText(document.getElementById("pixKey").innerText);
+document.getElementById("pixMsg").style.display="block";
+}
+function abrirCartao(){
+window.open("https://link.mercadopago.com.br/presenteamaurieester","_blank");
+}
 </script>
 
 </body>
