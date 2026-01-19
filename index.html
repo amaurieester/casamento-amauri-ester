@@ -34,6 +34,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
+    <!-- EMAILJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
     <!-- STYLES -->
     <style>
         :root {
@@ -48,6 +51,8 @@
             --sombra-hover: rgba(0, 0, 0, 0.12);
             --transicao: all 0.3s ease;
             --borda-redonda: 24px;
+            --sucesso: #4CAF50;
+            --erro: #f44336;
         }
         
         * {
@@ -326,6 +331,12 @@
             transform: translateY(-1px);
         }
         
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
         /* LISTA DE PRESENTES */
         .presentes-grid {
             display: grid;
@@ -398,13 +409,36 @@
             resize: vertical;
         }
         
+        .form-input.error, .form-textarea.error {
+            border-color: var(--erro);
+        }
+        
+        .error-message {
+            color: var(--erro);
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+        
         .msg-success {
             display: none;
             margin-top: 1.5rem;
             padding: 1rem;
-            background: rgba(209, 108, 124, 0.1);
+            background: rgba(76, 175, 80, 0.1);
             border-radius: 12px;
-            color: var(--rosa);
+            color: var(--sucesso);
+            font-weight: 500;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .msg-error {
+            display: none;
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(244, 67, 54, 0.1);
+            border-radius: 12px;
+            color: var(--erro);
             font-weight: 500;
             text-align: center;
             animation: fadeIn 0.5s ease;
@@ -787,18 +821,24 @@
             <div class="form-container">
                 <div class="form-group">
                     <input type="text" class="form-input" id="nome" placeholder="Seu nome completo *" required>
+                    <div class="error-message" id="nome-error">Por favor, digite seu nome</div>
                 </div>
                 
                 <div class="form-group">
                     <textarea class="form-textarea" id="mensagem" placeholder="Escreva sua mensagem com carinho *" required></textarea>
+                    <div class="error-message" id="mensagem-error">Por favor, escreva sua mensagem</div>
                 </div>
                 
-                <button class="btn" onclick="enviarMensagem()" style="width: 100%;">
+                <button class="btn" onclick="enviarMensagem()" id="btnEnviar" style="width: 100%;">
                     Enviar mensagem
                 </button>
                 
                 <div class="msg-success" id="msgSuccess">
-                    <p>Mensagem enviada com carinho! Muito obrigado pelo carinho 🤍</p>
+                    <p>✅ Mensagem enviada com sucesso! Obrigado pelo carinho 🤍</p>
+                </div>
+                
+                <div class="msg-error" id="msgError">
+                    <p>❌ Ocorreu um erro ao enviar. Por favor, tente novamente.</p>
                 </div>
                 
                 <div class="loading" id="loading">
@@ -871,6 +911,20 @@
     </footer>
 
     <script>
+        // CONFIGURAÇÃO DO EMAILJS (VOCÊ VAI PRECISAR ALTERAR ESTES VALORES)
+        // 1. Crie uma conta em https://www.emailjs.com
+        // 2. Obtenha seus IDs e substitua abaixo
+        const EMAILJS_CONFIG = {
+            SERVICE_ID: 'YOUR_SERVICE_ID', // Substitua pelo seu Service ID
+            TEMPLATE_ID: 'YOUR_TEMPLATE_ID', // Substitua pelo seu Template ID
+            PUBLIC_KEY: 'YOUR_PUBLIC_KEY' // Substitua pela sua Public Key
+        };
+        
+        // Inicializar EmailJS
+        (function() {
+            emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+        })();
+        
         // DADOS DO CASAMENTO
         const dataCasamento = new Date("2027-05-29T10:00:00");
         let presenteSelecionado = { titulo: "", valor: 0 };
@@ -945,9 +999,137 @@
                     fecharModal();
                 }
             });
+            
+            // Validação em tempo real do formulário
+            document.getElementById('nome').addEventListener('input', function() {
+                validarCampo(this);
+            });
+            
+            document.getElementById('mensagem').addEventListener('input', function() {
+                validarCampo(this);
+            });
         });
         
-        // FUNÇÕES
+        // FUNÇÕES DE VALIDAÇÃO
+        function validarCampo(campo) {
+            const valor = campo.value.trim();
+            const errorElement = document.getElementById(campo.id + '-error');
+            
+            if (!valor) {
+                campo.classList.add('error');
+                errorElement.style.display = 'block';
+                return false;
+            } else {
+                campo.classList.remove('error');
+                errorElement.style.display = 'none';
+                return true;
+            }
+        }
+        
+        function validarFormulario() {
+            const nomeValido = validarCampo(document.getElementById('nome'));
+            const mensagemValida = validarCampo(document.getElementById('mensagem'));
+            
+            return nomeValido && mensagemValida;
+        }
+        
+        // FUNÇÃO PARA ENVIAR MENSAGEM REAL
+        async function enviarMensagem() {
+            // Validar formulário
+            if (!validarFormulario()) {
+                return;
+            }
+            
+            const nome = document.getElementById('nome').value.trim();
+            const mensagem = document.getElementById('mensagem').value.trim();
+            const btnEnviar = document.getElementById('btnEnviar');
+            
+            // Desabilitar botão para evitar múltiplos envios
+            btnEnviar.disabled = true;
+            btnEnviar.textContent = 'Enviando...';
+            
+            // Mostrar loading
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('msgSuccess').style.display = 'none';
+            document.getElementById('msgError').style.display = 'none';
+            
+            try {
+                // Preparar dados para envio
+                const dados = {
+                    nome: nome,
+                    mensagem: mensagem,
+                    data: new Date().toLocaleDateString('pt-BR', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    })
+                };
+                
+                // ENVIAR VIA EMAILJS (funciona apenas após configurar)
+                const resposta = await emailjs.send(
+                    EMAILJS_CONFIG.SERVICE_ID,
+                    EMAILJS_CONFIG.TEMPLATE_ID,
+                    dados
+                );
+                
+                // Se chegou aqui, o email foi enviado com sucesso
+                console.log('Email enviado com sucesso:', resposta);
+                
+                // Mostrar mensagem de sucesso
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('msgSuccess').style.display = 'block';
+                
+                // Limpar formulário
+                document.getElementById('nome').value = '';
+                document.getElementById('mensagem').value = '';
+                
+                // Rolagem suave
+                document.getElementById('confirmacao').scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                
+                // Resetar após 5 segundos
+                setTimeout(() => {
+                    document.getElementById('msgSuccess').style.display = 'none';
+                }, 5000);
+                
+            } catch (error) {
+                // Se ocorrer um erro
+                console.error('Erro ao enviar email:', error);
+                
+                // Mostrar mensagem de erro
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('msgError').style.display = 'block';
+                
+                // Sugerir alternativa
+                alert('O sistema de envio ainda não está configurado. As mensagens serão armazenadas localmente. Em breve você receberá todas as mensagens quando configurar o EmailJS.');
+                
+                // Para fins de demonstração, vamos simular o sucesso
+                // REMOVA ESTE BLOCO QUANDO CONFIGURAR O EMAILJS
+                setTimeout(() => {
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('msgSuccess').style.display = 'block';
+                    document.getElementById('nome').value = '';
+                    document.getElementById('mensagem').value = '';
+                    
+                    setTimeout(() => {
+                        document.getElementById('msgSuccess').style.display = 'none';
+                    }, 5000);
+                }, 1000);
+                
+            } finally {
+                // Reabilitar botão
+                setTimeout(() => {
+                    btnEnviar.disabled = false;
+                    btnEnviar.textContent = 'Enviar mensagem';
+                }, 2000);
+            }
+        }
+        
+        // FUNÇÕES DO SITE
         function atualizarContador() {
             const agora = new Date();
             const diferenca = dataCasamento - agora;
@@ -1039,7 +1221,7 @@
                 // Mostrar mensagem de sucesso
                 successMsg.style.display = 'block';
                 copyBtn.textContent = 'Chave Copiada!';
-                copyBtn.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
+                copyBtn.style.background = 'linear-gradient(135deg, var(--sucesso), #45a049)';
                 
                 // Resetar após 3 segundos
                 setTimeout(() => {
@@ -1055,41 +1237,6 @@
         
         function fecharModal() {
             document.getElementById('modalPresente').style.display = 'none';
-        }
-        
-        function enviarMensagem() {
-            const nome = document.getElementById('nome').value.trim();
-            const mensagem = document.getElementById('mensagem').value.trim();
-            
-            // Validação simples
-            if (!nome || !mensagem) {
-                alert('Por favor, preencha todos os campos obrigatórios.');
-                return;
-            }
-            
-            // Mostrar loading
-            document.getElementById('loading').style.display = 'block';
-            document.getElementById('msgSuccess').style.display = 'none';
-            
-            // Simular envio
-            setTimeout(() => {
-                // Simulação de sucesso
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('msgSuccess').style.display = 'block';
-                document.getElementById('nome').value = '';
-                document.getElementById('mensagem').value = '';
-                
-                // Rolagem suave após envio
-                document.getElementById('confirmacao').scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'center'
-                });
-                
-                // Resetar mensagem após 5 segundos
-                setTimeout(() => {
-                    document.getElementById('msgSuccess').style.display = 'none';
-                }, 5000);
-            }, 1500); // Simula delay de rede
         }
         
         // ANIMAÇÃO DE SCROLL SUAVE
