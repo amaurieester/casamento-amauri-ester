@@ -113,6 +113,44 @@ footer{
   background:var(--verona-soft);
   text-align:center;
 }
+
+/* MODAL PIX */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  z-index:100;
+}
+
+.modal-content{
+  background:white;
+  max-width:400px;
+  margin:15% auto;
+  padding:30px;
+  border-radius:16px;
+  text-align:center;
+}
+
+.modal-content h3{
+  color:var(--verona-main);
+  margin-bottom:15px;
+}
+
+.modal-content .thanks{
+  margin-top:20px;
+  font-style:italic;
+}
+
+.modal-content button{
+  margin-top:25px;
+  padding:10px 20px;
+  background:var(--verona-main);
+  color:white;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
 </style>
 </head>
 
@@ -150,7 +188,7 @@ footer{
 </section>
 
 <section id="presentes">
-  <h2>Lista de Presentes</h2>
+<h2>Lista de Presentes</h2>
 
 <div class="gifts">
 
@@ -177,27 +215,27 @@ footer{
 
 <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Taxa para a noiva não jogar o buquê para sua namorada</h3><p>R$ 134,70</p><button class="pix" onclick="pix()">Pix</button><a href="https://link.mercadopago.com.br/presenteamaurieester" class="card">Cartão</a></div>
 
-<div class="gift"><div class="gift-img">Imagem em breve</div><h3>Calendário para o noivo não esquecer datas especiais</h3><p>R$ 155,42</p><button class="pix" onclick="pix()">Pix</button><a href="https://link.mercadopago.com.br/presenteamaurieester" class="card">Cartão</a></div>
+<div class="gift"><div class="gift-img">Imagem em breve</div><h3>Calendário com lembrete para o noivo não esquecer datas especiais</h3><p>R$ 155,42</p><button class="pix" onclick="pix()">Pix</button><a href="https://link.mercadopago.com.br/presenteamaurieester" class="card">Cartão</a></div>
 
 <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Capacete contra rolo de macarrão para o noivo</h3><p>R$ 155,42</p><button class="pix" onclick="pix()">Pix</button><a href="https://link.mercadopago.com.br/presenteamaurieester" class="card">Cartão</a></div>
 
-<div class="gift"><div class="gift-img">Imagem em breve</div><h3>Estoque de café para o noivo</h3><p>R$ 165,79</p><button class="pix" onclick="pix()">Pix</button><a href="https://link.mercadopago.com.br/presenteamaurieester" class="card">Cartão</a></div>
+<div class="gift"><div class="gift-img">Imagem em breve</div><h3>Rolo de macarrão caso o noivo não se comporte</h3><p>R$ 155,42</p><button class="pix" onclick="pix()">Pix</button><a href="https://link.mercadopago.com.br/presenteamaurieester" class="card">Cartão</a></div>
 
 <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Taxa para a noiva jogar o buquê na sua direção</h3><p>R$ 160,61</p><button class="pix" onclick="pix()">Pix</button><a href="https://link.mercadopago.com.br/presenteamaurieester" class="card">Cartão</a></div>
 
-<div class="gift"><div class="gift-img">Imagem em breve</div><h3>Cobertor para o noivo estar sempre coberto de razão</h3><p>R$ 165,79</p><button class="pix" onclick="pix()">Pix</button><a href="https://link.mercadopago.com.br/presenteamaurieester" class="card">Cartão</a></div>
+<div class="gift"><div class="gift-img">Imagem em breve</div><h3>Estoque de café para o noivo</h3><p>R$ 165,79</p><button class="pix" onclick="pix()">Pix</button><a href="https://link.mercadopago.com.br/presenteamaurieester" class="card">Cartão</a></div>
 
-<div class="gift"><div class="gift-img">Imagem em breve</div><h3>Rolo de macarrão caso o noivo não se comporte</h3><p>R$ 155,42</p><button class="pix" onclick="pix()">Pix</button><a href="https://link.mercadopago.com.br/presenteamaurieester" class="card">Cartão</a></div>
+<div class="gift"><div class="gift-img">Imagem em breve</div><h3>Cobertor para o noivo estar sempre coberto de razão</h3><p>R$ 165,79</p><button class="pix" onclick="pix()">Pix</button><a href="https://link.mercadopago.com.br/presenteamaurieester" class="card">Cartão</a></div>
 
 <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Diária do pedreiro para construção da nossa casa</h3><p>R$ 176,15</p><button class="pix" onclick="pix()">Pix</button><a href="https://link.mercadopago.com.br/presenteamaurieester" class="card">Cartão</a></div>
 
 <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Vale compra para a noiva gastar na Shein</h3><p>R$ 212,41</p><button class="pix" onclick="pix()">Pix</button><a href="https://link.mercadopago.com.br/presenteamaurieester" class="card">Cartão</a></div>
 
+<div class="gift"><div class="gift-img">Imagem em breve</div><h3>1 ano de Netflix para os noivos curtirem bons filmes</h3><p>R$ 341,93</p><button class="pix" onclick="pix()">Pix</button><a href="https://link.mercadopago.com.br/presenteamaurieester" class="card">Cartão</a></div>
+
 <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Vale camisa do ano do Cruzeiro para o noivo</h3><p>R$ 399,90</p><button class="pix" onclick="pix()">Pix</button><a href="https://link.mercadopago.com.br/presenteamaurieester" class="card">Cartão</a></div>
 
-<div class="gift"><div class="gift-img">Imagem em breve</div><h3>1 ano de Netflix para os noivos</h3><p>R$ 341,93</p><button class="pix" onclick="pix()">Pix</button><a href="https://link.mercadopago.com.br/presenteamaurieester" class="card">Cartão</a></div>
-
-<div class="gift"><div class="gift-img">Imagem em breve</div><h3>Psicólogo pros noivos não surtarem nos preparativos</h3><p>R$ 538,80</p><button class="pix" onclick="pix()">Pix</button><a href="https://link.mercadopago.com.br/presenteamaurieester" class="card">Cartão</a></div>
+<div class="gift"><div class="gift-img">Imagem em breve</div><h3>Psicólogo pros noivos não surtarem nos preparativos da festa</h3><p>R$ 538,80</p><button class="pix" onclick="pix()">Pix</button><a href="https://link.mercadopago.com.br/presenteamaurieester" class="card">Cartão</a></div>
 
 <div class="gift"><div class="gift-img">Imagem em breve</div><h3>Deus te iluminou e você resolveu dar uma ajuda na lua de mel</h3><p>R$ 1.554,25</p><button class="pix" onclick="pix()">Pix</button><a href="https://link.mercadopago.com.br/presenteamaurieester" class="card">Cartão</a></div>
 
@@ -217,6 +255,20 @@ footer{
   <p>Amauri & Ester • 29/05/2027 🤍</p>
 </footer>
 
+<!-- MODAL PIX -->
+<div id="pixModal" class="modal">
+  <div class="modal-content">
+    <h3>Pagamento via Pix</h3>
+    <p>
+      <strong>CPF:</strong> 014.439.376-06<br>
+      <strong>Nome:</strong> Amauri Mourão Pereira<br>
+      <strong>Banco:</strong> Nubank
+    </p>
+    <p class="thanks">Agradecemos o apoio e a colaboração 🤍</p>
+    <button onclick="closePix()">Fechar</button>
+  </div>
+</div>
+
 <script>
 const targetDate=new Date("2027-05-29T10:00:00").getTime();
 setInterval(()=>{
@@ -228,18 +280,13 @@ setInterval(()=>{
 },1000);
 
 function pix(){
- alert(
-  "Pix CPF: 014.439.376-06\n" +
-  "Amauri Mourão Pereira\n" +
-  "Banco: Nubank\n\n" +
-  "Agradecemos o apoio e a colaboração 🤍"
- );
+ document.getElementById("pixModal").style.display="block";
+}
+
+function closePix(){
+ document.getElementById("pixModal").style.display="none";
 }
 </script>
 
 </body>
 </html>
-
-
-
-
