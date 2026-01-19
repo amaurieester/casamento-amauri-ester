@@ -83,7 +83,7 @@
         h2 {
             font-size: clamp(1.8rem, 4vw, 2.5rem);
             color: var(--laranja);
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             position: relative;
             display: inline-block;
         }
@@ -98,6 +98,13 @@
             height: 3px;
             background: linear-gradient(to right, var(--rosa), var(--laranja));
             border-radius: 2px;
+        }
+        
+        .welcome-title {
+            color: var(--rosa);
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            margin-bottom: 1.5rem;
+            text-align: center;
         }
         
         p {
@@ -502,17 +509,12 @@
             display: inline-block;
         }
         
-        .qrcode-placeholder {
+        .qrcode-img {
             width: 200px;
             height: 200px;
-            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: block;
             margin: 0 auto;
-            color: var(--cinza-claro);
-            font-size: 0.9rem;
         }
         
         .pix-info {
@@ -688,20 +690,25 @@
         </div>
     </header>
 
-    <!-- NOSSA HISTÓRIA -->
+    <!-- SEÇÃO HISTÓRIA (ESTRUTURA MODIFICADA) -->
     <section id="historia">
-        <div class="text-center mb-3">
-            <h2>Nossa História</h2>
-        </div>
-
+        <!-- Título "Sejam bem-vindos ao nosso site" -->
+        <h2 class="welcome-title text-center">Sejam bem-vindos ao nosso site</h2>
+        
+        <!-- Texto de boas-vindas -->
         <div class="card mb-3">
-            <p class="text-center"><strong>Sejam bem-vindos ao nosso site!</strong></p>
             <p class="text-center">
                 Criamos este espaço com muito carinho para compartilhar com vocês um dos momentos mais especiais das nossas vidas.<br>
                 Aqui, cada detalhe foi pensado para unir sonhos, histórias e pessoas que sempre fizeram parte da nossa caminhada.
             </p>
         </div>
-
+        
+        <!-- Título "Nossa História" -->
+        <div class="text-center mb-3">
+            <h2>Nossa História</h2>
+        </div>
+        
+        <!-- História completa -->
         <div class="card">
             <p>Tudo começou por culpa (ou mérito) de um amigo em comum: <strong>Samuel Fernando</strong>. Ele jurava que nós dois combinávamos perfeitamente. A noiva não acreditava muito e achava aquilo tudo exagero — virou quase uma aposta. Spoiler: ele estava certo.</p>
 
@@ -827,10 +834,7 @@
             
             <div class="pix-container" id="pixContainer">
                 <div class="qrcode-container">
-                    <div class="qrcode-placeholder">
-                        QR Code Pix<br>
-                        (imagem será adicionada)
-                    </div>
+                    <img src="pix-qrcode.png" alt="QR Code PIX para pagamento" class="qrcode-img">
                 </div>
                 
                 <div class="pix-info">
@@ -1018,7 +1022,7 @@
             // Esconder container do Pix
             document.getElementById('pixContainer').style.display = 'none';
             
-            // Redirecionar para página de cartão (substitua pela sua URL)
+            // Redirecionar para página de cartão
             window.open('https://link.mercadopago.com.br/presenteamaurieester', '_blank');
         }
         
@@ -1064,45 +1068,21 @@
             document.getElementById('loading').style.display = 'block';
             document.getElementById('msgSuccess').style.display = 'none';
             
-            // Simular envio (substitua por sua lógica real)
+            // Simular envio
             setTimeout(() => {
-                // Aqui você faria uma requisição para seu backend
-                // Exemplo com fetch:
-                /*
-                fetch('sua-api.com/mensagens', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ nome, mensagem })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Sucesso
-                    document.getElementById('loading').style.display = 'none';
-                    document.getElementById('msgSuccess').style.display = 'block';
-                    document.getElementById('nome').value = '';
-                    document.getElementById('mensagem').value = '';
-                })
-                .catch(error => {
-                    // Erro
-                    document.getElementById('loading').style.display = 'none';
-                    alert('Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.');
-                });
-                */
-                
                 // Simulação de sucesso
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('msgSuccess').style.display = 'block';
                 document.getElementById('nome').value = '';
                 document.getElementById('mensagem').value = '';
                 
-                // Rol
                 // Rolagem suave após envio
                 document.getElementById('confirmacao').scrollIntoView({ 
                     behavior: 'smooth',
                     block: 'center'
                 });
                 
-                // Resetar formulário após 5 segundos
+                // Resetar mensagem após 5 segundos
                 setTimeout(() => {
                     document.getElementById('msgSuccess').style.display = 'none';
                 }, 5000);
