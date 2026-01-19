@@ -5,53 +5,69 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Amauri & Ester | Save the Date</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
 <style>
 :root{
   --main:#c97c5d;
   --soft:#f4ede8;
-  --dark:#4a3b36;
+  --dark:#3f2f2a;
+  --glass:rgba(255,255,255,.75);
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Georgia, serif;}
-body{background:var(--soft);color:var(--dark);line-height:1.6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:var(--soft);
+  color:var(--dark);
+  font-family:'Montserrat',sans-serif;
+  line-height:1.6;
+}
 
 /* HERO */
 .hero{
   min-height:100vh;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   text-align:center;
   padding:40px 20px;
-  background:linear-gradient(135deg,#e8cfc2,#f4ede8);
+  background:linear-gradient(135deg,#ecd5c7,#f7f1ed);
 }
-.hero p{letter-spacing:2px}
-.hero h1{font-size:clamp(2.6rem,6vw,4.2rem);color:var(--main)}
-.hero h2{margin:10px 0;font-weight:normal}
+.hero p{letter-spacing:3px;font-size:.8rem}
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.8rem,6vw,4.5rem);
+  margin:10px 0;
+  color:var(--main);
+}
+.hero h2{
+  font-weight:300;
+  letter-spacing:2px;
+}
 
 /* COUNTDOWN */
 .countdown{
-  margin-top:30px;
+  margin-top:35px;
   display:flex;
   justify-content:center;
-  gap:18px;
+  gap:16px;
   flex-wrap:wrap;
 }
 .countdown div{
   background:white;
+  border-radius:18px;
   padding:14px 18px;
-  border-radius:16px;
   min-width:90px;
+  animation:fadeUp 1.2s ease;
 }
 .countdown span{
-  display:block;
   font-size:1.8rem;
-  font-weight:bold;
+  font-weight:500;
   color:var(--main);
 }
 .countdown small{
-  font-size:.75rem;
-  letter-spacing:1px;
+  font-size:.7rem;
+  letter-spacing:2px;
 }
 
 /* NAV */
@@ -59,92 +75,131 @@ nav{
   position:sticky;
   top:0;
   background:white;
-  padding:12px;
   text-align:center;
+  padding:14px;
   z-index:10;
 }
 nav a{
-  margin:6px 12px;
+  margin:0 12px;
   text-decoration:none;
   color:var(--main);
-  font-weight:bold;
+  font-weight:500;
 }
 
 /* SECTIONS */
-section{padding:70px 20px;text-align:center}
-h3{font-size:2rem;color:var(--main);margin-bottom:25px}
+section{
+  padding:80px 20px;
+  text-align:center;
+}
+h3{
+  font-family:'Playfair Display',serif;
+  font-size:2.2rem;
+  color:var(--main);
+  margin-bottom:30px;
+}
+
+/* EVENT */
+.map iframe{
+  width:100%;
+  height:350px;
+  border:0;
+  border-radius:22px;
+}
 
 /* PRESENTES */
 .gifts{
   display:grid;
   grid-template-columns:1fr;
-  gap:22px;
+  gap:24px;
 }
 .gift{
   background:white;
-  border-radius:20px;
-  padding:20px;
+  border-radius:22px;
+  padding:22px;
+  transition:.3s;
+}
+.gift:hover{
+  transform:translateY(-4px);
 }
 .gift-img{
   height:150px;
-  background:#e8cfc2;
-  border-radius:14px;
+  background:#ecd5c7;
+  border-radius:16px;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:.85rem;
-  margin-bottom:12px;
+  font-size:.8rem;
+  margin-bottom:14px;
 }
-.gift p{margin:6px 0;font-weight:bold}
+.gift p{
+  font-weight:500;
+  margin:6px 0;
+}
 
 .gift button,.gift a{
   width:100%;
   padding:12px;
-  margin-top:8px;
+  border-radius:14px;
+  margin-top:10px;
   border:none;
-  border-radius:12px;
-  font-weight:bold;
+  font-weight:500;
   cursor:pointer;
   text-decoration:none;
   display:block;
 }
-
 .pix{background:var(--main);color:white}
-.card{background:#555;color:white}
-
-/* MAP */
-.map iframe{
-  width:100%;
-  height:350px;
-  border:0;
-  border-radius:20px;
-}
+.card{background:#444;color:white}
 
 /* MODAL PIX */
 .modal{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.6);
+  background:rgba(0,0,0,.55);
   z-index:100;
   padding:20px;
 }
 .modal-content{
-  background:white;
+  backdrop-filter:blur(18px);
+  background:var(--glass);
   max-width:380px;
   margin:auto;
-  padding:25px;
-  border-radius:24px;
+  padding:26px;
+  border-radius:26px;
   text-align:center;
 }
-.modal-content img{width:180px;margin:15px 0}
-.copy-btn{background:#2ecc71;color:white}
-.copy-msg{display:none;color:#2ecc71;margin-top:8px}
+.modal-content img{
+  width:180px;
+  margin:15px 0;
+}
+.copy-btn{
+  background:#2ecc71;
+  color:white;
+}
+.copy-msg{
+  display:none;
+  color:#2ecc71;
+  margin-top:8px;
+}
+
+/* FOOTER */
+footer{
+  padding:25px;
+  background:#ecd5c7;
+  text-align:center;
+  font-size:.85rem;
+}
 
 /* RESPONSIVO */
 @media(min-width:768px){
-  section{padding:80px 10%}
+  section{padding:90px 10%}
   .gifts{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+}
+
+/* ANIMAÇÃO */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(15px)}
+  to{opacity:1;transform:none}
 }
 </style>
 </head>
@@ -156,20 +211,19 @@ h3{font-size:2rem;color:var(--main);margin-bottom:25px}
   <div>
     <p>SAVE THE DATE</p>
     <h1>Amauri & Ester</h1>
-    <h2>29/05/2027</h2>
+    <h2>29 • 05 • 2027</h2>
     <p>Várzea da Palma – MG</p>
 
     <div class="countdown">
-      <div><span id="days">0</span><small>Dias</small></div>
-      <div><span id="hours">0</span><small>Horas</small></div>
-      <div><span id="minutes">0</span><small>Minutos</small></div>
-      <div><span id="seconds">0</span><small>Segundos</small></div>
+      <div><span id="days">0</span><small>DIAS</small></div>
+      <div><span id="hours">0</span><small>HORAS</small></div>
+      <div><span id="minutes">0</span><small>MIN</small></div>
+      <div><span id="seconds">0</span><small>SEG</small></div>
     </div>
   </div>
 </div>
 
 <nav>
-  <a href="#inicio">Início</a>
   <a href="#evento">Evento</a>
   <a href="#presentes">Presentes</a>
   <a href="#confirmacao">Confirmação</a>
@@ -179,10 +233,10 @@ h3{font-size:2rem;color:var(--main);margin-bottom:25px}
 <section id="evento">
 <h3>O Evento</h3>
 <p><strong>Matriz Nossa Senhora da Conceição</strong></p>
-<p>📍 Praça Frei Jorge, nº 1480 – Várzea da Palma/MG</p>
-<p>📅 29/05/2027 • ⏰ 10h</p>
+<p>Praça Frei Jorge, nº 1480 – Várzea da Palma/MG</p>
+<p>29/05/2027 • 10h</p>
 
-<div class="map" style="margin-top:25px">
+<div class="map" style="margin-top:30px">
 <iframe src="https://www.google.com/maps?q=Matriz%20Nossa%20Senhora%20da%20Concei%C3%A7%C3%A3o%20V%C3%A1rzea%20da%20Palma%20MG&output=embed"></iframe>
 </div>
 </section>
@@ -192,7 +246,6 @@ h3{font-size:2rem;color:var(--main);margin-bottom:25px}
 <h3>Lista de Presentes</h3>
 
 <div class="gifts">
-
 <script>
 const presentes = [
 ["Só para não dizer que não dei nada","31,99"],
@@ -218,7 +271,6 @@ const presentes = [
 ["1 ano de Netflix","341,93"],
 ["Psicólogo para os noivos","538,80"],
 ["Ajuda na lua de mel","1.554,25"],
-
 ["Adote os boletos dos primeiros meses","821,10"],
 ["Ajuda financeira para o futuro casal","405,08"],
 ["Ajuda para aposentadoria dos noivos","3.612,84"],
@@ -258,7 +310,6 @@ document.write(presentes.map(p=>`
 </div>
 `).join(""));
 </script>
-
 </div>
 </section>
 
@@ -270,8 +321,8 @@ Confirmar presença
 </a>
 </section>
 
-<footer style="padding:25px;text-align:center;background:#e8cfc2">
-Amauri & Ester • 29/05/2027 🤍
+<footer>
+Amauri & Ester • 29 de maio de 2027 🤍
 </footer>
 
 <!-- MODAL PIX -->
@@ -284,7 +335,9 @@ Amauri Mourão Pereira<br>
 Banco: Nubank</p>
 <button class="copy-btn" onclick="copyPix()">Copiar Pix</button>
 <div id="copyMsg" class="copy-msg">Pix copiado com sucesso 🤍</div>
-<p style="margin-top:10px;font-style:italic">Agradecemos o apoio e a colaboração 🤍</p>
+<p style="margin-top:10px;font-style:italic">
+Agradecemos o apoio e a colaboração 🤍
+</p>
 <button class="pix" onclick="closePix()">Fechar</button>
 </div>
 </div>
