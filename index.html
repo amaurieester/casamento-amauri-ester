@@ -345,13 +345,13 @@
         .presente-card {
             background: var(--branco);
             border-radius: 20px;
-            padding: 1.8rem;
+            padding: 1.5rem;
             box-shadow: 0 10px 25px var(--sombra);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
             transition: var(--transicao);
             border: 1px solid rgba(0, 0, 0, 0.05);
+            overflow: hidden;
         }
         
         .presente-card:hover {
@@ -359,19 +359,71 @@
             box-shadow: 0 15px 35px var(--sombra-hover);
         }
         
+        .presente-imagem-container {
+            width: 100%;
+            height: 180px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .presente-imagem {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .presente-card:hover .presente-imagem {
+            transform: scale(1.05);
+        }
+        
+        .placeholder-imagem {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--cinza-claro);
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .placeholder-imagem span {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.5;
+        }
+        
+        .presente-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
         .presente-titulo {
             font-weight: 600;
             font-size: 1.1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             color: var(--cinza);
             line-height: 1.4;
+            min-height: 3.2rem;
         }
         
         .presente-valor {
             font-weight: 700;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: var(--laranja);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
+            padding: 0.5rem 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
         }
         
         /* FORMULÁRIOS */
@@ -640,6 +692,31 @@
         .mb-2 { margin-bottom: 2rem; }
         .mb-3 { margin-bottom: 3rem; }
         
+        /* FILTRO DE PREÇO */
+        .filtro-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .filtro-btn {
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            border: 2px solid var(--rosa);
+            background: transparent;
+            color: var(--rosa);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transicao);
+        }
+        
+        .filtro-btn:hover, .filtro-btn.active {
+            background: var(--rosa);
+            color: var(--branco);
+        }
+        
         /* LOADING */
         .loading {
             display: none;
@@ -819,7 +896,7 @@
             <!-- SUBSTITUA "SEU_EMAIL@AQUI.COM" PELO SEU EMAIL REAL -->
             <form 
                 class="form-container" 
-                action="https://formsubmit.co/casamentoamaurieester@gmail.com" 
+                action="https://formsubmit.co/SEU_EMAIL@AQUI.COM" 
                 method="POST"
                 id="formMensagem"
             >
@@ -878,6 +955,15 @@
         <div class="text-center mb-3">
             <h2>Lista de Presentes</h2>
             <p>Escolha um presente que faça parte da nossa nova vida juntos</p>
+        </div>
+        
+        <!-- Filtro de preço -->
+        <div class="filtro-container">
+            <button class="filtro-btn active" onclick="filtrarPresentes('todos')">Todos</button>
+            <button class="filtro-btn" onclick="filtrarPresentes('ate100')">Até R$ 100</button>
+            <button class="filtro-btn" onclick="filtrarPresentes('100a500')">R$ 100 - 500</button>
+            <button class="filtro-btn" onclick="filtrarPresentes('500a1000')">R$ 500 - 1.000</button>
+            <button class="filtro-btn" onclick="filtrarPresentes('acima1000')">Acima de R$ 1.000</button>
         </div>
         
         <div class="presentes-grid" id="lista-presentes"></div>
@@ -939,36 +1025,46 @@
         const dataCasamento = new Date("2027-05-29T10:00:00");
         let presenteSelecionado = { titulo: "", valor: 0 };
         
-        // LISTA DE PRESENTES
+        // LISTA DE PRESENTES ORGANIZADA POR PREÇO (do mais barato para o mais caro)
         const presentes = [
-            ["Adote os boletos dos primeiros meses juntos", 821.10],
-            ["Ajuda financeira para o futuro casal", 405.08],
-            ["Ajuda para a aposentadoria dos noivos", 3612.84],
-            ["Ajuda para mobiliar a casa", 1204.28],
-            ["Ajuda para mobiliar a casa", 547.40],
-            ["Ajude a noiva a comprar lingeries novas", 60.21],
-            ["Ajude a noiva a comprar novos pijamas", 131.38],
-            ["Ajude o noivo a comprar uma cervejeira", 920.51],
-            ["Ajude a noiva a renovar o guarda-roupa", 93.06],
-            ["Ajude o casal ter uma piscina em casa", 656.88],
-            ["Ajude o noivo a comprar cuecas novas", 60.21],
-            ["Ajude o noivo a comprar pijamas novos", 131.38],
-            ["Aluguel de um bebê para treinamento", 164.22],
-            ["Aspirador de pó", 131.38],
-            ["Ajude a comprar uma TV", 671.07],
-            ["Ajude a comprar uma Geladeira", 781.92],
-            ["Ajude a comprar uma Cama box de casal", 486.87],
-            ["Ajude a comprar Roupas de cama", 162.89],
-            ["Ajude a comprar um Guarda-roupa novo", 341.25],
-            ["Ajude a comprar um Fogão", 264.86],
-            ["Ajude a comprar uma Máquina de lavar", 400.25],
-            ["Ajude a comprar uma Mesa de jantar", 230.90],
-            ["Ajude a comprar uma Cafeteira elétrica", 110.21],
-            ["Ajude a comprar uma Churrasqueira", 120.90],
-            ["Ajude a comprar um Jogo de panelas", 82.61],
-            ["Ajude a comprar um Jogo de taças", 62.99],
-            ["Taxa para levar alguém que não foi convidado", 6652.99]
+            // Até R$ 100
+            ["Ajude a noiva a comprar lingeries novas", 60.21, "lingeries.jpg"],
+            ["Ajude o noivo a comprar cuecas novas", 60.21, "cuecas.jpg"],
+            ["Ajude a comprar um Jogo de taças", 62.99, "tacas.jpg"],
+            ["Ajude a comprar um Jogo de panelas", 82.61, "panelas.jpg"],
+            ["Ajude a noiva a renovar o guarda-roupa", 93.06, "guarda-roupa.jpg"],
+            ["Ajude a comprar uma Cafeteira elétrica", 110.21, "cafeteira.jpg"],
+            ["Ajude a comprar uma Churrasqueira", 120.90, "churrasqueira.jpg"],
+            
+            // R$ 100 - 500
+            ["Ajude a noiva a comprar novos pijamas", 131.38, "pijamas-noiva.jpg"],
+            ["Ajude o noivo a comprar pijamas novos", 131.38, "pijamas-noivo.jpg"],
+            ["Aspirador de pó", 131.38, "aspirador.jpg"],
+            ["Aluguel de um bebê para treinamento", 164.22, "bebe-treinamento.jpg"],
+            ["Ajude a comprar Roupas de cama", 162.89, "roupas-cama.jpg"],
+            ["Ajude a comprar um Fogão", 264.86, "fogao.jpg"],
+            ["Ajude a comprar um Guarda-roupa novo", 341.25, "guarda-roupa-grande.jpg"],
+            
+            // R$ 500 - 1.000
+            ["Ajuda financeira para o futuro casal", 405.08, "ajuda-financeira.jpg"],
+            ["Ajude a comprar uma Cama box de casal", 486.87, "cama-box.jpg"],
+            ["Ajuda para mobiliar a casa", 547.40, "mobiliar-casa.jpg"],
+            ["Ajude o casal ter uma piscina em casa", 656.88, "piscina.jpg"],
+            ["Ajude a comprar uma TV", 671.07, "tv.jpg"],
+            ["Ajude a comprar uma Geladeira", 781.92, "geladeira.jpg"],
+            ["Ajude o noivo a comprar uma cervejeira", 920.51, "cervejeira.jpg"],
+            
+            // Acima de R$ 1.000
+            ["Adote os boletos dos primeiros meses juntos", 821.10, "boletos.jpg"],
+            ["Ajude a comprar uma Máquina de lavar", 400.25, "maquina-lavar.jpg"],
+            ["Ajude a comprar uma Mesa de jantar", 230.90, "mesa-jantar.jpg"],
+            ["Ajuda para mobiliar a casa", 1204.28, "mobiliar-casa2.jpg"],
+            ["Ajuda para a aposentadoria dos noivos", 3612.84, "aposentadoria.jpg"],
+            ["Taxa para levar alguém que não foi convidado", 6652.99, "taxa-convidado.jpg"]
         ];
+        
+        // Ordenar por preço (do mais barato para o mais caro)
+        presentes.sort((a, b) => a[1] - b[1]);
         
         // INICIALIZAÇÃO
         document.addEventListener('DOMContentLoaded', function() {
@@ -978,6 +1074,9 @@
             
             // Renderizar lista de presentes
             renderizarPresentes();
+            
+            // Configurar filtros
+            configurarFiltros();
             
             // Smooth scroll para links do menu
             document.querySelectorAll('.menu a').forEach(anchor => {
@@ -1049,6 +1148,94 @@
             return nomeValido && mensagemValida;
         }
         
+        // FUNÇÃO PARA RENDERIZAR PRESENTES
+        function renderizarPresentes(filtro = 'todos') {
+            const container = document.getElementById('lista-presentes');
+            container.innerHTML = '';
+            
+            // Filtrar presentes
+            let presentesFiltrados = presentes;
+            
+            if (filtro === 'ate100') {
+                presentesFiltrados = presentes.filter(p => p[1] <= 100);
+            } else if (filtro === '100a500') {
+                presentesFiltrados = presentes.filter(p => p[1] > 100 && p[1] <= 500);
+            } else if (filtro === '500a1000') {
+                presentesFiltrados = presentes.filter(p => p[1] > 500 && p[1] <= 1000);
+            } else if (filtro === 'acima1000') {
+                presentesFiltrados = presentes.filter(p => p[1] > 1000);
+            }
+            
+            // Verificar se há presentes no filtro
+            if (presentesFiltrados.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center" style="grid-column: 1 / -1; padding: 3rem;">
+                        <p>Nenhum presente encontrado nesta faixa de preço.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Renderizar cada presente
+            presentesFiltrados.forEach((presente, index) => {
+                const [titulo, valor, imagem] = presente;
+                
+                const card = document.createElement('div');
+                card.className = 'presente-card';
+                card.innerHTML = `
+                    <div class="presente-imagem-container">
+                        ${imagem ? 
+                            `<img src="presentes/${imagem}" alt="${titulo}" class="presente-imagem" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"placeholder-imagem\"><span>🎁</span><span>Adicione uma foto</span></div>';" />` : 
+                            `<div class="placeholder-imagem">
+                                <span>🎁</span>
+                                <span>Adicione uma foto para "${titulo}"</span>
+                            </div>`
+                        }
+                    </div>
+                    <div class="presente-info">
+                        <h3 class="presente-titulo">${titulo}</h3>
+                        <p class="presente-valor">R$ ${valor.toFixed(2).replace('.', ',')}</p>
+                        <button class="btn" onclick="selecionarPresente('${titulo}', ${valor})">
+                            Presentear
+                        </button>
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+        
+        // FUNÇÃO PARA CONFIGURAR FILTROS
+        function configurarFiltros() {
+            const botoesFiltro = document.querySelectorAll('.filtro-btn');
+            botoesFiltro.forEach(botao => {
+                botao.addEventListener('click', function() {
+                    // Remover classe active de todos os botões
+                    botoesFiltro.forEach(b => b.classList.remove('active'));
+                    // Adicionar classe active ao botão clicado
+                    this.classList.add('active');
+                });
+            });
+        }
+        
+        // FUNÇÃO PARA FILTRAR PRESENTES
+        function filtrarPresentes(filtro) {
+            renderizarPresentes(filtro);
+            
+            // Atualizar estado dos botões de filtro
+            const botoesFiltro = document.querySelectorAll('.filtro-btn');
+            botoesFiltro.forEach(botao => {
+                if (botao.textContent.includes(filtro === 'ate100' ? 'Até R$ 100' : 
+                                              filtro === '100a500' ? 'R$ 100 - 500' :
+                                              filtro === '500a1000' ? 'R$ 500 - 1.000' :
+                                              filtro === 'acima1000' ? 'Acima de R$ 1.000' : 'Todos')) {
+                    botao.classList.add('active');
+                } else {
+                    botao.classList.remove('active');
+                }
+            });
+        }
+        
         // FUNÇÃO PARA ENVIAR MENSAGEM COM FORMSUBMIT
         async function enviarMensagemFormsubmit(event) {
             event.preventDefault();
@@ -1113,9 +1300,6 @@
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('msgError').style.display = 'block';
                 
-                // Sugerir envio manual
-                alert('Para receber as mensagens, substitua "SEU_EMAIL@AQUI.COM" no código pelo seu email real!');
-                
             } finally {
                 // Reabilitar botão após 2 segundos
                 setTimeout(() => {
@@ -1143,29 +1327,6 @@
             } else {
                 document.querySelector('.countdown').innerHTML = '<p style="font-size: 1.5rem;">O grande dia chegou! 🎉</p>';
             }
-        }
-        
-        function renderizarPresentes() {
-            const container = document.getElementById('lista-presentes');
-            container.innerHTML = '';
-            
-            presentes.forEach((presente, index) => {
-                const [titulo, valor] = presente;
-                
-                const card = document.createElement('div');
-                card.className = 'presente-card';
-                card.innerHTML = `
-                    <div>
-                        <h3 class="presente-titulo">${titulo}</h3>
-                        <p class="presente-valor">R$ ${valor.toFixed(2).replace('.', ',')}</p>
-                    </div>
-                    <button class="btn" onclick="selecionarPresente('${titulo}', ${valor})">
-                        Presentear
-                    </button>
-                `;
-                
-                container.appendChild(card);
-            });
         }
         
         function selecionarPresente(titulo, valor) {
@@ -1271,18 +1432,6 @@
             card.style.transform = 'translateY(20px)';
             card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
         });
-        
-        // CONFIGURAÇÃO DE DATA E HORA LOCAL
-        function formatarData(data) {
-            const opcoes = { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric',
-                timeZone: 'America/Sao_Paulo'
-            };
-            return data.toLocaleDateString('pt-BR', opcoes);
-        }
     </script>
 </body>
 </html>
