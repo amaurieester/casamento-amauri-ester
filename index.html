@@ -884,26 +884,6 @@
             background: var(--rosa);
             border-radius: 10px;
         }
-        
-        /* WHATSAPP BUTTON */
-        .whatsapp-btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: #25D366;
-            color: white;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-        }
-        
-        .whatsapp-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-            background: #1da851;
-        }
     </style>
 </head>
 
@@ -1100,7 +1080,7 @@
                 </div>
                 
                 <div class="msg-error" id="msgError">
-                    <p>❌ Ocorreu um erro ao enviar. Tente novamente ou use o WhatsApp abaixo.</p>
+                    <p>❌ Ocorreu um erro ao enviar. Por favor, tente novamente.</p>
                 </div>
                 
                 <div class="loading" id="loading">
@@ -1108,19 +1088,6 @@
                     <p>Enviando sua mensagem...</p>
                 </div>
             </form>
-            
-            <!-- ALTERNATIVA DE WHATSAPP (SEMPRE VISÍVEL) -->
-            <div class="mt-3 text-center">
-                <p style="margin-bottom: 1rem;">Prefere enviar pelo WhatsApp?</p>
-                <a href="https://wa.me/5538999999999?text=Olá%20Amauri%20e%20Ester!%20Quero%20deixar%20uma%20mensagem%20para%20vocês%20no%20site%20do%20casamento:" 
-                   class="whatsapp-btn" 
-                   target="_blank">
-                   📱 Enviar pelo WhatsApp
-                </a>
-                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--cinza-claro);">
-                    (Substitua o número acima pelo seu número real)
-                </p>
-            </div>
         </div>
     </section>
 
@@ -1437,11 +1404,6 @@
                 // Mostrar mensagem de erro
                 loading.style.display = 'none';
                 msgError.style.display = 'block';
-                
-                // Sugerir WhatsApp como alternativa
-                setTimeout(() => {
-                    alert('Se preferir, envie sua mensagem diretamente pelo WhatsApp!');
-                }, 500);
                 
             } finally {
                 // Reabilitar botão após 3 segundos
