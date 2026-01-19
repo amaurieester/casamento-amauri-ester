@@ -26,8 +26,33 @@ body{background:var(--soft);color:var(--dark);line-height:1.6}
   background:linear-gradient(135deg,#e8cfc2,#f4ede8);
 }
 .hero p{letter-spacing:2px}
-.hero h1{font-size:clamp(2.5rem,6vw,4rem);color:var(--main)}
+.hero h1{font-size:clamp(2.6rem,6vw,4.2rem);color:var(--main)}
 .hero h2{margin:10px 0;font-weight:normal}
+
+/* COUNTDOWN */
+.countdown{
+  margin-top:30px;
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  flex-wrap:wrap;
+}
+.countdown div{
+  background:white;
+  padding:14px 18px;
+  border-radius:16px;
+  min-width:90px;
+}
+.countdown span{
+  display:block;
+  font-size:1.8rem;
+  font-weight:bold;
+  color:var(--main);
+}
+.countdown small{
+  font-size:.75rem;
+  letter-spacing:1px;
+}
 
 /* NAV */
 nav{
@@ -57,13 +82,13 @@ h3{font-size:2rem;color:var(--main);margin-bottom:25px}
 }
 .gift{
   background:white;
-  border-radius:18px;
+  border-radius:20px;
   padding:20px;
 }
 .gift-img{
   height:150px;
   background:#e8cfc2;
-  border-radius:12px;
+  border-radius:14px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -71,17 +96,19 @@ h3{font-size:2rem;color:var(--main);margin-bottom:25px}
   margin-bottom:12px;
 }
 .gift p{margin:6px 0;font-weight:bold}
+
 .gift button,.gift a{
   width:100%;
   padding:12px;
   margin-top:8px;
   border:none;
-  border-radius:10px;
+  border-radius:12px;
   font-weight:bold;
   cursor:pointer;
   text-decoration:none;
   display:block;
 }
+
 .pix{background:var(--main);color:white}
 .card{background:#555;color:white}
 
@@ -90,7 +117,7 @@ h3{font-size:2rem;color:var(--main);margin-bottom:25px}
   width:100%;
   height:350px;
   border:0;
-  border-radius:18px;
+  border-radius:20px;
 }
 
 /* MODAL PIX */
@@ -107,7 +134,7 @@ h3{font-size:2rem;color:var(--main);margin-bottom:25px}
   max-width:380px;
   margin:auto;
   padding:25px;
-  border-radius:22px;
+  border-radius:24px;
   text-align:center;
 }
 .modal-content img{width:180px;margin:15px 0}
@@ -124,13 +151,20 @@ h3{font-size:2rem;color:var(--main);margin-bottom:25px}
 
 <body>
 
-<!-- SAVE THE DATE -->
+<!-- HERO -->
 <div class="hero" id="inicio">
   <div>
     <p>SAVE THE DATE</p>
     <h1>Amauri & Ester</h1>
     <h2>29/05/2027</h2>
     <p>Várzea da Palma – MG</p>
+
+    <div class="countdown">
+      <div><span id="days">0</span><small>Dias</small></div>
+      <div><span id="hours">0</span><small>Horas</small></div>
+      <div><span id="minutes">0</span><small>Minutos</small></div>
+      <div><span id="seconds">0</span><small>Segundos</small></div>
+    </div>
   </div>
 </div>
 
@@ -143,14 +177,14 @@ h3{font-size:2rem;color:var(--main);margin-bottom:25px}
 
 <!-- EVENTO -->
 <section id="evento">
-  <h3>O Evento</h3>
-  <p><strong>Matriz Nossa Senhora da Conceição</strong></p>
-  <p>📍 Praça Frei Jorge, nº 1480 – Várzea da Palma/MG</p>
-  <p>📅 29/05/2027 • ⏰ 10h</p>
+<h3>O Evento</h3>
+<p><strong>Matriz Nossa Senhora da Conceição</strong></p>
+<p>📍 Praça Frei Jorge, nº 1480 – Várzea da Palma/MG</p>
+<p>📅 29/05/2027 • ⏰ 10h</p>
 
-  <div class="map" style="margin-top:25px">
-    <iframe src="https://www.google.com/maps?q=Matriz%20Nossa%20Senhora%20da%20Concei%C3%A7%C3%A3o%20V%C3%A1rzea%20da%20Palma%20MG&output=embed"></iframe>
-  </div>
+<div class="map" style="margin-top:25px">
+<iframe src="https://www.google.com/maps?q=Matriz%20Nossa%20Senhora%20da%20Concei%C3%A7%C3%A3o%20V%C3%A1rzea%20da%20Palma%20MG&output=embed"></iframe>
+</div>
 </section>
 
 <!-- PRESENTES -->
@@ -159,26 +193,25 @@ h3{font-size:2rem;color:var(--main);margin-bottom:25px}
 
 <div class="gifts">
 
-<!-- PRESENTES (TODOS) -->
 <script>
 const presentes = [
-["Só para não dizer que não dei nada","51,99"],
-["Lenço para a noiva não borrar a maquiagem","76,99"],
+["Só para não dizer que não dei nada","31,99"],
+["Lenço para a noiva não borrar a maquiagem","56,99"],
 ["Toma aqui uns 50 reais","50,00"],
-["Kit calmante para a noiva","95,64"],
-["Kit compra essencial para a noiva","106,00"],
-["Acessório para cortar a unha do dedão do noivo","117,71"],
-["Sal para a pressão da noiva","121,54"],
-["Primeiro lugar na fila do buffet","133,25"],
-["Cobertor para a noiva estar sempre coberta de razão","149,52"],
-["Taxa para não jogar o buquê","154,70"],
-["Calendário para o noivo não esquecer datas","165,42"],
-["Capacete contra rolo de macarrão","185,42"],
-["Estoque de café para o noivo","205,79"],
-["Taxa para o buquê vir na sua direção","216,61"],
-["Cobertor para o noivo estar coberto de razão","230,79"],
-["Despertador para o noivo","155,42"],
-["Rolo de macarrão disciplinador","185,42"],
+["Kit calmante para a noiva","75,64"],
+["Kit compra essencial para a noiva","86,00"],
+["Acessório para cortar a unha do dedão do noivo","77,71"],
+["Sal para a pressão da noiva","101,54"],
+["Primeiro lugar na fila do buffet","93,25"],
+["Cobertor para a noiva estar coberta de razão","129,52"],
+["Taxa para a noiva não jogar o buquê","134,70"],
+["Calendário para o noivo não esquecer datas","155,42"],
+["Capacete contra rolo de macarrão","155,42"],
+["Estoque de café para o noivo","165,79"],
+["Taxa para o buquê vir na sua direção","160,61"],
+["Cobertor para o noivo estar coberto de razão","165,79"],
+["Despertador para o noivo","55,42"],
+["Rolo de macarrão disciplinador","155,42"],
 ["Diária do pedreiro","176,15"],
 ["Vale compra SHEIN","212,41"],
 ["Camisa do Cruzeiro","399,90"],
@@ -211,7 +244,8 @@ const presentes = [
 ["Cafeteira elétrica","110,21"],
 ["Churrasqueira","120,90"],
 ["Jogo de panelas","82,61"],
-["Jogo de taças","62,99"]
+["Jogo de taças","62,99"],
+["Taxa para levar alguém que não foi convidado","6.652,99"]
 ];
 
 document.write(presentes.map(p=>`
@@ -245,7 +279,9 @@ Amauri & Ester • 29/05/2027 🤍
 <div class="modal-content">
 <h3>Pagamento via Pix</h3>
 <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=01443937606">
-<p><strong>Pix:</strong> <span id="pixKey">01443937606</span><br>Amauri Mourão Pereira<br>Nubank</p>
+<p><strong>Pix:</strong> <span id="pixKey">01443937606</span><br>
+Amauri Mourão Pereira<br>
+Banco: Nubank</p>
 <button class="copy-btn" onclick="copyPix()">Copiar Pix</button>
 <div id="copyMsg" class="copy-msg">Pix copiado com sucesso 🤍</div>
 <p style="margin-top:10px;font-style:italic">Agradecemos o apoio e a colaboração 🤍</p>
@@ -254,6 +290,21 @@ Amauri & Ester • 29/05/2027 🤍
 </div>
 
 <script>
+/* CONTADOR */
+const targetDate = new Date("2027-05-29T10:00:00").getTime();
+function updateCountdown(){
+  const now = new Date().getTime();
+  const diff = targetDate - now;
+  if(diff<=0) return;
+  days.innerText = Math.floor(diff/(1000*60*60*24));
+  hours.innerText = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+  minutes.innerText = Math.floor((diff%(1000*60*60))/(1000*60));
+  seconds.innerText = Math.floor((diff%(1000*60))/1000);
+}
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+/* PIX */
 function openPix(){pixModal.style.display="flex";copyMsg.style.display="none";}
 function closePix(){pixModal.style.display="none";}
 function copyPix(){
