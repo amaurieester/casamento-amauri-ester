@@ -824,4 +824,329 @@
         <div class="modal-content">
             <button class="modal-close" onclick="fecharModal()" aria-label="Fechar modal">×</button>
             
-            <h
+            <h3 class="modal-title" id="modalTitulo">Escolha a forma de pagamento</h3>
+            
+            <div class="payment-options">
+                <button class="payment-btn active" onclick="mostrarPix()" id="btnPix">
+                    Pix
+                </button>
+                <button class="payment-btn" onclick="abrirCartao()" id="btnCartao">
+                    Cartão
+                </button>
+            </div>
+            
+            <div class="pix-container" id="pixContainer">
+                <div class="qrcode-container">
+                    <img src="pix-qrcode.png" alt="QR Code PIX para pagamento" class="qrcode-img">
+                </div>
+                
+                <div class="pix-info">
+                    <p><strong>Beneficiário:</strong> Amauri Mourão Pereira</p>
+                    <p><strong>Banco:</strong> Nubank</p>
+                    <p><strong>Chave Pix (copie e cole):</strong></p>
+                    <div class="pix-key" id="pixKey">
+                        00020126580014BR.GOV.BCB.PIX01360fd40b94-5f17-4115-9e25-c4464bc447f95204000053039865802BR5921Amauri Mourao Pereira6009SAO PAULO621405107UCCil9dAy6304D0A3
+                    </div>
+                </div>
+                
+                <button class="copy-btn" onclick="copiarPix()" id="copyBtn">
+                    Copiar Chave Pix
+                </button>
+                
+                <p class="copy-success" id="copySuccess">
+                    ✔ Chave Pix copiada! Agradecemos o apoio e a colaboração 🤍
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <p>Com amor, Amauri & Ester</p>
+        <p class="mt-1">29 de Maio de 2027</p>
+        <p class="mt-2">
+            <span class="footer-heart">💍</span><br>
+            Mal podemos esperar para celebrar com vocês!
+        </p>
+    </footer>
+
+    <script>
+        // DADOS DO CASAMENTO
+        const dataCasamento = new Date("2027-05-29T10:00:00");
+        let presenteSelecionado = { titulo: "", valor: 0 };
+        
+        // LISTA DE PRESENTES
+        const presentes = [
+            ["Adote os boletos dos primeiros meses juntos", 821.10],
+            ["Ajuda financeira para o futuro casal", 405.08],
+            ["Ajuda para a aposentadoria dos noivos", 3612.84],
+            ["Ajuda para mobiliar a casa", 1204.28],
+            ["Ajuda para mobiliar a casa", 547.40],
+            ["Ajude a noiva a comprar lingeries novas", 60.21],
+            ["Ajude a noiva a comprar novos pijamas", 131.38],
+            ["Ajude o noivo a comprar uma cervejeira", 920.51],
+            ["Ajude a noiva a renovar o guarda-roupa", 93.06],
+            ["Ajude o casal ter uma piscina em casa", 656.88],
+            ["Ajude o noivo a comprar cuecas novas", 60.21],
+            ["Ajude o noivo a comprar pijamas novos", 131.38],
+            ["Aluguel de um bebê para treinamento", 164.22],
+            ["Aspirador de pó", 131.38],
+            ["Ajude a comprar uma TV", 671.07],
+            ["Ajude a comprar uma Geladeira", 781.92],
+            ["Ajude a comprar uma Cama box de casal", 486.87],
+            ["Ajude a comprar Roupas de cama", 162.89],
+            ["Ajude a comprar um Guarda-roupa novo", 341.25],
+            ["Ajude a comprar um Fogão", 264.86],
+            ["Ajude a comprar uma Máquina de lavar", 400.25],
+            ["Ajude a comprar uma Mesa de jantar", 230.90],
+            ["Ajude a comprar uma Cafeteira elétrica", 110.21],
+            ["Ajude a comprar uma Churrasqueira", 120.90],
+            ["Ajude a comprar um Jogo de panelas", 82.61],
+            ["Ajude a comprar um Jogo de taças", 62.99],
+            ["Taxa para levar alguém que não foi convidado", 6652.99]
+        ];
+        
+        // INICIALIZAÇÃO
+        document.addEventListener('DOMContentLoaded', function() {
+            // Contador regressivo
+            atualizarContador();
+            setInterval(atualizarContador, 1000);
+            
+            // Renderizar lista de presentes
+            renderizarPresentes();
+            
+            // Smooth scroll para links do menu
+            document.querySelectorAll('.menu a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            window.scrollTo({
+                                top: target.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+            
+            // Fechar modal ao clicar fora
+            document.getElementById('modalPresente').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    fecharModal();
+                }
+            });
+            
+            // Tecla ESC fecha modal
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    fecharModal();
+                }
+            });
+        });
+        
+        // FUNÇÕES
+        function atualizarContador() {
+            const agora = new Date();
+            const diferenca = dataCasamento - agora;
+            
+            if (diferenca > 0) {
+                const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+                
+                document.getElementById('dias').textContent = dias.toString().padStart(2, '0');
+                document.getElementById('horas').textContent = horas.toString().padStart(2, '0');
+                document.getElementById('minutos').textContent = minutos.toString().padStart(2, '0');
+                document.getElementById('segundos').textContent = segundos.toString().padStart(2, '0');
+            } else {
+                document.querySelector('.countdown').innerHTML = '<p style="font-size: 1.5rem;">O grande dia chegou! 🎉</p>';
+            }
+        }
+        
+        function renderizarPresentes() {
+            const container = document.getElementById('lista-presentes');
+            container.innerHTML = '';
+            
+            presentes.forEach((presente, index) => {
+                const [titulo, valor] = presente;
+                
+                const card = document.createElement('div');
+                card.className = 'presente-card';
+                card.innerHTML = `
+                    <div>
+                        <h3 class="presente-titulo">${titulo}</h3>
+                        <p class="presente-valor">R$ ${valor.toFixed(2).replace('.', ',')}</p>
+                    </div>
+                    <button class="btn" onclick="selecionarPresente('${titulo}', ${valor})">
+                        Presentear
+                    </button>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+        
+        function selecionarPresente(titulo, valor) {
+            presenteSelecionado = { titulo, valor };
+            
+            // Atualizar título do modal
+            document.getElementById('modalTitulo').textContent = titulo;
+            
+            // Mostrar modal
+            document.getElementById('modalPresente').style.display = 'flex';
+            
+            // Resetar estado do modal
+            document.getElementById('pixContainer').style.display = 'none';
+            document.getElementById('copySuccess').style.display = 'none';
+            
+            // Ativar botão Pix
+            document.getElementById('btnPix').classList.add('active');
+            document.getElementById('btnCartao').classList.remove('active');
+        }
+        
+        function mostrarPix() {
+            // Ativar botão Pix
+            document.getElementById('btnPix').classList.add('active');
+            document.getElementById('btnCartao').classList.remove('active');
+            
+            // Mostrar container do Pix
+            document.getElementById('pixContainer').style.display = 'block';
+        }
+        
+        function abrirCartao() {
+            // Ativar botão Cartão
+            document.getElementById('btnCartao').classList.add('active');
+            document.getElementById('btnPix').classList.remove('active');
+            
+            // Esconder container do Pix
+            document.getElementById('pixContainer').style.display = 'none';
+            
+            // Redirecionar para página de cartão
+            window.open('https://link.mercadopago.com.br/presenteamaurieester', '_blank');
+        }
+        
+        function copiarPix() {
+            const pixKey = document.getElementById('pixKey').textContent;
+            
+            navigator.clipboard.writeText(pixKey).then(() => {
+                const successMsg = document.getElementById('copySuccess');
+                const copyBtn = document.getElementById('copyBtn');
+                
+                // Mostrar mensagem de sucesso
+                successMsg.style.display = 'block';
+                copyBtn.textContent = 'Chave Copiada!';
+                copyBtn.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
+                
+                // Resetar após 3 segundos
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                    copyBtn.textContent = 'Copiar Chave Pix';
+                    copyBtn.style.background = 'linear-gradient(135deg, var(--laranja), var(--laranja-claro))';
+                }, 3000);
+            }).catch(err => {
+                console.error('Erro ao copiar: ', err);
+                alert('Não foi possível copiar a chave Pix. Por favor, copie manualmente.');
+            });
+        }
+        
+        function fecharModal() {
+            document.getElementById('modalPresente').style.display = 'none';
+        }
+        
+        function enviarMensagem() {
+            const nome = document.getElementById('nome').value.trim();
+            const mensagem = document.getElementById('mensagem').value.trim();
+            
+            // Validação simples
+            if (!nome || !mensagem) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+            
+            // Mostrar loading
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('msgSuccess').style.display = 'none';
+            
+            // Simular envio
+            setTimeout(() => {
+                // Simulação de sucesso
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('msgSuccess').style.display = 'block';
+                document.getElementById('nome').value = '';
+                document.getElementById('mensagem').value = '';
+                
+                // Rolagem suave após envio
+                document.getElementById('confirmacao').scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                
+                // Resetar mensagem após 5 segundos
+                setTimeout(() => {
+                    document.getElementById('msgSuccess').style.display = 'none';
+                }, 5000);
+            }, 1500); // Simula delay de rede
+        }
+        
+        // ANIMAÇÃO DE SCROLL SUAVE
+        function scrollParaSecao(id) {
+            const elemento = document.getElementById(id);
+            if (elemento) {
+                window.scrollTo({
+                    top: elemento.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        }
+        
+        // DETECTAR SCROLL PARA ANIMAÇÕES
+        function animarAoRolar() {
+            const cards = document.querySelectorAll('.card, .presente-card');
+            
+            cards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (cardTop < windowHeight * 0.85) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        }
+        
+        // INICIALIZAR ANIMAÇÕES
+        window.addEventListener('scroll', animarAoRolar);
+        window.addEventListener('load', animarAoRolar);
+        
+        // ESTILOS INICIAIS PARA ANIMAÇÃO
+        document.querySelectorAll('.card, .presente-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+        
+        // CONFIGURAÇÃO DE DATA E HORA LOCAL
+        function formatarData(data) {
+            const opcoes = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                timeZone: 'America/Sao_Paulo'
+            };
+            return data.toLocaleDateString('pt-BR', opcoes);
+        }
+        
+        // EXIBIR DATA FORMATADA
+        const dataFormatada = formatarData(dataCasamento);
+        const elementosData = document.querySelectorAll('.data-formatada');
+        elementosData.forEach(el => {
+            el.textContent = dataFormatada;
+        });
+    </script>
+</body>
+</html>
