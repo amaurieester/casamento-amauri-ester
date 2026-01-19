@@ -1027,45 +1027,70 @@
         let presenteSelecionado = { titulo: "", valor: 0 };
         
         // LISTA DE PRESENTES ORGANIZADA POR PREÇO (do mais barato para o mais caro)
-        const presentes = [
-            // Até R$ 100
-            ["Ajude a noiva a comprar lingeries novas", 60.21, "lingeries.jpg"],
-            ["Ajude o noivo a comprar cuecas novas", 60.21, "cuecas.jpg"],
-            ["Ajude a comprar um Jogo de taças", 62.99, "tacas.jpg"],
-            ["Ajude a comprar um Jogo de panelas", 82.61, "panelas.jpg"],
-            ["Ajude a noiva a renovar o guarda-roupa", 93.06, "guarda-roupa.jpg"],
-            ["Ajude a comprar uma Cafeteira elétrica", 110.21, "cafeteira.jpg"],
-            ["Ajude a comprar uma Churrasqueira", 120.90, "churrasqueira.jpg"],
-            
-            // R$ 100 - 500
-            ["Ajude a noiva a comprar novos pijamas", 131.38, "pijamas-noiva.jpg"],
-            ["Ajude o noivo a comprar pijamas novos", 131.38, "pijamas-noivo.jpg"],
-            ["Aspirador de pó", 131.38, "aspirador.jpg"],
-            ["Aluguel de um bebê para treinamento", 164.22, "bebe-treinamento.jpg"],
-            ["Ajude a comprar Roupas de cama", 162.89, "roupas-cama.jpg"],
-            ["Ajude a comprar um Fogão", 264.86, "fogao.jpg"],
-            ["Ajude a comprar um Guarda-roupa novo", 341.25, "guarda-roupa-grande.jpg"],
-            
-            // R$ 500 - 1.000
-            ["Ajuda financeira para o futuro casal", 405.08, "ajuda-financeira.jpg"],
-            ["Ajude a comprar uma Cama box de casal", 486.87, "cama-box.jpg"],
-            ["Ajuda para mobiliar a casa", 547.40, "mobiliar-casa.jpg"],
-            ["Ajude o casal ter uma piscina em casa", 656.88, "piscina.jpg"],
-            ["Ajude a comprar uma TV", 671.07, "tv.jpg"],
-            ["Ajude a comprar uma Geladeira", 781.92, "geladeira.jpg"],
-            ["Ajude o noivo a comprar uma cervejeira", 920.51, "cervejeira.jpg"],
-            
-            // Acima de R$ 1.000
-            ["Adote os boletos dos primeiros meses juntos", 821.10, "boletos.jpg"],
-            ["Ajude a comprar uma Máquina de lavar", 400.25, "maquina-lavar.jpg"],
-            ["Ajude a comprar uma Mesa de jantar", 230.90, "mesa-jantar.jpg"],
-            ["Ajuda para mobiliar a casa", 1204.28, "mobiliar-casa2.jpg"],
-            ["Ajuda para a aposentadoria dos noivos", 3612.84, "aposentadoria.jpg"],
-            ["Taxa para levar alguém que não foi convidado", 6652.99, "taxa-convidado.jpg"]
-        ];
-        
-        // Ordenar por preço (do mais barato para o mais caro)
-        presentes.sort((a, b) => a[1] - b[1]);
+        // LISTA DE PRESENTES ORGANIZADA POR PREÇO (do mais barato para o mais caro)
+const presentes = [
+    // Até R$ 100
+    ["Toma aqui uns 50 reais", 50.00, "50-reais.jpg"],
+    ["Só pra dizer que não te dei nada", 55.90, "nada.jpg"],
+    ["Lenço para a noiva não borrar toda a maquiagem", 56.99, "lenco-maquiagem.jpg"],
+    ["Ajude a noiva a comprar lingeries novas", 60.21, "lingeries.jpg"],
+    ["Ajude o noivo a comprar cuecas novas", 60.21, "cuecas.jpg"],
+    ["Ajude a comprar um Jogo de taças", 62.99, "tacas.jpg"],
+    ["Kit calmante para a noiva não se estressar com o noivo", 75.64, "kit-calmante.jpg"],
+    ["Ajude a comprar um Jogo de panelas", 82.61, "panelas.jpg"],
+    ["Ajude o casal a comer mais saudável", 86.21, "comer-saudavel.jpg"],
+    ["Ajude a noiva a renovar o guarda-roupa", 93.06, "guarda-roupa.jpg"],
+    ["Ajude os noivos a comprarem pijamas iguais", 93.06, "pijamas-iguais.jpg"],
+    ["Primeiro lugar na fila do Buffet", 93.25, "fila-buffet.jpg"],
+    ["Acessório para cortar a unha do dedão do pé do noivo", 97.71, "corta-unha.jpg"],
+    
+    // R$ 100 - 500
+    ["Sal pra pressão da noiva não abaixar no dia da festa", 101.54, "sal-pressao.jpg"],
+    ["Ajude a comprar uma Cafeteira elétrica", 110.21, "cafeteira.jpg"],
+    ["Ajude a comprar uma Churrasqueira", 120.90, "churrasqueira.jpg"],
+    ["Cobertor para a noiva estar sempre coberta de razão", 129.52, "cobertor-noiva.jpg"],
+    ["Ajude a noiva a comprar novos pijamas", 131.38, "pijamas-noiva.jpg"],
+    ["Ajude o noivo a comprar pijamas novos", 131.38, "pijamas-noivo.jpg"],
+    ["Aspirador de pó", 131.38, "aspirador.jpg"],
+    ["Taxa pra noiva não jogar o buquê pra sua namorada", 154.70, "taxa-buque-nao.jpg"],
+    ["Rolo de macarrão caso o noivo não se comporte", 155.42, "rolo-macarrao.jpg"],
+    ["Capacete contra o rolo de macarrão para o noivo", 155.42, "capacete-macarrao.jpg"],
+    ["Taxa pra noiva jogar o buquê na sua direção", 160.61, "taxa-buque-sim.jpg"],
+    ["Aluguel de um bebê para treinamento", 164.22, "bebe-treinamento.jpg"],
+    ["Estoque de café quentinho para o noivo", 165.79, "cafe-quentinho.jpg"],
+    ["Cobertor para o noivo estar sempre coberto de razão", 165.79, "cobertor-noivo.jpg"],
+    ["Diária do pedreiro para construção da nossa casa", 176.15, "pedreiro.jpg"],
+    ["Ajude a comprar Roupas de cama", 162.89, "roupas-cama.jpg"],
+    ["Calendário com lembrete para o noivo não esquecer as datas especiais", 195.42, "calendario.jpg"],
+    ["Vale compra pra noiva gastar na Shein", 212.41, "shein.jpg"],
+    ["Ajude a comprar um Fogão", 264.86, "fogao.jpg"],
+    ["Ajude a comprar um Guarda-roupa novo", 341.25, "guarda-roupa-grande.jpg"],
+    ["Um ano de barbeiro para o noivo", 331.57, "barbeiro.jpg"],
+    ["1 ano de Netflix para os noivos curtirem bons filmes", 341.93, "netflix.jpg"],
+    
+    // R$ 500 - 1.000
+    ["Ajuda financeira para o futuro casal", 405.08, "ajuda-financeira.jpg"],
+    ["Ajude a comprar uma Cama box de casal", 486.87, "cama-box.jpg"],
+    ["Ajuda para mobiliar a casa", 547.40, "mobiliar-casa.jpg"],
+    ["Psicólogo pros noivos não surtarem nos preparativos", 538.80, "psicologo.jpg"],
+    ["Ajude o casal ter uma piscina em casa", 656.88, "piscina.jpg"],
+    ["Ajude a comprar uma TV", 671.07, "tv.jpg"],
+    ["Ajuda para o casal sonhar com o carro elétrico", 744.46, "carro-eletrico.jpg"],
+    ["Ajude a comprar uma Geladeira", 781.92, "geladeira.jpg"],
+    ["Adote os boletos dos primeiros meses juntos!", 821.10, "boletos.jpg"],
+    ["Ajude o noivo a comprar uma cervejeira", 920.51, "cervejeira.jpg"],
+    
+    // Acima de R$ 1.000
+    ["Ajude a comprar uma Máquina de lavar", 400.25, "maquina-lavar.jpg"],
+    ["Ajude a comprar uma Mesa de jantar", 230.90, "mesa-jantar.jpg"],
+    ["Ajuda para mobiliar a casa", 1204.28, "mobiliar-casa2.jpg"],
+    ["Deus te iluminou e você resolveu ajudar na lua de mel", 1554.24, "lua-de-mel.jpg"],
+    ["Ajuda para a aposentadoria dos noivos", 3612.84, "aposentadoria.jpg"],
+    ["Taxa para levar alguém que não foi convidado", 6652.99, "taxa-convidado.jpg"]
+];
+
+// Ordenar por preço (do mais barato para o mais caro)
+presentes.sort((a, b) => a[1] - b[1]);
         
         // INICIALIZAÇÃO
         document.addEventListener('DOMContentLoaded', function() {
@@ -1436,3 +1461,4 @@
     </script>
 </body>
 </html>
+
