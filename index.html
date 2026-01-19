@@ -34,9 +34,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
-    <!-- EMAILJS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    
     <!-- STYLES -->
     <style>
         :root {
@@ -818,18 +815,45 @@
         <div class="card">
             <h3 class="text-center" style="color: var(--rosa); margin-bottom: 2rem;">Deixe uma mensagem para os noivos 🤍</h3>
             
-            <div class="form-container">
+            <!-- FORMULÁRIO COM FORMSUBMIT (MUITO MAIS FÁCIL) -->
+            <!-- SUBSTITUA "SEU_EMAIL@AQUI.COM" PELO SEU EMAIL REAL -->
+            <form 
+                class="form-container" 
+                action="https://formsubmit.co/casamentoamaurieester@gmail.com" 
+                method="POST"
+                id="formMensagem"
+            >
+                <!-- Configurações do FormSubmit -->
+                <input type="hidden" name="_subject" value="Nova mensagem do site de casamento! 🎉">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://SEU_SITE.com/obrigado.html">
+                <input type="text" name="_honey" style="display:none">
+                
                 <div class="form-group">
-                    <input type="text" class="form-input" id="nome" placeholder="Seu nome completo *" required>
+                    <input 
+                        type="text" 
+                        class="form-input" 
+                        id="nome" 
+                        name="nome"
+                        placeholder="Seu nome completo *" 
+                        required
+                    >
                     <div class="error-message" id="nome-error">Por favor, digite seu nome</div>
                 </div>
                 
                 <div class="form-group">
-                    <textarea class="form-textarea" id="mensagem" placeholder="Escreva sua mensagem com carinho *" required></textarea>
+                    <textarea 
+                        class="form-textarea" 
+                        id="mensagem" 
+                        name="mensagem"
+                        placeholder="Escreva sua mensagem com carinho *" 
+                        required
+                    ></textarea>
                     <div class="error-message" id="mensagem-error">Por favor, escreva sua mensagem</div>
                 </div>
                 
-                <button class="btn" onclick="enviarMensagem()" id="btnEnviar" style="width: 100%;">
+                <button type="submit" class="btn" id="btnEnviar" style="width: 100%;">
                     Enviar mensagem
                 </button>
                 
@@ -845,7 +869,7 @@
                     <div class="spinner"></div>
                     <p>Enviando sua mensagem...</p>
                 </div>
-            </div>
+            </form>
         </div>
     </section>
 
@@ -911,20 +935,6 @@
     </footer>
 
     <script>
-        // CONFIGURAÇÃO DO EMAILJS (VOCÊ VAI PRECISAR ALTERAR ESTES VALORES)
-        // 1. Crie uma conta em https://www.emailjs.com
-        // 2. Obtenha seus IDs e substitua abaixo
-        const EMAILJS_CONFIG = {
-            SERVICE_ID: 'YOUR_SERVICE_ID', // Substitua pelo seu Service ID
-            TEMPLATE_ID: 'YOUR_TEMPLATE_ID', // Substitua pelo seu Template ID
-            PUBLIC_KEY: 'YOUR_PUBLIC_KEY' // Substitua pela sua Public Key
-        };
-        
-        // Inicializar EmailJS
-        (function() {
-            emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
-        })();
-        
         // DADOS DO CASAMENTO
         const dataCasamento = new Date("2027-05-29T10:00:00");
         let presenteSelecionado = { titulo: "", valor: 0 };
@@ -1008,6 +1018,12 @@
             document.getElementById('mensagem').addEventListener('input', function() {
                 validarCampo(this);
             });
+            
+            // Configurar envio do formulário
+            const formulario = document.getElementById('formMensagem');
+            formulario.addEventListener('submit', function(e) {
+                enviarMensagemFormsubmit(e);
+            });
         });
         
         // FUNÇÕES DE VALIDAÇÃO
@@ -1033,16 +1049,17 @@
             return nomeValido && mensagemValida;
         }
         
-        // FUNÇÃO PARA ENVIAR MENSAGEM REAL
-        async function enviarMensagem() {
+        // FUNÇÃO PARA ENVIAR MENSAGEM COM FORMSUBMIT
+        async function enviarMensagemFormsubmit(event) {
+            event.preventDefault();
+            
             // Validar formulário
             if (!validarFormulario()) {
                 return;
             }
             
-            const nome = document.getElementById('nome').value.trim();
-            const mensagem = document.getElementById('mensagem').value.trim();
             const btnEnviar = document.getElementById('btnEnviar');
+            const formulario = document.getElementById('formMensagem');
             
             // Desabilitar botão para evitar múltiplos envios
             btnEnviar.disabled = true;
@@ -1054,74 +1071,53 @@
             document.getElementById('msgError').style.display = 'none';
             
             try {
-                // Preparar dados para envio
-                const dados = {
-                    nome: nome,
-                    mensagem: mensagem,
-                    data: new Date().toLocaleDateString('pt-BR', {
-                        day: '2-digit',
-                        month: '2-digit',
-                        year: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit'
-                    })
-                };
+                // Coletar dados do formulário
+                const formData = new FormData(formulario);
                 
-                // ENVIAR VIA EMAILJS (funciona apenas após configurar)
-                const resposta = await emailjs.send(
-                    EMAILJS_CONFIG.SERVICE_ID,
-                    EMAILJS_CONFIG.TEMPLATE_ID,
-                    dados
-                );
-                
-                // Se chegou aqui, o email foi enviado com sucesso
-                console.log('Email enviado com sucesso:', resposta);
-                
-                // Mostrar mensagem de sucesso
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('msgSuccess').style.display = 'block';
-                
-                // Limpar formulário
-                document.getElementById('nome').value = '';
-                document.getElementById('mensagem').value = '';
-                
-                // Rolagem suave
-                document.getElementById('confirmacao').scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'center'
+                // Enviar para FormSubmit
+                const resposta = await fetch(formulario.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
                 });
                 
-                // Resetar após 5 segundos
-                setTimeout(() => {
-                    document.getElementById('msgSuccess').style.display = 'none';
-                }, 5000);
+                if (resposta.ok) {
+                    // Sucesso
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('msgSuccess').style.display = 'block';
+                    
+                    // Limpar formulário
+                    formulario.reset();
+                    
+                    // Rolagem suave
+                    document.getElementById('confirmacao').scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                    
+                    // Resetar após 5 segundos
+                    setTimeout(() => {
+                        document.getElementById('msgSuccess').style.display = 'none';
+                    }, 5000);
+                    
+                } else {
+                    throw new Error('Erro na resposta do servidor');
+                }
                 
             } catch (error) {
-                // Se ocorrer um erro
-                console.error('Erro ao enviar email:', error);
+                console.error('Erro ao enviar mensagem:', error);
                 
                 // Mostrar mensagem de erro
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('msgError').style.display = 'block';
                 
-                // Sugerir alternativa
-                alert('O sistema de envio ainda não está configurado. As mensagens serão armazenadas localmente. Em breve você receberá todas as mensagens quando configurar o EmailJS.');
-                
-                // Para fins de demonstração, vamos simular o sucesso
-                // REMOVA ESTE BLOCO QUANDO CONFIGURAR O EMAILJS
-                setTimeout(() => {
-                    document.getElementById('loading').style.display = 'none';
-                    document.getElementById('msgSuccess').style.display = 'block';
-                    document.getElementById('nome').value = '';
-                    document.getElementById('mensagem').value = '';
-                    
-                    setTimeout(() => {
-                        document.getElementById('msgSuccess').style.display = 'none';
-                    }, 5000);
-                }, 1000);
+                // Sugerir envio manual
+                alert('Para receber as mensagens, substitua "SEU_EMAIL@AQUI.COM" no código pelo seu email real!');
                 
             } finally {
-                // Reabilitar botão
+                // Reabilitar botão após 2 segundos
                 setTimeout(() => {
                     btnEnviar.disabled = false;
                     btnEnviar.textContent = 'Enviar mensagem';
@@ -1287,13 +1283,6 @@
             };
             return data.toLocaleDateString('pt-BR', opcoes);
         }
-        
-        // EXIBIR DATA FORMATADA
-        const dataFormatada = formatarData(dataCasamento);
-        const elementosData = document.querySelectorAll('.data-formatada');
-        elementosData.forEach(el => {
-            el.textContent = dataFormatada;
-        });
     </script>
 </body>
 </html>
