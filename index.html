@@ -11,18 +11,19 @@
 :root{
   --rosa:#d16c7c;
   --laranja:#f08a5d;
-  --fundo:#fff7f4;
+  --fundo:#fff6f2;
 }
 
+*{box-sizing:border-box;margin:0;padding:0}
+
 body{
-  margin:0;
   font-family:'Montserrat',sans-serif;
   background:var(--fundo);
   color:#444;
 }
 
 section{
-  padding:70px 20px;
+  padding:80px 20px;
   max-width:1100px;
   margin:auto;
 }
@@ -32,55 +33,77 @@ h1,h2{
   text-align:center;
 }
 
-h1{font-size:42px;}
-h2{font-size:32px;color:var(--laranja);margin-bottom:35px;}
+h1{font-size:44px}
+h2{font-size:32px;color:var(--laranja);margin-bottom:35px}
 
 .card{
   background:#fff;
-  border-radius:22px;
-  padding:35px;
-  box-shadow:0 12px 35px rgba(0,0,0,.08);
+  border-radius:24px;
+  padding:40px;
+  box-shadow:0 15px 40px rgba(0,0,0,.08);
 }
 
-/* SAVE THE DATE */
-.save-date{
-  text-align:center;
-  padding:90px 20px;
+/* MENU FIXO */
+.menu{
+  position:sticky;
+  top:15px;
+  margin:15px auto;
+  max-width:780px;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(6px);
+  border-radius:40px;
+  padding:14px 28px;
+  display:flex;
+  justify-content:space-between;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  z-index:1000;
+}
+
+.menu a{
+  text-decoration:none;
+  color:var(--rosa);
+  font-size:14px;
+  font-weight:500;
+}
+
+.menu a:hover{color:var(--laranja)}
+
+/* TOPO */
+.topo{
   background:linear-gradient(135deg,var(--rosa),var(--laranja));
   color:#fff;
+  text-align:center;
+  padding:100px 20px;
 }
 
-.save-date p{
-  letter-spacing:3px;
-}
+.topo p{letter-spacing:3px;margin-bottom:10px}
 
 .countdown{
   display:flex;
   justify-content:center;
-  gap:20px;
+  gap:18px;
   margin-top:35px;
   flex-wrap:wrap;
 }
 
-.time-box{
+.time{
   background:rgba(255,255,255,.25);
-  padding:15px 22px;
-  border-radius:16px;
+  padding:16px 24px;
+  border-radius:18px;
   min-width:90px;
-  font-weight:500;
 }
 
 /* BOTÕES */
 .btn{
   display:inline-block;
-  padding:14px 32px;
+  margin-top:25px;
+  padding:14px 36px;
   border-radius:30px;
   background:linear-gradient(135deg,var(--rosa),var(--laranja));
   color:#fff;
   text-decoration:none;
   border:none;
   cursor:pointer;
-  font-weight:500;
 }
 
 /* PRESENTES */
@@ -92,72 +115,57 @@ h2{font-size:32px;color:var(--laranja);margin-bottom:35px;}
 
 .presente{
   background:#fff;
-  border-radius:20px;
-  padding:22px;
+  border-radius:22px;
+  padding:26px;
   box-shadow:0 10px 25px rgba(0,0,0,.08);
   display:flex;
   flex-direction:column;
   justify-content:space-between;
 }
 
-.presente strong{
-  margin-bottom:10px;
-  display:block;
-}
-
-/* MODAL PIX */
-.pix-modal{
+/* PIX MODAL */
+.modal{
   display:none;
   position:fixed;
   inset:0;
   background:rgba(0,0,0,.6);
   backdrop-filter:blur(6px);
-  z-index:9999;
   justify-content:center;
   align-items:center;
+  z-index:9999;
 }
 
-.pix-box{
+.modal-box{
   background:#fff;
   border-radius:26px;
-  padding:32px;
-  width:90%;
+  padding:36px;
   max-width:380px;
+  width:90%;
   text-align:center;
   position:relative;
 }
 
-.pix-box h3{
-  color:var(--rosa);
-  margin-bottom:15px;
-}
+.modal-box img{width:200px;margin:20px auto}
 
-.pix-qrcode{
-  width:210px;
-  margin:15px auto;
-}
-
-.pix-key{
-  font-size:12px;
-  color:#666;
-  word-break:break-all;
-  margin-top:10px;
-}
-
-.btn-copy{
+.copy{
   width:100%;
-  margin-top:18px;
-  padding:13px;
+  padding:14px;
   border-radius:28px;
   border:none;
-  background:linear-gradient(135deg,var(--laranja),#f9d423);
+  background:linear-gradient(135deg,var(--laranja),#ffd56b);
   color:#fff;
   cursor:pointer;
 }
 
-.close-pix{
+.success{
+  display:none;
+  margin-top:14px;
+  color:var(--rosa);
+}
+
+.close{
   position:absolute;
-  top:12px;
+  top:15px;
   right:18px;
   font-size:22px;
   border:none;
@@ -169,158 +177,211 @@ h2{font-size:32px;color:var(--laranja);margin-bottom:35px;}
 
 <body>
 
-<!-- SAVE THE DATE -->
-<div class="save-date">
-  <p>SAVE THE DATE</p>
-  <h1>Amauri & Ester</h1>
-  <p>29/05/2027 • Várzea da Palma - MG</p>
+<nav class="menu">
+<a href="#inicio">Início</a>
+<a href="#historia">Nossa História</a>
+<a href="#evento">Evento</a>
+<a href="#confirmacao">Confirmação</a>
+<a href="#presentes">Presentes</a>
+</nav>
 
-  <div class="countdown" id="countdown"></div>
+<div class="topo" id="inicio">
+<p>SAVE THE DATE</p>
+<h1>Amauri & Ester</h1>
+<p>29/05/2027 • Várzea da Palma - MG</p>
+
+<div class="countdown">
+<div class="time" id="dias"></div>
+<div class="time" id="horas"></div>
+<div class="time" id="minutos"></div>
+<div class="time" id="segundos"></div>
+</div>
 </div>
 
-<!-- NOSSA HISTÓRIA -->
-<section>
-<h2>Nossa História</h2>
-<div class="card" style="line-height:1.8;text-align:justify">
-<p><strong>Tudo começou</strong> por culpa (ou mérito) de um amigo em comum: Samuel Fernando...  
-(Este texto permanece exatamente como você já aprovou anteriormente.)</p>
-</div>
+<section id="historia">
+  <h2>Nossa História</h2>
+
+  <div class="card" style="line-height:1.9; text-align:justify; font-size:16px;">
+    <p>
+      Tudo começou por culpa (ou mérito) de um amigo em comum: <strong>Samuel Fernando</strong>.
+      Ele jurava que nós dois combinávamos perfeitamente. A noiva não acreditava muito e achava
+      aquilo tudo exagero — virou quase uma aposta. Spoiler: ele estava certo.
+    </p>
+
+    <p>
+      O primeiro beijo aconteceu numa noite especial, no <strong>Armazém do Rosário</strong>.
+      E como toda boa história, a noite não terminou ali. Logo depois, fomos jogar truco
+      na casa de um amigo, o <strong>João Pedro</strong>, e ficamos por lá até o dia amanhecer.
+    </p>
+
+    <p>
+      Nesse meio tempo, a noiva já estava completamente louquinha por mais um beijo do noivo.
+      Para que isso acontecesse, Samuel e João Pedro tiveram que tomar café frio, do dia anterior,
+      só para despistar e criar o clima perfeito. Amizades de verdade passam por isso.
+    </p>
+
+    <p>
+      Algum tempo depois, veio o pedido de namoro. A noiva estava chegando de férias e o noivo
+      foi buscá-la dizendo que iriam sair para mais um encontro. No caminho, soltou a frase que
+      entrou para a história:
+    </p>
+
+    <p style="text-align:center; font-style:italic; margin:20px 0;">
+      “Vai parecer que eu tô te sequestrando… mas eu não tô.”
+    </p>
+
+    <p>
+      (E não estava mesmo.)
+    </p>
+
+    <p>
+      No destino, a surpresa: um caminho de corações recortados à mão, um por um pelo noivo,
+      velas, música de fundo e, ao final, a pergunta escrita na parede:
+    </p>
+
+    <p style="text-align:center; font-weight:600; margin:20px 0;">
+      “Quer namorar comigo?”
+    </p>
+
+    <p>
+      O “sim” veio fácil — o coração já tinha respondido antes.
+    </p>
+
+    <p>
+      Desde o começo, não fomos só nós dois. Muita gente torceu, incentivou, apostou e acreditou
+      nesse amor — amigos e família que sempre estiveram por perto, vibrando a cada passo.
+    </p>
+
+    <p>
+      Entre risadas, conversas que atravessaram madrugadas e muita parceria, fomos construindo
+      um amor leve, verdadeiro e sem esforço. Daqueles que simplesmente encaixam.
+    </p>
+
+    <p>
+      Depois de <strong>8 anos</strong> compartilhando a vida, as histórias, os sonhos e as certezas,
+      decidimos dar o próximo passo.
+    </p>
+
+    <p>
+      O pedido de casamento foi exatamente a nossa cara:
+      teve <strong>Disney</strong>, porque a noiva ama;
+      teve <strong>discrição</strong>, porque o noivo ama;
+      e teve <strong>Maragogi</strong>, porque o amor merecia um cenário bonito.
+    </p>
+
+    <p>
+      Só nós dois, nos bangalôs de um hotel, vivendo um momento único — enquanto nossos pais
+      estavam no mesmo hotel e ninguém desconfiou de nada.
+      <strong>Sigilo absoluto, missão cumprida ✔️</strong>
+    </p>
+
+    <p>
+      Agora, escolhemos oficializar tudo isso.
+      Este casamento é a celebração do nosso amor, da nossa história e de todas as pessoas
+      que sempre torceram por nós.
+    </p>
+
+    <p style="font-weight:600;">
+      E o melhor de tudo: essa história está só começando.
+    </p>
+  </div>
 </section>
 
-<!-- EVENTO -->
-<section>
+<section id="evento">
 <h2>O Evento</h2>
 <div class="card" style="text-align:center">
 <p><strong>Matriz Nossa Senhora da Conceição</strong></p>
 <p>Praça Frei Jorge, nº 1480<br>Várzea da Palma - MG</p>
-
 <a class="btn" target="_blank"
 href="https://www.google.com/maps/search/?api=1&query=Matriz+Nossa+Senhora+da+Conceicao+Varzea+da+Palma+MG">
-Ver localização
+Ver no mapa
 </a>
 </div>
 </section>
 
-<!-- CONFIRMAÇÃO -->
-<section>
+<section id="confirmacao">
 <h2>Confirmação de Presença</h2>
 <div class="card" style="text-align:center">
 <a class="btn" target="_blank"
-href="https://docs.google.com/forms/d/e/1FAIpQLSf4goBLjMg9tv6LAgfYVz9G1Mk7NGscCFhcDWsj0LsRerNrzQ/viewform">
+href="https://docs.google.com/forms/">
 Confirmar presença
 </a>
 </div>
 </section>
 
-<!-- PRESENTES -->
-<section>
+<section id="presentes">
 <h2>Lista de Presentes</h2>
-<div class="presentes" id="listaPresentes"></div>
+<div class="presentes" id="lista"></div>
 </section>
 
-<!-- MODAL PIX -->
-<div id="pixModal" class="pix-modal">
-<div class="pix-box">
-<button class="close-pix" onclick="fecharPix()">×</button>
+<div class="modal" id="pix">
+<div class="modal-box">
+<button class="close" onclick="fechar()">×</button>
 <h3>Pagamento via Pix</h3>
-
-<img src="pix-qrcode.png" class="pix-qrcode" alt="QR Code Pix">
-
+<img src="pix-qrcode.png">
 <p><strong>Amauri Mourão Pereira</strong></p>
 <p>Banco: Nubank</p>
-
-<p class="pix-key" id="pixKey">
-00020126580014BR.GOV.BCB.PIX01360fd40b94-5f17-4115-9e25-c4464bc447f95204000053039865802BR5921Amauri Mourao Pereira6009SAO PAULO621405107UCCil9dAy6304D0A3
+<p id="chave" style="font-size:12px">
+00020126580014BR.GOV.BCB.PIX01360fd40b94-5f17-4115-9e25-c4464bc447f9...
 </p>
-
-<button class="btn-copy" onclick="copiarPix()">Copiar chave Pix</button>
-
-<p style="margin-top:16px;color:#aaa">
-Agradecemos o apoio e a colaboração 🤍
-</p>
+<button class="copy" onclick="copiar()">Copiar Pix</button>
+<p class="success" id="ok">✔ Pix copiado com sucesso 🤍</p>
 </div>
 </div>
 
 <script>
-// CONTADOR
-const target=new Date("2027-05-29T10:00:00");
+const data=new Date("2027-05-29T10:00:00");
 setInterval(()=>{
 const now=new Date();
-const diff=target-now;
-countdown.innerHTML=`
-<div class="time-box">${Math.floor(diff/86400000)} dias</div>
-<div class="time-box">${Math.floor(diff/3600000)%24} h</div>
-<div class="time-box">${Math.floor(diff/60000)%60} min</div>`;
+const d=data-now;
+dias.innerHTML=Math.floor(d/86400000)+" dias";
+horas.innerHTML=Math.floor(d/3600000)%24+" h";
+minutos.innerHTML=Math.floor(d/60000)%60+" min";
+segundos.innerHTML=Math.floor(d/1000)%60+" s";
 },1000);
 
-// PRESENTES (50)
 const presentes=[
-["Só para não dizer que não dei nada",31.99],
-["Lenço para a noiva não borrar toda a maquiagem",56.99],
-["Toma aqui uns 50 reais",50],
-["Kit calmante para não se estressar com o noivo",75.64],
-["Kit compra essencial para a noiva",86],
-["Acessório para cortar a unha do dedão do pé do noivo",77.71],
-["Sal para a pressão da noiva não abaixar",101.54],
-["Primeiro lugar na fila do buffet",93.25],
-["Cobertor para a noiva estar coberta de razão",129.52],
-["Taxa para a noiva não jogar o buquê",134.70],
-["Calendário para o noivo não esquecer datas",155.42],
-["Capacete contra rolo de macarrão",155.42],
-["Estoque de café para o noivo",165.79],
-["Taxa para jogar o buquê na sua direção",160.61],
-["Cobertor para o noivo estar coberto de razão",165.79],
-["Despertador para o noivo",55.42],
-["Rolo de macarrão",155.42],
-["Diária do pedreiro",176.15],
-["Vale Shein para a noiva",212.41],
-["Camisa do Cruzeiro",399.90],
-["1 ano de Netflix",341.93],
-["Psicólogo pros noivos",538.80],
-["Ajuda na lua de mel",1554.25],
-["Adote os boletos",821.10],
-["Ajuda financeira futuro casal",405.08],
-["Aposentadoria dos noivos",3612.84],
-["Mobiliar a casa",1204.28],
-["Mobiliar a casa (extra)",547.40],
-["Lingeries para a noiva",60.21],
-["Pijamas para a noiva",131.38],
-["Cervejeira para o noivo",920.51],
-["Guarda-roupa da noiva",93.06],
-["Piscina para o casal",656.88],
-["Cuecas novas para o noivo",60.21],
-["Pijamas para o noivo",131.38],
-["Aluguel de bebê",164.22],
+["Adote os boletos dos primeiros meses juntos",821.10],
+["Ajuda financeira para o futuro casal",405.08],
+["Ajuda para a aposentadoria dos noivos",3612.84],
+["Ajuda para mobiliar a casa",1204.28],
+["Ajuda para mobiliar a casa",547.40],
+["Ajude a noiva a comprar lingeries novas",60.21],
+["Ajude a noiva a comprar novos pijamas",131.38],
+["Ajude o noivo a comprar uma cervejeira",920.51],
+["Ajude a noiva a renovar o guarda-roupa",93.06],
+["Ajude o casal ter uma piscina em casa",656.88],
+["Ajude o noivo a comprar cuecas novas",60.21],
+["Ajude o noivo a comprar pijamas novos",131.38],
+["Aluguel de um bebê para treinamento",164.22],
 ["Aspirador de pó",131.38],
-["Ajuda para comprar TV",671.07],
-["Ajuda para comprar Geladeira",781.92],
-["Cama box de casal",486.87],
-["Roupas de cama",162.89],
-["Guarda-roupa novo",341.25],
-["Fogão",264.86],
-["Máquina de lavar",400.25],
-["Mesa de jantar",230.90],
-["Cafeteira elétrica",110.21],
-["Churrasqueira",120.90],
-["Jogo de panelas",82.61],
-["Jogo de taças",62.99],
-["Taxa para levar alguém não convidado",6652.99]
+["Ajude a comprar uma TV",671.07],
+["Ajude a comprar uma Geladeira",781.92],
+["Ajude a comprar uma Cama box de casal",486.87],
+["Ajude a comprar Roupas de cama",162.89],
+["Ajude a comprar um Guarda-roupa novo",341.25],
+["Ajude a comprar um Fogão",264.86],
+["Ajude a comprar uma Máquina de lavar",400.25],
+["Ajude a comprar uma Mesa de jantar",230.90],
+["Ajude a comprar uma Cafeteira elétrica",110.21],
+["Ajude a comprar uma Churrasqueira",120.90],
+["Ajude a comprar um Jogo de panelas",82.61],
+["Ajude a comprar um Jogo de taças",62.99],
+["Taxa para levar alguém que não foi convidado",6652.99]
 ];
 
-listaPresentes.innerHTML=presentes.map(p=>`
+lista.innerHTML=presentes.map(p=>`
 <div class="presente">
 <strong>${p[0]}</strong>
 <span>R$ ${p[1].toFixed(2)}</span>
-<button class="btn" onclick="abrirPix()">Presentear</button>
+<button class="btn" onclick="pix.style.display='flex'">Presentear</button>
 </div>`).join("");
 
-// PIX
-function abrirPix(){pixModal.style.display="flex";}
-function fecharPix(){pixModal.style.display="none";}
-function copiarPix(){
-navigator.clipboard.writeText(pixKey.innerText);
-alert("Chave Pix copiada 🤍");
+function copiar(){
+navigator.clipboard.writeText(document.getElementById("chave").innerText);
+document.getElementById("ok").style.display="block";
 }
+function fechar(){pix.style.display="none";}
 </script>
 
 </body>
