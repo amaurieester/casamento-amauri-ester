@@ -884,6 +884,61 @@
             background: var(--rosa);
             border-radius: 10px;
         }
+        
+        /* EVENTOS - NOVO LAYOUT */
+        .eventos-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .eventos-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+        
+        .evento-card {
+            background: var(--branco);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px var(--sombra);
+            text-align: center;
+            transition: var(--transicao);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .evento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px var(--sombra-hover);
+        }
+        
+        .evento-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .evento-titulo {
+            color: var(--rosa);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .evento-local {
+            color: var(--cinza);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .evento-local strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--laranja);
+        }
     </style>
 </head>
 
@@ -993,17 +1048,37 @@
         </div>
     </section>
 
-    <!-- EVENTO -->
+    <!-- EVENTO - NOVO LAYOUT COM CERIMÔNIA E FESTA -->
     <section id="evento">
         <div class="text-center mb-3">
             <h2>O Evento</h2>
         </div>
         
-        <div class="card text-center">
-            <h3 style="color: var(--rosa); margin-bottom: 1rem;">Matriz Nossa Senhora da Conceição</h3>
-            <p>Praça Frei Jorge, nº 1480<br>Várzea da Palma - MG</p>
-            <div class="mt-2">
+        <div class="eventos-container">
+            <!-- CERIMÔNIA -->
+            <div class="evento-card">
+                <span class="evento-icon">⛪</span>
+                <h3 class="evento-titulo">Cerimônia</h3>
+                <div class="evento-local">
+                    <strong>Matriz Nossa Senhora da Conceição</strong>
+                    Praça Frei Jorge, nº 1480<br>
+                    Várzea da Palma - MG
+                </div>
                 <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Matriz+Nossa+Senhora+da+Conceicao+Varzea+da+Palma+MG" target="_blank" rel="noopener">
+                    Ver no mapa
+                </a>
+            </div>
+            
+            <!-- FESTA -->
+            <div class="evento-card">
+                <span class="evento-icon">🎉</span>
+                <h3 class="evento-titulo">Festa</h3>
+                <div class="evento-local">
+                    <strong>Zabelê Quiosque</strong>
+                    Av. Brasil, 2150 - Serrinha<br>
+                    Várzea da Palma - MG
+                </div>
+                <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Zabelê+Quiosque+Av.+Brasil+2150+Serrinha+Varzea+da+Palma+MG" target="_blank" rel="noopener">
                     Ver no mapa
                 </a>
             </div>
@@ -1166,7 +1241,7 @@
         const dataCasamento = new Date("2027-05-29T10:00:00");
         let presenteSelecionado = { titulo: "", valor: 0 };
         
-        // LISTA DE PRESENTES ORGANIZADA POR PREÇO
+        // LISTA DE PRESENTES ORGANIZADA POR PREÇO - SEM O ERRO DE ;" />
         const presentes = [
             // Até R$ 100
             ["Toma aqui uns 50 reais", 50.00, "50-reais.jpg"],
@@ -1415,7 +1490,7 @@
             }
         }
         
-        // FUNÇÃO PARA RENDERIZAR PRESENTES
+        // FUNÇÃO PARA RENDERIZAR PRESENTES - CORRIGIDA (SEM O ERRO DE ;" />)
         function renderizarPresentes(filtro = 'todos') {
             const container = document.getElementById('lista-presentes');
             container.innerHTML = '';
@@ -1449,24 +1524,38 @@
                 
                 const card = document.createElement('div');
                 card.className = 'presente-card';
-                card.innerHTML = `
-                    <div class="presente-imagem-container">
-                        ${imagem ? 
-                            `<img src="presentes/${imagem}" alt="${titulo}" class="presente-imagem" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"placeholder-imagem\"><span>🎁</span><span>Adicione uma foto</span></div>';" />` : 
-                            `<div class="placeholder-imagem">
+                
+                // Código corrigido - sem o ;" />
+                if (imagem) {
+                    card.innerHTML = `
+                        <div class="presente-imagem-container">
+                            <img src="presentes/${imagem}" alt="${titulo}" class="presente-imagem">
+                        </div>
+                        <div class="presente-info">
+                            <h3 class="presente-titulo">${titulo}</h3>
+                            <p class="presente-valor">R$ ${valor.toFixed(2).replace('.', ',')}</p>
+                            <button class="btn" onclick="selecionarPresente('${titulo.replace(/'/g, "\\'")}', ${valor})">
+                                Presentear
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    card.innerHTML = `
+                        <div class="presente-imagem-container">
+                            <div class="placeholder-imagem">
                                 <span>🎁</span>
                                 <span>Adicione uma foto para "${titulo}"</span>
-                            </div>`
-                        }
-                    </div>
-                    <div class="presente-info">
-                        <h3 class="presente-titulo">${titulo}</h3>
-                        <p class="presente-valor">R$ ${valor.toFixed(2).replace('.', ',')}</p>
-                        <button class="btn" onclick="selecionarPresente('${titulo.replace(/'/g, "\\'")}', ${valor})">
-                            Presentear
-                        </button>
-                    </div>
-                `;
+                            </div>
+                        </div>
+                        <div class="presente-info">
+                            <h3 class="presente-titulo">${titulo}</h3>
+                            <p class="presente-valor">R$ ${valor.toFixed(2).replace('.', ',')}</p>
+                            <button class="btn" onclick="selecionarPresente('${titulo.replace(/'/g, "\\'")}', ${valor})">
+                                Presentear
+                            </button>
+                        </div>
+                    `;
+                }
                 
                 container.appendChild(card);
             });
@@ -1646,7 +1735,7 @@
         
         // DETECTAR SCROLL PARA ANIMAÇÕES
         function animarAoRolar() {
-            const cards = document.querySelectorAll('.card, .presente-card');
+            const cards = document.querySelectorAll('.card, .presente-card, .evento-card');
             
             cards.forEach(card => {
                 const cardTop = card.getBoundingClientRect().top;
@@ -1660,7 +1749,7 @@
         }
         
         // ESTILOS INICIAIS PARA ANIMAÇÃO
-        document.querySelectorAll('.card, .presente-card').forEach(card => {
+        document.querySelectorAll('.card, .presente-card, .evento-card').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
             card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
