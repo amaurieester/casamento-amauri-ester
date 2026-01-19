@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presentes | Amauri & Ester</title>
+<link rel="stylesheet" href="css/style.css">
+<script defer src="js/script.js"></script>
+</head>
+
+<body>
+
+<div class="layout-interno">
+
+<aside class="menu-lateral">
+  <h3>Amauri & Ester</h3>
+  <a href="presentes.html">🎁 Presentes</a>
+  <a href="confirmacao.html">✅ Confirmação</a>
+  <a href="padrinhos.html">🤍 Padrinhos</a>
+  <a href="index.html">⬅ Voltar ao site</a>
+</aside>
+
+<main class="conteudo">
+
+<h1>Lista de Presentes</h1>
+<p class="texto-suave">Escolha um presente com carinho 🤍</p>
+
+<div class="lista-presentes">
+
+<!-- PRESENTES (todos) -->
+<div class="presente"><span>Só para não dizer que não dei nada</span><strong>R$ 31,99</strong><button onclick="abrirModal()">Presentear</button></div>
+<div class="presente"><span>Lenço para a noiva não borrar a maquiagem</span><strong>R$ 56,99</strong><button onclick="abrirModal()">Presentear</button></div>
+<div class="presente"><span>Toma aqui uns 50 reais</span><strong>R$ 50,00</strong><button onclick="abrirModal()">Presentear</button></div>
+<div class="presente"><span>Kit calmante para a noiva</span><strong>R$ 75,64</strong><button onclick="abrirModal()">Presentear</button></div>
+<div class="presente"><span>Kit compra essencial para a noiva</span><strong>R$ 86,00</strong><button onclick="abrirModal()">Presentear</button></div>
+<div class="presente"><span>Acessório para cortar unha do dedão do noivo</span><strong>R$ 77,71</strong><button onclick="abrirModal()">Presentear</button></div>
+<div class="presente"><span>Sal para pressão da noiva não abaixar</span><strong>R$ 101,54</strong><button onclick="abrirModal()">Presentear</button></div>
+<div class="presente"><span>Primeiro lugar na fila do buffet</span><strong>R$ 93,25</strong><button onclick="abrirModal()">Presentear</button></div>
+<div class="presente"><span>Cobertor para a noiva estar coberta de razão</span><strong>R$ 129,52</strong><button onclick="abrirModal()">Presentear</button></div>
+<div class="presente"><span>Taxa para a noiva não jogar o buquê</span><strong>R$ 134,70</strong><button onclick="abrirModal()">Presentear</button></div>
+<div class="presente"><span>Calendário para o noivo não esquecer datas</span><strong>R$ 155,42</strong><button onclick="abrirModal()">Presentear</button></div>
+<div class="presente"><span>Capacete contra rolo de macarrão</span><strong>R$ 155,42</strong><button onclick="abrirModal()">Presentear</button></div>
+<div class="presente"><span>Estoque de café para o noivo</span><strong>R$ 165,79</strong><button onclick="abrirModal()">Presentear</button></div>
+<div class="presente"><span>Taxa para a noiva jogar o buquê em você</span><strong>R$ 160,61</strong><button onclick="abrirModal()">Presentear</button></div>
+<div class="presente"><span>Cobertor para o noivo estar coberto de razão</span><strong>R$ 165,79</strong><button onclick="abrirModal()">Presentear</button></div>
+<div class="presente"><span>Despertador para o noivo</span><strong>R$ 55,42</strong><button onclick="abrirModal()">Presentear</button></div>
+<div class="presente"><span>Rolo de macarrão reserva</span><strong>R$ 155,42</strong><button onclick="abrirModal()">Presentear</button></div>
+<div class="presente"><span>Diária do pedreiro da casa</span><strong>R$ 176,15</strong><button onclick="abrirModal()">Presentear</button></div>
+<div class="presente"><span>Vale compras Shein para a noiva</span><strong>R$ 212,41</strong><button onclick="abrirModal()">Presentear</button></div>
+<div class="presente"><span>Camisa do Cruzeiro</span><strong>R$ 399,90</strong><button onclick="abrirModal()">Presentear</button></div>
+<div class="presente"><span>1 ano de Netflix</span><strong>R$ 341,93</strong><button onclick="abrirModal()">Presentear</button></div>
+<div class="presente"><span>Psicólogo para os noivos</span><strong>R$ 538,80</strong><button onclick="abrirModal()">Presentear</button></div>
+<div class="presente"><span>Ajuda na lua de mel</span><strong>R$ 1.554,25</strong><button onclick="abrirModal()">Presentear</button></div>
+
+<div class="presente destaque"><span>Taxa para levar alguém que não foi convidado</span><strong>R$ 6.652,99</strong><button onclick="abrirModal()">Presentear</button></div>
+
+</div>
+</main>
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+<div class="modal-conteudo">
+  <span class="fechar" onclick="fecharModal()">×</span>
+  <h2>Escolha a forma de pagamento</h2>
+
+  <h3>Pix</h3>
+  <img src="pix-qrcode.png" alt="QR Code Pix">
+  <p><strong>Amauri Mourão Pereira</strong><br>Banco: Nubank</p>
+  <button onclick="copiarPix()">Copiar chave Pix</button>
+  <p class="agradecimento">Agradecemos o apoio e a colaboração 🤍</p>
+
+  <hr>
+
+  <a class="botao" target="_blank" href="https://link.mercadopago.com.br/presenteamaurieester">
+    Pagar com Cartão
+  </a>
+</div>
+</div>
+
+</body>
+</html>

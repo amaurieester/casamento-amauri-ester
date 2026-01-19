@@ -1,381 +1,122 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- OTIMIZAÇÃO PARA WHATSAPP -->
+<title>Amauri & Ester</title>
+
+<link rel="stylesheet" href="css/style.css">
+<script defer src="js/script.js"></script>
+
+<!-- WhatsApp preview -->
+<meta property="og:title" content="Amauri & Ester - Save the Date">
+<meta property="og:description" content="29/05/2027 • Várzea da Palma - MG">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Amauri & Ester">
-<meta property="og:description" content="29/05/2027 • Várzea da Palma - MG. Estamos ansiosos para celebrar esse momento especial com você 🤍">
-<meta property="og:image" content="https://SEUSITE.com/capa-whatsapp.jpg">
-<meta property="og:url" content="https://amaurieester.github.io/casamento-amauri-ester">
-<meta property="og:site_name" content="Casamento Amauri & Ester">
-
-<!-- WHATSAPP -->
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-  
-<title>Amauri & Ester | Casamento</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --rosa:#d16c7c;
-  --laranja:#f08a5d;
-  --fundo:#fff6f2;
-}
-
-*{box-sizing:border-box;margin:0;padding:0}
-
-body{
-  font-family:'Montserrat',sans-serif;
-  background:var(--fundo);
-  color:#444;
-}
-
-/* MENU */
-.menu{
-  position:sticky;
-  top:15px;
-  margin:15px auto;
-  max-width:900px;
-  background:rgba(255,255,255,.92);
-  backdrop-filter:blur(6px);
-  border-radius:40px;
-  padding:14px 28px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:18px;
-  box-shadow:0 10px 25px rgba(0,0,0,.08);
-  z-index:1000;
-}
-
-.menu a{
-  text-decoration:none;
-  color:var(--rosa);
-  font-size:14px;
-  font-weight:500;
-  white-space:nowrap;
-}
-
-@media (max-width:768px){
-  .menu{
-    overflow-x:auto;
-    justify-content:flex-start;
-    gap:22px;
-  }
-  .menu::-webkit-scrollbar{display:none;}
-  .menu a{font-size:15px;}
-}
-
-section{
-  padding:80px 20px;
-  max-width:1100px;
-  margin:auto;
-}
-
-h1,h2{
-  font-family:'Playfair Display',serif;
-  text-align:center;
-}
-
-h1{font-size:44px}
-h2{font-size:32px;color:var(--laranja);margin-bottom:35px}
-
-.card{
-  background:#fff;
-  border-radius:24px;
-  padding:40px;
-  box-shadow:0 15px 40px rgba(0,0,0,.08);
-}
-
-/* TOPO */
-.topo{
-  background:linear-gradient(135deg,var(--rosa),var(--laranja));
-  color:#fff;
-  text-align:center;
-  padding:100px 20px;
-}
-
-.countdown{
-  display:flex;
-  justify-content:center;
-  gap:18px;
-  margin-top:35px;
-  flex-wrap:wrap;
-}
-
-.time{
-  background:rgba(255,255,255,.25);
-  padding:16px 24px;
-  border-radius:18px;
-  min-width:90px;
-}
-
-/* BOTÕES */
-.btn{
-  display:inline-block;
-  margin-top:20px;
-  padding:14px 36px;
-  border-radius:30px;
-  background:linear-gradient(135deg,var(--rosa),var(--laranja));
-  color:#fff;
-  border:none;
-  cursor:pointer;
-}
-
-/* PRESENTES */
-.presentes{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:22px;
-}
-
-.presente{
-  background:#fff;
-  border-radius:22px;
-  padding:26px;
-  box-shadow:0 10px 25px rgba(0,0,0,.08);
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-
-/* MODAL */
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-  backdrop-filter:blur(6px);
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-}
-
-.modal-box{
-  background:#fff;
-  border-radius:26px;
-  padding:36px;
-  max-width:380px;
-  width:90%;
-  text-align:center;
-  position:relative;
-}
-
-.modal-box img{
-  width:200px;
-  margin:20px auto;
-}
-
-.copy{
-  width:100%;
-  padding:14px;
-  border-radius:28px;
-  border:none;
-  background:linear-gradient(135deg,var(--laranja),#ffd56b);
-  color:#fff;
-  cursor:pointer;
-}
-
-.success{
-  display:none;
-  margin-top:14px;
-  color:var(--rosa);
-}
-
-.close{
-  position:absolute;
-  top:15px;
-  right:18px;
-  font-size:22px;
-  border:none;
-  background:none;
-  cursor:pointer;
-}
-</style>
+<meta property="og:url" content="https://amaurieester.github.io/casamento-amauri-ester/">
 </head>
 
 <body>
 
-<nav class="menu">
-<a href="#inicio">Início</a>
-<a href="#historia">Nossa História</a>
-<a href="#evento">Evento</a>
-<a href="#confirmacao">Confirmação</a>
-<a href="#presentes">Presentes</a>
-</nav>
+<header class="top-menu">
+  <a href="#inicio">Início</a>
+  <a href="#historia">Nossa História</a>
+  <a href="#evento">Evento</a>
+</header>
 
-<div class="topo" id="inicio">
-<p>SAVE THE DATE</p>
-<h1>Amauri & Ester</h1>
-<p>29/05/2027 • Várzea da Palma - MG</p>
+<section id="inicio" class="hero">
+  <h1>SAVE THE DATE</h1>
+  <h2>Amauri & Ester</h2>
+  <h3>29/05/2027</h3>
+  <p>Várzea da Palma - MG</p>
 
-<div class="countdown">
-<div class="time" id="dias"></div>
-<div class="time" id="horas"></div>
-<div class="time" id="minutos"></div>
-<div class="time" id="segundos"></div>
-</div>
-</div>
+  <div id="contador"></div>
 
-<section id="historia">
+  <p class="frase">
+    Estamos ansiosos para celebrar esse momento especial com você 🤍
+  </p>
+</section>
+
+<section class="boas-vindas">
+  <h2>Sejam bem-vindos ao nosso site!</h2>
+  <p>
+    Criamos este espaço com muito carinho para compartilhar com vocês um dos momentos
+    mais especiais das nossas vidas. Aqui, cada detalhe foi pensado para unir sonhos,
+    histórias e pessoas que sempre fizeram parte da nossa caminhada.
+  </p>
+</section>
+
+<section id="historia" class="historia">
 <h2>Nossa História</h2>
-<div class="card" style="line-height:1.9;text-align:justify">
 
-<p>Tudo começou por culpa (ou mérito) de um amigo em comum: <strong>Samuel Fernando</strong>. Ele jurava que nós dois combinávamos perfeitamente. A noiva não acreditava muito e achava aquilo tudo exagero — virou quase uma aposta. Spoiler: ele estava certo.</p>
-
-<p>O primeiro beijo aconteceu numa noite especial, no <strong>Armazém do Rosário</strong>. E como toda boa história, a noite não terminou ali. Logo depois, fomos jogar truco na casa de um amigo, o <strong>João Pedro</strong>, e ficamos por lá até o dia amanhecer.</p>
-
-<p>Nesse meio tempo, a noiva já estava completamente louquinha por mais um beijo do noivo. Para que isso acontecesse, Samuel e João Pedro tiveram que tomar café frio, do dia anterior, só para despistar e criar o clima perfeito. Amizades de verdade passam por isso.</p>
-
-<p>Algum tempo depois, veio o pedido de namoro. A noiva estava chegando de férias e o noivo foi buscá-la dizendo que iriam sair para mais um encontro. No caminho, soltou a frase que entrou para a história:</p>
-
-<p style="text-align:center;font-style:italic;">“Vai parecer que eu tô te sequestrando… mas eu não tô.”</p>
-
-<p>(E não estava mesmo.)</p>
-
-<p>No destino, a surpresa: um caminho de corações recortados à mão, um por um pelo noivo, velas, música de fundo e, ao final, a pergunta escrita na parede:</p>
-
-<p style="text-align:center;font-weight:600;">“Quer namorar comigo?”</p>
-
-<p>O “sim” veio fácil — o coração já tinha respondido antes.</p>
-
-<p>Desde o começo, não fomos só nós dois. Muita gente torceu, incentivou, apostou e acreditou nesse amor — amigos e família que sempre estiveram por perto, vibrando a cada passo.</p>
-
-<p>Entre risadas, conversas que atravessaram madrugadas e muita parceria, fomos construindo um amor leve, verdadeiro e sem esforço. Daqueles que simplesmente encaixam.</p>
-
-<p>Depois de <strong>8 anos</strong> compartilhando a vida, as histórias, os sonhos e as certezas, decidimos dar o próximo passo.</p>
-
-<p>O pedido de casamento foi exatamente a nossa cara: teve <strong>Disney</strong>, porque a noiva ama; teve <strong>discrição</strong>, porque o noivo ama; e teve <strong>Maragogi</strong>, porque o amor merecia um cenário bonito.</p>
-
-<p>Só nós dois, nos bangalôs de um hotel, vivendo um momento único — enquanto nossos pais estavam no mesmo hotel e ninguém desconfiou de nada. <strong>Sigilo absoluto, missão cumprida ✔️</strong></p>
-
-<p><strong>E o melhor de tudo: essa história está só começando.</strong></p>
-
-</div>
-</section>
-
-<section id="evento">
-<h2>O Evento</h2>
-<div class="card" style="text-align:center">
-<p><strong>Matriz Nossa Senhora da Conceição</strong></p>
-<p>Praça Frei Jorge, nº 1480<br>Várzea da Palma - MG</p>
-<a class="btn" target="_blank"
-href="https://www.google.com/maps/search/?api=1&query=Matriz+Nossa+Senhora+da+Conceicao+Varzea+da+Palma+MG">
-Ver no mapa
-</a>
-</div>
-</section>
-
-<section id="confirmacao">
-<h2>Confirmação de Presença</h2>
-<div class="card" style="text-align:center">
-<a class="btn" target="_blank"
-href="https://docs.google.com/forms/d/e/1FAIpQLSf4goBLjMg9tv6LAgfYVz9G1Mk7NGscCFhcDWsj0LsRerNrzQ/viewform">
-Confirmar presença
-</a>
-</div>
-</section>
-
-<section id="presentes">
-<h2>Lista de Presentes</h2>
-<div class="presentes" id="lista"></div>
-</section>
-
-<div class="modal" id="modalPresente">
-<div class="modal-box">
-<button class="close" onclick="fecharModal()">×</button>
-<h3>Escolha a forma de pagamento</h3>
-
-<button class="btn" onclick="mostrarPix()">Pix</button>
-<button class="btn" onclick="abrirCartao()">Cartão</button>
-
-<div id="pixBox" style="display:none;">
-<img src="pix-qrcode.png">
-<p><strong>Amauri Mourão Pereira</strong></p>
-<p>Banco: Nubank</p>
-<p id="pixKey" style="font-size:12px;word-break:break-all;">
-00020126580014BR.GOV.BCB.PIX01360fd40b94-5f17-4115-9e25-c4464bc447f95204000053039865802BR5921Amauri Mourao Pereira6009SAO PAULO621405107UCCil9dAy6304D0A3
+<p>
+Tudo começou por culpa (ou mérito) de um amigo em comum: Samuel Fernando. Ele jurava que nós dois combinávamos perfeitamente.
+A noiva não acreditava muito e achava aquilo tudo exagero — virou quase uma aposta. Spoiler: ele estava certo.
 </p>
-<button class="copy" onclick="copiarPix()">Copiar Pix</button>
-<p class="success" id="pixMsg">✔ Agradecemos o apoio e a colaboração 🤍</p>
-</div>
-</div>
-</div>
 
-<script>
-const data=new Date("2027-05-29T10:00:00");
-setInterval(()=>{
-const now=new Date();
-const d=data-now;
-dias.innerHTML=Math.floor(d/86400000)+" dias";
-horas.innerHTML=Math.floor(d/3600000)%24+" h";
-minutos.innerHTML=Math.floor(d/60000)%60+" min";
-segundos.innerHTML=Math.floor(d/1000)%60+" s";
-},1000);
+<p>
+O primeiro beijo aconteceu numa noite especial, no Armazém do Rosário. E como toda boa história, a noite não terminou ali.
+Logo depois, fomos jogar truco na casa de um amigo, o João Pedro, e ficamos por lá até o dia amanhecer.
+</p>
 
-const presentes=[
-["Adote os boletos dos primeiros meses juntos",821.10],
-["Ajuda financeira para o futuro casal",405.08],
-["Ajuda para a aposentadoria dos noivos",3612.84],
-["Ajuda para mobiliar a casa",1204.28],
-["Ajuda para mobiliar a casa",547.40],
-["Ajude a noiva a comprar lingeries novas",60.21],
-["Ajude a noiva a comprar novos pijamas",131.38],
-["Ajude o noivo a comprar uma cervejeira",920.51],
-["Ajude a noiva a renovar o guarda-roupa",93.06],
-["Ajude o casal ter uma piscina em casa",656.88],
-["Ajude o noivo a comprar cuecas novas",60.21],
-["Ajude o noivo a comprar pijamas novos",131.38],
-["Aluguel de um bebê para treinamento",164.22],
-["Aspirador de pó",131.38],
-["Ajude a comprar uma TV",671.07],
-["Ajude a comprar uma Geladeira",781.92],
-["Ajude a comprar uma Cama box de casal",486.87],
-["Ajude a comprar Roupas de cama",162.89],
-["Ajude a comprar um Guarda-roupa novo",341.25],
-["Ajude a comprar um Fogão",264.86],
-["Ajude a comprar uma Máquina de lavar",400.25],
-["Ajude a comprar uma Mesa de jantar",230.90],
-["Ajude a comprar uma Cafeteira elétrica",110.21],
-["Ajude a comprar uma Churrasqueira",120.90],
-["Ajude a comprar um Jogo de panelas",82.61],
-["Ajude a comprar um Jogo de taças",62.99],
-["Taxa para levar alguém que não foi convidado",6652.99]
-];
+<p>
+Nesse meio tempo, a noiva já estava completamente louquinha por mais um beijo do noivo. Para que isso acontecesse,
+Samuel e João Pedro tiveram que tomar café frio, do dia anterior, só para despistar e criar o clima perfeito.
+Amizades de verdade passam por isso.
+</p>
 
-lista.innerHTML=presentes.map(p=>`
-<div class="presente">
-<strong>${p[0]}</strong>
-<span>R$ ${p[1].toFixed(2)}</span>
-<button class="btn" onclick="abrirModal()">Presentear</button>
-</div>`).join("");
+<p>
+Algum tempo depois, veio o pedido de namoro. A noiva estava chegando de férias e o noivo foi buscá-la dizendo
+que iriam sair para mais um encontro. No caminho, soltou a frase que entrou para a história:
+<br><strong>“Vai parecer que eu tô te sequestrando… mas eu não tô.”</strong>
+</p>
 
-function abrirModal(){
-document.getElementById("modalPresente").style.display="flex";
-}
-function fecharModal(){
-document.getElementById("modalPresente").style.display="none";
-document.getElementById("pixBox").style.display="none";
-document.getElementById("pixMsg").style.display="none";
-}
-function mostrarPix(){
-document.getElementById("pixBox").style.display="block";
-}
-function copiarPix(){
-navigator.clipboard.writeText(document.getElementById("pixKey").innerText);
-document.getElementById("pixMsg").style.display="block";
-}
-function abrirCartao(){
-window.open("https://link.mercadopago.com.br/presenteamaurieester","_blank");
-}
-</script>
+<p>
+No destino, a surpresa: um caminho de corações recortados à mão, um por um pelo noivo, velas, música de fundo e,
+ao final, a pergunta escrita na parede:
+<br><strong>“Quer namorar comigo?”</strong>
+</p>
+
+<p>
+O “sim” veio fácil — o coração já tinha respondido antes.
+</p>
+
+<p>
+Desde o começo, não fomos só nós dois. Muita gente torceu, incentivou, apostou e acreditou nesse amor — amigos e família
+que sempre estiveram por perto, vibrando a cada passo.
+</p>
+
+<p>
+Depois de 8 anos compartilhando a vida, as histórias, os sonhos e as certezas, decidimos dar o próximo passo.
+</p>
+
+<p>
+Agora, escolhemos oficializar tudo isso. Este casamento é a celebração do nosso amor, da nossa história e de todas
+as pessoas que sempre torceram por nós.
+</p>
+
+<p>
+<strong>E o melhor de tudo: essa história está só começando.</strong>
+</p>
+</section>
+
+<section id="evento" class="evento">
+<h2>Evento</h2>
+
+<p>
+<strong>Matriz Nossa Senhora da Conceição</strong><br>
+Praça Frei Jorge, nº 1480<br>
+Várzea da Palma - MG
+</p>
+
+<a class="botao" href="https://www.google.com/maps?q=Matriz+Nossa+Senhora+da+Concei%C3%A7%C3%A3o+V%C3%A1rzea+da+Palma" target="_blank">
+Abrir no Maps
+</a>
+
+<br><br>
+
+<a class="botao-secundario" href="presentes.html">Acessar Presentes</a>
+
+</section>
 
 </body>
 </html>
-
-
-
