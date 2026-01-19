@@ -342,6 +342,25 @@
             margin-top: 2rem;
         }
         
+        @media (max-width: 768px) {
+            .presentes-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .presentes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1025px) {
+            .presentes-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
         .presente-card {
             background: var(--branco);
             border-radius: 20px;
@@ -514,31 +533,41 @@
         .modal-content {
             background: var(--branco);
             border-radius: var(--borda-redonda);
-            padding: clamp(2rem, 5vw, 3rem);
+            padding: clamp(1.5rem, 3vw, 2rem);
             max-width: 500px;
-            width: 100%;
+            width: 95%;
+            max-height: 90vh;
+            overflow-y: auto;
             text-align: center;
             position: relative;
             animation: slideUp 0.4s ease;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
         }
         
+        @media (max-width: 480px) {
+            .modal-content {
+                padding: 1.2rem;
+                width: 98%;
+            }
+        }
+        
         .modal-close {
             position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            font-size: 1.8rem;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
             border: none;
             background: none;
             cursor: pointer;
             color: var(--cinza-claro);
             transition: var(--transicao);
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
+            z-index: 10;
         }
         
         .modal-close:hover {
@@ -549,18 +578,32 @@
         .modal-title {
             color: var(--laranja);
             margin-bottom: 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            padding-right: 2rem;
         }
         
         .payment-options {
             display: flex;
-            gap: 1rem;
+            gap: 0.8rem;
             justify-content: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             flex-wrap: wrap;
         }
         
+        @media (max-width: 480px) {
+            .payment-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .payment-btn {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+        
         .payment-btn {
-            padding: 1rem 2rem;
+            padding: 0.8rem 1.5rem;
             border: 2px solid var(--laranja);
             background: transparent;
             color: var(--laranja);
@@ -568,7 +611,15 @@
             cursor: pointer;
             font-weight: 600;
             transition: var(--transicao);
-            min-width: 140px;
+            min-width: 120px;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 480px) {
+            .payment-btn {
+                padding: 0.7rem 1rem;
+                min-width: 140px;
+            }
         }
         
         .payment-btn:hover {
@@ -587,43 +638,74 @@
         }
         
         .qrcode-container {
-            margin: 1.5rem auto;
-            padding: 1.5rem;
+            margin: 1rem auto;
+            padding: 1rem;
             background: #f8f8f8;
             border-radius: 12px;
             display: inline-block;
+            max-width: 100%;
         }
         
         .qrcode-img {
-            width: 200px;
-            height: 200px;
+            width: 180px;
+            height: 180px;
             border-radius: 12px;
             display: block;
             margin: 0 auto;
+            max-width: 100%;
+        }
+        
+        @media (max-width: 480px) {
+            .qrcode-img {
+                width: 150px;
+                height: 150px;
+            }
         }
         
         .pix-info {
             background: rgba(240, 138, 93, 0.1);
             padding: 1rem;
             border-radius: 12px;
-            margin: 1.5rem 0;
+            margin: 1rem 0;
             text-align: left;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 480px) {
+            .pix-info {
+                padding: 0.8rem;
+                font-size: 0.85rem;
+            }
+        }
+        
+        .pix-info p {
+            margin-bottom: 0.5rem;
+            word-break: break-word;
         }
         
         .pix-key {
             font-family: monospace;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             word-break: break-all;
             background: rgba(0, 0, 0, 0.05);
             padding: 0.8rem;
             border-radius: 8px;
-            margin: 1rem 0;
+            margin: 0.8rem 0;
             color: var(--cinza);
+            line-height: 1.4;
+            overflow-wrap: break-word;
+        }
+        
+        @media (max-width: 480px) {
+            .pix-key {
+                font-size: 0.75rem;
+                padding: 0.6rem;
+            }
         }
         
         .copy-btn {
             width: 100%;
-            padding: 1rem;
+            padding: 0.8rem;
             border-radius: 50px;
             border: none;
             background: linear-gradient(135deg, var(--laranja), var(--laranja-claro));
@@ -632,6 +714,7 @@
             font-weight: 600;
             margin-top: 1rem;
             transition: var(--transicao);
+            font-size: 0.9rem;
         }
         
         .copy-btn:hover {
@@ -644,7 +727,9 @@
             color: var(--rosa);
             font-weight: 500;
             margin-top: 1rem;
+            font-size: 0.9rem;
             animation: fadeIn 0.3s ease;
+            text-align: center;
         }
         
         /* ANIMAÇÕES */
@@ -697,13 +782,26 @@
         .filtro-container {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin: 2rem 0;
+            gap: 0.8rem;
+            margin: 1.5rem 0;
             flex-wrap: wrap;
         }
         
+        @media (max-width: 480px) {
+            .filtro-container {
+                gap: 0.5rem;
+                justify-content: center;
+            }
+            
+            .filtro-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+                min-width: auto;
+            }
+        }
+        
         .filtro-btn {
-            padding: 0.5rem 1.5rem;
+            padding: 0.5rem 1.2rem;
             border-radius: 50px;
             border: 2px solid var(--rosa);
             background: transparent;
@@ -711,6 +809,7 @@
             cursor: pointer;
             font-weight: 500;
             transition: var(--transicao);
+            min-width: 120px;
         }
         
         .filtro-btn:hover, .filtro-btn.active {
@@ -750,6 +849,21 @@
             clip: rect(0, 0, 0, 0);
             white-space: nowrap;
             border: 0;
+        }
+        
+        /* SCROLLBAR PERSONALIZADA */
+        .modal-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .modal-content::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+        }
+        
+        .modal-content::-webkit-scrollbar-thumb {
+            background: var(--rosa);
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -894,10 +1008,10 @@
             <h3 class="text-center" style="color: var(--rosa); margin-bottom: 2rem;">Deixe uma mensagem para os noivos 🤍</h3>
             
             <!-- FORMULÁRIO COM FORMSUBMIT (MUITO MAIS FÁCIL) -->
-            <!-- SUBSTITUA "SEU_EMAIL@AQUI.COM" PELO SEU EMAIL REAL -->
+            <!-- CONFIGURADO PARA O EMAIL: casamentoamaurieester@gmail.com -->
             <form 
                 class="form-container" 
-                action="https://formsubmit.co/SEU_EMAIL@AQUI.COM" 
+                action="https://formsubmit.co/casamentoamaurieester@gmail.com" 
                 method="POST"
                 id="formMensagem"
             >
@@ -905,7 +1019,7 @@
                 <input type="hidden" name="_subject" value="Nova mensagem do site de casamento! 🎉">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://SEU_SITE.com/obrigado.html">
+                <input type="hidden" name="_next" value="https://amaurieester.github.io/casamento-amauri-ester/obrigado.html">
                 <input type="text" name="_honey" style="display:none">
                 
                 <div class="form-group">
@@ -1027,70 +1141,69 @@
         let presenteSelecionado = { titulo: "", valor: 0 };
         
         // LISTA DE PRESENTES ORGANIZADA POR PREÇO (do mais barato para o mais caro)
-        // LISTA DE PRESENTES ORGANIZADA POR PREÇO (do mais barato para o mais caro)
-const presentes = [
-    // Até R$ 100
-    ["Toma aqui uns 50 reais", 50.00, "50-reais.jpg"],
-    ["Só pra dizer que não te dei nada", 55.90, "nada.jpg"],
-    ["Lenço para a noiva não borrar toda a maquiagem", 56.99, "lenco-maquiagem.jpg"],
-    ["Ajude a noiva a comprar lingeries novas", 60.21, "lingeries.jpg"],
-    ["Ajude o noivo a comprar cuecas novas", 60.21, "cuecas.jpg"],
-    ["Ajude a comprar um Jogo de taças", 62.99, "tacas.jpg"],
-    ["Kit calmante para a noiva não se estressar com o noivo", 75.64, "kit-calmante.jpg"],
-    ["Ajude a comprar um Jogo de panelas", 82.61, "panelas.jpg"],
-    ["Ajude o casal a comer mais saudável", 86.21, "comer-saudavel.jpg"],
-    ["Ajude a noiva a renovar o guarda-roupa", 93.06, "guarda-roupa.jpg"],
-    ["Ajude os noivos a comprarem pijamas iguais", 93.06, "pijamas-iguais.jpg"],
-    ["Primeiro lugar na fila do Buffet", 93.25, "fila-buffet.jpg"],
-    ["Acessório para cortar a unha do dedão do pé do noivo", 97.71, "corta-unha.jpg"],
-    
-    // R$ 100 - 500
-    ["Sal pra pressão da noiva não abaixar no dia da festa", 101.54, "sal-pressao.jpg"],
-    ["Ajude a comprar uma Cafeteira elétrica", 110.21, "cafeteira.jpg"],
-    ["Ajude a comprar uma Churrasqueira", 120.90, "churrasqueira.jpg"],
-    ["Cobertor para a noiva estar sempre coberta de razão", 129.52, "cobertor-noiva.jpg"],
-    ["Ajude a noiva a comprar novos pijamas", 131.38, "pijamas-noiva.jpg"],
-    ["Ajude o noivo a comprar pijamas novos", 131.38, "pijamas-noivo.jpg"],
-    ["Aspirador de pó", 131.38, "aspirador.jpg"],
-    ["Taxa pra noiva não jogar o buquê pra sua namorada", 154.70, "taxa-buque-nao.jpg"],
-    ["Rolo de macarrão caso o noivo não se comporte", 155.42, "rolo-macarrao.jpg"],
-    ["Capacete contra o rolo de macarrão para o noivo", 155.42, "capacete-macarrao.jpg"],
-    ["Taxa pra noiva jogar o buquê na sua direção", 160.61, "taxa-buque-sim.jpg"],
-    ["Aluguel de um bebê para treinamento", 164.22, "bebe-treinamento.jpg"],
-    ["Estoque de café quentinho para o noivo", 165.79, "cafe-quentinho.jpg"],
-    ["Cobertor para o noivo estar sempre coberto de razão", 165.79, "cobertor-noivo.jpg"],
-    ["Diária do pedreiro para construção da nossa casa", 176.15, "pedreiro.jpg"],
-    ["Ajude a comprar Roupas de cama", 162.89, "roupas-cama.jpg"],
-    ["Calendário com lembrete para o noivo não esquecer as datas especiais", 195.42, "calendario.jpg"],
-    ["Vale compra pra noiva gastar na Shein", 212.41, "shein.jpg"],
-    ["Ajude a comprar um Fogão", 264.86, "fogao.jpg"],
-    ["Ajude a comprar um Guarda-roupa novo", 341.25, "guarda-roupa-grande.jpg"],
-    ["Um ano de barbeiro para o noivo", 331.57, "barbeiro.jpg"],
-    ["1 ano de Netflix para os noivos curtirem bons filmes", 341.93, "netflix.jpg"],
-    
-    // R$ 500 - 1.000
-    ["Ajuda financeira para o futuro casal", 405.08, "ajuda-financeira.jpg"],
-    ["Ajude a comprar uma Cama box de casal", 486.87, "cama-box.jpg"],
-    ["Ajuda para mobiliar a casa", 547.40, "mobiliar-casa.jpg"],
-    ["Psicólogo pros noivos não surtarem nos preparativos", 538.80, "psicologo.jpg"],
-    ["Ajude o casal ter uma piscina em casa", 656.88, "piscina.jpg"],
-    ["Ajude a comprar uma TV", 671.07, "tv.jpg"],
-    ["Ajuda para o casal sonhar com o carro elétrico", 744.46, "carro-eletrico.jpg"],
-    ["Ajude a comprar uma Geladeira", 781.92, "geladeira.jpg"],
-    ["Adote os boletos dos primeiros meses juntos!", 821.10, "boletos.jpg"],
-    ["Ajude o noivo a comprar uma cervejeira", 920.51, "cervejeira.jpg"],
-    
-    // Acima de R$ 1.000
-    ["Ajude a comprar uma Máquina de lavar", 400.25, "maquina-lavar.jpg"],
-    ["Ajude a comprar uma Mesa de jantar", 230.90, "mesa-jantar.jpg"],
-    ["Ajuda para mobiliar a casa", 1204.28, "mobiliar-casa2.jpg"],
-    ["Deus te iluminou e você resolveu ajudar na lua de mel", 1554.24, "lua-de-mel.jpg"],
-    ["Ajuda para a aposentadoria dos noivos", 3612.84, "aposentadoria.jpg"],
-    ["Taxa para levar alguém que não foi convidado", 6652.99, "taxa-convidado.jpg"]
-];
+        const presentes = [
+            // Até R$ 100
+            ["Toma aqui uns 50 reais", 50.00, "50-reais.jpg"],
+            ["Só pra dizer que não te dei nada", 55.90, "nada.jpg"],
+            ["Lenço para a noiva não borrar toda a maquiagem", 56.99, "lenco-maquiagem.jpg"],
+            ["Ajude a noiva a comprar lingeries novas", 60.21, "lingeries.jpg"],
+            ["Ajude o noivo a comprar cuecas novas", 60.21, "cuecas.jpg"],
+            ["Ajude a comprar um Jogo de taças", 62.99, "tacas.jpg"],
+            ["Kit calmante para a noiva não se estressar com o noivo", 75.64, "kit-calmante.jpg"],
+            ["Ajude a comprar um Jogo de panelas", 82.61, "panelas.jpg"],
+            ["Ajude o casal a comer mais saudável", 86.21, "comer-saudavel.jpg"],
+            ["Ajude a noiva a renovar o guarda-roupa", 93.06, "guarda-roupa.jpg"],
+            ["Ajude os noivos a comprarem pijamas iguais", 93.06, "pijamas-iguais.jpg"],
+            ["Primeiro lugar na fila do Buffet", 93.25, "fila-buffet.jpg"],
+            ["Acessório para cortar a unha do dedão do pé do noivo", 97.71, "corta-unha.jpg"],
+            
+            // R$ 100 - 500
+            ["Sal pra pressão da noiva não abaixar no dia da festa", 101.54, "sal-pressao.jpg"],
+            ["Ajude a comprar uma Cafeteira elétrica", 110.21, "cafeteira.jpg"],
+            ["Ajude a comprar uma Churrasqueira", 120.90, "churrasqueira.jpg"],
+            ["Cobertor para a noiva estar sempre coberta de razão", 129.52, "cobertor-noiva.jpg"],
+            ["Ajude a noiva a comprar novos pijamas", 131.38, "pijamas-noiva.jpg"],
+            ["Ajude o noivo a comprar pijamas novos", 131.38, "pijamas-noivo.jpg"],
+            ["Aspirador de pó", 131.38, "aspirador.jpg"],
+            ["Taxa pra noiva não jogar o buquê pra sua namorada", 154.70, "taxa-buque-nao.jpg"],
+            ["Rolo de macarrão caso o noivo não se comporte", 155.42, "rolo-macarrao.jpg"],
+            ["Capacete contra o rolo de macarrão para o noivo", 155.42, "capacete-macarrao.jpg"],
+            ["Taxa pra noiva jogar o buquê na sua direção", 160.61, "taxa-buque-sim.jpg"],
+            ["Aluguel de um bebê para treinamento", 164.22, "bebe-treinamento.jpg"],
+            ["Estoque de café quentinho para o noivo", 165.79, "cafe-quentinho.jpg"],
+            ["Cobertor para o noivo estar sempre coberto de razão", 165.79, "cobertor-noivo.jpg"],
+            ["Diária do pedreiro para construção da nossa casa", 176.15, "pedreiro.jpg"],
+            ["Ajude a comprar Roupas de cama", 162.89, "roupas-cama.jpg"],
+            ["Calendário com lembrete para o noivo não esquecer as datas especiais", 195.42, "calendario.jpg"],
+            ["Vale compra pra noiva gastar na Shein", 212.41, "shein.jpg"],
+            ["Ajude a comprar um Fogão", 264.86, "fogao.jpg"],
+            ["Ajude a comprar um Guarda-roupa novo", 341.25, "guarda-roupa-grande.jpg"],
+            ["Um ano de barbeiro para o noivo", 331.57, "barbeiro.jpg"],
+            ["1 ano de Netflix para os noivos curtirem bons filmes", 341.93, "netflix.jpg"],
+            
+            // R$ 500 - 1.000
+            ["Ajuda financeira para o futuro casal", 405.08, "ajuda-financeira.jpg"],
+            ["Ajude a comprar uma Cama box de casal", 486.87, "cama-box.jpg"],
+            ["Ajuda para mobiliar a casa", 547.40, "mobiliar-casa.jpg"],
+            ["Psicólogo pros noivos não surtarem nos preparativos", 538.80, "psicologo.jpg"],
+            ["Ajude o casal ter uma piscina em casa", 656.88, "piscina.jpg"],
+            ["Ajude a comprar uma TV", 671.07, "tv.jpg"],
+            ["Ajuda para o casal sonhar com o carro elétrico", 744.46, "carro-eletrico.jpg"],
+            ["Ajude a comprar uma Geladeira", 781.92, "geladeira.jpg"],
+            ["Adote os boletos dos primeiros meses juntos!", 821.10, "boletos.jpg"],
+            ["Ajude o noivo a comprar uma cervejeira", 920.51, "cervejeira.jpg"],
+            
+            // Acima de R$ 1.000
+            ["Ajude a comprar uma Máquina de lavar", 400.25, "maquina-lavar.jpg"],
+            ["Ajude a comprar uma Mesa de jantar", 230.90, "mesa-jantar.jpg"],
+            ["Ajuda para mobiliar a casa", 1204.28, "mobiliar-casa2.jpg"],
+            ["Deus te iluminou e você resolveu ajudar na lua de mel", 1554.24, "lua-de-mel.jpg"],
+            ["Ajuda para a aposentadoria dos noivos", 3612.84, "aposentadoria.jpg"],
+            ["Taxa para levar alguém que não foi convidado", 6652.99, "taxa-convidado.jpg"]
+        ];
 
-// Ordenar por preço (do mais barato para o mais caro)
-presentes.sort((a, b) => a[1] - b[1]);
+        // Ordenar por preço (do mais barato para o mais caro)
+        presentes.sort((a, b) => a[1] - b[1]);
         
         // INICIALIZAÇÃO
         document.addEventListener('DOMContentLoaded', function() {
@@ -1149,6 +1262,9 @@ presentes.sort((a, b) => a[1] - b[1]);
             formulario.addEventListener('submit', function(e) {
                 enviarMensagemFormsubmit(e);
             });
+            
+            // Inicializar animações
+            animarAoRolar();
         });
         
         // FUNÇÕES DE VALIDAÇÃO
@@ -1221,7 +1337,7 @@ presentes.sort((a, b) => a[1] - b[1]);
                     <div class="presente-info">
                         <h3 class="presente-titulo">${titulo}</h3>
                         <p class="presente-valor">R$ ${valor.toFixed(2).replace('.', ',')}</p>
-                        <button class="btn" onclick="selecionarPresente('${titulo}', ${valor})">
+                        <button class="btn" onclick="selecionarPresente('${titulo.replace(/'/g, "\\'")}', ${valor})">
                             Presentear
                         </button>
                     </div>
@@ -1229,6 +1345,11 @@ presentes.sort((a, b) => a[1] - b[1]);
                 
                 container.appendChild(card);
             });
+            
+            // Adicionar animação aos novos cards
+            setTimeout(() => {
+                animarAoRolar();
+            }, 100);
         }
         
         // FUNÇÃO PARA CONFIGURAR FILTROS
@@ -1304,11 +1425,13 @@ presentes.sort((a, b) => a[1] - b[1]);
                     // Limpar formulário
                     formulario.reset();
                     
-                    // Rolagem suave
-                    document.getElementById('confirmacao').scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'center'
-                    });
+                    // Rolagem suave para mostrar mensagem de sucesso
+                    setTimeout(() => {
+                        document.getElementById('msgSuccess').scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                    }, 100);
                     
                     // Resetar após 5 segundos
                     setTimeout(() => {
@@ -1325,6 +1448,14 @@ presentes.sort((a, b) => a[1] - b[1]);
                 // Mostrar mensagem de erro
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('msgError').style.display = 'block';
+                
+                // Rolagem suave para mostrar mensagem de erro
+                setTimeout(() => {
+                    document.getElementById('msgError').scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }, 100);
                 
             } finally {
                 // Reabilitar botão após 2 segundos
@@ -1363,6 +1494,7 @@ presentes.sort((a, b) => a[1] - b[1]);
             
             // Mostrar modal
             document.getElementById('modalPresente').style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Previne scroll do body
             
             // Resetar estado do modal
             document.getElementById('pixContainer').style.display = 'none';
@@ -1371,6 +1503,11 @@ presentes.sort((a, b) => a[1] - b[1]);
             // Ativar botão Pix
             document.getElementById('btnPix').classList.add('active');
             document.getElementById('btnCartao').classList.remove('active');
+            
+            // Mostrar o PIX por padrão
+            setTimeout(() => {
+                mostrarPix();
+            }, 100);
         }
         
         function mostrarPix() {
@@ -1380,6 +1517,10 @@ presentes.sort((a, b) => a[1] - b[1]);
             
             // Mostrar container do Pix
             document.getElementById('pixContainer').style.display = 'block';
+            
+            // Scroll para o topo do modal
+            const modalContent = document.querySelector('.modal-content');
+            modalContent.scrollTop = 0;
         }
         
         function abrirCartao() {
@@ -1397,29 +1538,68 @@ presentes.sort((a, b) => a[1] - b[1]);
         function copiarPix() {
             const pixKey = document.getElementById('pixKey').textContent;
             
-            navigator.clipboard.writeText(pixKey).then(() => {
-                const successMsg = document.getElementById('copySuccess');
-                const copyBtn = document.getElementById('copyBtn');
-                
-                // Mostrar mensagem de sucesso
-                successMsg.style.display = 'block';
-                copyBtn.textContent = 'Chave Copiada!';
-                copyBtn.style.background = 'linear-gradient(135deg, var(--sucesso), #45a049)';
-                
-                // Resetar após 3 segundos
-                setTimeout(() => {
-                    successMsg.style.display = 'none';
-                    copyBtn.textContent = 'Copiar Chave Pix';
-                    copyBtn.style.background = 'linear-gradient(135deg, var(--laranja), var(--laranja-claro))';
-                }, 3000);
-            }).catch(err => {
-                console.error('Erro ao copiar: ', err);
+            // Usar API moderna do Clipboard
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(pixKey).then(() => {
+                    mostrarSucessoCopia();
+                }).catch(err => {
+                    copiarFallback(pixKey);
+                });
+            } else {
+                // Fallback para navegadores mais antigos
+                copiarFallback(pixKey);
+            }
+        }
+        
+        function copiarFallback(texto) {
+            const textArea = document.createElement("textarea");
+            textArea.value = texto;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-999999px";
+            textArea.style.top = "-999999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                mostrarSucessoCopia();
+            } catch (err) {
+                console.error('Falha ao copiar: ', err);
                 alert('Não foi possível copiar a chave Pix. Por favor, copie manualmente.');
-            });
+            }
+            
+            textArea.remove();
+        }
+        
+        function mostrarSucessoCopia() {
+            const successMsg = document.getElementById('copySuccess');
+            const copyBtn = document.getElementById('copyBtn');
+            
+            // Mostrar mensagem de sucesso
+            successMsg.style.display = 'block';
+            copyBtn.textContent = 'Chave Copiada!';
+            copyBtn.style.background = 'linear-gradient(135deg, var(--sucesso), #45a049)';
+            
+            // Scroll para mostrar mensagem de sucesso
+            setTimeout(() => {
+                successMsg.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }, 100);
+            
+            // Resetar após 3 segundos
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+                copyBtn.textContent = 'Copiar Chave Pix';
+                copyBtn.style.background = 'linear-gradient(135deg, var(--laranja), var(--laranja-claro))';
+            }, 3000);
         }
         
         function fecharModal() {
             document.getElementById('modalPresente').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaura scroll do body
         }
         
         // ANIMAÇÃO DE SCROLL SUAVE
@@ -1448,17 +1628,33 @@ presentes.sort((a, b) => a[1] - b[1]);
             });
         }
         
-        // INICIALIZAR ANIMAÇÕES
-        window.addEventListener('scroll', animarAoRolar);
-        window.addEventListener('load', animarAoRolar);
-        
         // ESTILOS INICIAIS PARA ANIMAÇÃO
         document.querySelectorAll('.card, .presente-card').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
             card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
         });
+        
+        // INICIALIZAR ANIMAÇÕES
+        window.addEventListener('scroll', animarAoRolar);
+        
+        // TOUCH SUPPORT PARA MODAL NO MOBILE
+        let touchStartY = 0;
+        let touchEndY = 0;
+        
+        document.getElementById('modalPresente').addEventListener('touchstart', function(e) {
+            touchStartY = e.changedTouches[0].screenY;
+        }, {passive: true});
+        
+        document.getElementById('modalPresente').addEventListener('touchend', function(e) {
+            touchEndY = e.changedTouches[0].screenY;
+            const modalContent = document.querySelector('.modal-content');
+            
+            // Fechar modal se o usuário deslizar para baixo no modal
+            if (touchStartY - touchEndY > 100 && modalContent.scrollTop === 0) {
+                fecharModal();
+            }
+        }, {passive: true});
     </script>
 </body>
 </html>
-
