@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evento | Casamento Amauri & Ester</title>
+    <!-- Copie o mesmo estilo do arquivo principal -->
+    <!-- Ou simplifique mantendo apenas o necessário -->
+    <style>
+        /* Estilos específicos para a página de evento */
+        :root {
+            --rosa: #d16c7c;
+            --laranja: #f08a5d;
+            --laranja-claro: #ffd56b;
+            --fundo: #fff6f2;
+            --branco: #ffffff;
+            --cinza: #444444;
+            --cinza-claro: #666666;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--fundo);
+            color: var(--cinza);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .voltar-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--rosa);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .eventos-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        /* Copie o restante dos estilos da seção de evento do código original */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="voltar-btn">← Voltar para Página Principal</a>
+        
+        <!-- Cole aqui o conteúdo da seção "Evento" do código original -->
+        <h2>O Evento</h2>
+        
+        <div class="eventos-container">
+            <!-- CERIMÔNIA COM FOTO -->
+            <div class="evento-card">
+                <div class="evento-imagem-container">
+                    <img src="fotos/igreja.jpg" alt="Matriz Nossa Senhora da Conceição" class="evento-imagem">
+                </div>
+                <h3 class="evento-titulo">Cerimônia</h3>
+                <div class="evento-local">
+                    <strong>Matriz Nossa Senhora da Conceição</strong>
+                    Praça Frei Jorge, nº 1480<br>
+                    Várzea da Palma - MG<br>
+                    <em>15:00 horas</em>
+                </div>
+                <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Matriz+Nossa+Senhora+da+Conceicao+Varzea+da+Palma+MG" target="_blank" rel="noopener">
+                    Ver no mapa
+                </a>
+            </div>
+            
+            <!-- FESTA COM FOTO -->
+            <div class="evento-card">
+                <div class="evento-imagem-container">
+                    <img src="fotos/local-festa.jpg" alt="Zabelê Quiosque" class="evento-imagem">
+                </div>
+                <h3 class="evento-titulo">Festa</h3>
+                <div class="evento-local">
+                    <strong>Zabelê Quiosque</strong>
+                    Av. Brasil, 2150 - Serrinha<br>
+                    Várzea da Palma - MG<br>
+                    <em>18:00 horas</em>
+                </div>
+                <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Zabelê+Quiosque+Av.+Brasil+2150+Serrinha+Varzea+da+Palma+MG" target="_blank" rel="noopener">
+                    Ver no mapa
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
