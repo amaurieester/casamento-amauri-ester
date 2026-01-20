@@ -974,6 +974,7 @@
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 1.5rem;
             margin-top: 2rem;
+            margin-bottom: 4rem; /* ESPAÇAMENTO ADICIONADO */
         }
         
         .foto-item {
@@ -1054,37 +1055,72 @@
             font-weight: 600;
         }
         
-        /* CRONOGRAMA */
+        /* CRONOGRAMA CORRIGIDO */
         .timeline {
             position: relative;
             max-width: 800px;
             margin: 3rem auto 0;
+            padding-left: 0;
         }
         
         .timeline::before {
             content: '';
             position: absolute;
-            left: 50%;
+            left: 50px;
             transform: translateX(-50%);
             width: 2px;
-            height: 100%;
+            height: calc(100% - 40px);
             background: linear-gradient(to bottom, var(--rosa), var(--laranja));
+            top: 20px;
+        }
+        
+        @media (min-width: 992px) {
+            .timeline::before {
+                left: 50%;
+            }
         }
         
         .timeline-item {
             display: flex;
-            justify-content: center;
-            align-items: center;
             margin-bottom: 2.5rem;
             position: relative;
+            padding-left: 80px;
+            align-items: flex-start;
         }
         
-        .timeline-item:nth-child(odd) {
-            flex-direction: row;
+        @media (min-width: 992px) {
+            .timeline-item {
+                padding-left: 0;
+                width: 100%;
+            }
+            
+            .timeline-item:nth-child(odd) {
+                justify-content: flex-start;
+            }
+            
+            .timeline-item:nth-child(even) {
+                justify-content: flex-end;
+            }
         }
         
-        .timeline-item:nth-child(even) {
-            flex-direction: row-reverse;
+        .timeline-marker {
+            position: absolute;
+            left: 40px;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--laranja);
+            border-radius: 50%;
+            border: 3px solid var(--branco);
+            box-shadow: 0 0 0 3px var(--laranja);
+            z-index: 2;
+            top: 0;
+        }
+        
+        @media (min-width: 992px) {
+            .timeline-marker {
+                left: 50%;
+            }
         }
         
         .timeline-hora {
@@ -1096,6 +1132,25 @@
             min-width: 100px;
             text-align: center;
             z-index: 1;
+            position: absolute;
+            left: 0;
+            top: -5px;
+            white-space: nowrap;
+        }
+        
+        @media (min-width: 992px) {
+            .timeline-hora {
+                position: relative;
+                margin: 0 1.5rem;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-hora {
+                order: 1;
+            }
+            
+            .timeline-item:nth-child(even) .timeline-hora {
+                order: 3;
+            }
         }
         
         .timeline-content {
@@ -1103,33 +1158,38 @@
             padding: 1.2rem 1.8rem;
             border-radius: 12px;
             box-shadow: 0 5px 15px var(--sombra);
-            margin: 0 1.8rem;
             flex: 1;
-            max-width: 300px;
+            max-width: 400px;
             z-index: 1;
+            margin-left: 0;
         }
         
-        .timeline-marker {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
-            background: var(--laranja);
-            border-radius: 50%;
-            border: 3px solid var(--branco);
-            box-shadow: 0 0 0 3px var(--laranja);
-            z-index: 2;
+        @media (min-width: 992px) {
+            .timeline-content {
+                max-width: 350px;
+                margin: 0;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content {
+                order: 2;
+            }
+            
+            .timeline-item:nth-child(even) .timeline-content {
+                order: 2;
+            }
         }
         
         @media (max-width: 768px) {
+            .timeline {
+                padding-left: 20px;
+            }
+            
             .timeline::before {
-                left: 30px;
+                left: 40px;
             }
             
             .timeline-item {
-                flex-direction: row !important;
-                justify-content: flex-start;
+                padding-left: 60px;
             }
             
             .timeline-marker {
@@ -1137,12 +1197,17 @@
             }
             
             .timeline-hora {
-                margin-left: 40px;
+                position: relative;
+                margin-bottom: 1rem;
+                width: 100%;
+                text-align: center;
+                left: 0;
+                top: 0;
             }
             
             .timeline-content {
-                margin-left: 40px;
-                max-width: none;
+                margin-left: 0;
+                width: 100%;
             }
         }
         
@@ -1338,7 +1403,7 @@
         </div>
     </section>
 
-    <!-- CRONOGRAMA DETALHADO -->
+    <!-- CRONOGRAMA DETALHADO - CORRIGIDO -->
     <section id="cronograma">
         <div class="text-center mb-4">
             <h2>Cronograma do Grande Dia</h2>
@@ -1421,7 +1486,7 @@
         </div>
     </section>
 
-    <!-- GALERIA DE FOTOS -->
+    <!-- GALERIA DE FOTOS COM MAIS ESPAÇAMENTO -->
     <section id="galeria">
         <div class="text-center mb-4">
             <h2>Nossos Momentos</h2>
@@ -1460,8 +1525,8 @@
             </div>
         </div>
         
-        <!-- DRESS CODE PARA CONVIDADOS (AGORA AQUI, APÓS A GALERIA) -->
-        <div class="text-center mb-4 mt-5">
+        <!-- DRESS CODE PARA CONVIDADOS COM MAIS ESPAÇAMENTO -->
+        <div class="text-center mb-4" style="margin-top: 6rem;">
             <h2>Dress Code para Convidados</h2>
             <p>Como se vestir para o nosso grande dia</p>
         </div>
@@ -2840,4 +2905,3 @@
     </script>
 </body>
 </html>
-
