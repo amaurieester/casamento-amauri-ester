@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amauri & Ester | Confirmação de Presença</title>
+    
+    <!-- Fontes e estilos existentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ESTILOS EXISTENTES DO SEU SITE */
+        :root {
+            --rosa: #d16c7c;
+            --laranja: #f08a5d;
+            --laranja-claro: #ffd56b;
+            --fundo: #fff6f2;
+            --branco: #ffffff;
+            --cinza: #444444;
+            --cinza-claro: #666666;
+            --sombra: rgba(0, 0, 0, 0.08);
+            --sombra-hover: rgba(0, 0, 0, 0.12);
+            --transicao: all 0.3s ease;
+            --borda-redonda: 24px;
+            --sucesso: #4CAF50;
+            --erro: #f44336;
+            --azul: #2196F3;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--fundo);
+            color: var(--cinza);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: var(--branco);
+            border-radius: var(--borda-redonda);
+            padding: 3rem;
+            box-shadow: 0 15px 40px var(--sombra);
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--rosa);
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--laranja);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+        
+        p {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--cinza-claro);
+        }
+        
+        /* ÁREA DE BUSCA */
+        .search-container {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .search-input-wrapper {
+            position: relative;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--cinza-claro);
+            font-size: 1.2rem;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 1.2rem 1.2rem 1.2rem 3.5rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: var(--transicao);
+            background: var(--branco);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--rosa);
+            box-shadow: 0 0 0 3px rgba(209, 108, 124, 0.1);
+        }
+        
+        .search-input::placeholder {
+            color: #aaa;
+        }
+        
+        /* AUTO-COMPLETE */
+        .autocomplete-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--branco);
+            border: 2px solid #e0e0e0;
+            border-top: none;
+            border-radius: 0 0 15px 15px;
+            max-height: 250px;
+            overflow-y: auto;
+            display: none;
+            z-index: 100;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .autocomplete-result {
+            padding: 1rem 1.2rem 1rem 3.5rem;
+            cursor: pointer;
+            transition: var(--transicao);
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .autocomplete-result:hover {
+            background: rgba(209, 108, 124, 0.05);
+        }
+        
+        .autocomplete-result:last-child {
+            border-bottom: none;
+        }
+        
+        .autocomplete-result .name {
+            font-weight: 500;
+            color: var(--cinza);
+        }
+        
+        .autocomplete-result .details {
+            font-size: 0.9rem;
+            color: var(--cinza-claro);
+            margin-top: 2px;
+        }
+        
+        /* MENSAGENS DE STATUS */
+        .status-message {
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            text-align: center;
+            display: none;
+            animation: slideUp 0.3s ease;
+        }
+        
+        .status-success {
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            color: var(--sucesso);
+        }
+        
+        .status-error {
+            background: rgba(244, 67, 54, 0.1);
+            border: 1px solid rgba(244, 67, 54, 0.2);
+            color: var(--erro);
+        }
+        
+        .status-info {
+            background: rgba(33, 150, 243, 0.1);
+            border: 1px solid rgba(33, 150, 243, 0.2);
+            color: var(--azul);
+        }
+        
+        /* PRÉVIA DO NOME */
+        .name-preview {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(209, 108, 124, 0.05);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .name-preview h3 {
+            color: var(--rosa);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .name-preview p {
+            margin-bottom: 0;
+            color: var(--cinza);
+        }
+        
+        /* BOTÕES DE CONFIRMAÇÃO */
+        .confirmation-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .confirmation-buttons {
+                flex-direction: column;
+            }
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 1.2rem;
+            border-radius: 12px;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transicao);
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-confirm {
+            background: linear-gradient(135deg, var(--sucesso), #45a049);
+            color: var(--branco);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        .btn-confirm:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+        }
+        
+        .btn-decline {
+            background: linear-gradient(135deg, var(--erro), #d32f2f);
+            color: var(--branco);
+            box-shadow: 0 5px 15px rgba(244, 67, 54, 0.3);
+        }
+        
+        .btn-decline:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(244, 67, 54, 0.4);
+        }
+        
+        .btn-icon {
+            font-size: 1.2rem;
+        }
+        
+        /* FORMULÁRIO DE ACOMPANHANTES */
+        .acompanhantes-form {
+            background: rgba(209, 108, 124, 0.05);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .acompanhantes-form h3 {
+            color: var(--rosa);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--cinza);
+            font-weight: 500;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: var(--transicao);
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--rosa);
+            box-shadow: 0 0 0 3px rgba(209, 108, 124, 0.1);
+        }
+        
+        .add-acompanhante {
+            background: transparent;
+            border: 2px dashed var(--rosa);
+            color: var(--rosa);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transicao);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 1rem;
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .add-acompanhante:hover {
+            background: rgba(209, 108, 124, 0.1);
+        }
+        
+        .acompanhante-item {
+            background: var(--branco);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: slideUp 0.3s ease;
+        }
+        
+        .remove-acompanhante {
+            background: var(--erro);
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        /* RESULTADO FINAL */
+        .confirmation-result {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 12px;
+            margin-top: 2rem;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .confirmation-result h3 {
+            color: var(--sucesso);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        /* ANIMAÇÕES */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* INSTRUÇÕES */
+        .instructions {
+            background: rgba(240, 138, 93, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+        }
+        
+        .instructions h4 {
+            color: var(--laranja);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .instructions ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+        
+        .instructions li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .instructions li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--laranja);
+            font-weight: bold;
+        }
+        
+        /* VOLTAR AO SITE */
+        .back-to-site {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .back-link {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, var(--rosa), var(--laranja));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: var(--transicao);
+            box-shadow: 0 5px 15px rgba(209, 108, 124, 0.3);
+        }
+        
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(209, 108, 124, 0.4);
+        }
+        
+        /* LOADING */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(209, 108, 124, 0.2);
+            border-top-color: var(--rosa);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1.5rem;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* STATUS BADGE */
+        .status-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+        
+        .status-confirmed {
+            background: rgba(76, 175, 80, 0.2);
+            color: var(--sucesso);
+        }
+        
+        .status-pending {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ff9800;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Confirmação de Presença</h1>
+        <h2>Amauri & Ester • 29 de Maio de 2027</h2>
+        
+        <p>Para confirmar sua presença, comece digitando seu nome completo abaixo:</p>
+        
+        <!-- ÁREA DE BUSCA -->
+        <div class="search-container">
+            <div class="search-input-wrapper">
+                <span class="search-icon">🔍</span>
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    id="nomeInput"
+                    placeholder="Digite seu nome completo..."
+                    autocomplete="off"
+                >
+            </div>
+            <div class="autocomplete-results" id="autocompleteResults"></div>
+        </div>
+        
+        <!-- MENSAGENS DE STATUS -->
+        <div class="status-message" id="statusMessage"></div>
+        
+        <!-- PRÉVIA DO NOME -->
+        <div class="name-preview" id="namePreview">
+            <h3 id="previewNome">Nome da Pessoa</h3>
+            <p id="previewDetalhes">Convidado(a) principal</p>
+        </div>
+        
+        <!-- BOTÕES DE CONFIRMAÇÃO -->
+        <div class="confirmation-buttons" id="confirmationButtons">
+            <button class="btn btn-confirm" onclick="confirmarPresenca()">
+                <span class="btn-icon">✅</span>
+                Clique aqui para confirmar a sua presença!
+            </button>
+            <button class="btn btn-decline" onclick="recusarPresenca()">
+                <span class="btn-icon">❌</span>
+                Não comparecerei!
+            </button>
+        </div>
+        
+        <!-- FORMULÁRIO DE ACOMPANHANTES -->
+        <div class="acompanhantes-form" id="acompanhantesForm">
+            <h3>Informe seus acompanhantes</h3>
+            <div id="acompanhantesList"></div>
+            <button class="add-acompanhante" onclick="adicionarAcompanhante()">
+                <span>+</span>
+                Adicionar acompanhante
+            </button>
+            
+            <div class="form-group">
+                <label for="mensagemNoivos">Mensagem para os noivos (opcional):</label>
+                <textarea 
+                    class="form-input" 
+                    id="mensagemNoivos" 
+                    rows="3" 
+                    placeholder="Deixe uma mensagem especial para Amauri e Ester..."
+                ></textarea>
+            </div>
+            
+            <button class="btn btn-confirm" onclick="finalizarConfirmacao()" style="margin-top: 1.5rem;">
+                <span class="btn-icon">💌</span>
+                Enviar confirmação
+            </button>
+        </div>
+        
+        <!-- RESULTADO FINAL -->
+        <div class="confirmation-result" id="confirmationResult"></div>
+        
+        <!-- LOADING -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Processando sua confirmação...</p>
+        </div>
+        
+        <!-- INSTRUÇÕES -->
+        <div class="instructions">
+            <h4>Como funciona:</h4>
+            <ul>
+                <li>Digite seu nome completo no campo acima</li>
+                <li>Se seu nome estiver na lista, escolha entre confirmar ou não comparecer</li>
+                <li>Para convites familiares, você poderá adicionar acompanhantes</li>
+                <li>Você receberá um comprovante por email (opcional)</li>
+            </ul>
+        </div>
+        
+        <!-- VOLTAR AO SITE -->
+        <div class="back-to-site">
+            <a href="index.html" class="back-link">← Voltar para o site do casamento</a>
+        </div>
+    </div>
+
+    <script>
+        // DADOS DA LISTA DE CONVIDADOS
+        // Na versão final, esses dados viriam de um banco de dados
+        const listaConvidados = [
+            {
+                id: 1,
+                nome: "Maria Silva Santos",
+                tipo: "Convidada principal",
+                familia: false,
+                acompanhantes: 0,
+                status: "pendente"
+            },
+            {
+                id: 2,
+                nome: "João Pedro Oliveira",
+                tipo: "Convidado principal",
+                familia: false,
+                acompanhantes: 0,
+                status: "pendente"
+            },
+            {
+                id: 3,
+                nome: "Ana Clara Rodrigues",
+                tipo: "Convidada principal",
+                familia: false,
+                acompanhantes: 0,
+                status: "pendente"
+            },
+            {
+                id: 4,
+                nome: "Carlos Eduardo Ferreira",
+                tipo: "Convidado principal",
+                familia: false,
+                acompanhantes: 0,
+                status: "pendente"
+            },
+            {
+                id: 5,
+                nome: "Família Souza",
+                tipo: "Família (4 pessoas)",
+                familia: true,
+                acompanhantes: 3,
+                status: "pendente"
+            },
+            {
+                id: 6,
+                nome: "Roberto Almeida",
+                tipo: "Convidado principal",
+                familia: false,
+                acompanhantes: 0,
+                status: "pendente"
+            },
+            {
+                id: 7,
+                nome: "Juliana Costa",
+                tipo: "Convidada principal",
+                familia: false,
+                acompanhantes: 0,
+                status: "pendente"
+            },
+            {
+                id: 8,
+                nome: "Família Lima",
+                tipo: "Família (3 pessoas)",
+                familia: true,
+                acompanhantes: 2,
+                status: "pendente"
+            },
+            {
+                id: 9,
+                nome: "Fernando Martins",
+                tipo: "Convidado principal",
+                familia: false,
+                acompanhantes: 0,
+                status: "pendente"
+            },
+            {
+                id: 10,
+                nome: "Patrícia Nunes",
+                tipo: "Convidada principal",
+                familia: false,
+                acompanhantes: 0,
+                status: "pendente"
+            }
+        ];
+
+        // VARIÁVEIS GLOBAIS
+        let convidadoAtual = null;
+        let acompanhantes = [];
+        let acompanhanteCount = 0;
+
+        // ELEMENTOS DO DOM
+        const nomeInput = document.getElementById('nomeInput');
+        const autocompleteResults = document.getElementById('autocompleteResults');
+        const statusMessage = document.getElementById('statusMessage');
+        const namePreview = document.getElementById('namePreview');
+        const previewNome = document.getElementById('previewNome');
+        const previewDetalhes = document.getElementById('previewDetalhes');
+        const confirmationButtons = document.getElementById('confirmationButtons');
+        const acompanhantesForm = document.getElementById('acompanhantesForm');
+        const acompanhantesList = document.getElementById('acompanhantesList');
+        const confirmationResult = document.getElementById('confirmationResult');
+        const loading = document.getElementById('loading');
+
+        // EVENT LISTENERS
+        document.addEventListener('DOMContentLoaded', function() {
+            nomeInput.focus();
+            
+            nomeInput.addEventListener('input', function() {
+                const searchTerm = this.value.trim();
+                
+                if (searchTerm.length >= 2) {
+                    buscarConvidados(searchTerm);
+                } else {
+                    esconderAutocomplete();
+                    resetarInterface();
+                }
+            });
+            
+            nomeInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    verificarNome(this.value.trim());
+                }
+            });
+            
+            // Fechar autocomplete ao clicar fora
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.search-container')) {
+                    esconderAutocomplete();
+                }
+            });
+        });
+
+        // FUNÇÃO PARA BUSCAR CONVIDADOS
+        function buscarConvidados(termo) {
+            const resultados = listaConvidados.filter(convidado => 
+                convidado.nome.toLowerCase().includes(termo.toLowerCase()) &&
+                convidado.status !== "confirmado" &&
+                convidado.status !== "recusado"
+            );
+            
+            mostrarAutocomplete(resultados);
+        }
+
+        // FUNÇÃO PARA MOSTRAR AUTO-COMPLETE
+        function mostrarAutocomplete(resultados) {
+            if (resultados.length === 0) {
+                esconderAutocomplete();
+                return;
+            }
+            
+            autocompleteResults.innerHTML = '';
+            
+            resultados.forEach(convidado => {
+                const div = document.createElement('div');
+                div.className = 'autocomplete-result';
+                div.innerHTML = `
+                    <div class="name">${convidado.nome}</div>
+                    <div class="details">${convidado.tipo}</div>
+                `;
+                
+                div.addEventListener('click', function() {
+                    nomeInput.value = convidado.nome;
+                    verificarNome(convidado.nome);
+                    esconderAutocomplete();
+                });
+                
+                autocompleteResults.appendChild(div);
+            });
+            
+            autocompleteResults.style.display = 'block';
+        }
+
+        // FUNÇÃO PARA ESCONDER AUTO-COMPLETE
+        function esconderAutocomplete() {
+            autocompleteResults.style.display = 'none';
+        }
+
+        // FUNÇÃO PARA VERIFICAR NOME
+        function verificarNome(nome) {
+            esconderAutocomplete();
+            resetarInterface();
+            
+            // Procurar nome exato primeiro
+            let convidado = listaConvidados.find(c => 
+                c.nome.toLowerCase() === nome.toLowerCase() ||
+                c.nome.toLowerCase().includes(nome.toLowerCase())
+            );
+            
+            if (!convidado) {
+                // Tentar encontrar por partes do nome
+                const partesNome = nome.toLowerCase().split(' ');
+                convidado = listaConvidados.find(c => {
+                    const nomeConvidado = c.nome.toLowerCase();
+                    return partesNome.some(parte => nomeConvidado.includes(parte));
+                });
+            }
+            
+            if (convidado) {
+                // Verificar se já confirmou
+                if (convidado.status === "confirmado") {
+                    mostrarMensagem(
+                        "Você já confirmou sua presença! Obrigado! 🎉",
+                        "success"
+                    );
+                    return;
+                }
+                
+                if (convidado.status === "recusado") {
+                    mostrarMensagem(
+                        "Você já informou que não comparecerá. Caso mude de ideia, entre em contato com os noivos.",
+                        "info"
+                    );
+                    return;
+                }
+                
+                convidadoAtual = convidado;
+                mostrarPreviewConvidado(convidado);
+                mostrarBotoesConfirmacao();
+            } else {
+                mostrarMensagem(
+                    "Poxa... Esse nome não está na lista de convidados. 😔<br>Verifique se digitou corretamente ou entre em contato com os noivos.",
+                    "error"
+                );
+            }
+        }
+
+        // FUNÇÃO PARA MOSTRAR MENSAGEM
+        function mostrarMensagem(texto, tipo) {
+            statusMessage.innerHTML = texto;
+            statusMessage.className = `status-message status-${tipo}`;
+            statusMessage.style.display = 'block';
+            
+            // Esconder após 5 segundos para mensagens de erro
+            if (tipo === 'error') {
+                setTimeout(() => {
+                    statusMessage.style.display = 'none';
+                }, 5000);
+            }
+        }
+
+        // FUNÇÃO PARA MOSTRAR PREVIEW DO CONVIDADO
+        function mostrarPreviewConvidado(convidado) {
+            previewNome.textContent = convidado.nome;
+            previewDetalhes.textContent = convidado.tipo;
+            namePreview.style.display = 'block';
+        }
+
+        // FUNÇÃO PARA MOSTRAR BOTÕES DE CONFIRMAÇÃO
+        function mostrarBotoesConfirmacao() {
+            confirmationButtons.style.display = 'flex';
+        }
+
+        // FUNÇÃO PARA RESETAR INTERFACE
+        function resetarInterface() {
+            statusMessage.style.display = 'none';
+            namePreview.style.display = 'none';
+            confirmationButtons.style.display = 'none';
+            acompanhantesForm.style.display = 'none';
+            confirmationResult.style.display = 'none';
+            convidadoAtual = null;
+            acompanhantes = [];
+            acompanhanteCount = 0;
+            acompanhantesList.innerHTML = '';
+        }
+
+        // FUNÇÃO PARA CONFIRMAR PRESENÇA
+        function confirmarPresenca() {
+            if (!convidadoAtual) return;
+            
+            // Se for família ou tiver acompanhantes, mostrar formulário
+            if (convidadoAtual.familia || convidadoAtual.acompanhantes > 0) {
+                mostrarFormularioAcompanhantes();
+            } else {
+                // Confirmar direto
+                finalizarConfirmacao();
+            }
+        }
+
+        // FUNÇÃO PARA RECUSAR PRESENÇA
+        function recusarPresenca() {
+            if (!convidadoAtual) return;
+            
+            mostrarLoading();
+            
+            // Simular envio para servidor
+            setTimeout(() => {
+                convidadoAtual.status = "recusado";
+                esconderLoading();
+                
+                confirmationResult.innerHTML = `
+                    <h3>Registramos que você não comparecerá</h3>
+                    <p>Sua resposta foi registrada. Lamentamos sua ausência, mas entendemos.</p>
+                    <p>Se mudar de ideia, entre em contato com os noivos.</p>
+                    <p style="margin-top: 1rem; font-style: italic;">Atenciosamente,<br>Amauri & Ester</p>
+                `;
+                confirmationResult.style.display = 'block';
+                
+                // Resetar após alguns segundos
+                setTimeout(() => {
+                    resetarInterface();
+                    nomeInput.value = '';
+                    nomeInput.focus();
+                }, 5000);
+            }, 1500);
+        }
+
+        // FUNÇÃO PARA MOSTRAR FORMULÁRIO DE ACOMPANHANTES
+        function mostrarFormularioAcompanhantes() {
+            confirmationButtons.style.display = 'none';
+            
+            // Criar campos para acompanhantes
+            if (convidadoAtual.familia || convidadoAtual.acompanhantes > 0) {
+                const maxAcompanhantes = convidadoAtual.familia ? 
+                    convidadoAtual.acompanhantes : convidadoAtual.acompanhantes;
+                
+                for (let i = 0; i < maxAcompanhantes; i++) {
+                    adicionarCampoAcompanhante();
+                }
+            }
+            
+            acompanhantesForm.style.display = 'block';
+        }
+
+        // FUNÇÃO PARA ADICIONAR ACOMPANHANTE
+        function adicionarAcompanhante() {
+            const maxAcompanhantes = convidadoAtual.familia ? 
+                convidadoAtual.acompanhantes : convidadoAtual.acompanhantes;
+            
+            if (acompanhanteCount < maxAcompanhantes) {
+                adicionarCampoAcompanhante();
+            } else {
+                mostrarMensagem(
+                    `Você pode adicionar no máximo ${maxAcompanhantes} acompanhante(s).`,
+                    "info"
+                );
+            }
+        }
+
+        // FUNÇÃO PARA ADICIONAR CAMPO DE ACOMPANHANTE
+        function adicionarCampoAcompanhante() {
+            acompanhanteCount++;
+            const id = `acompanhante-${acompanhanteCount}`;
+            
+            const div = document.createElement('div');
+            div.className = 'acompanhante-item';
+            div.id = id;
+            div.innerHTML = `
+                <input 
+                    type="text" 
+                    class="form-input" 
+                    placeholder="Nome completo do acompanhante"
+                    oninput="atualizarAcompanhante('${id}', this.value)"
+                    style="flex: 1;"
+                >
+                <button class="remove-acompanhante" onclick="removerAcompanhante('${id}')">×</button>
+            `;
+            
+            acompanhantesList.appendChild(div);
+            acompanhantes.push({ id, nome: '' });
+        }
+
+        // FUNÇÃO PARA ATUALIZAR ACOMPANHANTE
+        function atualizarAcompanhante(id, nome) {
+            const index = acompanhantes.findIndex(a => a.id === id);
+            if (index !== -1) {
+                acompanhantes[index].nome = nome;
+            }
+        }
+
+        // FUNÇÃO PARA REMOVER ACOMPANHANTE
+        function removerAcompanhante(id) {
+            const div = document.getElementById(id);
+            if (div) {
+                div.remove();
+                acompanhantes = acompanhantes.filter(a => a.id !== id);
+                acompanhanteCount--;
+            }
+        }
+
+        // FUNÇÃO PARA FINALIZAR CONFIRMAÇÃO
+        function finalizarConfirmacao() {
+            if (!convidadoAtual) return;
+            
+            const mensagem = document.getElementById('mensagemNoivos').value;
+            
+            mostrarLoading();
+            
+            // Simular envio para servidor
+            setTimeout(() => {
+                convidadoAtual.status = "confirmado";
+                esconderLoading();
+                
+                // Mostrar resultado
+                let html = `
+                    <h3>Presença confirmada com sucesso! 🎉</h3>
+                    <p><strong>${convidadoAtual.nome}</strong></p>
+                    <p>Sua presença no nosso casamento está confirmada.</p>
+                `;
+                
+                if (acompanhantes.length > 0) {
+                    const nomesAcompanhantes = acompanhantes
+                        .filter(a => a.nome.trim() !== '')
+                        .map(a => a.nome)
+                        .join(', ');
+                    
+                    if (nomesAcompanhantes) {
+                        html += `<p><strong>Acompanhantes:</strong> ${nomesAcompanhantes}</p>`;
+                    }
+                }
+                
+                if (mensagem.trim()) {
+                    html += `<p style="margin-top: 1rem; font-style: italic;">"${mensagem}"</p>`;
+                }
+                
+                html += `
+                    <p style="margin-top: 1rem;">
+                        <strong>Data:</strong> 29 de Maio de 2027<br>
+                        <strong>Local:</strong> Várzea da Palma - MG
+                    </p>
+                    <p style="margin-top: 1.5rem; color: var(--sucesso); font-weight: 600;">
+                        Mal podemos esperar para celebrar com você! 💍
+                    </p>
+                `;
+                
+                confirmationResult.innerHTML = html;
+                confirmationResult.style.display = 'block';
+                
+                // Esconder formulário
+                acompanhantesForm.style.display = 'none';
+                
+                // Resetar após 8 segundos
+                setTimeout(() => {
+                    resetarInterface();
+                    nomeInput.value = '';
+                    nomeInput.focus();
+                }, 8000);
+            }, 2000);
+        }
+
+        // FUNÇÕES AUXILIARES
+        function mostrarLoading() {
+            loading.style.display = 'block';
+        }
+
+        function esconderLoading() {
+            loading.style.display = 'none';
+        }
+
+        // SIMULAR ALGUNS CONVIDADOS JÁ CONFIRMADOS PARA DEMONSTRAÇÃO
+        function inicializarDadosDemonstracao() {
+            // Marcar alguns como já confirmados para demonstração
+            listaConvidados[0].status = "confirmado";
+            listaConvidados[3].status = "recusado";
+        }
+
+        // Inicializar dados de demonstração
+        inicializarDadosDemonstracao();
+    </script>
+</body>
+</html>
