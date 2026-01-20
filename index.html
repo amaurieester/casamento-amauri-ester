@@ -349,7 +349,7 @@
             transform: none !important;
         }
         
-        /* LISTA DE PRESENTES */
+        /* LISTA DE PRESENTES - MANTIDA PARA AS PÁGINAS SEPARADAS */
         .presentes-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -1252,6 +1252,52 @@
             font-size: 0.8rem;
             margin-top: 0.5rem;
         }
+        
+        /* QUICK ACCESS LINKS - NOVO ESTILO PARA PÁGINAS SEPARADAS */
+        .quick-access {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        
+        .access-card {
+            background: var(--branco);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 10px 25px var(--sombra);
+            transition: var(--transicao);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .access-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px var(--sombra-hover);
+        }
+        
+        .access-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .access-title {
+            color: var(--rosa);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .access-description {
+            color: var(--cinza-claro);
+            font-size: 0.95rem;
+        }
     </style>
 </head>
 
@@ -1360,7 +1406,184 @@
         </div>
     </section>
 
-    <!-- EVENTO COM FOTOS REAIS -->
+    <!-- GALERIA DE FOTOS COM MAIS ESPAÇAMENTO -->
+    <section id="galeria">
+        <div class="text-center mb-4">
+            <h2>Nossos Momentos</h2>
+            <p>Algumas memórias especiais da nossa caminhada</p>
+        </div>
+        
+        <div class="galeria-container">
+            <div class="foto-item">
+                <img src="fotos/casal1.jpg" alt="Amauri e Ester juntos" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 1</text></svg>'">
+                <div class="foto-legenda">Primeiro dia após o noivado</div>
+            </div>
+            
+            <div class="foto-item">
+                <img src="fotos/casal2.jpg" alt="Noivos sorrindo" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 2</text></svg>'">
+                <div class="foto-legenda">Passeio especial e VZP</div>
+            </div>
+            
+            <div class="foto-item">
+                <img src="fotos/casal3.jpg" alt="Ensaio fotográfico" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 3</text></svg>'">
+                <div class="foto-legenda">Samba Prime no gramado do Mineirão</div>
+            </div>
+            
+            <div class="foto-item">
+                <img src="fotos/casal4.jpg" alt="Momento especial" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 4</text></svg>'">
+                <div class="foto-legenda">Viagem especial em Família</div>
+            </div>
+            
+            <div class="foto-item">
+                <img src="fotos/casal5.jpg" alt="Com família" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 5</text></svg>'">
+                <div class="foto-legenda">Primeira foto após o pedido</div>
+            </div>
+            
+            <div class="foto-item">
+                <img src="fotos/casal6.jpg" alt="Preparativos" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 6</text></svg>'">
+                <div class="foto-legenda">Casamento de Sandy & Adilson</div>
+            </div>
+        </div>
+        
+        <!-- DRESS CODE PARA CONVIDADOS COM MAIS ESPAÇAMENTO -->
+        <div class="text-center mb-4" style="margin-top: 6rem;">
+            <h2>Dress Code para Convidados</h2>
+            <p>Como se vestir para o nosso grande dia</p>
+        </div>
+        
+        <div class="dress-code-container">
+            <div class="dress-code-item">
+                <span class="dress-code-icon">👔</span>
+                <h4 class="dress-code-titulo">Para os Homens</h4>
+                <p>Terno ou Social<br>
+                <small>Cores: Azul marinho, cinza, bege</small></p>
+            </div>
+            
+            <div class="dress-code-item">
+                <span class="dress-code-icon">👗</span>
+                <h4 class="dress-code-titulo">Para as Mulheres</h4>
+                <p>Vestido ou Saia Social<br>
+                <small>Cores: Tons pastéis, estampas discretas</small></p>
+            </div>
+            
+            <div class="dress-code-item">
+                <span class="dress-code-icon">🎨</span>
+                <h4 class="dress-code-titulo">Paleta de Cores</h4>
+                <p>Evitar preto total<br>
+                <small>Priorize cores claras e alegres</small></p>
+            </div>
+            
+            <div class="dress-code-item">
+                <span class="dress-code-icon">👞</span>
+                <h4 class="dress-code-titulo">Calçados</h4>
+                <p>Sapatos sociais ou sapatilhas<br>
+                <small>Conforto para dançar a noite toda!</small></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUICK ACCESS PARA PÁGINAS SEPARADAS -->
+    <section id="quick-access">
+        <div class="text-center mb-4">
+            <h2>Informações Importantes</h2>
+            <p>Clique nos cards abaixo para acessar informações detalhadas</p>
+        </div>
+        
+        <div class="quick-access">
+            <a href="#evento" class="access-card">
+                <div class="access-icon">📅</div>
+                <h3 class="access-title">Evento</h3>
+                <p class="access-description">Detalhes sobre a cerimônia e festa</p>
+            </a>
+            
+            <a href="#cronograma" class="access-card">
+                <div class="access-icon">⏰</div>
+                <h3 class="access-title">Cronograma</h3>
+                <p class="access-description">Programação completa do grande dia</p>
+            </a>
+            
+            <a href="#presentes" class="access-card">
+                <div class="access-icon">🎁</div>
+                <h3 class="access-title">Presentes</h3>
+                <p class="access-description">Lista de presentes para nossa nova vida</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- CONFIRMAÇÃO DE PRESENÇA ATUALIZADA -->
+    <section id="confirmacao">
+        <div class="text-center mb-4">
+            <h2>Confirmação de Presença</h2>
+            <p>Clique no botão abaixo para confirmar sua presença de forma interativa</p>
+        </div>
+        
+        <div class="card">
+            <div class="text-center">
+                <div style="font-size: 5rem; margin-bottom: 2rem;">💌</div>
+                <h3 style="color: var(--rosa); margin-bottom: 1.5rem;">Confirme sua presença aqui</h3>
+                <p style="margin-bottom: 2rem; font-size: 1.1rem;">
+                    Criamos uma página especial para você confirmar presença de forma fácil e rápida.
+                </p>
+                
+                <a href="confirmacao.html" target="_blank" class="btn" style="padding: 1.2rem 3rem; font-size: 1.2rem;">
+                    Clique aqui para confirmar presença
+                </a>
+                
+                <div class="mt-4" style="color: var(--cinza-claro); font-size: 0.9rem;">
+                    <p>A página se abrirá em uma nova janela</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- MENSAGEM PARA OS NOIVOS -->
+        <div class="card mt-3">
+            <h3 class="text-center" style="color: var(--rosa); margin-bottom: 2rem;">Deixe uma mensagem para os noivos 🤍</h3>
+            
+            <form class="form-container" id="formMensagem" onsubmit="enviarMensagem(event)">
+                <!-- Configurações do FormSubmit -->
+                <input type="hidden" name="_subject" value="💌 Nova mensagem para os noivos!">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://amaurieester.github.io/casamento-amauri-ester/obrigado-mensagem.html">
+                <input type="text" name="_honey" style="display:none">
+                
+                <div class="form-group">
+                    <input type="text" class="form-input" id="nome" name="nome" placeholder="Seu nome completo *" required>
+                    <div class="error-message" id="nome-error">Por favor, digite seu nome</div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="email" class="form-input" id="email" name="email" placeholder="Seu e-mail (opcional)">
+                    <div class="error-message" id="email-error">Por favor, digite um e-mail válido</div>
+                </div>
+                
+                <div class="form-group">
+                    <textarea class="form-textarea" id="mensagem" name="mensagem" placeholder="Escreva sua mensagem com carinho *" required rows="5"></textarea>
+                    <div class="error-message" id="mensagem-error">Por favor, escreva sua mensagem</div>
+                </div>
+                
+                <button type="submit" class="btn" id="btnEnviar" style="width: 100%;">
+                    Enviar mensagem
+                </button>
+                
+                <div class="msg-success" id="msgSuccess">
+                    <p>✅ Mensagem enviada com sucesso! Obrigado pelo carinho 🤍</p>
+                    <p>Em alguns instantes você será redirecionado...</p>
+                </div>
+                
+                <div class="msg-error" id="msgError">
+                    <p>❌ Ocorreu um erro ao enviar. Por favor, tente novamente.</p>
+                </div>
+                
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Enviando sua mensagem...</p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- EVENTO COM FOTOS REAIS - MANTIDA MAS SOMENTE ACESSÍVEL VIA MENU -->
     <section id="evento">
         <div class="text-center mb-4">
             <h2>O Evento</h2>
@@ -1403,7 +1626,7 @@
         </div>
     </section>
 
-    <!-- CRONOGRAMA DETALHADO - CORRIGIDO -->
+    <!-- CRONOGRAMA DETALHADO - CORRIGIDO - MANTIDA MAS SOMENTE ACESSÍVEL VIA MENU -->
     <section id="cronograma">
         <div class="text-center mb-4">
             <h2>Cronograma do Grande Dia</h2>
@@ -1486,156 +1709,7 @@
         </div>
     </section>
 
-    <!-- GALERIA DE FOTOS COM MAIS ESPAÇAMENTO -->
-    <section id="galeria">
-        <div class="text-center mb-4">
-            <h2>Nossos Momentos</h2>
-            <p>Algumas memórias especiais da nossa caminhada</p>
-        </div>
-        
-        <div class="galeria-container">
-            <div class="foto-item">
-                <img src="fotos/casal1.jpg" alt="Amauri e Ester juntos" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 1</text></svg>'">
-                <div class="foto-legenda">Primeiro dia após o noivado</div>
-            </div>
-            
-            <div class="foto-item">
-                <img src="fotos/casal2.jpg" alt="Noivos sorrindo" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 2</text></svg>'">
-                <div class="foto-legenda">Passeio especial e VZP</div>
-            </div>
-            
-            <div class="foto-item">
-                <img src="fotos/casal3.jpg" alt="Ensaio fotográfico" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 3</text></svg>'">
-                <div class="foto-legenda">Samba Prime no gramado do Mineirão</div>
-            </div>
-            
-            <div class="foto-item">
-                <img src="fotos/casal4.jpg" alt="Momento especial" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 4</text></svg>'">
-                <div class="foto-legenda">Viagem especial em Família</div>
-            </div>
-            
-            <div class="foto-item">
-                <img src="fotos/casal5.jpg" alt="Com família" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 5</text></svg>'">
-                <div class="foto-legenda">Primeira foto após o pedido</div>
-            </div>
-            
-            <div class="foto-item">
-                <img src="fotos/casal6.jpg" alt="Preparativos" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 6</text></svg>'">
-                <div class="foto-legenda">Casamento de Sandy & Adilson</div>
-            </div>
-        </div>
-        
-        <!-- DRESS CODE PARA CONVIDADOS COM MAIS ESPAÇAMENTO -->
-        <div class="text-center mb-4" style="margin-top: 6rem;">
-            <h2>Dress Code para Convidados</h2>
-            <p>Como se vestir para o nosso grande dia</p>
-        </div>
-        
-        <div class="dress-code-container">
-            <div class="dress-code-item">
-                <span class="dress-code-icon">👔</span>
-                <h4 class="dress-code-titulo">Para os Homens</h4>
-                <p>Terno ou Social<br>
-                <small>Cores: Azul marinho, cinza, bege</small></p>
-            </div>
-            
-            <div class="dress-code-item">
-                <span class="dress-code-icon">👗</span>
-                <h4 class="dress-code-titulo">Para as Mulheres</h4>
-                <p>Vestido ou Saia Social<br>
-                <small>Cores: Tons pastéis, estampas discretas</small></p>
-            </div>
-            
-            <div class="dress-code-item">
-                <span class="dress-code-icon">🎨</span>
-                <h4 class="dress-code-titulo">Paleta de Cores</h4>
-                <p>Evitar preto total<br>
-                <small>Priorize cores claras e alegres</small></p>
-            </div>
-            
-            <div class="dress-code-item">
-                <span class="dress-code-icon">👞</span>
-                <h4 class="dress-code-titulo">Calçados</h4>
-                <p>Sapatos sociais ou sapatilhas<br>
-                <small>Conforto para dançar a noite toda!</small></p>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONFIRMAÇÃO DE PRESENÇA ATUALIZADA -->
-    <section id="confirmacao">
-        <div class="text-center mb-4">
-            <h2>Confirmação de Presença</h2>
-            <p>Clique no botão abaixo para confirmar sua presença de forma interativa</p>
-        </div>
-        
-        <div class="card">
-            <div class="text-center">
-                <div style="font-size: 5rem; margin-bottom: 2rem;">💌</div>
-                <h3 style="color: var(--rosa); margin-bottom: 1.5rem;">Confirme sua presença aqui</h3>
-                <p style="margin-bottom: 2rem; font-size: 1.1rem;">
-                    Criamos uma página especial para você confirmar presença de forma fácil e rápida.
-                </p>
-                
-                <a href="confirmacao.html" target="_blank" class="btn" style="padding: 1.2rem 3rem; font-size: 1.2rem;">
-                    Clique aqui para confirmar presença
-                </a>
-                
-                <div class="mt-4" style="color: var(--cinza-claro); font-size: 0.9rem;">
-                    <p>A página se abrirá em uma nova janela</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- MENSAGEM PARA OS NOIVOS -->
-        <div class="card mt-3">
-            <h3 class="text-center" style="color: var(--rosa); margin-bottom: 2rem;">Deixe uma mensagem para os noivos 🤍</h3>
-            
-            <form class="form-container" id="formMensagem" onsubmit="enviarMensagem(event)">
-                <!-- Configurações do FormSubmit -->
-                <input type="hidden" name="_subject" value="💌 Nova mensagem para os noivos!">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://amaurieester.github.io/casamento-amauri-ester/obrigado-mensagem.html">
-                <input type="text" name="_honey" style="display:none">
-                
-                <div class="form-group">
-                    <input type="text" class="form-input" id="nome" name="nome" placeholder="Seu nome completo *" required>
-                    <div class="error-message" id="nome-error">Por favor, digite seu nome</div>
-                </div>
-                
-                <div class="form-group">
-                    <input type="email" class="form-input" id="email" name="email" placeholder="Seu e-mail (opcional)">
-                    <div class="error-message" id="email-error">Por favor, digite um e-mail válido</div>
-                </div>
-                
-                <div class="form-group">
-                    <textarea class="form-textarea" id="mensagem" name="mensagem" placeholder="Escreva sua mensagem com carinho *" required rows="5"></textarea>
-                    <div class="error-message" id="mensagem-error">Por favor, escreva sua mensagem</div>
-                </div>
-                
-                <button type="submit" class="btn" id="btnEnviar" style="width: 100%;">
-                    Enviar mensagem
-                </button>
-                
-                <div class="msg-success" id="msgSuccess">
-                    <p>✅ Mensagem enviada com sucesso! Obrigado pelo carinho 🤍</p>
-                    <p>Em alguns instantes você será redirecionado...</p>
-                </div>
-                
-                <div class="msg-error" id="msgError">
-                    <p>❌ Ocorreu um erro ao enviar. Por favor, tente novamente.</p>
-                </div>
-                
-                <div class="loading" id="loading">
-                    <div class="spinner"></div>
-                    <p>Enviando sua mensagem...</p>
-                </div>
-            </form>
-        </div>
-    </section>
-
-    <!-- LISTA DE PRESENTES -->
+    <!-- LISTA DE PRESENTES - MANTIDA MAS SOMENTE ACESSÍVEL VIA MENU -->
     <section id="presentes">
         <div class="text-center mb-4">
             <h2>Lista de Presentes</h2>
@@ -2053,7 +2127,7 @@
             ["Ajude a noiva a comprar novos pijamas", 131.38, "pijamas-noiva.jpg"],
             ["Ajude o noivo a comprar pijamas novos", 131.38, "pijamas-noivo.jpg"],
             ["Aspirador de pó", 131.38, "aspirador.jpg"],
-            ["Taxa pra noiva não jogar o buquê pra sua namorada", 154.70, "taxa-buque-nao.jpg"],
+            ["Taxa pra noiva não jogar o buquê para sua namorada", 154.70, "taxa-buque-nao.jpg"],
             ["Rolo de macarrão caso o noivo não se comporte", 155.42, "rolo-macarrao.jpg"],
             ["Capacete contra o rolo de macarrão para o noivo", 155.42, "capacete-macarrao.jpg"],
             ["Taxa pra noiva jogar o buquê na sua direção", 160.61, "taxa-buque-sim.jpg"],
@@ -2159,17 +2233,14 @@
             atualizarContador();
             setInterval(atualizarContador, 1000);
             
-            // Renderizar lista de presentes
-            renderizarPresentes();
-            
-            // Configurar filtros
+            // Renderizar lista de presentes (só quando acessar a seção)
             configurarFiltros();
             
             // Smooth scroll para links do menu
-            document.querySelectorAll('.menu a').forEach(anchor => {
+            document.querySelectorAll('.menu a, .access-card').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     const href = this.getAttribute('href');
-                    if (href.startsWith('#')) {
+                    if (href && href.startsWith('#')) {
                         e.preventDefault();
                         const target = document.querySelector(href);
                         if (target) {
@@ -2222,7 +2293,28 @@
             
             // Configurar eventos dos botões
             setupEventListeners();
+            
+            // Renderizar presentes apenas quando acessar a seção
+            observarSecaoPresentes();
         });
+
+        // OBSERVAR QUANDO O USUÁRIO ACESSAR A SEÇÃO DE PRESENTES
+        function observarSecaoPresentes() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && entry.target.id === 'presentes') {
+                        if (document.getElementById('lista-presentes').children.length === 0) {
+                            renderizarPresentes();
+                        }
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            const secaoPresentes = document.getElementById('presentes');
+            if (secaoPresentes) {
+                observer.observe(secaoPresentes);
+            }
+        }
 
         // CONFIGURAR PLAYER DE ÁUDIO
         function setupAudioPlayer() {
@@ -2742,7 +2834,7 @@
         
         // DETECTAR SCROLL PARA ANIMAÇÕES
         function animarAoRolar() {
-            const cards = document.querySelectorAll('.card, .presente-card, .evento-card, .foto-item, .dress-code-card, .dress-code-item');
+            const cards = document.querySelectorAll('.card, .presente-card, .evento-card, .foto-item, .dress-code-card, .dress-code-item, .access-card');
             
             cards.forEach(card => {
                 const cardTop = card.getBoundingClientRect().top;
@@ -2756,7 +2848,7 @@
         }
         
         // ESTILOS INICIAIS PARA ANIMAÇÃO
-        document.querySelectorAll('.card, .presente-card, .evento-card, .foto-item, .dress-code-card, .dress-code-item').forEach(card => {
+        document.querySelectorAll('.card, .presente-card, .evento-card, .foto-item, .dress-code-card, .dress-code-item, .access-card').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
             card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
