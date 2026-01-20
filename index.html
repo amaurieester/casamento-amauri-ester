@@ -1263,8 +1263,8 @@
         <a href="#evento">Evento</a>
         <a href="#cronograma">Cronograma</a>
         <a href="#galeria">Galeria</a>
-        <!-- LINK PARA PADRINHOS REMOVIDO -->
-        <a href="#confirmacao">Confirmação</a>
+        <!-- LINK PARA CONFIRMAÇÃO ABRE NOVA PÁGINA -->
+        <a href="confirmacao.html" target="_blank">Confirmação</a>
         <a href="#presentes">Presentes</a>
     </nav>
 
@@ -1313,7 +1313,7 @@
         <div class="card mb-4">
             <p class="text-center">
                 Criamos este espaço com muito carinho para compartilhar com vocês um dos momentos mais especiais das nossas vidas.<br>
-                Aqui, cada detalhe foi pensado para unir sonhos, histórias e pessoas que sempre fizeram parte da nossa caminhada.
+                Aqui, cada detalhe foi pensado para unir sonhos, histórias e pessoas que sempre fizeram partda nossa caminhada.
             </p>
         </div>
         
@@ -1562,78 +1562,32 @@
         </div>
     </section>
 
-    <!-- CONFIRMAÇÃO DE PRESENÇA SIMPLIFICADA -->
+    <!-- CONFIRMAÇÃO DE PRESENÇA ATUALIZADA -->
     <section id="confirmacao">
         <div class="text-center mb-4">
             <h2>Confirmação de Presença</h2>
-            <p>Por favor, confirme sua presença até 15 de Maio de 2027</p>
+            <p>Clique no botão abaixo para confirmar sua presença de forma interativa</p>
         </div>
         
         <div class="card">
-            <h3 class="text-center" style="color: var(--rosa); margin-bottom: 2.5rem;">Confirme sua presença aqui</h3>
-            
-            <!-- FORMULÁRIO SIMPLIFICADO DE CONFIRMAÇÃO -->
-            <form class="form-container" id="formConfirmacao" onsubmit="enviarConfirmacao(event)">
-                <!-- Configurações do FormSubmit -->
-                <input type="hidden" name="_subject" value="✅ Nova confirmação de presença!">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://amaurieester.github.io/casamento-amauri-ester/obrigado-confirmacao.html">
-                <input type="text" name="_honey" style="display:none">
+            <div class="text-center">
+                <div style="font-size: 5rem; margin-bottom: 2rem;">💌</div>
+                <h3 style="color: var(--rosa); margin-bottom: 1.5rem;">Confirme sua presença aqui</h3>
+                <p style="margin-bottom: 2rem; font-size: 1.1rem;">
+                    Criamos uma página especial para você confirmar presença de forma fácil e rápida.
+                </p>
                 
-                <!-- Campo 1: Nome completo -->
-                <div class="form-group">
-                    <input type="text" class="form-input" id="nomeConvidado" name="nome_convidado" placeholder="Nome completo *" required>
-                    <div class="error-message" id="nomeConvidado-error">Por favor, digite seu nome completo</div>
+                <a href="confirmacao.html" target="_blank" class="btn" style="padding: 1.2rem 3rem; font-size: 1.2rem;">
+                    Clique aqui para confirmar presença
+                </a>
+                
+                <div class="mt-4" style="color: var(--cinza-claro); font-size: 0.9rem;">
+                    <p>A página se abrirá em uma nova janela</p>
                 </div>
-                
-                <!-- Campo 2: Quantos convidados (além de você) -->
-                <div class="form-group">
-                    <select class="form-select" id="quantidadePessoas" name="quantidade_pessoas" required>
-                        <option value="">Quantos convidados (além de você)? *</option>
-                        <option value="0">Apenas eu (0 convidados adicionais)</option>
-                        <option value="1">Eu + 1 convidado (total 2 pessoas)</option>
-                        <option value="2">Eu + 2 convidados (total 3 pessoas)</option>
-                        <option value="3">Eu + 3 convidados (total 4 pessoas)</option>
-                        <option value="4">Eu + 4 convidados (total 5 pessoas)</option>
-                        <option value="5">Eu + 5 convidados (total 6 pessoas)</option>
-                    </select>
-                    <div class="error-message" id="quantidadePessoas-error">Por favor, selecione a quantidade de convidados</div>
-                </div>
-                
-                <!-- Campo 3: Nome completo dos convidados -->
-                <div class="form-group">
-                    <textarea class="form-textarea" id="nomesConvidados" name="nomes_convidados" placeholder="Nome completo dos convidados (um por linha) *" rows="4" required></textarea>
-                    <div class="error-message" id="nomesConvidados-error">Por favor, digite os nomes dos convidados</div>
-                    <small style="display: block; margin-top: 0.5rem; color: var(--cinza-claro);">
-                        Digite um nome por linha. Exemplo:<br>
-                        Maria Silva<br>
-                        João Souza
-                    </small>
-                </div>
-                
-                <button type="submit" class="btn" id="btnConfirmar" style="width: 100%;">
-                    Confirmar Presença
-                </button>
-                
-                <!-- MENSAGENS DE STATUS -->
-                <div class="msg-success" id="msgSuccessConfirmacao">
-                    <p>✅ Confirmação enviada com sucesso! Obrigado por confirmar sua presença 🤍</p>
-                    <p>Em alguns instantes você será redirecionado...</p>
-                </div>
-                
-                <div class="msg-error" id="msgErrorConfirmacao">
-                    <p>❌ Ocorreu um erro ao enviar a confirmação. Por favor, tente novamente.</p>
-                </div>
-                
-                <div class="loading" id="loadingConfirmacao">
-                    <div class="spinner"></div>
-                    <p>Enviando sua confirmação...</p>
-                </div>
-            </form>
+            </div>
         </div>
         
-        <!-- MENSAGEM PARA OS NOIVOS (RESTAURADA) -->
+        <!-- MENSAGEM PARA OS NOIVOS -->
         <div class="card mt-3">
             <h3 class="text-center" style="color: var(--rosa); margin-bottom: 2rem;">Deixe uma mensagem para os noivos 🤍</h3>
             
@@ -2469,98 +2423,6 @@
             }
         });
 
-        // FUNÇÃO PARA ENVIAR CONFIRMAÇÃO DE PRESENÇA SIMPLIFICADA
-        async function enviarConfirmacao(event) {
-            event.preventDefault();
-            
-            const btnConfirmar = document.getElementById('btnConfirmar');
-            const formulario = document.getElementById('formConfirmacao');
-            const loading = document.getElementById('loadingConfirmacao');
-            const msgSuccess = document.getElementById('msgSuccessConfirmacao');
-            const msgError = document.getElementById('msgErrorConfirmacao');
-            
-            // Validar campos obrigatórios
-            const nome = document.getElementById('nomeConvidado').value.trim();
-            const quantidade = document.getElementById('quantidadePessoas').value;
-            const nomesConvidados = document.getElementById('nomesConvidados').value.trim();
-            
-            if (!nome || !quantidade || !nomesConvidados) {
-                alert('Por favor, preencha todos os campos obrigatórios.');
-                return;
-            }
-            
-            // Desabilitar botão e mostrar loading
-            btnConfirmar.disabled = true;
-            btnConfirmar.textContent = 'Enviando...';
-            formulario.classList.add('form-loading');
-            loading.style.display = 'block';
-            msgSuccess.style.display = 'none';
-            msgError.style.display = 'none';
-            
-            // Coletar dados do formulário
-            const formData = {
-                nome: nome,
-                quantidade_convidados: quantidade,
-                nomes_convidados: nomesConvidados,
-                total_pessoas: parseInt(quantidade) + 1,
-                data: new Date().toLocaleString('pt-BR'),
-                tipo: 'Confirmação de Presença'
-            };
-            
-            try {
-                // ENVIAR VIA FORMSUBMIT PARA casamentoamaurieester@gmail.com
-                const response = await fetch('https://formsubmit.co/ajax/casamentoamaurieester@gmail.com', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        nome_convidado: formData.nome,
-                        quantidade_convidados: formData.quantidade_convidados,
-                        nomes_convidados: formData.nomes_convidados,
-                        total_pessoas: formData.total_pessoas,
-                        data_envio: formData.data,
-                        _subject: `✅ Confirmação de Presença - ${formData.nome}`,
-                        _template: 'table',
-                        _captcha: 'false'
-                    })
-                });
-                
-                if (response.ok) {
-                    // Sucesso!
-                    loading.style.display = 'none';
-                    msgSuccess.style.display = 'block';
-                    
-                    // Limpar formulário
-                    formulario.reset();
-                    
-                    // Redirecionar após 3 segundos
-                    setTimeout(() => {
-                        window.location.href = 'obrigado-confirmacao.html';
-                    }, 3000);
-                    
-                } else {
-                    throw new Error('Erro na resposta do servidor');
-                }
-                
-            } catch (error) {
-                console.error('Erro ao enviar confirmação:', error);
-                
-                // Mostrar mensagem de erro
-                loading.style.display = 'none';
-                msgError.style.display = 'block';
-                
-            } finally {
-                // Reabilitar botão após 3 segundos
-                setTimeout(() => {
-                    btnConfirmar.disabled = false;
-                    btnConfirmar.textContent = 'Confirmar Presença';
-                    formulario.classList.remove('form-loading');
-                }, 3000);
-            }
-        }
-        
         // FUNÇÃO PARA ENVIAR MENSAGEM PARA OS NOIVOS
         async function enviarMensagem(event) {
             event.preventDefault();
