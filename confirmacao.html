@@ -42,6 +42,7 @@
             line-height: 1.6;
             overflow-x: hidden;
             padding: 20px;
+            min-height: 100vh;
         }
         
         .container {
@@ -153,12 +154,6 @@
             color: var(--cinza);
         }
         
-        .autocomplete-result .details {
-            font-size: 0.9rem;
-            color: var(--cinza-claro);
-            margin-top: 2px;
-        }
-        
         /* MENSAGENS DE STATUS */
         .status-message {
             padding: 1.5rem;
@@ -202,11 +197,6 @@
             color: var(--rosa);
             margin-bottom: 0.5rem;
             font-size: 1.3rem;
-        }
-        
-        .name-preview p {
-            margin-bottom: 0;
-            color: var(--cinza);
         }
         
         /* BOTÕES DE CONFIRMAÇÃO */
@@ -284,15 +274,15 @@
             text-align: center;
         }
         
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--cinza);
-            font-weight: 500;
+        .acompanhante-item {
+            background: var(--branco);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: slideUp 0.3s ease;
         }
         
         .form-input {
@@ -303,12 +293,28 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 1rem;
             transition: var(--transicao);
+            flex: 1;
         }
         
         .form-input:focus {
             outline: none;
             border-color: var(--rosa);
             box-shadow: 0 0 0 3px rgba(209, 108, 124, 0.1);
+        }
+        
+        .remove-acompanhante {
+            background: var(--erro);
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            font-size: 1.2rem;
         }
         
         .add-acompanhante {
@@ -332,29 +338,44 @@
             background: rgba(209, 108, 124, 0.1);
         }
         
-        .acompanhante-item {
-            background: var(--branco);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            animation: slideUp 0.3s ease;
+        /* PERGUNTA SOBRE ACOMPANHANTES */
+        .acompanhante-question {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(209, 108, 124, 0.05);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: none;
+            animation: fadeIn 0.5s ease;
         }
         
-        .remove-acompanhante {
-            background: var(--erro);
-            color: white;
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
+        .acompanhante-question h4 {
+            color: var(--rosa);
+            margin-bottom: 1rem;
+        }
+        
+        .question-buttons {
             display: flex;
-            align-items: center;
+            gap: 1rem;
             justify-content: center;
+            margin-top: 1rem;
+        }
+        
+        .question-btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            border: 2px solid var(--rosa);
+            background: transparent;
+            color: var(--rosa);
             cursor: pointer;
-            flex-shrink: 0;
+            font-weight: 500;
+            transition: var(--transicao);
+            min-width: 120px;
+        }
+        
+        .question-btn:hover {
+            background: var(--rosa);
+            color: white;
         }
         
         /* RESULTADO FINAL */
@@ -519,41 +540,60 @@
         <!-- PRÉVIA DO NOME -->
         <div class="name-preview" id="namePreview">
             <h3 id="previewNome">Nome da Pessoa</h3>
-            <p id="previewDetalhes">Convidado(a) principal</p>
         </div>
         
-        <!-- BOTÕES DE CONFIRMAÇÃO -->
-        <div class="confirmation-buttons" id="confirmationButtons">
-            <button class="btn btn-confirm" onclick="confirmarPresenca()">
-                <span class="btn-icon">✅</span>
-                Clique aqui para confirmar a sua presença!
-            </button>
-            <button class="btn btn-decline" onclick="recusarPresenca()">
-                <span class="btn-icon">❌</span>
-                Não comparecerei!
-            </button>
+        <!-- PERGUNTA SOBRE ACOMPANHANTES -->
+        <div class="acompanhante-question" id="acompanhanteQuestion">
+            <h4>Você virá acompanhado?</h4>
+            <div class="question-buttons">
+                <button class="question-btn" onclick="respostaAcompanhante(true)">Sim</button>
+                <button class="question-btn" onclick="respostaAcompanhante(false)">Não</button>
+            </div>
         </div>
         
         <!-- FORMULÁRIO DE ACOMPANHANTES -->
         <div class="acompanhantes-form" id="acompanhantesForm">
-            <h3>Informe seus acompanhantes</h3>
-            <div id="acompanhantesList"></div>
+            <h3>Informe os nomes dos acompanhantes</h3>
+            <div id="acompanhantesList">
+                <!-- Campos de acompanhantes serão adicionados aqui -->
+            </div>
             <button class="add-acompanhante" onclick="adicionarAcompanhante()">
                 <span>+</span>
                 Adicionar acompanhante
             </button>
             
-            <div class="form-group">
-                <label for="mensagemNoivos">Mensagem para os noivos (opcional):</label>
+            <div style="margin-top: 1.5rem;">
+                <button class="btn btn-confirm" onclick="finalizarComAcompanhantes()">
+                    <span class="btn-icon">✅</span>
+                    Confirmar com acompanhantes
+                </button>
+            </div>
+        </div>
+        
+        <!-- BOTÕES DE CONFIRMAÇÃO (quando não tem acompanhantes) -->
+        <div class="confirmation-buttons" id="confirmationButtons">
+            <button class="btn btn-confirm" onclick="confirmarPresenca(false)">
+                <span class="btn-icon">✅</span>
+                Sim, estarei presente!
+            </button>
+            <button class="btn btn-decline" onclick="recusarPresenca()">
+                <span class="btn-icon">❌</span>
+                Não poderei comparecer
+            </button>
+        </div>
+        
+        <!-- MENSAGEM PARA OS NOIVOS -->
+        <div class="acompanhantes-form" id="mensagemForm" style="display: none;">
+            <h3>Deixe uma mensagem para os noivos (opcional)</h3>
+            <div style="margin-bottom: 1.5rem;">
                 <textarea 
                     class="form-input" 
                     id="mensagemNoivos" 
-                    rows="3" 
-                    placeholder="Deixe uma mensagem especial para Amauri e Ester..."
+                    rows="4" 
+                    placeholder="Escreva uma mensagem especial para Amauri e Ester..."
                 ></textarea>
             </div>
-            
-            <button class="btn btn-confirm" onclick="finalizarConfirmacao()" style="margin-top: 1.5rem;">
+            <button class="btn btn-confirm" onclick="enviarConfirmacaoFinal()">
                 <span class="btn-icon">💌</span>
                 Enviar confirmação
             </button>
@@ -573,9 +613,11 @@
             <h4>Como funciona:</h4>
             <ul>
                 <li>Digite seu nome completo no campo acima</li>
-                <li>Se seu nome estiver na lista, escolha entre confirmar ou não comparecer</li>
-                <li>Para convites familiares, você poderá adicionar acompanhantes</li>
-                <li>Você receberá um comprovante por email (opcional)</li>
+                <li>Selecione seu nome na lista que aparece</li>
+                <li>Informe se virá acompanhado ou não</li>
+                <li>Se virá acompanhado, informe os nomes</li>
+                <li>Deixe uma mensagem especial (opcional)</li>
+                <li>Pronto! Sua presença estará confirmada</li>
             </ul>
         </div>
         
@@ -586,87 +628,56 @@
     </div>
 
     <script>
-        // DADOS DA LISTA DE CONVIDADOS
-        // Na versão final, esses dados viriam de um banco de dados
+        // DADOS DA LISTA DE CONVIDADOS COM OS NOMES QUE VOCÊ FORNECEU
         const listaConvidados = [
             {
                 id: 1,
-                nome: "Hélio Morais Benevides",
-                tipo: "Convidado Principal",
-                familia: false,
-                acompanhantes: 0,
+                nome: "Amauri de Jesus Pereira",
                 status: "pendente"
             },
             {
                 id: 2,
-                nome: "Vinícius Mourão Pereira",
-                tipo: "Convidado principal",
-                familia: false,
-                acompanhantes: 0,
+                nome: "Maria Rozângela Mourão Pereira",
                 status: "pendente"
             },
             {
                 id: 3,
-                nome: "Maria Rozângela Mourão",
-                tipo: "Convidada principal",
-                familia: false,
-                acompanhantes: 0,
+                nome: "Vinícius Mourão Pereira",
                 status: "pendente"
             },
             {
                 id: 4,
-                nome: "Amauri de Jesus Pereira",
-                tipo: "Convidado principal",
-                familia: false,
-                acompanhantes: 0,
+                nome: "Deisy Aparecida Morais Benevides",
                 status: "pendente"
             },
             {
                 id: 5,
-                nome: "Deisy Aparecida Morais Rezende",
-                tipo: "Convidada Principal",
-                familia: false,
-                acompanhantes: 3,
+                nome: "Evaldo Rezende Benevides",
                 status: "pendente"
             },
             {
                 id: 6,
-                nome: "Evaldo Rezende Benevides",
-                tipo: "Convidado principal",
-                familia: false,
-                acompanhantes: 0,
+                nome: "Hélio Morais Benevides",
                 status: "pendente"
             },
             {
                 id: 7,
                 nome: "Pedro Henrique de Freitas Reis",
-                tipo: "Convidada principal",
-                familia: false,
-                acompanhantes: 0,
                 status: "pendente"
             },
             {
                 id: 8,
-                nome: "Samuel Henrique pinto",
-                tipo: "Amigo do noivo",
-                familia: false,
-                acompanhantes: 2,
+                nome: "Rodrigo Batista de Assis",
                 status: "pendente"
             },
             {
                 id: 9,
-                nome: "Samuel Fernando Lima",
-                tipo: "Amigo do noivo",
-                familia: false,
-                acompanhantes: 0,
+                nome: "Samuel Henrique Pinto",
                 status: "pendente"
             },
             {
                 id: 10,
-                nome: "Rodrigo Batista de Assis",
-                tipo: "Amigo do noivo",
-                familia: false,
-                acompanhantes: 0,
+                nome: "Samuel Fernando Lima",
                 status: "pendente"
             }
         ];
@@ -674,7 +685,7 @@
         // VARIÁVEIS GLOBAIS
         let convidadoAtual = null;
         let acompanhantes = [];
-        let acompanhanteCount = 0;
+        let teraAcompanhantes = false;
 
         // ELEMENTOS DO DOM
         const nomeInput = document.getElementById('nomeInput');
@@ -682,10 +693,11 @@
         const statusMessage = document.getElementById('statusMessage');
         const namePreview = document.getElementById('namePreview');
         const previewNome = document.getElementById('previewNome');
-        const previewDetalhes = document.getElementById('previewDetalhes');
         const confirmationButtons = document.getElementById('confirmationButtons');
+        const acompanhanteQuestion = document.getElementById('acompanhanteQuestion');
         const acompanhantesForm = document.getElementById('acompanhantesForm');
         const acompanhantesList = document.getElementById('acompanhantesList');
+        const mensagemForm = document.getElementById('mensagemForm');
         const confirmationResult = document.getElementById('confirmationResult');
         const loading = document.getElementById('loading');
 
@@ -744,7 +756,6 @@
                 div.className = 'autocomplete-result';
                 div.innerHTML = `
                     <div class="name">${convidado.nome}</div>
-                    <div class="details">${convidado.tipo}</div>
                 `;
                 
                 div.addEventListener('click', function() {
@@ -771,8 +782,7 @@
             
             // Procurar nome exato primeiro
             let convidado = listaConvidados.find(c => 
-                c.nome.toLowerCase() === nome.toLowerCase() ||
-                c.nome.toLowerCase().includes(nome.toLowerCase())
+                c.nome.toLowerCase() === nome.toLowerCase()
             );
             
             if (!convidado) {
@@ -788,7 +798,7 @@
                 // Verificar se já confirmou
                 if (convidado.status === "confirmado") {
                     mostrarMensagem(
-                        "Você já confirmou sua presença! Obrigado! 🎉",
+                        "✅ Você já confirmou sua presença! Obrigado! 🤍",
                         "success"
                     );
                     return;
@@ -796,7 +806,7 @@
                 
                 if (convidado.status === "recusado") {
                     mostrarMensagem(
-                        "Você já informou que não comparecerá. Caso mude de ideia, entre em contato com os noivos.",
+                        "❌ Você já informou que não comparecerá. Caso mude de ideia, entre em contato com os noivos.",
                         "info"
                     );
                     return;
@@ -804,10 +814,10 @@
                 
                 convidadoAtual = convidado;
                 mostrarPreviewConvidado(convidado);
-                mostrarBotoesConfirmacao();
+                mostrarPerguntaAcompanhante();
             } else {
                 mostrarMensagem(
-                    "Poxa... Esse nome não está na lista de convidados. 😔<br>Verifique se digitou corretamente ou entre em contato com os noivos.",
+                    "😔 Poxa... Esse nome não está na lista de convidados.<br>Verifique se digitou corretamente ou entre em contato com os noivos.",
                     "error"
                 );
             }
@@ -830,13 +840,12 @@
         // FUNÇÃO PARA MOSTRAR PREVIEW DO CONVIDADO
         function mostrarPreviewConvidado(convidado) {
             previewNome.textContent = convidado.nome;
-            previewDetalhes.textContent = convidado.tipo;
             namePreview.style.display = 'block';
         }
 
-        // FUNÇÃO PARA MOSTRAR BOTÕES DE CONFIRMAÇÃO
-        function mostrarBotoesConfirmacao() {
-            confirmationButtons.style.display = 'flex';
+        // FUNÇÃO PARA MOSTRAR PERGUNTA SOBRE ACOMPANHANTES
+        function mostrarPerguntaAcompanhante() {
+            acompanhanteQuestion.style.display = 'block';
         }
 
         // FUNÇÃO PARA RESETAR INTERFACE
@@ -844,24 +853,89 @@
             statusMessage.style.display = 'none';
             namePreview.style.display = 'none';
             confirmationButtons.style.display = 'none';
+            acompanhanteQuestion.style.display = 'none';
             acompanhantesForm.style.display = 'none';
+            mensagemForm.style.display = 'none';
             confirmationResult.style.display = 'none';
             convidadoAtual = null;
             acompanhantes = [];
-            acompanhanteCount = 0;
             acompanhantesList.innerHTML = '';
         }
 
-        // FUNÇÃO PARA CONFIRMAR PRESENÇA
-        function confirmarPresenca() {
-            if (!convidadoAtual) return;
+        // FUNÇÃO PARA RESPOSTA SOBRE ACOMPANHANTES
+        function respostaAcompanhante(resposta) {
+            teraAcompanhantes = resposta;
+            acompanhanteQuestion.style.display = 'none';
             
-            // Se for família ou tiver acompanhantes, mostrar formulário
-            if (convidadoAtual.familia || convidadoAtual.acompanhantes > 0) {
+            if (resposta) {
+                // Se vai ter acompanhantes, mostrar formulário
                 mostrarFormularioAcompanhantes();
             } else {
-                // Confirmar direto
-                finalizarConfirmacao();
+                // Se não vai ter acompanhantes, mostrar botões de confirmação
+                confirmationButtons.style.display = 'flex';
+            }
+        }
+
+        // FUNÇÃO PARA MOSTRAR FORMULÁRIO DE ACOMPANHANTES
+        function mostrarFormularioAcompanhantes() {
+            acompanhantesForm.style.display = 'block';
+            // Adicionar primeiro campo de acompanhante automaticamente
+            adicionarCampoAcompanhante();
+        }
+
+        // FUNÇÃO PARA ADICIONAR CAMPO DE ACOMPANHANTE
+        function adicionarAcompanhante() {
+            adicionarCampoAcompanhante();
+        }
+
+        function adicionarCampoAcompanhante() {
+            const id = `acompanhante-${acompanhantes.length + 1}`;
+            
+            const div = document.createElement('div');
+            div.className = 'acompanhante-item';
+            div.id = id;
+            div.innerHTML = `
+                <input 
+                    type="text" 
+                    class="form-input" 
+                    placeholder="Nome completo do acompanhante"
+                    oninput="atualizarAcompanhante('${id}', this.value)"
+                >
+                <button class="remove-acompanhante" onclick="removerAcompanhante('${id}')">×</button>
+            `;
+            
+            acompanhantesList.appendChild(div);
+            acompanhantes.push({ id, nome: '' });
+        }
+
+        // FUNÇÃO PARA ATUALIZAR ACOMPANHANTE
+        function atualizarAcompanhante(id, nome) {
+            const index = acompanhantes.findIndex(a => a.id === id);
+            if (index !== -1) {
+                acompanhantes[index].nome = nome;
+            }
+        }
+
+        // FUNÇÃO PARA REMOVER ACOMPANHANTE
+        function removerAcompanhante(id) {
+            const div = document.getElementById(id);
+            if (div) {
+                div.remove();
+                acompanhantes = acompanhantes.filter(a => a.id !== id);
+            }
+        }
+
+        // FUNÇÃO PARA CONFIRMAR PRESENÇA SEM ACOMPANHANTES
+        function confirmarPresenca(temAcompanhantes) {
+            if (!convidadoAtual) return;
+            
+            if (temAcompanhantes) {
+                // Já estamos no fluxo de acompanhantes
+                finalizarComAcompanhantes();
+            } else {
+                // Mostrar formulário de mensagem
+                confirmationButtons.style.display = 'none';
+                mensagemForm.style.display = 'block';
             }
         }
 
@@ -893,81 +967,25 @@
             }, 1500);
         }
 
-        // FUNÇÃO PARA MOSTRAR FORMULÁRIO DE ACOMPANHANTES
-        function mostrarFormularioAcompanhantes() {
-            confirmationButtons.style.display = 'none';
+        // FUNÇÃO PARA FINALIZAR COM ACOMPANHANTES
+        function finalizarComAcompanhantes() {
+            // Validar se pelo menos um acompanhante tem nome
+            const acompanhantesComNome = acompanhantes.filter(a => a.nome.trim() !== '');
             
-            // Criar campos para acompanhantes
-            if (convidadoAtual.familia || convidadoAtual.acompanhantes > 0) {
-                const maxAcompanhantes = convidadoAtual.familia ? 
-                    convidadoAtual.acompanhantes : convidadoAtual.acompanhantes;
-                
-                for (let i = 0; i < maxAcompanhantes; i++) {
-                    adicionarCampoAcompanhante();
-                }
-            }
-            
-            acompanhantesForm.style.display = 'block';
-        }
-
-        // FUNÇÃO PARA ADICIONAR ACOMPANHANTE
-        function adicionarAcompanhante() {
-            const maxAcompanhantes = convidadoAtual.familia ? 
-                convidadoAtual.acompanhantes : convidadoAtual.acompanhantes;
-            
-            if (acompanhanteCount < maxAcompanhantes) {
-                adicionarCampoAcompanhante();
-            } else {
+            if (acompanhantesComNome.length === 0) {
                 mostrarMensagem(
-                    `Você pode adicionar no máximo ${maxAcompanhantes} acompanhante(s).`,
-                    "info"
+                    "Por favor, informe pelo menos o nome de um acompanhante.",
+                    "error"
                 );
+                return;
             }
-        }
-
-        // FUNÇÃO PARA ADICIONAR CAMPO DE ACOMPANHANTE
-        function adicionarCampoAcompanhante() {
-            acompanhanteCount++;
-            const id = `acompanhante-${acompanhanteCount}`;
             
-            const div = document.createElement('div');
-            div.className = 'acompanhante-item';
-            div.id = id;
-            div.innerHTML = `
-                <input 
-                    type="text" 
-                    class="form-input" 
-                    placeholder="Nome completo do acompanhante"
-                    oninput="atualizarAcompanhante('${id}', this.value)"
-                    style="flex: 1;"
-                >
-                <button class="remove-acompanhante" onclick="removerAcompanhante('${id}')">×</button>
-            `;
-            
-            acompanhantesList.appendChild(div);
-            acompanhantes.push({ id, nome: '' });
+            acompanhantesForm.style.display = 'none';
+            mensagemForm.style.display = 'block';
         }
 
-        // FUNÇÃO PARA ATUALIZAR ACOMPANHANTE
-        function atualizarAcompanhante(id, nome) {
-            const index = acompanhantes.findIndex(a => a.id === id);
-            if (index !== -1) {
-                acompanhantes[index].nome = nome;
-            }
-        }
-
-        // FUNÇÃO PARA REMOVER ACOMPANHANTE
-        function removerAcompanhante(id) {
-            const div = document.getElementById(id);
-            if (div) {
-                div.remove();
-                acompanhantes = acompanhantes.filter(a => a.id !== id);
-                acompanhanteCount--;
-            }
-        }
-
-        // FUNÇÃO PARA FINALIZAR CONFIRMAÇÃO
-        function finalizarConfirmacao() {
+        // FUNÇÃO PARA ENVIAR CONFIRMAÇÃO FINAL
+        function enviarConfirmacaoFinal() {
             if (!convidadoAtual) return;
             
             const mensagem = document.getElementById('mensagemNoivos').value;
@@ -986,7 +1004,7 @@
                     <p>Sua presença no nosso casamento está confirmada.</p>
                 `;
                 
-                if (acompanhantes.length > 0) {
+                if (teraAcompanhantes && acompanhantes.length > 0) {
                     const nomesAcompanhantes = acompanhantes
                         .filter(a => a.nome.trim() !== '')
                         .map(a => a.nome)
@@ -1015,7 +1033,7 @@
                 confirmationResult.style.display = 'block';
                 
                 // Esconder formulário
-                acompanhantesForm.style.display = 'none';
+                mensagemForm.style.display = 'none';
                 
                 // Resetar após 8 segundos
                 setTimeout(() => {
@@ -1034,18 +1052,6 @@
         function esconderLoading() {
             loading.style.display = 'none';
         }
-
-        // SIMULAR ALGUNS CONVIDADOS JÁ CONFIRMADOS PARA DEMONSTRAÇÃO
-        function inicializarDadosDemonstracao() {
-            // Marcar alguns como já confirmados para demonstração
-            listaConvidados[0].status = "confirmado";
-            listaConvidados[3].status = "recusado";
-        }
-
-        // Inicializar dados de demonstração
-        inicializarDadosDemonstracao();
     </script>
 </body>
-
 </html>
-
