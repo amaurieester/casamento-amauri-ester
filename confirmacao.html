@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
-        /* ESTILOS EXISTENTES (mantive o visual original) */
         :root {
             --rosa: #d16c7c;
             --laranja: #f08a5d;
@@ -27,6 +26,7 @@
             --sucesso: #4CAF50;
             --erro: #f44336;
             --azul: #2196F3;
+            --coracao: #ff6b8b;
         }
         
         * {
@@ -194,20 +194,20 @@
         }
         
         .status-success {
-            background: rgba(76, 175, 80, 0.1);
-            border: 1px solid rgba(76, 175, 80, 0.2);
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(76, 175, 80, 0.05));
+            border: 2px solid rgba(76, 175, 80, 0.2);
             color: var(--sucesso);
         }
         
         .status-error {
-            background: rgba(244, 67, 54, 0.1);
-            border: 1px solid rgba(244, 67, 54, 0.2);
+            background: linear-gradient(135deg, rgba(244, 67, 54, 0.1), rgba(244, 67, 54, 0.05));
+            border: 2px solid rgba(244, 67, 54, 0.2);
             color: var(--erro);
         }
         
         .status-info {
-            background: rgba(33, 150, 243, 0.1);
-            border: 1px solid rgba(33, 150, 243, 0.2);
+            background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), rgba(33, 150, 243, 0.05));
+            border: 2px solid rgba(33, 150, 243, 0.2);
             color: var(--azul);
         }
         
@@ -215,11 +215,12 @@
         .name-preview {
             text-align: center;
             padding: 1.5rem;
-            background: rgba(209, 108, 124, 0.05);
+            background: linear-gradient(135deg, rgba(209, 108, 124, 0.08), rgba(209, 108, 124, 0.03));
             border-radius: 12px;
             margin-bottom: 2rem;
             display: none;
             animation: fadeIn 0.5s ease;
+            border: 2px solid rgba(209, 108, 124, 0.1);
         }
         
         .name-preview h3 {
@@ -232,11 +233,12 @@
         .acompanhante-question {
             text-align: center;
             padding: 1.5rem;
-            background: rgba(209, 108, 124, 0.05);
+            background: linear-gradient(135deg, rgba(209, 108, 124, 0.08), rgba(209, 108, 124, 0.03));
             border-radius: 12px;
             margin-bottom: 2rem;
             display: none;
             animation: fadeIn 0.5s ease;
+            border: 2px solid rgba(209, 108, 124, 0.1);
         }
         
         .acompanhante-question h4 {
@@ -270,12 +272,13 @@
         
         /* FORMULÁRIO DE ACOMPANHANTES */
         .acompanhantes-form {
-            background: rgba(209, 108, 124, 0.05);
+            background: linear-gradient(135deg, rgba(209, 108, 124, 0.08), rgba(209, 108, 124, 0.03));
             padding: 2rem;
             border-radius: 12px;
             margin-bottom: 2rem;
             display: none;
             animation: fadeIn 0.5s ease;
+            border: 2px solid rgba(209, 108, 124, 0.1);
         }
         
         .acompanhantes-form h3 {
@@ -291,6 +294,7 @@
             margin-bottom: 1rem;
             position: relative;
             animation: slideUp 0.3s ease;
+            border: 1px solid #eee;
         }
         
         .acompanhante-input-wrapper {
@@ -395,12 +399,13 @@
         
         /* FORMULÁRIO DE MENSAGEM */
         .mensagem-form {
-            background: rgba(209, 108, 124, 0.05);
+            background: linear-gradient(135deg, rgba(209, 108, 124, 0.08), rgba(209, 108, 124, 0.03));
             padding: 2rem;
             border-radius: 12px;
             margin-bottom: 2rem;
             display: none;
             animation: fadeIn 0.5s ease;
+            border: 2px solid rgba(209, 108, 124, 0.1);
         }
         
         .mensagem-form h3 {
@@ -499,21 +504,54 @@
             font-size: 1.2rem;
         }
         
-        /* RESULTADO FINAL */
+        /* RESULTADO FINAL COM MENSAGEM BONITA */
         .confirmation-result {
             text-align: center;
-            padding: 2rem;
-            background: rgba(76, 175, 80, 0.1);
-            border-radius: 12px;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(209, 108, 124, 0.08), rgba(240, 138, 93, 0.08));
+            border-radius: 16px;
             margin-top: 2rem;
             display: none;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.8s ease;
+            border: 2px solid rgba(209, 108, 124, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .confirmation-result::before {
+            content: "💖";
+            position: absolute;
+            font-size: 4rem;
+            opacity: 0.1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
         }
         
         .confirmation-result h3 {
-            color: var(--sucesso);
+            color: var(--rosa);
             margin-bottom: 1rem;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .confirmation-result p {
+            color: var(--cinza);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .confirmation-result .coracao {
+            color: var(--coracao);
+            font-size: 2.5rem;
+            margin: 1rem 0;
+            display: block;
+            animation: pulse 1.5s infinite;
         }
         
         /* ANIMAÇÕES */
@@ -531,6 +569,12 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
         
         /* VOLTAR AO SITE */
@@ -641,7 +685,7 @@
         
         <!-- BOTÕES DE CONFIRMAÇÃO (quando não tem acompanhantes) -->
         <div class="confirmation-buttons" id="confirmationButtons">
-            <button class="btn btn-confirm" onclick="confirmarPresenca(false)">
+            <button class="btn btn-confirm" onclick="confirmarPresenca()">
                 <span class="btn-icon">✅</span>
                 Sim, estarei presente!
             </button>
@@ -691,9 +735,31 @@
             "Hélio Morais Benevides",
             "Pedro Henrique de Freitas Reis",
             "Rodrigo Batista de Assis",
+            "~!~!~!Teste!~!~!~"
             "Samuel Henrique Pinto",
             "Samuel Fernando Lima"
         ];
+
+        // SISTEMA PARA EVITAR CONFIRMAÇÕES REPETIDAS
+        // (Guarda no localStorage do navegador)
+        function jaConfirmou(nome) {
+            const confirmados = JSON.parse(localStorage.getItem('casamento_confirmados')) || [];
+            return confirmados.includes(nome.toLowerCase());
+        }
+
+        function marcarComoConfirmado(nome) {
+            const confirmados = JSON.parse(localStorage.getItem('casamento_confirmados')) || [];
+            if (!confirmados.includes(nome.toLowerCase())) {
+                confirmados.push(nome.toLowerCase());
+                localStorage.setItem('casamento_confirmados', JSON.stringify(confirmados));
+            }
+        }
+
+        // PARA TESTES: Função para limpar confirmações
+        function limparConfirmacoesTeste() {
+            localStorage.removeItem('casamento_confirmados');
+            console.log('Confirmações de teste limpas!');
+        }
 
         // VARIÁVEIS GLOBAIS
         let convidadoAtual = null;
@@ -783,12 +849,22 @@
         function verificarNome(nome) {
             // Verificar se está na lista
             if (listaConvidados.some(c => c.toLowerCase() === nome.toLowerCase())) {
+                
+                // Verificar se já confirmou antes
+                if (jaConfirmou(nome)) {
+                    mostrarMensagem(
+                        `Você já confirmou sua presença anteriormente!<br>Obrigado por confirmar novamente seu interesse. 💖`,
+                        "info"
+                    );
+                    return;
+                }
+                
                 convidadoAtual = nome;
                 mostrarPreviewConvidado(nome);
                 mostrarPerguntaAcompanhante();
             } else {
                 mostrarMensagem(
-                    "😔 Poxa... Esse nome não está na lista de convidados.<br>Verifique se digitou corretamente ou entre em contato com os noivos.",
+                    `Poxa... esse nome <strong>"${nome}"</strong> não está na lista de convidados.<br>Favor entrar em contato com os noivos.`,
                     "error"
                 );
             }
@@ -985,7 +1061,7 @@
                 input.classList.add('invalido');
                 statusDiv.innerHTML = '❌';
                 statusDiv.className = 'validacao-status status-erro';
-                errorDiv.textContent = `"${nome}" não está na lista de convidados. Favor procurar os noivos.`;
+                errorDiv.innerHTML = `Poxa... esse nome <strong>"${nome}"</strong> não está na lista de convidados.<br>Favor entrar em contato com os noivos.`;
                 errorDiv.style.display = 'block';
                 acompanhantes[index].valido = false;
                 return;
@@ -1067,7 +1143,7 @@
             if (nomesAcompanhantes.length !== nomesUnicos.length) {
                 mostrarMensagem(
                     "Há nomes duplicados na lista de acompanhantes. Por favor, verifique.",
-                    "warning"
+                    "error"
                 );
                 return;
             }
@@ -1124,16 +1200,21 @@
                 const resultado = await enviarParaFormspree(dados);
                 
                 if (resultado.success) {
+                    // Marcar como confirmado no navegador
+                    if (statusPresenca === 'confirmado') {
+                        marcarComoConfirmado(convidadoAtual);
+                    }
+                    
                     mostrarLoading(false);
                     
                     // Mostrar resultado
                     let html = '';
                     if (statusPresenca === 'confirmado') {
                         html = `
-                            <h3>Presença confirmada com sucesso! 🎉</h3>
+                            <h3>Presença confirmada com sucesso</h3>
+                            <p>Estamos ansiosos para aproveitar esse momento especial com você! 💖</p>
+                            <span class="coracao">💖</span>
                             <p><strong>${convidadoAtual}</strong></p>
-                            <p>Sua presença no nosso casamento está confirmada.</p>
-                            <p><small>Sua resposta foi registrada e enviada para os noivos.</small></p>
                         `;
                         
                         if (teraAcompanhantes && acompanhantes.length > 0) {
@@ -1152,12 +1233,9 @@
                         }
                         
                         html += `
-                            <p style="margin-top: 1rem;">
+                            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--cinza-claro);">
                                 <strong>Data:</strong> 29 de Maio de 2027<br>
                                 <strong>Local:</strong> Várzea da Palma - MG
-                            </p>
-                            <p style="margin-top: 1.5rem; color: var(--sucesso); font-weight: 600;">
-                                Mal podemos esperar para celebrar com você! 💍
                             </p>
                         `;
                     } else {
@@ -1175,12 +1253,12 @@
                     confirmationResult.style.display = 'block';
                     mensagemForm.style.display = 'none';
                     
-                    // Resetar após 8 segundos
+                    // Resetar após 10 segundos
                     setTimeout(() => {
                         resetarInterface();
                         nomeInput.value = '';
                         nomeInput.focus();
-                    }, 8000);
+                    }, 10000);
                     
                 } else {
                     throw new Error(resultado.error);
@@ -1251,7 +1329,9 @@
             
             document.getElementById('mensagemNoivos').value = '';
         }
+
+        // PARA TESTES: Adicione esta função no console do navegador para limpar confirmações
+        console.log('Para limpar confirmações de teste, execute: limparConfirmacoesTeste()');
     </script>
 </body>
 </html>
-
