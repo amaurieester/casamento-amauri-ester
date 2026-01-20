@@ -85,7 +85,7 @@
         h2 {
             font-size: clamp(1.8rem, 4vw, 2.5rem);
             color: var(--laranja);
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem; /* Aumentado o espaçamento */
             position: relative;
             display: inline-block;
         }
@@ -93,7 +93,7 @@
         h2::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -15px; /* Ajustado para melhor espaçamento */
             left: 50%;
             transform: translateX(-50%);
             width: 60px;
@@ -105,34 +105,35 @@
         .welcome-title {
             color: var(--rosa);
             font-size: clamp(2rem, 4vw, 2.5rem);
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem; /* Aumentado */
             text-align: center;
             width: 100%;
         }
         
         p {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem; /* Aumentado */
             font-size: clamp(1rem, 2vw, 1.1rem);
         }
         
-        /* MENU PRINCIPAL */
+        /* MENU PRINCIPAL CORRIGIDO */
         .menu {
             position: sticky;
             top: 15px;
             margin: 15px auto;
-            max-width: 900px;
-            background: rgba(255, 255, 255, 0.95);
+            max-width: 1200px; /* Aumentado para caber mais itens */
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            -webkit-backdrop-fit: blur(10px);
             border-radius: 40px;
-            padding: 16px 32px;
+            padding: 18px 40px; /* Aumentado padding lateral */
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: clamp(1rem, 3vw, 2.5rem);
+            gap: clamp(1.2rem, 3vw, 3rem); /* Aumentado gap */
             box-shadow: 0 10px 30px var(--sombra);
             z-index: 1000;
             transition: var(--transicao);
+            flex-wrap: wrap; /* Permite quebra de linha se necessário */
         }
         
         .menu:hover {
@@ -143,10 +144,10 @@
             text-decoration: none;
             color: var(--rosa);
             font-weight: 500;
-            font-size: clamp(0.9rem, 2vw, 1rem);
+            font-size: clamp(0.9rem, 2vw, 1.1rem); /* Aumentado ligeiramente */
             white-space: nowrap;
             position: relative;
-            padding: 5px 0;
+            padding: 8px 5px; /* Aumentado padding */
             transition: var(--transicao);
         }
         
@@ -169,6 +170,14 @@
             color: var(--laranja);
         }
         
+        @media (max-width: 1024px) {
+            .menu {
+                max-width: 95%;
+                padding: 16px 30px;
+                gap: 1.8rem;
+            }
+        }
+        
         @media (max-width: 768px) {
             .menu {
                 overflow-x: auto;
@@ -177,16 +186,21 @@
                 margin: 10px 15px;
                 gap: 1.8rem;
                 scrollbar-width: none;
+                flex-wrap: nowrap;
             }
             
             .menu::-webkit-scrollbar {
                 display: none;
             }
+            
+            .menu a {
+                font-size: 0.95rem;
+            }
         }
         
-        /* SEÇÕES */
+        /* SEÇÕES COM MAIS ESPAÇAMENTO */
         section {
-            padding: clamp(4rem, 8vw, 6rem) 20px;
+            padding: clamp(5rem, 10vw, 8rem) 20px; /* Aumentado padding vertical */
             max-width: 1100px;
             margin: 0 auto;
         }
@@ -194,9 +208,10 @@
         .card {
             background: var(--branco);
             border-radius: var(--borda-redonda);
-            padding: clamp(2rem, 5vw, 3rem);
+            padding: clamp(2.5rem, 6vw, 4rem); /* Aumentado padding */
             box-shadow: 0 15px 40px var(--sombra);
             transition: var(--transicao);
+            margin-bottom: 3rem; /* Adicionado espaçamento entre cards */
         }
         
         .card:hover {
@@ -338,14 +353,14 @@
         .presentes-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
+            gap: 2rem; /* Aumentado gap */
             margin-top: 2rem;
         }
         
         @media (max-width: 768px) {
             .presentes-grid {
                 grid-template-columns: 1fr;
-                gap: 1rem;
+                gap: 1.5rem;
             }
         }
         
@@ -364,7 +379,7 @@
         .presente-card {
             background: var(--branco);
             border-radius: 20px;
-            padding: 1.5rem;
+            padding: 1.8rem; /* Aumentado */
             box-shadow: 0 10px 25px var(--sombra);
             display: flex;
             flex-direction: column;
@@ -384,7 +399,7 @@
             height: 200px;
             border-radius: 12px;
             overflow: hidden;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
             position: relative;
         }
@@ -431,7 +446,7 @@
         .presente-titulo {
             font-weight: 600;
             font-size: 1.1rem;
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem; /* Aumentado */
             color: var(--cinza);
             line-height: 1.4;
             min-height: 3.2rem;
@@ -441,7 +456,7 @@
             font-weight: 700;
             font-size: 1.5rem;
             color: var(--laranja);
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem; /* Aumentado */
             padding: 0.5rem 0;
             border-top: 1px solid rgba(0, 0, 0, 0.05);
         }
@@ -453,12 +468,12 @@
         }
         
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem; /* Aumentado */
         }
         
         .form-input, .form-textarea, .form-select {
             width: 100%;
-            padding: 1rem 1.2rem;
+            padding: 1.2rem 1.5rem; /* Aumentado */
             border-radius: 12px;
             border: 1px solid #ddd;
             font-family: 'Montserrat', sans-serif;
@@ -485,14 +500,14 @@
         .error-message {
             color: var(--erro);
             font-size: 0.85rem;
-            margin-top: 0.3rem;
+            margin-top: 0.5rem; /* Aumentado */
             display: none;
         }
         
         .msg-success {
             display: none;
-            margin-top: 1.5rem;
-            padding: 1rem;
+            margin-top: 2rem; /* Aumentado */
+            padding: 1.2rem;
             background: rgba(76, 175, 80, 0.1);
             border-radius: 12px;
             color: var(--sucesso);
@@ -503,8 +518,8 @@
         
         .msg-error {
             display: none;
-            margin-top: 1.5rem;
-            padding: 1rem;
+            margin-top: 2rem; /* Aumentado */
+            padding: 1.2rem;
             background: rgba(244, 67, 54, 0.1);
             border-radius: 12px;
             color: var(--erro);
@@ -534,7 +549,7 @@
         .loading {
             display: none;
             text-align: center;
-            padding: 2rem;
+            padding: 2.5rem; /* Aumentado */
             position: relative;
             z-index: 10;
         }
@@ -546,7 +561,7 @@
             border-top-color: var(--rosa);
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
+            margin: 0 auto 1.5rem; /* Aumentado */
         }
         
         @keyframes spin {
@@ -678,7 +693,7 @@
         }
         
         .qrcode-container {
-            margin: 1rem auto;
+            margin: 1.5rem auto; /* Aumentado */
             padding: 1rem;
             background: #f8f8f8;
             border-radius: 12px;
@@ -704,9 +719,9 @@
         
         .pix-info {
             background: rgba(240, 138, 93, 0.1);
-            padding: 1rem;
+            padding: 1.2rem; /* Aumentado */
             border-radius: 12px;
-            margin: 1rem 0;
+            margin: 1.5rem 0; /* Aumentado */
             text-align: left;
             font-size: 0.9rem;
         }
@@ -719,7 +734,7 @@
         }
         
         .pix-info p {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem; /* Aumentado */
             word-break: break-word;
         }
         
@@ -794,7 +809,7 @@
             background: linear-gradient(135deg, var(--rosa), var(--laranja));
             color: var(--branco);
             text-align: center;
-            padding: 3rem 20px;
+            padding: 4rem 20px; /* Aumentado */
             margin-top: 4rem;
         }
         
@@ -811,19 +826,21 @@
         
         /* UTILITIES */
         .text-center { text-align: center; }
-        .mt-1 { margin-top: 1rem; }
-        .mt-2 { margin-top: 2rem; }
-        .mt-3 { margin-top: 3rem; }
-        .mb-1 { margin-bottom: 1rem; }
-        .mb-2 { margin-bottom: 2rem; }
-        .mb-3 { margin-bottom: 3rem; }
+        .mt-1 { margin-top: 1.5rem; } /* Aumentado */
+        .mt-2 { margin-top: 2.5rem; } /* Aumentado */
+        .mt-3 { margin-top: 3.5rem; } /* Aumentado */
+        .mt-4 { margin-top: 4.5rem; } /* Adicionado */
+        .mb-1 { margin-bottom: 1.5rem; } /* Aumentado */
+        .mb-2 { margin-bottom: 2.5rem; } /* Aumentado */
+        .mb-3 { margin-bottom: 3.5rem; } /* Aumentado */
+        .mb-4 { margin-bottom: 4.5rem; } /* Adicionado */
         
         /* FILTRO DE PREÇO */
         .filtro-container {
             display: flex;
             justify-content: center;
-            gap: 0.8rem;
-            margin: 1.5rem 0;
+            gap: 1rem; /* Aumentado */
+            margin: 2rem 0; /* Aumentado */
             flex-wrap: wrap;
         }
         
@@ -841,7 +858,7 @@
         }
         
         .filtro-btn {
-            padding: 0.5rem 1.2rem;
+            padding: 0.6rem 1.5rem; /* Aumentado */
             border-radius: 50px;
             border: 2px solid var(--rosa);
             background: transparent;
@@ -889,21 +906,21 @@
         .eventos-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+            gap: 3rem; /* Aumentado */
             margin-top: 2rem;
         }
         
         @media (max-width: 768px) {
             .eventos-container {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 2.5rem; /* Aumentado */
             }
         }
         
         .evento-card {
             background: var(--branco);
             border-radius: 20px;
-            padding: 2rem;
+            padding: 2.5rem; /* Aumentado */
             box-shadow: 0 10px 25px var(--sombra);
             text-align: center;
             transition: var(--transicao);
@@ -920,7 +937,7 @@
             height: 200px;
             border-radius: 12px;
             overflow: hidden;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem; /* Aumentado */
             position: relative;
         }
         
@@ -935,19 +952,19 @@
         .evento-titulo {
             color: var(--rosa);
             font-size: 1.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem; /* Aumentado */
             font-family: 'Playfair Display', serif;
         }
         
         .evento-local {
             color: var(--cinza);
             line-height: 1.6;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem; /* Aumentado */
         }
         
         .evento-local strong {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem; /* Aumentado */
             color: var(--laranja);
         }
         
@@ -955,7 +972,7 @@
         .galeria-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
+            gap: 1.5rem; /* Aumentado */
             margin-top: 2rem;
         }
         
@@ -1002,73 +1019,107 @@
             transform: translateY(0);
         }
         
-        /* PADRINHOS SECTION */
-        .padrinhos-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+        /* PADRINHOS SECTION - NOVO LAYOUT */
+        .padrinhos-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
-        .padrinho-card {
-            text-align: center;
-            padding: 1.5rem;
+        .padrinhos-frase {
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--rosa);
+            margin: 2.5rem 0; /* Aumentado */
+            line-height: 1.6;
+            background: rgba(209, 108, 124, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--rosa);
+        }
+        
+        .padrinhos-categoria {
+            margin: 4rem 0 3rem; /* Aumentado */
+        }
+        
+        .padrinhos-categoria h3 {
+            color: var(--laranja);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .padrinhos-categoria h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: var(--rosa);
+        }
+        
+        .dress-code-card {
             background: var(--branco);
             border-radius: 15px;
-            box-shadow: 0 5px 15px var(--sombra);
+            padding: 2.5rem; /* Aumentado */
+            box-shadow: 0 10px 25px var(--sombra);
+            text-align: center;
+            margin: 2rem auto; /* Aumentado */
+            max-width: 500px;
             transition: var(--transicao);
         }
         
-        .padrinho-card:hover {
+        .dress-code-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px var(--sombra-hover);
+            box-shadow: 0 15px 35px var(--sombra-hover);
         }
         
-        .padrinho-foto {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
+        .dress-code-card img {
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
             object-fit: cover;
-            margin: 0 auto 1rem;
-            border: 3px solid var(--rosa);
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
         }
         
-        .padrinho-nome {
-            color: var(--rosa);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        
-        .padrinho-funcao {
-            color: var(--cinza-claro);
-            font-size: 0.9rem;
+        .dress-code-info {
+            padding: 1rem;
         }
         
         /* DRESS CODE */
         .dress-code-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
+            gap: 2rem; /* Aumentado */
             margin-top: 2rem;
         }
         
         .dress-code-item {
-            padding: 1.5rem;
+            padding: 1.8rem; /* Aumentado */
             background: var(--branco);
             border-radius: 15px;
             box-shadow: 0 5px 15px var(--sombra);
             text-align: center;
+            transition: var(--transicao);
+        }
+        
+        .dress-code-item:hover {
+            transform: translateY(-5px);
         }
         
         .dress-code-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            font-size: 2.5rem; /* Aumentado */
+            margin-bottom: 1.2rem; /* Aumentado */
             display: block;
         }
         
         .dress-code-titulo {
             color: var(--laranja);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem; /* Aumentado */
             font-weight: 600;
         }
         
@@ -1076,7 +1127,7 @@
         .timeline {
             position: relative;
             max-width: 800px;
-            margin: 2rem auto 0;
+            margin: 3rem auto 0; /* Aumentado */
         }
         
         .timeline::before {
@@ -1093,7 +1144,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem; /* Aumentado */
             position: relative;
         }
         
@@ -1108,7 +1159,7 @@
         .timeline-hora {
             background: var(--rosa);
             color: white;
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.2rem; /* Aumentado */
             border-radius: 20px;
             font-weight: 600;
             min-width: 100px;
@@ -1118,10 +1169,10 @@
         
         .timeline-content {
             background: var(--branco);
-            padding: 1rem 1.5rem;
+            padding: 1.2rem 1.8rem; /* Aumentado */
             border-radius: 12px;
             box-shadow: 0 5px 15px var(--sombra);
-            margin: 0 1.5rem;
+            margin: 0 1.8rem; /* Aumentado */
             flex: 1;
             max-width: 300px;
             z-index: 1;
@@ -1164,10 +1215,10 @@
             }
         }
         
-        /* FORMULÁRIO DE CONFIRMAÇÃO AVANÇADO */
+        /* FORMULÁRIO DE CONFIRMAÇÃO SIMPLIFICADO */
         .convidado-group {
-            margin-top: 1rem;
-            padding: 1rem;
+            margin-top: 1.5rem; /* Aumentado */
+            padding: 1.2rem; /* Aumentado */
             background: rgba(209, 108, 124, 0.05);
             border-radius: 12px;
             border: 1px dashed rgba(209, 108, 124, 0.2);
@@ -1180,10 +1231,10 @@
             background: transparent;
             border: 2px dashed var(--rosa);
             color: var(--rosa);
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.2rem; /* Aumentado */
             border-radius: 50px;
             cursor: pointer;
-            margin-top: 1rem;
+            margin-top: 1.5rem; /* Aumentado */
             transition: var(--transicao);
         }
         
@@ -1209,7 +1260,7 @@
 </head>
 
 <body>
-    <!-- NAVEGAÇÃO ATUALIZADA -->
+    <!-- NAVEGAÇÃO ATUALIZADA COM MOLDURE MAIOR -->
     <nav class="menu" aria-label="Navegação principal">
         <a href="#inicio">Início</a>
         <a href="#historia">Nossa História</a>
@@ -1259,18 +1310,18 @@
 
     <!-- SEÇÃO HISTÓRIA -->
     <section id="historia">
-        <div class="text-center mb-3">
+        <div class="text-center mb-4"> <!-- Alterado de mb-3 para mb-4 -->
             <h2 class="welcome-title">Sejam bem-vindos ao nosso site</h2>
         </div>
         
-        <div class="card mb-3">
+        <div class="card mb-4"> <!-- Alterado de mb-3 para mb-4 -->
             <p class="text-center">
                 Criamos este espaço com muito carinho para compartilhar com vocês um dos momentos mais especiais das nossas vidas.<br>
                 Aqui, cada detalhe foi pensado para unir sonhos, histórias e pessoas que sempre fizeram parte da nossa caminhada.
             </p>
         </div>
         
-        <div class="text-center mb-3">
+        <div class="text-center mb-4"> <!-- Alterado de mb-3 para mb-4 -->
             <h2>Nossa História</h2>
         </div>
         
@@ -1283,7 +1334,7 @@
 
             <p>Algum tempo depois, veio o pedido de namoro. A noiva estava chegando de férias e o noivo foi buscá-la dizendo que iriam sair para mais um encontro. No caminho, soltou a frase que entrou para a história:</p>
 
-            <p class="text-center" style="font-style: italic; color: var(--rosa); padding: 1rem; background: rgba(209, 108, 124, 0.05); border-radius: 12px;">
+            <p class="text-center" style="font-style: italic; color: var(--rosa); padding: 1.5rem; background: rgba(209, 108, 124, 0.05); border-radius: 12px; margin: 2rem 0;"> <!-- Aumentado padding e margin -->
                 "Vai parecer que eu tô te sequestrando… mas eu não tô."
             </p>
 
@@ -1291,7 +1342,7 @@
 
             <p>No destino, a surpresa: um caminho de corações recortados à mão, um por um pelo noivo, velas, música de fundo e, ao final, a pergunta escrita na parede:</p>
 
-            <p class="text-center" style="font-weight: 600; color: var(--laranja); font-size: 1.2rem; margin: 1.5rem 0;">
+            <p class="text-center" style="font-weight: 600; color: var(--laranja); font-size: 1.3rem; margin: 2rem 0;"> <!-- Aumentado margin -->
                 "Quer namorar comigo?"
             </p>
 
@@ -1307,7 +1358,7 @@
 
             <p>Só nós dois, nos bangalôs de um hotel, vivendo um momento único — enquanto nossos pais estavam no mesmo hotel e ninguém desconfiou de nada. <strong>Sigilo absoluto, missão cumprida ✔️</strong></p>
 
-            <p class="text-center mt-3" style="font-weight: 600; color: var(--rosa); font-size: 1.3rem;">
+            <p class="text-center mt-4" style="font-weight: 600; color: var(--rosa); font-size: 1.4rem;"> <!-- Aumentado mt-3 para mt-4 -->
                 E o melhor de tudo: essa história está só começando.
             </p>
         </div>
@@ -1315,7 +1366,7 @@
 
     <!-- EVENTO COM FOTOS REAIS -->
     <section id="evento">
-        <div class="text-center mb-3">
+        <div class="text-center mb-4"> <!-- Alterado de mb-3 para mb-4 -->
             <h2>O Evento</h2>
         </div>
         
@@ -1358,7 +1409,7 @@
 
     <!-- CRONOGRAMA DETALHADO -->
     <section id="cronograma">
-        <div class="text-center mb-3">
+        <div class="text-center mb-4"> <!-- Alterado de mb-3 para mb-4 -->
             <h2>Cronograma do Grande Dia</h2>
         </div>
         
@@ -1441,7 +1492,7 @@
 
     <!-- GALERIA DE FOTOS -->
     <section id="galeria">
-        <div class="text-center mb-3">
+        <div class="text-center mb-4"> <!-- Alterado de mb-3 para mb-4 -->
             <h2>Nossos Momentos</h2>
             <p>Algumas memórias especiais da nossa caminhada</p>
         </div>
@@ -1479,42 +1530,54 @@
         </div>
     </section>
 
-    <!-- PADRINHOS E DRESS CODE -->
+    <!-- PADRINHOS E DRESS CODE - MODIFICADO -->
     <section id="padrinhos">
-        <div class="text-center mb-3">
+        <div class="text-center mb-4"> <!-- Alterado de mb-3 para mb-4 -->
             <h2>Nossos Padrinhos</h2>
-            <p>Pessoas especiais que fazem parte da nossa história</p>
         </div>
         
-        <div class="padrinhos-container">
-            <div class="padrinho-card">
-                <img src="fotos/padrinho1.jpg" alt="Padrinho João" class="padrinho-foto" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%23f0f0f0%22/><text x=%2250%22 y=%2255%22 font-family=%22Arial%22 font-size=%2214%22 text-anchor=%22middle%22 fill=%22%23666%22>JP</text></svg>'">
-                <h4 class="padrinho-nome">João Pedro</h4>
-                <p class="padrinho-funcao">Amigo do Noivo</p>
-            </div>
-            
-            <div class="padrinho-card">
-                <img src="fotos/padrinho2.jpg" alt="Madrinha Maria" class="padrinho-foto" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%23f0f0f0%22/><text x=%2250%22 y=%2255%22 font-family=%22Arial%22 font-size=%2214%22 text-anchor=%22middle%22 fill=%22%23666%22>MA</text></svg>'">
-                <h4 class="padrinho-nome">Maria Antônia</h4>
-                <p class="padrinho-funcao">Amiga da Noiva</p>
-            </div>
-            
-            <div class="padrinho-card">
-                <img src="fotos/padrinho3.jpg" alt="Padrinho Samuel" class="padrinho-foto" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%23f0f0f0%22/><text x=%2250%22 y=%2255%22 font-family=%22Arial%22 font-size=%2214%22 text-anchor=%22middle%22 fill=%22%23666%22>SF</text></svg>'">
-                <h4 class="padrinho-nome">Samuel Fernando</h4>
-                <p class="padrinho-funcao">Amigo em Comum</p>
-            </div>
-            
-            <div class="padrinho-card">
-                <img src="fotos/padrinho4.jpg" alt="Madrinha Clara" class="padrinho-foto" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%23f0f0f0%22/><text x=%2250%22 y=%2255%22 font-family=%22Arial%22 font-size=%2214%22 text-anchor=%22middle%22 fill=%22%23666%22>CL</text></svg>'">
-                <h4 class="padrinho-nome">Clara Luiza</h4>
-                <p class="padrinho-funcao">Irmã da Noiva</p>
+        <div class="card">
+            <div class="padrinhos-content">
+                <!-- Frase bonita para os padrinhos -->
+                <div class="padrinhos-frase">
+                    "Agradecemos a cada um de vocês que aceitaram ser pilares deste momento tão especial. <br>Seja como guardiões de nossas alianças ou testemunhas de nossa união, vocês são parte fundamental da história que estamos construindo juntos."
+                </div>
+                
+                <!-- Padrinhos -->
+                <div class="padrinhos-categoria">
+                    <h3>Padrinhos</h3>
+                    <div class="dress-code-card">
+                        <img src="fotos/terno-padrinhos.jpg" alt="Vestimenta para padrinhos" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>👔 Terno</text></svg>'">
+                        <div class="dress-code-info">
+                            <h4>Vestimenta sugerida</h4>
+                            <p><strong>Cor:</strong> Azul marinho ou cinza</p>
+                            <p><strong>Terno:</strong> Social completo ou blazer</p>
+                            <p><strong>Camisa:</strong> Branca ou azul claro</p>
+                            <p><strong>Gravata:</strong> Cor sólida combinando com o tema</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Madrinhas -->
+                <div class="padrinhos-categoria">
+                    <h3>Madrinhas</h3>
+                    <div class="dress-code-card">
+                        <img src="fotos/vestido-madrinhas.jpg" alt="Vestimenta para madrinhas" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>👗 Vestido</text></svg>'">
+                        <div class="dress-code-info">
+                            <h4>Vestimenta sugerida</h4>
+                            <p><strong>Cores:</strong> Tons pastéis (rosa claro, azul bebê, champanhe)</p>
+                            <p><strong>Estilo:</strong> Vestido longo ou midi</p>
+                            <p><strong>Estampas:</strong> Flores discretas ou tecidos sólidos</p>
+                            <p><strong>Detalhes:</strong> Renda ou cetim são bem-vindos</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         
-        <!-- DRESS CODE -->
-        <div class="text-center mb-3 mt-4">
-            <h2>Dress Code</h2>
+        <!-- DRESS CODE PARA CONVIDADOS -->
+        <div class="text-center mb-4 mt-5"> <!-- Alterado mb-3 para mb-4, mt-4 para mt-5 -->
+            <h2>Dress Code para Convidados</h2>
             <p>Como se vestir para o nosso grande dia</p>
         </div>
         
@@ -1549,17 +1612,17 @@
         </div>
     </section>
 
-    <!-- CONFIRMAÇÃO DE PRESENÇA COM FORMULÁRIO PRÓPRIO -->
+    <!-- CONFIRMAÇÃO DE PRESENÇA SIMPLIFICADA -->
     <section id="confirmacao">
-        <div class="text-center mb-3">
+        <div class="text-center mb-4"> <!-- Alterado de mb-3 para mb-4 -->
             <h2>Confirmação de Presença</h2>
             <p>Por favor, confirme sua presença até 15 de Maio de 2027</p>
         </div>
         
         <div class="card">
-            <h3 class="text-center" style="color: var(--rosa); margin-bottom: 2rem;">Confirme sua presença aqui</h3>
+            <h3 class="text-center" style="color: var(--rosa); margin-bottom: 2.5rem;">Confirme sua presença aqui</h3>
             
-            <!-- FORMULÁRIO PRÓPRIO DE CONFIRMAÇÃO -->
+            <!-- FORMULÁRIO SIMPLIFICADO DE CONFIRMAÇÃO -->
             <form class="form-container" id="formConfirmacao" onsubmit="enviarConfirmacao(event)">
                 <!-- Configurações do FormSubmit -->
                 <input type="hidden" name="_subject" value="✅ Nova confirmação de presença!">
@@ -1568,38 +1631,35 @@
                 <input type="hidden" name="_next" value="https://amaurieester.github.io/casamento-amauri-ester/obrigado-confirmacao.html">
                 <input type="text" name="_honey" style="display:none">
                 
+                <!-- Campo 1: Nome completo -->
                 <div class="form-group">
-                    <input type="text" class="form-input" id="nomeConvidado" name="nome_convidado" placeholder="Seu nome completo *" required>
+                    <input type="text" class="form-input" id="nomeConvidado" name="nome_convidado" placeholder="Nome completo *" required>
                     <div class="error-message" id="nomeConvidado-error">Por favor, digite seu nome completo</div>
                 </div>
                 
+                <!-- Campo 2: Quantos convidados (além de você) -->
                 <div class="form-group">
-                    <input type="email" class="form-input" id="emailConvidado" name="email_convidado" placeholder="Seu e-mail *" required>
-                    <div class="error-message" id="emailConvidado-error">Por favor, digite um e-mail válido</div>
-                </div>
-                
-                <div class="form-group">
-                    <input type="tel" class="form-input" id="telefoneConvidado" name="telefone_convidado" placeholder="Seu telefone (WhatsApp)">
-                    <div class="error-message" id="telefoneConvidado-error">Por favor, digite um telefone válido</div>
-                </div>
-                
-                <div class="form-group">
-                    <select class="form-select" id="quantidadePessoas" name="quantidade_pessoas" onchange="mostrarCamposConvidados(this.value)" required>
-                        <option value="">Quantas pessoas confirmam? *</option>
-                        <option value="1">Apenas eu (1 pessoa)</option>
-                        <option value="2">Eu + 1 acompanhante (2 pessoas)</option>
-                        <option value="3">Eu + 2 acompanhantes (3 pessoas)</option>
-                        <option value="4">Eu + 3 acompanhantes (4 pessoas)</option>
-                        <option value="5">Eu + 4 acompanhantes (5 pessoas)</option>
+                    <select class="form-select" id="quantidadePessoas" name="quantidade_pessoas" required>
+                        <option value="">Quantos convidados (além de você)? *</option>
+                        <option value="0">Apenas eu (0 convidados adicionais)</option>
+                        <option value="1">Eu + 1 convidado (total 2 pessoas)</option>
+                        <option value="2">Eu + 2 convidados (total 3 pessoas)</option>
+                        <option value="3">Eu + 3 convidados (total 4 pessoas)</option>
+                        <option value="4">Eu + 4 convidados (total 5 pessoas)</option>
+                        <option value="5">Eu + 5 convidados (total 6 pessoas)</option>
                     </select>
-                    <div class="error-message" id="quantidadePessoas-error">Por favor, selecione a quantidade de pessoas</div>
+                    <div class="error-message" id="quantidadePessoas-error">Por favor, selecione a quantidade de convidados</div>
                 </div>
                 
-                <!-- Campos para acompanhantes (aparecem dinamicamente) -->
-                <div id="camposAcompanhantes"></div>
-                
+                <!-- Campo 3: Nome completo dos convidados -->
                 <div class="form-group">
-                    <textarea class="form-textarea" id="mensagemConfirmacao" name="mensagem_confirmacao" placeholder="Alguma observação? (restrições alimentares, música preferida, etc.)"></textarea>
+                    <textarea class="form-textarea" id="nomesConvidados" name="nomes_convidados" placeholder="Nome completo dos convidados (um por linha) *" rows="4" required></textarea>
+                    <div class="error-message" id="nomesConvidados-error">Por favor, digite os nomes dos convidados</div>
+                    <small style="display: block; margin-top: 0.5rem; color: var(--cinza-claro);">
+                        Digite um nome por linha. Exemplo:<br>
+                        Maria Silva<br>
+                        João Souza
+                    </small>
                 </div>
                 
                 <button type="submit" class="btn" id="btnConfirmar" style="width: 100%;">
@@ -1622,51 +1682,11 @@
                 </div>
             </form>
         </div>
-        
-        <!-- MENSAGEM PARA OS NOIVOS (mantida do original) -->
-        <div class="card mt-3">
-            <h3 class="text-center" style="color: var(--rosa); margin-bottom: 2rem;">Deixe uma mensagem para os noivos 🤍</h3>
-            
-            <form class="form-container" id="formMensagem" onsubmit="enviarMensagem(event)">
-                <div class="form-group">
-                    <input type="text" class="form-input" id="nome" name="nome" placeholder="Seu nome completo *" required>
-                    <div class="error-message" id="nome-error">Por favor, digite seu nome</div>
-                </div>
-                
-                <div class="form-group">
-                    <input type="email" class="form-input" id="email" name="email" placeholder="Seu e-mail (opcional)">
-                    <div class="error-message" id="email-error">Por favor, digite um e-mail válido</div>
-                </div>
-                
-                <div class="form-group">
-                    <textarea class="form-textarea" id="mensagem" name="mensagem" placeholder="Escreva sua mensagem com carinho *" required rows="5"></textarea>
-                    <div class="error-message" id="mensagem-error">Por favor, escreva sua mensagem</div>
-                </div>
-                
-                <button type="submit" class="btn" id="btnEnviar" style="width: 100%;">
-                    Enviar mensagem
-                </button>
-                
-                <div class="msg-success" id="msgSuccess">
-                    <p>✅ Mensagem enviada com sucesso! Obrigado pelo carinho 🤍</p>
-                    <p>Em alguns instantes você será redirecionado...</p>
-                </div>
-                
-                <div class="msg-error" id="msgError">
-                    <p>❌ Ocorreu um erro ao enviar. Por favor, tente novamente.</p>
-                </div>
-                
-                <div class="loading" id="loading">
-                    <div class="spinner"></div>
-                    <p>Enviando sua mensagem...</p>
-                </div>
-            </form>
-        </div>
     </section>
 
     <!-- LISTA DE PRESENTES -->
     <section id="presentes">
-        <div class="text-center mb-3">
+        <div class="text-center mb-4"> <!-- Alterado de mb-3 para mb-4 -->
             <h2>Lista de Presentes</h2>
             <p>Escolha um presente que faça parte da nossa nova vida juntos</p>
         </div>
@@ -1727,8 +1747,8 @@
     <!-- RODAPÉ -->
     <footer>
         <p>Com amor, Amauri & Ester</p>
-        <p class="mt-1">29 de Maio de 2027</p>
-        <p class="mt-2">
+        <p class="mt-2">29 de Maio de 2027</p>
+        <p class="mt-3">
             <span class="footer-heart">💍</span><br>
             Mal podemos esperar para celebrar com vocês!
         </p>
@@ -1739,7 +1759,7 @@
         const dataCasamento = new Date("2027-05-29T10:00:00");
         let presenteSelecionado = { titulo: "", valor: 0 };
         
-        // LISTA DE PRESENTES ORGANIZADA POR PREÇO - SEM O ERRO DE ;" />
+        // LISTA DE PRESENTES ORGANIZADA POR PREÇO
         const presentes = [
             // Até R$ 100
             ["Toma aqui uns 50 reais", 50.00, "50-reais.jpg"],
@@ -1825,7 +1845,7 @@
                         const target = document.querySelector(href);
                         if (target) {
                             window.scrollTo({
-                                top: target.offsetTop - 80,
+                                top: target.offsetTop - 100,
                                 behavior: 'smooth'
                             });
                         }
@@ -1851,29 +1871,7 @@
             animarAoRolar();
         });
         
-        // FUNÇÃO PARA MOSTRAR CAMPOS DE ACOMPANHANTES
-        function mostrarCamposConvidados(quantidade) {
-            const camposAcompanhantes = document.getElementById('camposAcompanhantes');
-            camposAcompanhantes.innerHTML = '';
-            
-            const qtd = parseInt(quantidade);
-            
-            if (qtd > 1) {
-                for (let i = 1; i < qtd; i++) {
-                    const grupo = document.createElement('div');
-                    grupo.className = 'convidado-group';
-                    grupo.innerHTML = `
-                        <h4 style="color: var(--rosa); margin-bottom: 0.5rem; font-size: 1rem;">Acompanhante ${i}</h4>
-                        <div class="form-group">
-                            <input type="text" class="form-input" id="acompanhante${i}" name="acompanhante${i}" placeholder="Nome completo do acompanhante *" required>
-                        </div>
-                    `;
-                    camposAcompanhantes.appendChild(grupo);
-                }
-            }
-        }
-        
-        // FUNÇÃO PARA ENVIAR CONFIRMAÇÃO DE PRESENÇA
+        // FUNÇÃO PARA ENVIAR CONFIRMAÇÃO DE PRESENÇA SIMPLIFICADA
         async function enviarConfirmacao(event) {
             event.preventDefault();
             
@@ -1885,10 +1883,10 @@
             
             // Validar campos obrigatórios
             const nome = document.getElementById('nomeConvidado').value.trim();
-            const email = document.getElementById('emailConvidado').value.trim();
             const quantidade = document.getElementById('quantidadePessoas').value;
+            const nomesConvidados = document.getElementById('nomesConvidados').value.trim();
             
-            if (!nome || !email || !quantidade) {
+            if (!nome || !quantidade || !nomesConvidados) {
                 alert('Por favor, preencha todos os campos obrigatórios.');
                 return;
             }
@@ -1904,28 +1902,12 @@
             // Coletar dados do formulário
             const formData = {
                 nome: nome,
-                email: email,
-                telefone: document.getElementById('telefoneConvidado').value.trim() || 'Não informado',
-                quantidade_pessoas: quantidade,
-                mensagem: document.getElementById('mensagemConfirmacao').value.trim() || 'Nenhuma observação',
+                quantidade_convidados: quantidade,
+                nomes_convidados: nomesConvidados,
+                total_pessoas: parseInt(quantidade) + 1,
                 data: new Date().toLocaleString('pt-BR'),
                 tipo: 'Confirmação de Presença'
             };
-            
-            // Coletar nomes dos acompanhantes
-            const acompanhantes = [];
-            const qtd = parseInt(quantidade);
-            
-            if (qtd > 1) {
-                for (let i = 1; i < qtd; i++) {
-                    const acompanhante = document.getElementById(`acompanhante${i}`);
-                    if (acompanhante && acompanhante.value.trim()) {
-                        acompanhantes.push(acompanhante.value.trim());
-                    }
-                }
-            }
-            
-            formData.acompanhantes = acompanhantes.join(', ');
             
             try {
                 // ENVIAR VIA FORMSUBMIT
@@ -1937,11 +1919,9 @@
                     },
                     body: JSON.stringify({
                         nome_convidado: formData.nome,
-                        email_convidado: formData.email,
-                        telefone_convidado: formData.telefone,
-                        quantidade_pessoas: formData.quantidade_pessoas,
-                        acompanhantes: formData.acompanhantes,
-                        mensagem_confirmacao: formData.mensagem,
+                        quantidade_convidados: formData.quantidade_convidados,
+                        nomes_convidados: formData.nomes_convidados,
+                        total_pessoas: formData.total_pessoas,
                         data_envio: formData.data,
                         _subject: `✅ Confirmação de Presença - ${formData.nome}`,
                         _template: 'table',
@@ -1956,7 +1936,6 @@
                     
                     // Limpar formulário
                     formulario.reset();
-                    document.getElementById('camposAcompanhantes').innerHTML = '';
                     
                     // Redirecionar após 3 segundos
                     setTimeout(() => {
@@ -1979,95 +1958,6 @@
                 setTimeout(() => {
                     btnConfirmar.disabled = false;
                     btnConfirmar.textContent = 'Confirmar Presença';
-                    formulario.classList.remove('form-loading');
-                }, 3000);
-            }
-        }
-        
-        // FUNÇÃO PARA ENVIAR MENSAGEM
-        async function enviarMensagem(event) {
-            event.preventDefault();
-            
-            const btnEnviar = document.getElementById('btnEnviar');
-            const formulario = document.getElementById('formMensagem');
-            const loading = document.getElementById('loading');
-            const msgSuccess = document.getElementById('msgSuccess');
-            const msgError = document.getElementById('msgError');
-            
-            // Validar campos
-            const nome = document.getElementById('nome').value.trim();
-            const mensagem = document.getElementById('mensagem').value.trim();
-            
-            if (!nome || !mensagem) {
-                alert('Por favor, preencha pelo menos o nome e a mensagem.');
-                return;
-            }
-            
-            // Desabilitar botão e mostrar loading
-            btnEnviar.disabled = true;
-            btnEnviar.textContent = 'Enviando...';
-            formulario.classList.add('form-loading');
-            loading.style.display = 'block';
-            msgSuccess.style.display = 'none';
-            msgError.style.display = 'none';
-            
-            // Coletar dados do formulário
-            const formData = {
-                nome: nome,
-                email: document.getElementById('email').value.trim() || 'Não informado',
-                mensagem: mensagem,
-                data: new Date().toLocaleString('pt-BR'),
-                tipo: 'Mensagem para os Noivos'
-            };
-            
-            try {
-                // ENVIAR VIA FORMSUBMIT
-                const response = await fetch('https://formsubmit.co/ajax/casamentoamaurieester@gmail.com', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        nome: formData.nome,
-                        email: formData.email,
-                        mensagem: formData.mensagem,
-                        data_envio: formData.data,
-                        _subject: `💌 Mensagem para os Noivos - ${formData.nome}`,
-                        _template: 'table',
-                        _captcha: 'false'
-                    })
-                });
-                
-                if (response.ok) {
-                    // Sucesso!
-                    loading.style.display = 'none';
-                    msgSuccess.style.display = 'block';
-                    
-                    // Limpar formulário
-                    formulario.reset();
-                    
-                    // Redirecionar após 3 segundos
-                    setTimeout(() => {
-                        window.location.href = 'obrigado.html';
-                    }, 3000);
-                    
-                } else {
-                    throw new Error('Erro na resposta do servidor');
-                }
-                
-            } catch (error) {
-                console.error('Erro ao enviar mensagem:', error);
-                
-                // Mostrar mensagem de erro
-                loading.style.display = 'none';
-                msgError.style.display = 'block';
-                
-            } finally {
-                // Reabilitar botão após 3 segundos
-                setTimeout(() => {
-                    btnEnviar.disabled = false;
-                    btnEnviar.textContent = 'Enviar mensagem';
                     formulario.classList.remove('form-loading');
                 }, 3000);
             }
@@ -2108,7 +1998,6 @@
                 const card = document.createElement('div');
                 card.className = 'presente-card';
                 
-                // Código corrigido - sem o ;" />
                 if (imagem) {
                     card.innerHTML = `
                         <div class="presente-imagem-container">
@@ -2318,7 +2207,7 @@
         
         // DETECTAR SCROLL PARA ANIMAÇÕES
         function animarAoRolar() {
-            const cards = document.querySelectorAll('.card, .presente-card, .evento-card, .foto-item, .padrinho-card, .dress-code-item');
+            const cards = document.querySelectorAll('.card, .presente-card, .evento-card, .foto-item, .dress-code-card, .dress-code-item');
             
             cards.forEach(card => {
                 const cardTop = card.getBoundingClientRect().top;
@@ -2332,7 +2221,7 @@
         }
         
         // ESTILOS INICIAIS PARA ANIMAÇÃO
-        document.querySelectorAll('.card, .presente-card, .evento-card, .foto-item, .padrinho-card, .dress-code-item').forEach(card => {
+        document.querySelectorAll('.card, .presente-card, .evento-card, .foto-item, .dress-code-card, .dress-code-item').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
             card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
