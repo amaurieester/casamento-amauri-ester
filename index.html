@@ -1019,76 +1019,7 @@
             transform: translateY(0);
         }
         
-        /* PADRINHOS SECTION - NOVO LAYOUT */
-        .padrinhos-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .padrinhos-frase {
-            font-size: 1.4rem;
-            font-style: italic;
-            color: var(--rosa);
-            margin: 2.5rem 0;
-            line-height: 1.6;
-            background: rgba(209, 108, 124, 0.05);
-            padding: 2rem;
-            border-radius: 15px;
-            border-left: 4px solid var(--rosa);
-        }
-        
-        .padrinhos-categoria {
-            margin: 4rem 0 3rem;
-        }
-        
-        .padrinhos-categoria h3 {
-            color: var(--laranja);
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .padrinhos-categoria h3::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 2px;
-            background: var(--rosa);
-        }
-        
-        .dress-code-card {
-            background: var(--branco);
-            border-radius: 15px;
-            padding: 2.5rem;
-            box-shadow: 0 10px 25px var(--sombra);
-            text-align: center;
-            margin: 2rem auto;
-            max-width: 500px;
-            transition: var(--transicao);
-        }
-        
-        .dress-code-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px var(--sombra-hover);
-        }
-        
-        .dress-code-card img {
-            width: 100%;
-            max-width: 300px;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 1.5rem;
-        }
-        
-        .dress-code-info {
-            padding: 1rem;
-        }
+        /* PADRINHOS SECTION - REMOVIDA COMPLETAMENTE */
         
         /* DRESS CODE */
         .dress-code-container {
@@ -1267,7 +1198,7 @@
         <a href="#evento">Evento</a>
         <a href="#cronograma">Cronograma</a>
         <a href="#galeria">Galeria</a>
-        <a href="#padrinhos">Padrinhos</a>
+        <!-- LINK PARA PADRINHOS REMOVIDO -->
         <a href="#confirmacao">Confirmação</a>
         <a href="#presentes">Presentes</a>
     </nav>
@@ -1528,54 +1459,8 @@
                 <div class="foto-legenda">Casamento de Sandy & Adilson</div>
             </div>
         </div>
-    </section>
-
-    <!-- PADRINHOS E DRESS CODE - MODIFICADO -->
-    <section id="padrinhos">
-        <div class="text-center mb-4">
-            <h2>Nossos Padrinhos</h2>
-        </div>
         
-        <div class="card">
-            <div class="padrinhos-content">
-                <!-- Frase bonita para os padrinhos -->
-                <div class="padrinhos-frase">
-                    "Agradecemos a cada um de vocês que aceitaram ser pilares deste momento tão especial. <br>Seja como guardiões de nossas alianças ou testemunhas de nossa união, vocês são parte fundamental da história que estamos construindo juntos."
-                </div>
-                
-                <!-- Padrinhos -->
-                <div class="padrinhos-categoria">
-                    <h3>Padrinhos</h3>
-                    <div class="dress-code-card">
-                        <img src="fotos/terno-padrinhos.jpg" alt="Vestimenta para padrinhos" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>👔 Terno</text></svg>'">
-                        <div class="dress-code-info">
-                            <h4>Vestimenta sugerida</h4>
-                            <p><strong>Cor:</strong> Azul marinho ou cinza</p>
-                            <p><strong>Terno:</strong> Social completo ou blazer</p>
-                            <p><strong>Camisa:</strong> Branca ou azul claro</p>
-                            <p><strong>Gravata:</strong> Cor sólida combinando com o tema</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Madrinhas -->
-                <div class="padrinhos-categoria">
-                    <h3>Madrinhas</h3>
-                    <div class="dress-code-card">
-                        <img src="fotos/vestido-madrinhas.jpg" alt="Vestimenta para madrinhas" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>👗 Vestido</text></svg>'">
-                        <div class="dress-code-info">
-                            <h4>Vestimenta sugerida</h4>
-                            <p><strong>Cores:</strong> Tons pastéis (rosa claro, azul bebê, champanhe)</p>
-                            <p><strong>Estilo:</strong> Vestido longo ou midi</p>
-                            <p><strong>Estampas:</strong> Flores discretas ou tecidos sólidos</p>
-                            <p><strong>Detalhes:</strong> Renda ou cetim são bem-vindos</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- DRESS CODE PARA CONVIDADOS -->
+        <!-- DRESS CODE PARA CONVIDADOS (AGORA AQUI, APÓS A GALERIA) -->
         <div class="text-center mb-4 mt-5">
             <h2>Dress Code para Convidados</h2>
             <p>Como se vestir para o nosso grande dia</p>
@@ -2189,7 +2074,7 @@
         // Ordenar por preço (do mais barato para o mais caro)
         presentes.sort((a, b) => a[1] - b[1]);
         
-        // PLAYLIST DO CASAMENTO COM SUAS MÚSICAS
+        // PLAYLIST DO CASAMENTO COM 10 MÚSICAS
         const playlist = [
             {
                 title: "Até Ficar Velhin - Cleber e Cauan",
@@ -2210,6 +2095,27 @@
             {
                 title: "Duas Metades - Jorge & Mateus",
                 file: "musicas/musica5.mp3"
+            },
+            // NOVAS MÚSICAS ADICIONADAS
+            {
+                title: "Quando A Gente Ama - Bruno & Marrone",
+                file: "musicas/musica6.mp3"
+            },
+            {
+                title: "Vou Voando - Henrique & Juliano",
+                file: "musicas/musica7.mp3"
+            },
+            {
+                title: "Risca Faca - Matheus & Kauan",
+                file: "musicas/musica8.mp3"
+            },
+            {
+                title: "A Gente Fez Amor - Gusttavo Lima",
+                file: "musicas/musica9.mp3"
+            },
+            {
+                title: "Fica Combinado Assim - Felipe Araújo",
+                file: "musicas/musica10.mp3"
             }
         ];
 
