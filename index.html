@@ -456,7 +456,7 @@
             margin-bottom: 1.5rem;
         }
         
-        .form-input, .form-textarea {
+        .form-input, .form-textarea, .form-select {
             width: 100%;
             padding: 1rem 1.2rem;
             border-radius: 12px;
@@ -467,7 +467,7 @@
             background: var(--branco);
         }
         
-        .form-input:focus, .form-textarea:focus {
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
             outline: none;
             border-color: var(--rosa);
             box-shadow: 0 0 0 3px rgba(209, 108, 124, 0.1);
@@ -478,7 +478,7 @@
             resize: vertical;
         }
         
-        .form-input.error, .form-textarea.error {
+        .form-input.error, .form-textarea.error, .form-select.error {
             border-color: var(--erro);
         }
         
@@ -885,7 +885,7 @@
             border-radius: 10px;
         }
         
-        /* EVENTOS - NOVO LAYOUT */
+        /* EVENTOS - NOVO LAYOUT COM CERIMÔNIA E FESTA */
         .eventos-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -915,9 +915,20 @@
             box-shadow: 0 15px 35px var(--sombra-hover);
         }
         
-        .evento-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        .evento-imagem-container {
+            width: 100%;
+            height: 200px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .evento-imagem {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
             display: block;
         }
         
@@ -939,15 +950,273 @@
             margin-bottom: 0.5rem;
             color: var(--laranja);
         }
+        
+        /* GALERIA DE FOTOS */
+        .galeria-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .foto-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 250px;
+            cursor: pointer;
+            transition: var(--transicao);
+        }
+        
+        .foto-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .foto-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .foto-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .foto-legenda {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .foto-item:hover .foto-legenda {
+            transform: translateY(0);
+        }
+        
+        /* PADRINHOS SECTION */
+        .padrinhos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .padrinho-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--branco);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--sombra);
+            transition: var(--transicao);
+        }
+        
+        .padrinho-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--sombra-hover);
+        }
+        
+        .padrinho-foto {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 3px solid var(--rosa);
+        }
+        
+        .padrinho-nome {
+            color: var(--rosa);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .padrinho-funcao {
+            color: var(--cinza-claro);
+            font-size: 0.9rem;
+        }
+        
+        /* DRESS CODE */
+        .dress-code-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .dress-code-item {
+            padding: 1.5rem;
+            background: var(--branco);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--sombra);
+            text-align: center;
+        }
+        
+        .dress-code-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .dress-code-titulo {
+            color: var(--laranja);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        /* CRONOGRAMA */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 2rem auto 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--rosa), var(--laranja));
+        }
+        
+        .timeline-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+        
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .timeline-hora {
+            background: var(--rosa);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            min-width: 100px;
+            text-align: center;
+            z-index: 1;
+        }
+        
+        .timeline-content {
+            background: var(--branco);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px var(--sombra);
+            margin: 0 1.5rem;
+            flex: 1;
+            max-width: 300px;
+            z-index: 1;
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--laranja);
+            border-radius: 50%;
+            border: 3px solid var(--branco);
+            box-shadow: 0 0 0 3px var(--laranja);
+            z-index: 2;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                flex-direction: row !important;
+                justify-content: flex-start;
+            }
+            
+            .timeline-marker {
+                left: 30px;
+            }
+            
+            .timeline-hora {
+                margin-left: 40px;
+            }
+            
+            .timeline-content {
+                margin-left: 40px;
+                max-width: none;
+            }
+        }
+        
+        /* FORMULÁRIO DE CONFIRMAÇÃO AVANÇADO */
+        .convidado-group {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(209, 108, 124, 0.05);
+            border-radius: 12px;
+            border: 1px dashed rgba(209, 108, 124, 0.2);
+        }
+        
+        .add-convidado {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            border: 2px dashed var(--rosa);
+            color: var(--rosa);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: var(--transicao);
+        }
+        
+        .add-convidado:hover {
+            background: rgba(209, 108, 124, 0.1);
+        }
+        
+        .remove-convidado {
+            background: var(--erro);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
     </style>
 </head>
 
 <body>
-    <!-- NAVEGAÇÃO -->
+    <!-- NAVEGAÇÃO ATUALIZADA -->
     <nav class="menu" aria-label="Navegação principal">
         <a href="#inicio">Início</a>
         <a href="#historia">Nossa História</a>
         <a href="#evento">Evento</a>
+        <a href="#cronograma">Cronograma</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#padrinhos">Padrinhos</a>
         <a href="#confirmacao">Confirmação</a>
         <a href="#presentes">Presentes</a>
     </nav>
@@ -988,14 +1257,12 @@
         </div>
     </header>
 
-    <!-- SEÇÃO HISTÓRIA (ESTRUTURA MODIFICADA) -->
+    <!-- SEÇÃO HISTÓRIA -->
     <section id="historia">
-        <!-- Título "Sejam bem-vindos ao nosso site" -->
         <div class="text-center mb-3">
             <h2 class="welcome-title">Sejam bem-vindos ao nosso site</h2>
         </div>
         
-        <!-- Texto de boas-vindas -->
         <div class="card mb-3">
             <p class="text-center">
                 Criamos este espaço com muito carinho para compartilhar com vocês um dos momentos mais especiais das nossas vidas.<br>
@@ -1003,12 +1270,10 @@
             </p>
         </div>
         
-        <!-- Título "Nossa História" -->
         <div class="text-center mb-3">
             <h2>Nossa História</h2>
         </div>
         
-        <!-- História completa -->
         <div class="card">
             <p>Tudo começou por culpa (ou mérito) de um amigo em comum: <strong>Samuel Fernando</strong>. Ele jurava que nós dois combinávamos perfeitamente. A noiva não acreditava muito e achava aquilo tudo exagero — virou quase uma aposta. Spoiler: ele estava certo.</p>
 
@@ -1048,35 +1313,41 @@
         </div>
     </section>
 
-    <!-- EVENTO - NOVO LAYOUT COM CERIMÔNIA E FESTA -->
+    <!-- EVENTO COM FOTOS REAIS -->
     <section id="evento">
         <div class="text-center mb-3">
             <h2>O Evento</h2>
         </div>
         
         <div class="eventos-container">
-            <!-- CERIMÔNIA -->
+            <!-- CERIMÔNIA COM FOTO -->
             <div class="evento-card">
-                <span class="evento-icon">⛪</span>
+                <div class="evento-imagem-container">
+                    <img src="fotos/igreja.jpg" alt="Matriz Nossa Senhora da Conceição" class="evento-imagem" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>⛪ Igreja</text></svg>'">
+                </div>
                 <h3 class="evento-titulo">Cerimônia</h3>
                 <div class="evento-local">
                     <strong>Matriz Nossa Senhora da Conceição</strong>
                     Praça Frei Jorge, nº 1480<br>
-                    Várzea da Palma - MG
+                    Várzea da Palma - MG<br>
+                    <em>15:00 horas</em>
                 </div>
                 <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Matriz+Nossa+Senhora+da+Conceicao+Varzea+da+Palma+MG" target="_blank" rel="noopener">
                     Ver no mapa
                 </a>
             </div>
             
-            <!-- FESTA -->
+            <!-- FESTA COM FOTO -->
             <div class="evento-card">
-                <span class="evento-icon">🎉</span>
+                <div class="evento-imagem-container">
+                    <img src="fotos/local-festa.jpg" alt="Zabelê Quiosque" class="evento-imagem" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>🎉 Local da Festa</text></svg>'">
+                </div>
                 <h3 class="evento-titulo">Festa</h3>
                 <div class="evento-local">
                     <strong>Zabelê Quiosque</strong>
                     Av. Brasil, 2150 - Serrinha<br>
-                    Várzea da Palma - MG
+                    Várzea da Palma - MG<br>
+                    <em>18:00 horas</em>
                 </div>
                 <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Zabelê+Quiosque+Av.+Brasil+2150+Serrinha+Varzea+da+Palma+MG" target="_blank" rel="noopener">
                     Ver no mapa
@@ -1085,62 +1356,290 @@
         </div>
     </section>
 
-    <!-- CONFIRMAÇÃO DE PRESENÇA - FORMULÁRIO CORRIGIDO -->
+    <!-- CRONOGRAMA DETALHADO -->
+    <section id="cronograma">
+        <div class="text-center mb-3">
+            <h2>Cronograma do Grande Dia</h2>
+        </div>
+        
+        <div class="card">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-hora">14:30</div>
+                    <div class="timeline-content">
+                        <h4>Chegada dos Convidados</h4>
+                        <p>Recepção na Igreja Matriz</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-hora">15:00</div>
+                    <div class="timeline-content">
+                        <h4>Cerimônia Religiosa</h4>
+                        <p>Celebração do Sacramento do Matrimônio</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-hora">16:00</div>
+                    <div class="timeline-content">
+                        <h4>Saída dos Noivos</h4>
+                        <p>Fotos e saída em cortejo</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-hora">17:30</div>
+                    <div class="timeline-content">
+                        <h4>Recepção no Local da Festa</h4>
+                        <p>Cocktail de boas-vindas</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-hora">18:00</div>
+                    <div class="timeline-content">
+                        <h4>Jantar</h4>
+                        <p>Buffet especial para os convidados</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-hora">19:30</div>
+                    <div class="timeline-content">
+                        <h4>Brindes e Discursos</h4>
+                        <p>Momentos especiais com familiares e amigos</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-hora">20:30</div>
+                    <div class="timeline-content">
+                        <h4>Primeira Dança</h4>
+                        <p>Momento romântico dos noivos</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-hora">21:00</div>
+                    <div class="timeline-content">
+                        <h4>Festa</h4>
+                        <p>Música e dança até altas horas!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIA DE FOTOS -->
+    <section id="galeria">
+        <div class="text-center mb-3">
+            <h2>Nossos Momentos</h2>
+            <p>Algumas memórias especiais da nossa caminhada</p>
+        </div>
+        
+        <div class="galeria-container">
+            <div class="foto-item">
+                <img src="fotos/casal1.jpg" alt="Amauri e Ester juntos" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 1</text></svg>'">
+                <div class="foto-legenda">Nosso primeiro ano juntos</div>
+            </div>
+            
+            <div class="foto-item">
+                <img src="fotos/casal2.jpg" alt="Noivos sorrindo" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 2</text></svg>'">
+                <div class="foto-legenda">Dia do pedido de namoro</div>
+            </div>
+            
+            <div class="foto-item">
+                <img src="fotos/casal3.jpg" alt="Ensaio fotográfico" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 3</text></svg>'">
+                <div class="foto-legenda">Ensaio para o casamento</div>
+            </div>
+            
+            <div class="foto-item">
+                <img src="fotos/casal4.jpg" alt="Momento especial" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 4</text></svg>'">
+                <div class="foto-legenda">Viagem especial</div>
+            </div>
+            
+            <div class="foto-item">
+                <img src="fotos/casal5.jpg" alt="Com família" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 5</text></svg>'">
+                <div class="foto-legenda">Celebração em família</div>
+            </div>
+            
+            <div class="foto-item">
+                <img src="fotos/casal6.jpg" alt="Preparativos" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 6</text></svg>'">
+                <div class="foto-legenda">Preparativos do casamento</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PADRINHOS E DRESS CODE -->
+    <section id="padrinhos">
+        <div class="text-center mb-3">
+            <h2>Nossos Padrinhos</h2>
+            <p>Pessoas especiais que fazem parte da nossa história</p>
+        </div>
+        
+        <div class="padrinhos-container">
+            <div class="padrinho-card">
+                <img src="fotos/padrinho1.jpg" alt="Padrinho João" class="padrinho-foto" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%23f0f0f0%22/><text x=%2250%22 y=%2255%22 font-family=%22Arial%22 font-size=%2214%22 text-anchor=%22middle%22 fill=%22%23666%22>JP</text></svg>'">
+                <h4 class="padrinho-nome">João Pedro</h4>
+                <p class="padrinho-funcao">Amigo do Noivo</p>
+            </div>
+            
+            <div class="padrinho-card">
+                <img src="fotos/padrinho2.jpg" alt="Madrinha Maria" class="padrinho-foto" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%23f0f0f0%22/><text x=%2250%22 y=%2255%22 font-family=%22Arial%22 font-size=%2214%22 text-anchor=%22middle%22 fill=%22%23666%22>MA</text></svg>'">
+                <h4 class="padrinho-nome">Maria Antônia</h4>
+                <p class="padrinho-funcao">Amiga da Noiva</p>
+            </div>
+            
+            <div class="padrinho-card">
+                <img src="fotos/padrinho3.jpg" alt="Padrinho Samuel" class="padrinho-foto" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%23f0f0f0%22/><text x=%2250%22 y=%2255%22 font-family=%22Arial%22 font-size=%2214%22 text-anchor=%22middle%22 fill=%22%23666%22>SF</text></svg>'">
+                <h4 class="padrinho-nome">Samuel Fernando</h4>
+                <p class="padrinho-funcao">Amigo em Comum</p>
+            </div>
+            
+            <div class="padrinho-card">
+                <img src="fotos/padrinho4.jpg" alt="Madrinha Clara" class="padrinho-foto" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%23f0f0f0%22/><text x=%2250%22 y=%2255%22 font-family=%22Arial%22 font-size=%2214%22 text-anchor=%22middle%22 fill=%22%23666%22>CL</text></svg>'">
+                <h4 class="padrinho-nome">Clara Luiza</h4>
+                <p class="padrinho-funcao">Irmã da Noiva</p>
+            </div>
+        </div>
+        
+        <!-- DRESS CODE -->
+        <div class="text-center mb-3 mt-4">
+            <h2>Dress Code</h2>
+            <p>Como se vestir para o nosso grande dia</p>
+        </div>
+        
+        <div class="dress-code-container">
+            <div class="dress-code-item">
+                <span class="dress-code-icon">👔</span>
+                <h4 class="dress-code-titulo">Para os Homens</h4>
+                <p>Terno ou Social<br>
+                <small>Cores: Azul marinho, cinza, bege</small></p>
+            </div>
+            
+            <div class="dress-code-item">
+                <span class="dress-code-icon">👗</span>
+                <h4 class="dress-code-titulo">Para as Mulheres</h4>
+                <p>Vestido ou Saia Social<br>
+                <small>Cores: Tons pastéis, estampas discretas</small></p>
+            </div>
+            
+            <div class="dress-code-item">
+                <span class="dress-code-icon">🎨</span>
+                <h4 class="dress-code-titulo">Paleta de Cores</h4>
+                <p>Evitar preto total<br>
+                <small>Priorize cores claras e alegres</small></p>
+            </div>
+            
+            <div class="dress-code-item">
+                <span class="dress-code-icon">👞</span>
+                <h4 class="dress-code-titulo">Calçados</h4>
+                <p>Sapatos sociais ou sapatilhas<br>
+                <small>Conforto para dançar a noite toda!</small></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONFIRMAÇÃO DE PRESENÇA COM FORMULÁRIO PRÓPRIO -->
     <section id="confirmacao">
         <div class="text-center mb-3">
             <h2>Confirmação de Presença</h2>
+            <p>Por favor, confirme sua presença até 15 de Maio de 2027</p>
         </div>
         
-        <div class="card text-center mb-3">
-            <p class="mb-2">Para confirmar sua presença no nosso grande dia, por favor clique no botão abaixo:</p>
-            <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSf4goBLjMg9tv6LAgfYVz9G1Mk7NGscCFhcDWsj0LsRerNrzQ/viewform" target="_blank" rel="noopener">
-                Confirmar presença
-            </a>
-        </div>
-
         <div class="card">
-            <h3 class="text-center" style="color: var(--rosa); margin-bottom: 2rem;">Deixe uma mensagem para os noivos 🤍</h3>
+            <h3 class="text-center" style="color: var(--rosa); margin-bottom: 2rem;">Confirme sua presença aqui</h3>
             
-            <!-- FORMULÁRIO CORRIGIDO E SIMPLIFICADO -->
-            <form 
-                class="form-container" 
-                id="formMensagem"
-                onsubmit="enviarMensagem(event)"
-            >
-                <!-- Não precisa mais dos campos hidden complexos -->
+            <!-- FORMULÁRIO PRÓPRIO DE CONFIRMAÇÃO -->
+            <form class="form-container" id="formConfirmacao" onsubmit="enviarConfirmacao(event)">
+                <!-- Configurações do FormSubmit -->
+                <input type="hidden" name="_subject" value="✅ Nova confirmação de presença!">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://amaurieester.github.io/casamento-amauri-ester/obrigado-confirmacao.html">
+                <input type="text" name="_honey" style="display:none">
                 
                 <div class="form-group">
-                    <input 
-                        type="text" 
-                        class="form-input" 
-                        id="nome" 
-                        name="nome"
-                        placeholder="Seu nome completo *" 
-                        required
-                    >
+                    <input type="text" class="form-input" id="nomeConvidado" name="nome_convidado" placeholder="Seu nome completo *" required>
+                    <div class="error-message" id="nomeConvidado-error">Por favor, digite seu nome completo</div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="email" class="form-input" id="emailConvidado" name="email_convidado" placeholder="Seu e-mail *" required>
+                    <div class="error-message" id="emailConvidado-error">Por favor, digite um e-mail válido</div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="tel" class="form-input" id="telefoneConvidado" name="telefone_convidado" placeholder="Seu telefone (WhatsApp)">
+                    <div class="error-message" id="telefoneConvidado-error">Por favor, digite um telefone válido</div>
+                </div>
+                
+                <div class="form-group">
+                    <select class="form-select" id="quantidadePessoas" name="quantidade_pessoas" onchange="mostrarCamposConvidados(this.value)" required>
+                        <option value="">Quantas pessoas confirmam? *</option>
+                        <option value="1">Apenas eu (1 pessoa)</option>
+                        <option value="2">Eu + 1 acompanhante (2 pessoas)</option>
+                        <option value="3">Eu + 2 acompanhantes (3 pessoas)</option>
+                        <option value="4">Eu + 3 acompanhantes (4 pessoas)</option>
+                        <option value="5">Eu + 4 acompanhantes (5 pessoas)</option>
+                    </select>
+                    <div class="error-message" id="quantidadePessoas-error">Por favor, selecione a quantidade de pessoas</div>
+                </div>
+                
+                <!-- Campos para acompanhantes (aparecem dinamicamente) -->
+                <div id="camposAcompanhantes"></div>
+                
+                <div class="form-group">
+                    <textarea class="form-textarea" id="mensagemConfirmacao" name="mensagem_confirmacao" placeholder="Alguma observação? (restrições alimentares, música preferida, etc.)"></textarea>
+                </div>
+                
+                <button type="submit" class="btn" id="btnConfirmar" style="width: 100%;">
+                    Confirmar Presença
+                </button>
+                
+                <!-- MENSAGENS DE STATUS -->
+                <div class="msg-success" id="msgSuccessConfirmacao">
+                    <p>✅ Confirmação enviada com sucesso! Obrigado por confirmar sua presença 🤍</p>
+                    <p>Em alguns instantes você será redirecionado...</p>
+                </div>
+                
+                <div class="msg-error" id="msgErrorConfirmacao">
+                    <p>❌ Ocorreu um erro ao enviar a confirmação. Por favor, tente novamente.</p>
+                </div>
+                
+                <div class="loading" id="loadingConfirmacao">
+                    <div class="spinner"></div>
+                    <p>Enviando sua confirmação...</p>
+                </div>
+            </form>
+        </div>
+        
+        <!-- MENSAGEM PARA OS NOIVOS (mantida do original) -->
+        <div class="card mt-3">
+            <h3 class="text-center" style="color: var(--rosa); margin-bottom: 2rem;">Deixe uma mensagem para os noivos 🤍</h3>
+            
+            <form class="form-container" id="formMensagem" onsubmit="enviarMensagem(event)">
+                <div class="form-group">
+                    <input type="text" class="form-input" id="nome" name="nome" placeholder="Seu nome completo *" required>
                     <div class="error-message" id="nome-error">Por favor, digite seu nome</div>
                 </div>
                 
                 <div class="form-group">
-                    <input 
-                        type="email" 
-                        class="form-input" 
-                        id="email" 
-                        name="email"
-                        placeholder="Seu e-mail (opcional)"
-                    >
+                    <input type="email" class="form-input" id="email" name="email" placeholder="Seu e-mail (opcional)">
                     <div class="error-message" id="email-error">Por favor, digite um e-mail válido</div>
                 </div>
                 
                 <div class="form-group">
-                    <textarea 
-                        class="form-textarea" 
-                        id="mensagem" 
-                        name="mensagem"
-                        placeholder="Escreva sua mensagem com carinho *" 
-                        required
-                        rows="5"
-                    ></textarea>
+                    <textarea class="form-textarea" id="mensagem" name="mensagem" placeholder="Escreva sua mensagem com carinho *" required rows="5"></textarea>
                     <div class="error-message" id="mensagem-error">Por favor, escreva sua mensagem</div>
                 </div>
                 
@@ -1148,7 +1647,6 @@
                     Enviar mensagem
                 </button>
                 
-                <!-- MENSAGENS DE STATUS -->
                 <div class="msg-success" id="msgSuccess">
                     <p>✅ Mensagem enviada com sucesso! Obrigado pelo carinho 🤍</p>
                     <p>Em alguns instantes você será redirecionado...</p>
@@ -1349,77 +1847,161 @@
                 }
             });
             
-            // Validação em tempo real do formulário
-            document.getElementById('nome').addEventListener('input', function() {
-                validarCampo(this);
-            });
-            
-            document.getElementById('email').addEventListener('input', function() {
-                validarEmail(this);
-            });
-            
-            document.getElementById('mensagem').addEventListener('input', function() {
-                validarCampo(this);
-            });
-            
             // Inicializar animações
             animarAoRolar();
         });
         
-        // FUNÇÕES DE VALIDAÇÃO
-        function validarCampo(campo) {
-            const valor = campo.value.trim();
-            const errorElement = document.getElementById(campo.id + '-error');
+        // FUNÇÃO PARA MOSTRAR CAMPOS DE ACOMPANHANTES
+        function mostrarCamposConvidados(quantidade) {
+            const camposAcompanhantes = document.getElementById('camposAcompanhantes');
+            camposAcompanhantes.innerHTML = '';
             
-            if (!valor) {
-                campo.classList.add('error');
-                errorElement.style.display = 'block';
-                return false;
-            } else {
-                campo.classList.remove('error');
-                errorElement.style.display = 'none';
-                return true;
+            const qtd = parseInt(quantidade);
+            
+            if (qtd > 1) {
+                for (let i = 1; i < qtd; i++) {
+                    const grupo = document.createElement('div');
+                    grupo.className = 'convidado-group';
+                    grupo.innerHTML = `
+                        <h4 style="color: var(--rosa); margin-bottom: 0.5rem; font-size: 1rem;">Acompanhante ${i}</h4>
+                        <div class="form-group">
+                            <input type="text" class="form-input" id="acompanhante${i}" name="acompanhante${i}" placeholder="Nome completo do acompanhante *" required>
+                        </div>
+                    `;
+                    camposAcompanhantes.appendChild(grupo);
+                }
             }
         }
         
-        function validarEmail(campo) {
-            const valor = campo.value.trim();
-            const errorElement = document.getElementById('email-error');
-            
-            if (valor && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor)) {
-                campo.classList.add('error');
-                errorElement.textContent = 'Por favor, digite um e-mail válido';
-                errorElement.style.display = 'block';
-                return false;
-            } else {
-                campo.classList.remove('error');
-                errorElement.style.display = 'none';
-                return true;
-            }
-        }
-        
-        function validarFormulario() {
-            const nomeValido = validarCampo(document.getElementById('nome'));
-            const emailValido = validarEmail(document.getElementById('email'));
-            const mensagemValida = validarCampo(document.getElementById('mensagem'));
-            
-            return nomeValido && emailValido && mensagemValida;
-        }
-        
-        // FUNÇÃO PARA ENVIAR MENSAGEM - VERSÃO SIMPLIFICADA E FUNCIONAL
-        async function enviarMensagem(event) {
+        // FUNÇÃO PARA ENVIAR CONFIRMAÇÃO DE PRESENÇA
+        async function enviarConfirmacao(event) {
             event.preventDefault();
             
-            // Validar formulário
-            if (!validarFormulario()) {
+            const btnConfirmar = document.getElementById('btnConfirmar');
+            const formulario = document.getElementById('formConfirmacao');
+            const loading = document.getElementById('loadingConfirmacao');
+            const msgSuccess = document.getElementById('msgSuccessConfirmacao');
+            const msgError = document.getElementById('msgErrorConfirmacao');
+            
+            // Validar campos obrigatórios
+            const nome = document.getElementById('nomeConvidado').value.trim();
+            const email = document.getElementById('emailConvidado').value.trim();
+            const quantidade = document.getElementById('quantidadePessoas').value;
+            
+            if (!nome || !email || !quantidade) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
                 return;
             }
+            
+            // Desabilitar botão e mostrar loading
+            btnConfirmar.disabled = true;
+            btnConfirmar.textContent = 'Enviando...';
+            formulario.classList.add('form-loading');
+            loading.style.display = 'block';
+            msgSuccess.style.display = 'none';
+            msgError.style.display = 'none';
+            
+            // Coletar dados do formulário
+            const formData = {
+                nome: nome,
+                email: email,
+                telefone: document.getElementById('telefoneConvidado').value.trim() || 'Não informado',
+                quantidade_pessoas: quantidade,
+                mensagem: document.getElementById('mensagemConfirmacao').value.trim() || 'Nenhuma observação',
+                data: new Date().toLocaleString('pt-BR'),
+                tipo: 'Confirmação de Presença'
+            };
+            
+            // Coletar nomes dos acompanhantes
+            const acompanhantes = [];
+            const qtd = parseInt(quantidade);
+            
+            if (qtd > 1) {
+                for (let i = 1; i < qtd; i++) {
+                    const acompanhante = document.getElementById(`acompanhante${i}`);
+                    if (acompanhante && acompanhante.value.trim()) {
+                        acompanhantes.push(acompanhante.value.trim());
+                    }
+                }
+            }
+            
+            formData.acompanhantes = acompanhantes.join(', ');
+            
+            try {
+                // ENVIAR VIA FORMSUBMIT
+                const response = await fetch('https://formsubmit.co/ajax/casamentoamaurieester@gmail.com', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        nome_convidado: formData.nome,
+                        email_convidado: formData.email,
+                        telefone_convidado: formData.telefone,
+                        quantidade_pessoas: formData.quantidade_pessoas,
+                        acompanhantes: formData.acompanhantes,
+                        mensagem_confirmacao: formData.mensagem,
+                        data_envio: formData.data,
+                        _subject: `✅ Confirmação de Presença - ${formData.nome}`,
+                        _template: 'table',
+                        _captcha: 'false'
+                    })
+                });
+                
+                if (response.ok) {
+                    // Sucesso!
+                    loading.style.display = 'none';
+                    msgSuccess.style.display = 'block';
+                    
+                    // Limpar formulário
+                    formulario.reset();
+                    document.getElementById('camposAcompanhantes').innerHTML = '';
+                    
+                    // Redirecionar após 3 segundos
+                    setTimeout(() => {
+                        window.location.href = 'obrigado-confirmacao.html';
+                    }, 3000);
+                    
+                } else {
+                    throw new Error('Erro na resposta do servidor');
+                }
+                
+            } catch (error) {
+                console.error('Erro ao enviar confirmação:', error);
+                
+                // Mostrar mensagem de erro
+                loading.style.display = 'none';
+                msgError.style.display = 'block';
+                
+            } finally {
+                // Reabilitar botão após 3 segundos
+                setTimeout(() => {
+                    btnConfirmar.disabled = false;
+                    btnConfirmar.textContent = 'Confirmar Presença';
+                    formulario.classList.remove('form-loading');
+                }, 3000);
+            }
+        }
+        
+        // FUNÇÃO PARA ENVIAR MENSAGEM
+        async function enviarMensagem(event) {
+            event.preventDefault();
             
             const btnEnviar = document.getElementById('btnEnviar');
             const formulario = document.getElementById('formMensagem');
             const loading = document.getElementById('loading');
             const msgSuccess = document.getElementById('msgSuccess');
             const msgError = document.getElementById('msgError');
+            
+            // Validar campos
+            const nome = document.getElementById('nome').value.trim();
+            const mensagem = document.getElementById('mensagem').value.trim();
+            
+            if (!nome || !mensagem) {
+                alert('Por favor, preencha pelo menos o nome e a mensagem.');
+                return;
+            }
             
             // Desabilitar botão e mostrar loading
             btnEnviar.disabled = true;
@@ -1431,15 +2013,15 @@
             
             // Coletar dados do formulário
             const formData = {
-                nome: document.getElementById('nome').value,
-                email: document.getElementById('email').value || 'Não informado',
-                mensagem: document.getElementById('mensagem').value,
+                nome: nome,
+                email: document.getElementById('email').value.trim() || 'Não informado',
+                mensagem: mensagem,
                 data: new Date().toLocaleString('pt-BR'),
-                pagina: 'Site do Casamento Amauri & Ester'
+                tipo: 'Mensagem para os Noivos'
             };
             
             try {
-                // ENVIAR VIA FORMSUBMIT (forma mais simples)
+                // ENVIAR VIA FORMSUBMIT
                 const response = await fetch('https://formsubmit.co/ajax/casamentoamaurieester@gmail.com', {
                     method: 'POST',
                     headers: {
@@ -1447,10 +2029,11 @@
                         'Accept': 'application/json'
                     },
                     body: JSON.stringify({
-                        name: formData.nome,
+                        nome: formData.nome,
                         email: formData.email,
-                        message: formData.mensagem,
-                        _subject: `💌 Nova mensagem do site de casamento - ${formData.nome}`,
+                        mensagem: formData.mensagem,
+                        data_envio: formData.data,
+                        _subject: `💌 Mensagem para os Noivos - ${formData.nome}`,
                         _template: 'table',
                         _captcha: 'false'
                     })
@@ -1490,7 +2073,7 @@
             }
         }
         
-        // FUNÇÃO PARA RENDERIZAR PRESENTES - CORRIGIDA (SEM O ERRO DE ;" />)
+        // FUNÇÃO PARA RENDERIZAR PRESENTES
         function renderizarPresentes(filtro = 'todos') {
             const container = document.getElementById('lista-presentes');
             container.innerHTML = '';
@@ -1735,7 +2318,7 @@
         
         // DETECTAR SCROLL PARA ANIMAÇÕES
         function animarAoRolar() {
-            const cards = document.querySelectorAll('.card, .presente-card, .evento-card');
+            const cards = document.querySelectorAll('.card, .presente-card, .evento-card, .foto-item, .padrinho-card, .dress-code-item');
             
             cards.forEach(card => {
                 const cardTop = card.getBoundingClientRect().top;
@@ -1749,7 +2332,7 @@
         }
         
         // ESTILOS INICIAIS PARA ANIMAÇÃO
-        document.querySelectorAll('.card, .presente-card, .evento-card').forEach(card => {
+        document.querySelectorAll('.card, .presente-card, .evento-card, .foto-item, .padrinho-card, .dress-code-item').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
             card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
@@ -1757,15 +2340,6 @@
         
         // INICIALIZAR ANIMAÇÕES
         window.addEventListener('scroll', animarAoRolar);
-        
-        // TESTE RÁPIDO DO FORMULÁRIO (para desenvolvimento)
-        function testarFormulario() {
-            document.getElementById('nome').value = 'Nome de Teste';
-            document.getElementById('email').value = 'teste@exemplo.com';
-            document.getElementById('mensagem').value = 'Esta é uma mensagem de teste para verificar se o formulário está funcionando.';
-            
-            alert('Formulário preenchido para teste. Clique em "Enviar mensagem" para testar.');
-        }
     </script>
 </body>
 </html>
