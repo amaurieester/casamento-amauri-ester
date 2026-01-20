@@ -117,7 +117,7 @@
             color: #aaa;
         }
         
-        /* AUTO-COMPLETE */
+        /* AUTO-COMPLETE PRINCIPAL */
         .autocomplete-results {
             position: absolute;
             top: 100%;
@@ -767,10 +767,11 @@
         const confirmationResult = document.getElementById('confirmationResult');
         const loading = document.getElementById('loading');
 
-        // EVENT LISTENERS
+        // EVENT LISTENERS - PRINCIPAL
         document.addEventListener('DOMContentLoaded', function() {
             nomeInput.focus();
             
+            // Evento de input para o campo principal
             nomeInput.addEventListener('input', function() {
                 const searchTerm = this.value.trim();
                 
@@ -778,14 +779,31 @@
                     buscarConvidados(searchTerm);
                 } else {
                     esconderAutocomplete();
-                    resetarInterface();
+                    // NÃO RESETA A INTERFACE AQUI - só esconde o auto-complete
                 }
             });
             
             nomeInput.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter') {
                     e.preventDefault();
-                    verificarNome(this.value.trim());
+                    const searchTerm = this.value.trim();
+                    if (searchTerm.length >= 2) {
+                        const resultados = listaConvidados.filter(convidado => 
+                            convidado.nome.toLowerCase().includes(searchTerm.toLowerCase()) &&
+                            convidado.status !== "confirmado" &&
+                            convidado.status !== "recusado"
+                        );
+                        
+                        if (resultados.length === 1) {
+                            // Se só tem um resultado, seleciona automaticamente
+                            nomeInput.value = resultados[0].nome;
+                            verificarNome(resultados[0].nome);
+                            esconderAutocomplete();
+                        } else if (resultados.length > 1) {
+                            // Se tem vários, mostra o auto-complete
+                            buscarConvidados(searchTerm);
+                        }
+                    }
                 }
             });
             
@@ -797,7 +815,7 @@
             });
         });
 
-        // FUNÇÃO PARA BUSCAR CONVIDADOS
+        // FUNÇÃO PARA BUSCAR CONVIDADOS (PRINCIPAL)
         function buscarConvidados(termo) {
             const resultados = listaConvidados.filter(convidado => 
                 convidado.nome.toLowerCase().includes(termo.toLowerCase()) &&
@@ -810,6 +828,7 @@
 
         // FUNÇÃO PARA BUSCAR ACOMPANHANTES
         function buscarAcompanhantes(termo, inputId) {
+            // Filtrar convidados que não são o atual e estão disponíveis
             const resultados = listaConvidados.filter(convidado => 
                 convidado.nome.toLowerCase().includes(termo.toLowerCase()) &&
                 convidado.id !== convidadoAtual.id && // Não pode ser o próprio convidado
@@ -883,52 +902,51 @@
             autocompleteResults.style.display = 'none';
         }
 
-        // FUNÇÃO PARA VERIFICAR NOME
+        // FUNÇÃO PARA VERIFICAR NOME (SÓ QUANDO O USUÁRIO CLICA OU SELECIONA)
         function verificarNome(nome) {
             esconderAutocomplete();
-            resetarInterface();
             
-            // Procurar nome exato primeiro
+            // Primeiro verifica se é um nome exato da lista
             let convidado = listaConvidados.find(c => 
                 c.nome.toLowerCase() === nome.toLowerCase()
             );
             
-            if (!convidado) {
-                // Tentar encontrar por partes do nome
-                const partesNome = nome.toLowerCase().split(' ');
-                convidado = listaConvidados.find(c => {
-                    const nomeConvidado = c.nome.toLowerCase();
-                    return partesNome.some(parte => nomeConvidado.includes(parte));
-                });
-            }
-            
             if (convidado) {
-                // Verificar se já confirmou
-                if (convidado.status === "confirmado") {
-                    mostrarMensagem(
-                        "✅ Você já confirmou sua presença! Obrigado! 🤍",
-                        "success"
-                    );
-                    return;
-                }
-                
-                if (convidado.status === "recusado") {
-                    mostrarMensagem(
-                        "❌ Você já informou que não comparecerá. Caso mude de ideia, entre em contato com os noivos.",
-                        "info"
-                    );
-                    return;
-                }
-                
-                convidadoAtual = convidado;
-                mostrarPreviewConvidado(convidado);
-                mostrarPerguntaAcompanhante();
+                processarConvidadoEncontrado(convidado);
             } else {
+                // Se não encontrou exato, mostra mensagem de erro
                 mostrarMensagem(
                     "😔 Poxa... Esse nome não está na lista de convidados.<br>Verifique se digitou corretamente ou entre em contato com os noivos.",
                     "error"
                 );
+                // Não reseta a interface - deixa o usuário corrigir o nome
             }
+        }
+
+        // FUNÇÃO PARA PROCESSAR CONVIDADO ENCONTRADO
+        function processarConvidadoEncontrado(convidado) {
+            // Verificar se já confirmou
+            if (convidado.status === "confirmado") {
+                mostrarMensagem(
+                    "✅ Você já confirmou sua presença! Obrigado! 🤍",
+                    "success"
+                );
+                resetarInterface();
+                return;
+            }
+            
+            if (convidado.status === "recusado") {
+                mostrarMensagem(
+                    "❌ Você já informou que não comparecerá. Caso mude de ideia, entre em contato com os noivos.",
+                    "info"
+                );
+                resetarInterface();
+                return;
+            }
+            
+            convidadoAtual = convidado;
+            mostrarPreviewConvidado(convidado);
+            mostrarPerguntaAcompanhante();
         }
 
         // FUNÇÃO PARA MOSTRAR MENSAGEM
@@ -937,8 +955,8 @@
             statusMessage.className = `status-message status-${tipo}`;
             statusMessage.style.display = 'block';
             
-            // Esconder após 5 segundos para mensagens de erro
-            if (tipo === 'error') {
+            // Esconder após 5 segundos para mensagens de erro/info
+            if (tipo === 'error' || tipo === 'info') {
                 setTimeout(() => {
                     statusMessage.style.display = 'none';
                 }, 5000);
@@ -969,6 +987,7 @@
             acompanhantes = [];
             acompanhantesList.innerHTML = '';
             acompanhantesValidos = false;
+            nomeInput.value = '';
         }
 
         // FUNÇÃO PARA RESPOSTA SOBRE ACOMPANHANTES
@@ -1037,8 +1056,11 @@
                     if (autocompleteDiv) {
                         autocompleteDiv.style.display = 'none';
                     }
+                    // Limpa a validação se o campo estiver vazio
+                    if (!valor) {
+                        limparValidacaoAcompanhante(id);
+                    }
                 }
-                validarAcompanhanteIndividual(id, valor);
             });
             
             input.addEventListener('blur', function() {
@@ -1047,6 +1069,8 @@
                     if (autocompleteDiv) {
                         autocompleteDiv.style.display = 'none';
                     }
+                    // Valida quando sai do campo
+                    validarAcompanhanteIndividual(id, this.value.trim());
                 }, 200);
             });
             
@@ -1054,10 +1078,30 @@
                 if (e.key === 'Enter') {
                     e.preventDefault();
                     validarAcompanhanteIndividual(id, this.value.trim());
+                    const autocompleteDiv = document.getElementById(`${id}-autocomplete`);
+                    if (autocompleteDiv) {
+                        autocompleteDiv.style.display = 'none';
+                    }
                 }
             });
             
             input.focus();
+        }
+
+        // FUNÇÃO PARA LIMPAR VALIDAÇÃO DE ACOMPANHANTE
+        function limparValidacaoAcompanhante(inputId) {
+            const index = acompanhantes.findIndex(a => a.id === inputId);
+            if (index === -1) return;
+            
+            const statusDiv = document.getElementById(`status-${inputId}`);
+            const errorDiv = document.getElementById(`error-${inputId}`);
+            const input = document.getElementById(inputId);
+            
+            input.classList.remove('valido', 'invalido');
+            statusDiv.innerHTML = '';
+            statusDiv.className = 'validacao-status';
+            errorDiv.style.display = 'none';
+            acompanhantes[index].valido = false;
         }
 
         // FUNÇÃO PARA VALIDAR ACOMPANHANTE INDIVIDUAL
@@ -1077,92 +1121,71 @@
             
             if (!nome) {
                 // Campo vazio
-                input.classList.remove('valido', 'invalido');
-                statusDiv.innerHTML = '';
-                statusDiv.className = 'validacao-status';
-                errorDiv.style.display = 'none';
-                acompanhantes[index].valido = false;
+                limparValidacaoAcompanhante(inputId);
                 return;
             }
             
-            // Verificar se o nome está na lista
+            // Verificar se o nome está na lista (EXATO)
             const convidadoEncontrado = listaConvidados.find(c => 
                 c.nome.toLowerCase() === nome.toLowerCase()
             );
             
             if (!convidadoEncontrado) {
-                // Tentar encontrar por partes do nome
-                const partesNome = nome.toLowerCase().split(' ');
-                const convidadoParcial = listaConvidados.find(c => {
-                    const nomeConvidado = c.nome.toLowerCase();
-                    return partesNome.some(parte => nomeConvidado.includes(parte));
-                });
-                
-                if (convidadoParcial) {
-                    // Encontrou parcialmente - sugerir nome completo
-                    input.value = convidadoParcial.nome;
-                    nome = convidadoParcial.nome;
-                    validarAcompanhanteIndividual(inputId, nome);
-                    return;
-                }
-            }
-            
-            if (convidadoEncontrado) {
-                // Verificar se não é o próprio convidado
-                if (convidadoEncontrado.id === convidadoAtual.id) {
-                    input.classList.remove('valido');
-                    input.classList.add('invalido');
-                    statusDiv.innerHTML = '❌';
-                    statusDiv.className = 'validacao-status status-erro';
-                    errorDiv.textContent = 'Este é o seu próprio nome. Informe um acompanhante diferente.';
-                    errorDiv.style.display = 'block';
-                    acompanhantes[index].valido = false;
-                    return;
-                }
-                
-                // Verificar se já foi confirmado
-                if (convidadoEncontrado.status === "confirmado") {
-                    input.classList.remove('valido');
-                    input.classList.add('invalido');
-                    statusDiv.innerHTML = '❌';
-                    statusDiv.className = 'validacao-status status-erro';
-                    errorDiv.textContent = 'Esta pessoa já confirmou presença. Verifique se não está repetindo.';
-                    errorDiv.style.display = 'block';
-                    acompanhantes[index].valido = false;
-                    return;
-                }
-                
-                // Verificar se já foi recusado
-                if (convidadoEncontrado.status === "recusado") {
-                    input.classList.remove('valido');
-                    input.classList.add('invalido');
-                    statusDiv.innerHTML = '❌';
-                    statusDiv.className = 'validacao-status status-erro';
-                    errorDiv.textContent = 'Esta pessoa informou que não comparecerá.';
-                    errorDiv.style.display = 'block';
-                    acompanhantes[index].valido = false;
-                    return;
-                }
-                
-                // Nome válido!
-                input.classList.remove('invalido');
-                input.classList.add('valido');
-                statusDiv.innerHTML = '✅';
-                statusDiv.className = 'validacao-status status-ok';
-                errorDiv.style.display = 'none';
-                acompanhantes[index].nome = nome;
-                acompanhantes[index].valido = true;
-                
-            } else {
-                // Nome não encontrado na lista
+                // NÃO faz busca parcial para acompanhantes - precisa ser exato
                 input.classList.remove('valido');
                 input.classList.add('invalido');
                 statusDiv.innerHTML = '❌';
                 statusDiv.className = 'validacao-status status-erro';
-                errorDiv.textContent = `"${nome}" não está na lista de convidados. Por favor, entre em contato com os noivos para verificar.`;
+                errorDiv.textContent = `"${nome}" não está na lista de convidados. Por favor, digite o nome completo ou entre em contato com os noivos.`;
                 errorDiv.style.display = 'block';
                 acompanhantes[index].valido = false;
+                return;
             }
+            
+            // Verificar se não é o próprio convidado
+            if (convidadoEncontrado.id === convidadoAtual.id) {
+                input.classList.remove('valido');
+                input.classList.add('invalido');
+                statusDiv.innerHTML = '❌';
+                statusDiv.className = 'validacao-status status-erro';
+                errorDiv.textContent = 'Este é o seu próprio nome. Informe um acompanhante diferente.';
+                errorDiv.style.display = 'block';
+                acompanhantes[index].valido = false;
+                return;
+            }
+            
+            // Verificar se já foi confirmado
+            if (convidadoEncontrado.status === "confirmado") {
+                input.classList.remove('valido');
+                input.classList.add('invalido');
+                statusDiv.innerHTML = '❌';
+                statusDiv.className = 'validacao-status status-erro';
+                errorDiv.textContent = 'Esta pessoa já confirmou presença. Verifique se não está repetindo.';
+                errorDiv.style.display = 'block';
+                acompanhantes[index].valido = false;
+                return;
+            }
+            
+            // Verificar se já foi recusado
+            if (convidadoEncontrado.status === "recusado") {
+                input.classList.remove('valido');
+                input.classList.add('invalido');
+                statusDiv.innerHTML = '❌';
+                statusDiv.className = 'validacao-status status-erro';
+                errorDiv.textContent = 'Esta pessoa informou que não comparecerá.';
+                errorDiv.style.display = 'block';
+                acompanhantes[index].valido = false;
+                return;
+            }
+            
+            // Nome válido!
+            input.classList.remove('invalido');
+            input.classList.add('valido');
+            statusDiv.innerHTML = '✅';
+            statusDiv.className = 'validacao-status status-ok';
+            errorDiv.style.display = 'none';
+            acompanhantes[index].nome = nome;
+            acompanhantes[index].valido = true;
         }
 
         // FUNÇÃO PARA REMOVER ACOMPANHANTE
@@ -1176,18 +1199,25 @@
 
         // FUNÇÃO PARA VALIDAR TODOS OS ACOMPANHANTES
         function validarAcompanhantes() {
-            // Validar todos os campos primeiro
+            // Primeiro, forçar validação de todos os campos
+            let todosValidos = true;
+            let algumPreenchido = false;
+            
             acompanhantes.forEach(acompanhante => {
                 const input = document.getElementById(acompanhante.id);
                 if (input) {
-                    validarAcompanhanteIndividual(acompanhante.id, input.value.trim());
+                    const nome = input.value.trim();
+                    if (nome) {
+                        algumPreenchido = true;
+                        validarAcompanhanteIndividual(acompanhante.id, nome);
+                        if (!acompanhante.valido) {
+                            todosValidos = false;
+                        }
+                    }
                 }
             });
             
-            // Verificar se há pelo menos um acompanhante
-            const acompanhantesPreenchidos = acompanhantes.filter(a => a.nome.trim() !== '');
-            
-            if (acompanhantesPreenchidos.length === 0) {
+            if (!algumPreenchido) {
                 mostrarMensagem(
                     "Por favor, informe pelo menos o nome de um acompanhante.",
                     "error"
@@ -1195,12 +1225,9 @@
                 return;
             }
             
-            // Verificar se todos os acompanhantes são válidos
-            const acompanhantesInvalidos = acompanhantes.filter(a => a.nome.trim() !== '' && !a.valido);
-            
-            if (acompanhantesInvalidos.length > 0) {
+            if (!todosValidos) {
                 mostrarMensagem(
-                    "Alguns acompanhantes não estão na lista de convidados. Por favor, corrija os nomes ou entre em contato com os noivos.",
+                    "Alguns acompanhantes não são válidos. Por favor, corrija os nomes antes de continuar.",
                     "error"
                 );
                 return;
@@ -1219,9 +1246,6 @@
                 );
                 return;
             }
-            
-            // Verificar se algum acompanhante já está sendo confirmado por outra pessoa
-            // (em um sistema real, isso seria verificado no servidor)
             
             // Todos os acompanhantes são válidos!
             acompanhantesValidos = true;
