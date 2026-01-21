@@ -3,1050 +3,587 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO OTIMIZADO -->
-    <title>Amauri & Ester | Casamento 29/05/2027 - Várzea da Palma - MG</title>
-    <meta name="description" content="Celebre conosco nosso casamento! 29 de maio de 2027 em Várzea da Palma - MG. Confirmação de presença, lista de presentes e nossa história de amor.">
-    <meta name="keywords" content="casamento, Amauri, Ester, Várzea da Palma, 29/05/2027, lista de presentes">
-    <meta name="author" content="Amauri & Ester">
-    
-    <!-- OPEN GRAPH PARA REDES SOCIAIS -->
-    <meta property="og:title" content="Amauri & Ester | Casamento">
-    <meta property="og:description" content="29/05/2027 • Várzea da Palma - MG. Estamos ansiosos para celebrar esse momento especial com você 🤍">
-    <meta property="og:image" content="https://SEUSITE.com/capa-whatsapp.jpg">
-    <meta property="og:url" content="https://amaurieester.github.io/casamento-amauri-ester">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Casamento Amauri & Ester">
-    <meta property="og:locale" content="pt_BR">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    
-    <!-- TWITTER CARDS -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Amauri & Ester | Casamento">
-    <meta name="twitter:description" content="29/05/2027 • Várzea da Palma - MG">
-    
-    <!-- FAVICON -->
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
-    
-    <!-- FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- STYLES -->
+    <title>Nosso Casamento</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --rosa: #d16c7c;
-            --laranja: #f08a5d;
-            --laranja-claro: #ffd56b;
-            --fundo: #fff6f2;
-            --branco: #ffffff;
-            --cinza: #444444;
-            --cinza-claro: #666666;
-            --sombra: rgba(0, 0, 0, 0.08);
-            --sombra-hover: rgba(0, 0, 0, 0.12);
-            --transicao: all 0.3s ease;
-            --borda-redonda: 24px;
-            --sucesso: #4CAF50;
-            --erro: #f44336;
-        }
-        
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
+
         body {
-            font-family: 'Montserrat', sans-serif;
-            background: var(--fundo);
-            color: var(--cinza);
+            background-color: #fefaf6;
+            color: #5a4d3f;
             line-height: 1.6;
-            overflow-x: hidden;
         }
-        
-        /* TIPOGRAFIA */
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            line-height: 1.2;
-        }
-        
-        h1 {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            margin-bottom: 1rem;
-        }
-        
-        h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            color: var(--laranja);
-            margin-bottom: 2.5rem;
-            position: relative;
-            display: inline-block;
-        }
-        
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(to right, var(--rosa), var(--laranja));
-            border-radius: 2px;
-        }
-        
-        .welcome-title {
-            color: var(--rosa);
-            font-size: clamp(2rem, 4vw, 2.5rem);
-            margin-bottom: 2rem;
-            text-align: center;
-            width: 100%;
-        }
-        
-        p {
-            margin-bottom: 1.5rem;
-            font-size: clamp(1rem, 2vw, 1.1rem);
-        }
-        
-        /* MENU PRINCIPAL CORRIGIDO */
-        .menu {
+
+        /* Menu Superior */
+        .header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
             position: sticky;
-            top: 15px;
-            margin: 15px auto;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .menu-container {
             max-width: 1200px;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 40px;
-            padding: 18px 40px;
+            margin: 0 auto;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: clamp(1.2rem, 3vw, 3rem);
-            box-shadow: 0 10px 30px var(--sombra);
-            z-index: 1000;
-            transition: var(--transicao);
-            flex-wrap: wrap;
+            padding: 0 20px;
         }
-        
-        .menu:hover {
-            box-shadow: 0 15px 40px var(--sombra-hover);
+
+        .menu {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
         }
-        
+
         .menu a {
             text-decoration: none;
-            color: var(--rosa);
-            font-weight: 500;
-            font-size: clamp(0.9rem, 2vw, 1.1rem);
-            white-space: nowrap;
+            color: #8c6d46;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
             position: relative;
-            padding: 8px 5px;
-            transition: var(--transicao);
         }
-        
-        .menu a::after {
+
+        .menu a:hover {
+            color: #b8945f;
+            background-color: rgba(140, 109, 70, 0.05);
+        }
+
+        .menu a:after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(to right, var(--rosa), var(--laranja));
-            transition: width 0.3s ease;
+            bottom: 0;
+            left: 50%;
+            background-color: #b8945f;
+            transition: all 0.3s ease;
         }
-        
-        .menu a:hover::after {
-            width: 100%;
+
+        .menu a:hover:after {
+            width: 80%;
+            left: 10%;
         }
-        
-        .menu a:hover {
-            color: var(--laranja);
+
+        /* Seções Gerais */
+        .section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            text-align: center;
         }
-        
-        @media (max-width: 1024px) {
+
+        .section-title {
+            font-size: 2.8rem;
+            color: #8c6d46;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 1px;
+            background-color: #e0d1b8;
+            bottom: -10px;
+            left: 20%;
+        }
+
+        /* Seção Nossa História */
+        .our-story {
+            background-color: white;
+            padding: 4rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+            margin: 2rem auto;
+            max-width: 1000px;
+        }
+
+        .story-content {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #6d5c47;
+            text-align: left;
+            column-count: 2;
+            column-gap: 3rem;
+        }
+
+        .story-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Seção Linha do Tempo */
+        .timeline-section {
+            margin: 6rem auto 4rem;
+        }
+
+        .section-subtitle {
+            color: #a38b6d;
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        /* Container da linha do tempo */
+        .timeline-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Linha central */
+        .timeline-container:before {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background-color: #e0d1b8;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Itens da linha do tempo */
+        .timeline-item {
+            padding: 20px 40px;
+            position: relative;
+            width: 50%;
+            margin-bottom: 4rem;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        /* Conteúdo dos itens */
+        .timeline-content {
+            padding: 25px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+            background-color: white;
+            box-shadow: 3px -3px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+            background-color: white;
+            box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Data */
+        .timeline-date {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: #b8945f;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .timeline-date span {
+            font-size: 1rem;
+            color: #a38b6d;
+            display: block;
+            margin-top: 0.3rem;
+        }
+
+        /* Título do evento */
+        .timeline-title {
+            font-size: 1.5rem;
+            color: #5a4d3f;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        /* Círculo na linha */
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background-color: #fefaf6;
+            border: 4px solid #b8945f;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd):before {
+            right: -12px;
+        }
+
+        .timeline-item:nth-child(even):before {
+            left: -12px;
+        }
+
+        /* Container de fotos */
+        .photo-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .photo-placeholder {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            background-color: #f5f0e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a38b6d;
+            font-size: 2.5rem;
+            overflow: hidden;
+            border: 1px dashed #d4c5ad;
+        }
+
+        .photo-placeholder i {
+            opacity: 0.7;
+        }
+
+        /* Seção Galeria */
+        .gallery-section {
+            margin-top: 6rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            height: 250px;
+            background-color: #f5f0e8;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #a38b6d;
+            border: 2px dashed #d4c5ad;
+        }
+
+        /* Responsividade */
+        @media screen and (max-width: 768px) {
             .menu {
-                max-width: 95%;
-                padding: 16px 30px;
-                gap: 1.8rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .menu {
-                overflow-x: auto;
-                justify-content: flex-start;
-                padding: 14px 24px;
-                margin: 10px 15px;
-                gap: 1.8rem;
-                scrollbar-width: none;
-                flex-wrap: nowrap;
-            }
-            
-            .menu::-webkit-scrollbar {
-                display: none;
+                gap: 1.5rem;
             }
             
             .menu a {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
+            }
+            
+            .story-content {
+                column-count: 1;
+            }
+            
+            .timeline-container:before {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 20px;
+                left: 0 !important;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item:before {
+                left: 20px !important;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content:after,
+            .timeline-item:nth-child(even) .timeline-content:after {
+                left: -10px;
+                right: auto;
+                box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.05);
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
         }
-        
-        /* SEÇÕES COM MAIS ESPAÇAMENTO */
-        section {
-            padding: clamp(5rem, 10vw, 8rem) 20px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        
-        .card {
-            background: var(--branco);
-            border-radius: var(--borda-redonda);
-            padding: clamp(2.5rem, 6vw, 4rem);
-            box-shadow: 0 15px 40px var(--sombra);
-            transition: var(--transicao);
-            margin-bottom: 3rem;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px var(--sombra-hover);
-        }
-        
-        /* HERO SECTION */
-        .hero {
-            background: linear-gradient(135deg, var(--rosa), var(--laranja));
-            color: var(--branco);
-            text-align: center;
-            padding: clamp(6rem, 12vw, 10rem) 20px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
-            opacity: 0.1;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .hero-subtitle {
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            letter-spacing: 3px;
-            margin-bottom: 1rem;
-            opacity: 0.9;
-            text-transform: uppercase;
-        }
-        
-        .hero-date {
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
-            margin-top: 1.5rem;
-            opacity: 0.95;
-        }
-        
-        /* COUNTDOWN */
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: clamp(0.8rem, 2vw, 1.5rem);
-            margin-top: 3rem;
-            flex-wrap: wrap;
-        }
-        
-        .time-unit {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .time {
-            background: rgba(255, 255, 255, 0.2);
-            padding: clamp(1rem, 2vw, 1.5rem) clamp(1.2rem, 3vw, 2rem);
-            border-radius: 20px;
-            min-width: clamp(80px, 10vw, 100px);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .time-value {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            font-weight: 700;
-            font-family: 'Playfair Display', serif;
-            display: block;
-        }
-        
-        .time-label {
-            font-size: 0.8rem;
-            opacity: 0.9;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 5px;
-        }
-        
-        /* BOTÕES */
-        .btn {
-            display: inline-block;
-            padding: clamp(0.8rem, 2vw, 1rem) clamp(2rem, 4vw, 2.5rem);
-            border-radius: 50px;
-            background: linear-gradient(135deg, var(--rosa), var(--laranja));
-            color: var(--branco);
-            border: none;
-            cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-            text-decoration: none;
-            transition: var(--transicao);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(209, 108, 124, 0.3);
-        }
-        
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .btn:hover::after {
-            left: 100%;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(209, 108, 124, 0.4);
-        }
-        
-        .btn:active {
-            transform: translateY(-1px);
-        }
-        
-        .btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-        
-        /* FORMULÁRIOS */
-        .form-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .form-group {
-            margin-bottom: 1.8rem;
-        }
-        
-        .form-input, .form-textarea, .form-select {
-            width: 100%;
-            padding: 1.2rem 1.5rem;
-            border-radius: 12px;
-            border: 1px solid #ddd;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            transition: var(--transicao);
-            background: var(--branco);
-        }
-        
-        .form-input:focus, .form-textarea:focus, .form-select:focus {
-            outline: none;
-            border-color: var(--rosa);
-            box-shadow: 0 0 0 3px rgba(209, 108, 124, 0.1);
-        }
-        
-        .form-textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .form-input.error, .form-textarea.error, .form-select.error {
-            border-color: var(--erro);
-        }
-        
-        .error-message {
-            color: var(--erro);
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-            display: none;
-        }
-        
-        .msg-success {
-            display: none;
-            margin-top: 2rem;
-            padding: 1.2rem;
-            background: rgba(76, 175, 80, 0.1);
-            border-radius: 12px;
-            color: var(--sucesso);
-            font-weight: 500;
-            text-align: center;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .msg-error {
-            display: none;
-            margin-top: 2rem;
-            padding: 1.2rem;
-            background: rgba(244, 67, 54, 0.1);
-            border-radius: 12px;
-            color: var(--erro);
-            font-weight: 500;
-            text-align: center;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        /* LOADING ESPECÍFICO PARA FORMULÁRIO */
-        .form-loading {
-            position: relative;
-            pointer-events: none;
-        }
-        
-        .form-loading::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.7);
-            z-index: 5;
-            border-radius: var(--borda-redonda);
-        }
-        
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 2.5rem;
-            position: relative;
-            z-index: 10;
-        }
-        
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(209, 108, 124, 0.2);
-            border-top-color: var(--rosa);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1.5rem;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* ANIMAÇÕES */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideUp {
-            from { 
-                opacity: 0;
-                transform: translateY(30px);
+
+        @media screen and (max-width: 480px) {
+            .menu {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
             }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
+            
+            .photo-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
             }
         }
-        
-        /* FOOTER */
-        footer {
-            background: linear-gradient(135deg, var(--rosa), var(--laranja));
-            color: var(--branco);
+
+        /* Decoração */
+        .decoration {
             text-align: center;
-            padding: 4rem 20px;
-            margin-top: 4rem;
-        }
-        
-        .footer-heart {
-            color: #ff6b6b;
-            animation: heartbeat 1.5s ease infinite;
-            display: inline-block;
-        }
-        
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-        
-        /* UTILITIES */
-        .text-center { text-align: center; }
-        .mt-1 { margin-top: 1.5rem; }
-        .mt-2 { margin-top: 2.5rem; }
-        .mt-3 { margin-top: 3.5rem; }
-        .mt-4 { margin-top: 4.5rem; }
-        .mb-1 { margin-bottom: 1.5rem; }
-        .mb-2 { margin-bottom: 2.5rem; }
-        .mb-3 { margin-bottom: 3.5rem; }
-        .mb-4 { margin-bottom: 4.5rem; }
-        
-        /* ACCESSIBILITY */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-        
-        /* GALERIA DE FOTOS */
-        .galeria-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-            margin-bottom: 4rem;
-        }
-        
-        .foto-item {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            height: 250px;
-            cursor: pointer;
-            transition: var(--transicao);
-        }
-        
-        .foto-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-        
-        .foto-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-        
-        .foto-item:hover img {
-            transform: scale(1.05);
-        }
-        
-        .foto-legenda {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-            color: white;
-            padding: 1rem;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .foto-item:hover .foto-legenda {
-            transform: translateY(0);
-        }
-        
-        /* DRESS CODE */
-        .dress-code-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .dress-code-item {
-            padding: 1.8rem;
-            background: var(--branco);
-            border-radius: 15px;
-            box-shadow: 0 5px 15px var(--sombra);
-            text-align: center;
-            transition: var(--transicao);
-        }
-        
-        .dress-code-item:hover {
-            transform: translateY(-5px);
-        }
-        
-        .dress-code-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.2rem;
-            display: block;
-        }
-        
-        .dress-code-titulo {
-            color: var(--laranja);
-            margin-bottom: 0.8rem;
-            font-weight: 600;
-        }
-        
-        /* SCROLLBAR PERSONALIZADA */
-        .modal-content::-webkit-scrollbar {
-            width: 6px;
-        }
-        
-        .modal-content::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.05);
-            border-radius: 10px;
-        }
-        
-        .modal-content::-webkit-scrollbar-thumb {
-            background: var(--rosa);
-            border-radius: 10px;
+            margin: 2rem 0;
+            color: #d4c5ad;
+            font-size: 1.5rem;
+            letter-spacing: 10px;
         }
     </style>
 </head>
-
 <body>
-    <!-- NAVEGAÇÃO ATUALIZADA -->
-    <nav class="menu" aria-label="Navegação principal">
-        <a href="#inicio">Início</a>
-        <a href="#historia">Nossa História</a>
-        <a href="evento.html" target="_blank">Evento</a>
-        <a href="cronograma.html" target="_blank">Cronograma</a>
-        <a href="#galeria">Galeria</a>
-        <!-- LINK PARA CONFIRMAÇÃO ABRE NOVA PÁGINA -->
-        <a href="confirmacao.html" target="_blank">Confirmação</a>
-        <a href="presentes.html" target="_blank">Presentes</a>
-    </nav>
-
-    <!-- HERO SECTION -->
-    <header class="hero" id="inicio">
-        <div class="hero-content">
-            <p class="hero-subtitle">Save the date</p>
-            <h1>Amauri & Ester</h1>
-            <p class="hero-date">29 de Maio de 2027 • Várzea da Palma - MG</p>
-            
-            <div class="countdown">
-                <div class="time-unit">
-                    <div class="time">
-                        <span class="time-value" id="dias">00</span>
-                        <span class="time-label">Dias</span>
-                    </div>
-                </div>
-                <div class="time-unit">
-                    <div class="time">
-                        <span class="time-value" id="horas">00</span>
-                        <span class="time-label">Horas</span>
-                    </div>
-                </div>
-                <div class="time-unit">
-                    <div class="time">
-                        <span class="time-value" id="minutos">00</span>
-                        <span class="time-label">Minutos</span>
-                    </div>
-                </div>
-                <div class="time-unit">
-                    <div class="time">
-                        <span class="time-value" id="segundos">00</span>
-                        <span class="time-label">Segundos</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Menu Superior (SEM Nossa História e Galeria) -->
+    <header class="header">
+        <nav class="menu-container">
+            <ul class="menu">
+                <li><a href="#home">Início</a></li>
+                <!-- Removido: Nossa História -->
+                <!-- Removido: Galeria -->
+                <li><a href="#details">Detalhes</a></li>
+                <li><a href="#rsvp">Confirmação</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- SEÇÃO HISTÓRIA -->
-    <section id="historia">
-        <div class="text-center mb-4">
-            <h2 class="welcome-title">Sejam bem-vindos ao nosso site</h2>
-        </div>
-        
-        <div class="card mb-4">
-            <p class="text-center">
-                Criamos este espaço com muito carinho para compartilhar com vocês um dos momentos mais especiais das nossas vidas.<br>
-                Aqui, cada detalhe foi pensado para unir sonhos, histórias e pessoas que sempre fizeram partda nossa caminhada.
-            </p>
-        </div>
-        
-        <div class="text-center mb-4">
-            <h2>Nossa História</h2>
-        </div>
-        
-        <div class="card">
-            <p>Tudo começou por culpa (ou mérito) de um amigo em comum: <strong>Samuel Fernando</strong>. Ele jurava que nós dois combinávamos perfeitamente. A noiva não acreditava muito e achava aquilo tudo exagero — virou quase uma aposta. Spoiler: ele estava certo.</p>
-
-            <p>O primeiro beijo aconteceu numa noite especial, no <strong>Armazém do Rosário</strong>. E como toda boa história, a noite não terminou ali. Logo depois, fomos jogar truco na casa de um amigo, o <strong>João Pedro</strong>, e ficamos por lá até o dia amanhecer.</p>
-
-            <p>Nesse meio tempo, a noiva já estava completamente louquinha por mais um beijo do noivo. Para que isso acontecesse, Samuel e João Pedro tiveram que tomar café frio, do dia anterior, só para despistar e criar o clima perfeito. Amizades de verdade passam por isso.</p>
-
-            <p>Algum tempo depois, veio o pedido de namoro. A noiva estava chegando de férias e o noivo foi buscá-la dizendo que iriam sair para mais um encontro. No caminho, soltou a frase que entrou para a história:</p>
-
-            <p class="text-center" style="font-style: italic; color: var(--rosa); padding: 1.5rem; background: rgba(209, 108, 124, 0.05); border-radius: 12px; margin: 2rem 0;">
-                "Vai parecer que eu tô te sequestrando… mas eu não tô."
-            </p>
-
-            <p>(E não estava mesmo.)</p>
-
-            <p>No destino, a surpresa: um caminho de corações recortados à mão, um por um pelo noivo, velas, música de fundo e, ao final, a pergunta escrita na parede:</p>
-
-            <p class="text-center" style="font-weight: 600; color: var(--laranja); font-size: 1.3rem; margin: 2rem 0;">
-                "Quer namorar comigo?"
-            </p>
-
-            <p>O "sim" veio fácil — o coração já tinha respondido antes.</p>
-
-            <p>Desde o começo, não fomos só nós dois. Muita gente torceu, incentivou, apostou e acreditou nesse amor — amigos e família que sempre estiveram por perto, vibrando a cada passo.</p>
-
-            <p>Entre risadas, conversas que atravessaram madrugadas e muita parceria, fomos construindo um amor leve, verdadeiro e sem esforço. Daqueles que simplesmente encaixam.</p>
-
-            <p>Depois de <strong>8 anos</strong> compartilhando a vida, as histórias, os sonhos e as certezas, decidimos dar o próximo passo.</p>
-
-            <p>O pedido de casamento foi exatamente a nossa cara: teve <strong>Disney</strong>, porque a noiva ama; teve <strong>discrição</strong>, porque o noivo ama; e teve <strong>Maragogi</strong>, porque o amor merecia um cenário bonito.</p>
-
-            <p>Só nós dois, nos bangalôs de um hotel, vivendo um momento único — enquanto nossos pais estavam no mesmo hotel e ninguém desconfiou de nada. <strong>Sigilo absoluto, missão cumprida ✔️</strong></p>
-
-            <p class="text-center mt-4" style="font-weight: 600; color: var(--rosa); font-size: 1.4rem;">
-                E o melhor de tudo: essa história está só começando.
-            </p>
-        </div>
-    </section>
-
-    <!-- GALERIA DE FOTOS COM MAIS ESPAÇAMENTO -->
-    <section id="galeria">
-        <div class="text-center mb-4">
-            <h2>Nossos Momentos</h2>
-            <p>Algumas memórias especiais da nossa caminhada</p>
-        </div>
-        
-        <div class="galeria-container">
-            <div class="foto-item">
-                <img src="fotos/casal1.jpg" alt="Amauri e Ester juntos" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 1</text></svg>'">
-                <div class="foto-legenda">Primeiro dia após o noivado</div>
-            </div>
-            
-            <div class="foto-item">
-                <img src="fotos/casal2.jpg" alt="Noivos sorrindo" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 2</text></svg>'">
-                <div class="foto-legenda">Passeio especial e VZP</div>
-            </div>
-            
-            <div class="foto-item">
-                <img src="fotos/casal3.jpg" alt="Ensaio fotográfico" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 3</text></svg>'">
-                <div class="foto-legenda">Samba Prime no gramado do Mineirão</div>
-            </div>
-            
-            <div class="foto-item">
-                <img src="fotos/casal4.jpg" alt="Momento especial" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 4</text></svg>'">
-                <div class="foto-legenda">Viagem especial em Família</div>
-            </div>
-            
-            <div class="foto-item">
-                <img src="fotos/casal5.jpg" alt="Com família" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 5</text></svg>'">
-                <div class="foto-legenda">Primeira foto após o pedido</div>
-            </div>
-            
-            <div class="foto-item">
-                <img src="fotos/casal6.jpg" alt="Preparativos" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 6</text></svg>'">
-                <div class="foto-legenda">Casamento de Sandy & Adilson</div>
-            </div>
-        </div>
-        
-        <!-- DRESS CODE PARA CONVIDADOS COM MAIS ESPAÇAMENTO -->
-        <div class="text-center mb-4" style="margin-top: 6rem;">
-            <h2>Dress Code para Convidados</h2>
-            <p>Como se vestir para o nosso grande dia</p>
-        </div>
-        
-        <div class="dress-code-container">
-            <div class="dress-code-item">
-                <span class="dress-code-icon">👔</span>
-                <h4 class="dress-code-titulo">Para os Homens</h4>
-                <p>Terno ou Social<br>
-                <small>Cores: Azul marinho, cinza, bege</small></p>
-            </div>
-            
-            <div class="dress-code-item">
-                <span class="dress-code-icon">👗</span>
-                <h4 class="dress-code-titulo">Para as Mulheres</h4>
-                <p>Vestido ou Saia Social<br>
-                <small>Cores: Tons pastéis, estampas discretas</small></p>
-            </div>
-            
-            <div class="dress-code-item">
-                <span class="dress-code-icon">🎨</span>
-                <h4 class="dress-code-titulo">Paleta de Cores</h4>
-                <p>Evitar preto total<br>
-                <small>Priorize cores claras e alegres</small></p>
-            </div>
-            
-            <div class="dress-code-item">
-                <span class="dress-code-icon">👞</span>
-                <h4 class="dress-code-titulo">Calçados</h4>
-                <p>Sapatos sociais ou sapatilhas<br>
-                <small>Conforto para dançar a noite toda!</small></p>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONFIRMAÇÃO DE PRESENÇA ATUALIZADA -->
-    <section id="confirmacao">
-        <div class="text-center mb-4">
-            <h2>Confirmação de Presença</h2>
-            <p>Clique no botão abaixo para confirmar sua presença de forma interativa</p>
-        </div>
-        
-        <div class="card">
-            <div class="text-center">
-                <div style="font-size: 5rem; margin-bottom: 2rem;">💌</div>
-                <h3 style="color: var(--rosa); margin-bottom: 1.5rem;">Confirme sua presença aqui</h3>
-                <p style="margin-bottom: 2rem; font-size: 1.1rem;">
-                    Criamos uma página especial para você confirmar presença de forma fácil e rápida.
-                </p>
-                
-                <a href="confirmacao.html" target="_blank" class="btn" style="padding: 1.2rem 3rem; font-size: 1.2rem;">
-                    Clique aqui para confirmar presença
-                </a>
-                
-                <div class="mt-4" style="color: var(--cinza-claro); font-size: 0.9rem;">
-                    <p>A página se abrirá em uma nova janela</p>
+    <!-- Conteúdo Principal -->
+    <main>
+        <!-- SEÇÃO: NOSSA HISTÓRIA (MANTIDA na página) -->
+        <section class="section" id="our-story">
+            <h2 class="section-title">Nossa História</h2>
+            <div class="our-story">
+                <div class="story-content">
+                    <p>Tudo começou em um dia comum que se transformou no mais extraordinário de nossas vidas. Nosso encontro foi casual, mas desde o primeiro momento soubemos que havia algo especial entre nós.</p>
+                    
+                    <p>Os meses se passaram e cada dia ao lado do outro era uma nova descoberta. Compartilhamos sonhos, risadas, desafios e conquistas. Crescemos juntos e aprendemos que o amor verdadeiro é aquele que nos transforma para melhor.</p>
+                    
+                    <p>Depois de anos de amizade que se transformou em amor, veio o momento mais esperado: o pedido de casamento. Foi uma surpresa perfeita, em um lugar especial, que marcou o início de uma nova fase.</p>
+                    
+                    <p>Agora, contamos os dias para o nosso casamento, quando oficialmente uniremos nossas vidas diante de Deus, da família e dos amigos que acompanharam nossa jornada.</p>
                 </div>
             </div>
-        </div>
-        
-        <!-- MENSAGEM PARA OS NOIVOS -->
-        <div class="card mt-3">
-            <h3 class="text-center" style="color: var(--rosa); margin-bottom: 2rem;">Deixe uma mensagem para os noivos 🤍</h3>
-            
-            <form class="form-container" id="formMensagem" onsubmit="enviarMensagem(event)">
-                <!-- Configurações do FormSubmit -->
-                <input type="hidden" name="_subject" value="💌 Nova mensagem para os noivos!">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://amaurieester.github.io/casamento-amauri-ester/obrigado-mensagem.html">
-                <input type="text" name="_honey" style="display:none">
-                
-                <div class="form-group">
-                    <input type="text" class="form-input" id="nome" name="nome" placeholder="Seu nome completo *" required>
-                    <div class="error-message" id="nome-error">Por favor, digite seu nome</div>
-                </div>
-                
-                <div class="form-group">
-                    <input type="email" class="form-input" id="email" name="email" placeholder="Seu e-mail (opcional)">
-                    <div class="error-message" id="email-error">Por favor, digite um e-mail válido</div>
-                </div>
-                
-                <div class="form-group">
-                    <textarea class="form-textarea" id="mensagem" name="mensagem" placeholder="Escreva sua mensagem com carinho *" required rows="5"></textarea>
-                    <div class="error-message" id="mensagem-error">Por favor, escreva sua mensagem</div>
-                </div>
-                
-                <button type="submit" class="btn" id="btnEnviar" style="width: 100%;">
-                    Enviar mensagem
-                </button>
-                
-                <div class="msg-success" id="msgSuccess">
-                    <p>✅ Mensagem enviada com sucesso! Obrigado pelo carinho 🤍</p>
-                    <p>Em alguns instantes você será redirecionado...</p>
-                </div>
-                
-                <div class="msg-error" id="msgError">
-                    <p>❌ Ocorreu um erro ao enviar. Por favor, tente novamente.</p>
-                </div>
-                
-                <div class="loading" id="loading">
-                    <div class="spinner"></div>
-                    <p>Enviando sua mensagem...</p>
-                </div>
-            </form>
-        </div>
-    </section>
+        </section>
 
-    <!-- RODAPÉ -->
-    <footer>
-        <p>Com amor, Amauri & Ester</p>
-        <p class="mt-2">29 de Maio de 2027</p>
-        <p class="mt-3">
-            <span class="footer-heart">💍</span><br>
-            Mal podemos esperar para celebrar com vocês!
-        </p>
-    </footer>
+        <!-- SEÇÃO: LINHA DO TEMPO (NOVA seção abaixo de Nossa História) -->
+        <section class="section timeline-section" id="timeline">
+            <h2 class="section-title">Nossa Linha do Tempo</h2>
+            <p class="section-subtitle">Os momentos mais especiais da nossa jornada juntos</p>
+            
+            <div class="decoration">
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-ring"></i>
+                <i class="fas fa-heart"></i>
+            </div>
+            
+            <div class="timeline-container">
+                <!-- Item 1 - O Começo -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">15/09/2018 <span>O Começo</span></span>
+                        <h3 class="timeline-title">Nosso Primeiro Encontro</h3>
+                        <p>O dia em que nossas histórias se entrelaçaram e uma nova jornada teve início.</p>
+                        <div class="photo-container">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <div class="photo-placeholder">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <div class="photo-placeholder">
+                                <i class="fas fa-photo-video"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 2 - O Pedido -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">24/08/2025 <span>O Pedido</span></span>
+                        <h3 class="timeline-title">O Sim Para a Vida Inteira</h3>
+                        <p>O momento em que um sonho se transformou em promessa, e um pedido mudou nossos destinos para sempre.</p>
+                        <div class="photo-container">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-gem"></i>
+                            </div>
+                            <div class="photo-placeholder">
+                                <i class="fas fa-kiss-wink-heart"></i>
+                            </div>
+                            <div class="photo-placeholder">
+                                <i class="fas fa-glass-cheers"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 3 - O Casamento -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">29/05/2027 <span>O Casamento</span></span>
+                        <h3 class="timeline-title">O Dia Mais Esperado</h3>
+                        <p>Quando duas almas se unem em uma só jornada, celebrando o amor que cresce a cada dia.</p>
+                        <div class="photo-container">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-church"></i>
+                            </div>
+                            <div class="photo-placeholder">
+                                <i class="fas fa-hearts"></i>
+                            </div>
+                            <div class="photo-placeholder">
+                                <i class="fas fa-wine-glass-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: GALERIA (MANTIDA na página) -->
+        <section class="section gallery-section" id="gallery">
+            <h2 class="section-title">Nossa Galeria</h2>
+            <p class="section-subtitle">Momentos especiais capturados para a eternidade</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="gallery-item">
+                    <i class="fas fa-image"></i>
+                </div>
+                <div class="gallery-item">
+                    <i class="fas fa-photo-video"></i>
+                </div>
+                <div class="gallery-item">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <div class="gallery-item">
+                    <i class="fas fa-smile"></i>
+                </div>
+                <div class="gallery-item">
+                    <i class="fas fa-kiss-wink-heart"></i>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <script>
-        // DADOS DO CASAMENTO
-        const dataCasamento = new Date("2027-05-29T10:00:00");
-
-        // INICIALIZAÇÃO
-        document.addEventListener('DOMContentLoaded', function() {
-            // Contador regressivo
-            atualizarContador();
-            setInterval(atualizarContador, 1000);
+        // Efeito suave de rolagem para os links do menu
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animação simples ao rolar até a linha do tempo
+        const observerOptions = {
+            threshold: 0.2
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, observerOptions);
+        
+        // Aplicar animação aos itens da linha do tempo
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            item.style.opacity = "0";
+            item.style.transform = "translateY(20px)";
+            item.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+            observer.observe(item);
+        });
+        
+        // Animação para os itens da galeria
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.style.opacity = "0";
+            item.style.transform = "scale(0.9)";
+            item.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+            observer.observe(item);
             
-            // Smooth scroll para links do menu (apenas para links internos)
-            document.querySelectorAll('.menu a').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    const href = this.getAttribute('href');
-                    if (href && href.startsWith('#')) {
-                        e.preventDefault();
-                        const target = document.querySelector(href);
-                        if (target) {
-                            window.scrollTo({
-                                top: target.offsetTop - 100,
-                                behavior: 'smooth'
-                            });
-                        }
+            // Quando visível
+            const galleryObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "scale(1)";
                     }
                 });
-            });
+            }, observerOptions);
             
-            // Inicializar animações
-            animarAoRolar();
+            galleryObserver.observe(item);
         });
-
-        // FUNÇÃO PARA ENVIAR MENSAGEM PARA OS NOIVOS
-        async function enviarMensagem(event) {
-            event.preventDefault();
-            
-            const btnEnviar = document.getElementById('btnEnviar');
-            const formulario = document.getElementById('formMensagem');
-            const loading = document.getElementById('loading');
-            const msgSuccess = document.getElementById('msgSuccess');
-            const msgError = document.getElementById('msgError');
-            
-            // Validar campos
-            const nome = document.getElementById('nome').value.trim();
-            const mensagem = document.getElementById('mensagem').value.trim();
-            
-            if (!nome || !mensagem) {
-                alert('Por favor, preencha pelo menos o nome e a mensagem.');
-                return;
-            }
-            
-            // Desabilitar botão e mostrar loading
-            btnEnviar.disabled = true;
-            btnEnviar.textContent = 'Enviando...';
-            formulario.classList.add('form-loading');
-            loading.style.display = 'block';
-            msgSuccess.style.display = 'none';
-            msgError.style.display = 'none';
-            
-            // Coletar dados do formulário
-            const formData = {
-                nome: nome,
-                email: document.getElementById('email').value.trim() || 'Não informado',
-                mensagem: mensagem,
-                data: new Date().toLocaleString('pt-BR'),
-                tipo: 'Mensagem para os Noivos'
-            };
-            
-            try {
-                // ENVIAR VIA FORMSUBMIT PARA casamentoamaurieester@gmail.com
-                const response = await fetch('https://formsubmit.co/ajax/casamentoamaurieester@gmail.com', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        nome: formData.nome,
-                        email: formData.email,
-                        mensagem: formData.mensagem,
-                        data_envio: formData.data,
-                        _subject: `💌 Mensagem para os Noivos - ${formData.nome}`,
-                        _template: 'table',
-                        _captcha: 'false'
-                    })
-                });
-                
-                if (response.ok) {
-                    // Sucesso!
-                    loading.style.display = 'none';
-                    msgSuccess.style.display = 'block';
-                    
-                    // Limpar formulário
-                    formulario.reset();
-                    
-                    // Redirecionar após 3 segundos
-                    setTimeout(() => {
-                        window.location.href = 'obrigado-mensagem.html';
-                    }, 3000);
-                    
-                } else {
-                    throw new Error('Erro na resposta do servidor');
-                }
-                
-            } catch (error) {
-                console.error('Erro ao enviar mensagem:', error);
-                
-                // Mostrar mensagem de erro
-                loading.style.display = 'none';
-                msgError.style.display = 'block';
-                
-            } finally {
-                // Reabilitar botão após 3 segundos
-                setTimeout(() => {
-                    btnEnviar.disabled = false;
-                    btnEnviar.textContent = 'Enviar mensagem';
-                    formulario.classList.remove('form-loading');
-                }, 3000);
-            }
-        }
-        
-        // FUNÇÕES DO SITE
-        function atualizarContador() {
-            const agora = new Date();
-            const diferenca = dataCasamento - agora;
-            
-            if (diferenca > 0) {
-                const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
-                const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
-                const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
-                
-                document.getElementById('dias').textContent = dias.toString().padStart(2, '0');
-                document.getElementById('horas').textContent = horas.toString().padStart(2, '0');
-                document.getElementById('minutos').textContent = minutos.toString().padStart(2, '0');
-                document.getElementById('segundos').textContent = segundos.toString().padStart(2, '0');
-            } else {
-                document.querySelector('.countdown').innerHTML = '<p style="font-size: 1.5rem;">O grande dia chegou! 🎉</p>';
-            }
-        }
-        
-        // DETECTAR SCROLL PARA ANIMAÇÕES
-        function animarAoRolar() {
-            const cards = document.querySelectorAll('.card, .foto-item, .dress-code-item');
-            
-            cards.forEach(card => {
-                const cardTop = card.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (cardTop < windowHeight * 0.85) {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }
-            });
-        }
-        
-        // ESTILOS INICIAIS PARA ANIMAÇÃO
-        document.querySelectorAll('.card, .foto-item, .dress-code-item').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        });
-        
-        // INICIALIZAR ANIMAÇÕES
-        window.addEventListener('scroll', animarAoRolar);
     </script>
 </body>
 </html>
