@@ -4,33 +4,787 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Presentes | Casamento Amauri & Ester</title>
-    <!-- Estilos similares -->
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --rosa: #d16c7c;
+            --laranja: #f08a5d;
+            --laranja-claro: #ffd56b;
+            --fundo: #fff6f2;
+            --branco: #ffffff;
+            --cinza: #444444;
+            --cinza-claro: #666666;
+            --sombra: rgba(0, 0, 0, 0.08);
+            --sombra-hover: rgba(0, 0, 0, 0.12);
+            --transicao: all 0.3s ease;
+            --borda-redonda: 24px;
+            --sucesso: #4CAF50;
+            --erro: #f44336;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--fundo);
+            color: var(--cinza);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .voltar-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--rosa), var(--laranja));
+            color: var(--branco);
+            text-decoration: none;
+            border-radius: 50px;
+            margin-bottom: 40px;
+            font-weight: 500;
+            transition: var(--transicao);
+            box-shadow: 0 5px 15px rgba(209, 108, 124, 0.3);
+        }
+        
+        .voltar-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(209, 108, 124, 0.4);
+        }
+        
+        .page-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            color: var(--laranja);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, var(--rosa), var(--laranja));
+            border-radius: 2px;
+        }
+        
+        .page-subtitle {
+            text-align: center;
+            color: var(--cinza-claro);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+        
+        /* FILTRO DE PREÇO */
+        .filtro-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .filtro-btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            border: 2px solid var(--rosa);
+            background: transparent;
+            color: var(--rosa);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transicao);
+            min-width: 120px;
+        }
+        
+        .filtro-btn:hover, .filtro-btn.active {
+            background: var(--rosa);
+            color: var(--branco);
+        }
+        
+        /* LISTA DE PRESENTES */
+        .presentes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .presentes-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .presentes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1025px) {
+            .presentes-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .presente-card {
+            background: var(--branco);
+            border-radius: 20px;
+            padding: 1.8rem;
+            box-shadow: 0 10px 25px var(--sombra);
+            display: flex;
+            flex-direction: column;
+            transition: var(--transicao);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        
+        .presente-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px var(--sombra-hover);
+        }
+        
+        .presente-imagem-container {
+            width: 100%;
+            height: 200px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+            position: relative;
+        }
+        
+        .presente-imagem {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .presente-card:hover .presente-imagem {
+            transform: scale(1.05);
+        }
+        
+        .placeholder-imagem {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--cinza-claro);
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .placeholder-imagem span {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.5;
+        }
+        
+        .presente-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .presente-titulo {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--cinza);
+            line-height: 1.4;
+            min-height: 3.2rem;
+        }
+        
+        .presente-valor {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--laranja);
+            margin-bottom: 1.2rem;
+            padding: 0.5rem 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        /* BOTÕES */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--rosa), var(--laranja));
+            color: var(--branco);
+            border: none;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: var(--transicao);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(209, 108, 124, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(209, 108, 124, 0.4);
+        }
+        
+        /* MODAL DE PAGAMENTO */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal-content {
+            background: var(--branco);
+            border-radius: var(--borda-redonda);
+            padding: clamp(1.5rem, 3vw, 2rem);
+            max-width: 500px;
+            width: 95%;
+            max-height: 90vh;
+            overflow-y: auto;
+            text-align: center;
+            position: relative;
+            animation: slideUp 0.4s ease;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            color: var(--cinza-claro);
+            transition: var(--transicao);
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            z-index: 10;
+        }
+        
+        .modal-close:hover {
+            color: var(--rosa);
+            background: rgba(209, 108, 124, 0.1);
+        }
+        
+        .modal-title {
+            color: var(--laranja);
+            margin-bottom: 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            padding-right: 2rem;
+        }
+        
+        .payment-options {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .payment-btn {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--laranja);
+            background: transparent;
+            color: var(--laranja);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transicao);
+            min-width: 120px;
+            font-size: 0.9rem;
+        }
+        
+        .payment-btn:hover {
+            background: var(--laranja);
+            color: var(--branco);
+        }
+        
+        .payment-btn.active {
+            background: var(--laranja);
+            color: var(--branco);
+        }
+        
+        .pix-container {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .qrcode-container {
+            margin: 1.5rem auto;
+            padding: 1rem;
+            background: #f8f8f8;
+            border-radius: 12px;
+            display: inline-block;
+            max-width: 100%;
+        }
+        
+        .qrcode-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 12px;
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+        
+        .pix-info {
+            background: rgba(240, 138, 93, 0.1);
+            padding: 1.2rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+        
+        .pix-info p {
+            margin-bottom: 0.8rem;
+            word-break: break-word;
+        }
+        
+        .pix-key {
+            font-family: monospace;
+            font-size: 0.8rem;
+            word-break: break-all;
+            background: rgba(0, 0, 0, 0.05);
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin: 0.8rem 0;
+            color: var(--cinza);
+            line-height: 1.4;
+            overflow-wrap: break-word;
+        }
+        
+        .copy-btn {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 50px;
+            border: none;
+            background: linear-gradient(135deg, var(--laranja), var(--laranja-claro));
+            color: var(--branco);
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: var(--transicao);
+            font-size: 0.9rem;
+        }
+        
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(240, 138, 93, 0.3);
+        }
+        
+        .copy-success {
+            display: none;
+            color: var(--rosa);
+            font-weight: 500;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            animation: fadeIn 0.3s ease;
+            text-align: center;
+        }
+        
+        /* ANIMAÇÕES */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* MENSAGEM SEM PRESENTES */
+        .no-presentes {
+            text-align: center;
+            padding: 4rem;
+            color: var(--cinza-claro);
+            grid-column: 1 / -1;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <a href="index.html" class="voltar-btn">← Voltar para Página Principal</a>
         
-        <!-- Cole aqui o conteúdo da seção "Presentes" do código original -->
-        <h2>Lista de Presentes</h2>
+        <h1 class="page-title">Lista de Presentes</h1>
+        <p class="page-subtitle">Escolha um presente que faça parte da nossa nova vida juntos</p>
         
         <!-- Filtro de preço -->
         <div class="filtro-container">
-            <button class="filtro-btn active">Todos</button>
-            <!-- ... outros botões -->
+            <button class="filtro-btn active" onclick="filtrarPresentes('todos')">Todos</button>
+            <button class="filtro-btn" onclick="filtrarPresentes('ate100')">Até R$ 100</button>
+            <button class="filtro-btn" onclick="filtrarPresentes('100a500')">R$ 100 - 500</button>
+            <button class="filtro-btn" onclick="filtrarPresentes('500a1000')">R$ 500 - 1.000</button>
+            <button class="filtro-btn" onclick="filtrarPresentes('acima1000')">Acima de R$ 1.000</button>
         </div>
         
         <div class="presentes-grid" id="lista-presentes">
-            <!-- Os presentes serão carregados aqui -->
-        </div>
-        
-        <!-- Modal de pagamento -->
-        <div class="modal" id="modalPresente">
-            <!-- Conteúdo do modal -->
+            <!-- JavaScript vai preencher aqui -->
         </div>
     </div>
-    
+
+    <!-- MODAL DE PAGAMENTO -->
+    <div class="modal" id="modalPresente">
+        <div class="modal-content">
+            <button class="modal-close" onclick="fecharModal()" aria-label="Fechar modal">×</button>
+            
+            <h3 class="modal-title" id="modalTitulo">Escolha a forma de pagamento</h3>
+            
+            <div class="payment-options">
+                <button class="payment-btn active" onclick="mostrarPix()" id="btnPix">
+                    Pix
+                </button>
+                <button class="payment-btn" onclick="abrirCartao()" id="btnCartao">
+                    Cartão
+                </button>
+            </div>
+            
+            <div class="pix-container" id="pixContainer">
+                <div class="qrcode-container">
+                    <img src="pix-qrcode.png" alt="QR Code PIX para pagamento" class="qrcode-img" onerror="this.onerror=null; this.style.display='none'">
+                </div>
+                
+                <div class="pix-info">
+                    <p><strong>Beneficiário:</strong> Amauri Mourão Pereira</p>
+                    <p><strong>Banco:</strong> Nubank</p>
+                    <p><strong>Chave Pix (copie e cole):</strong></p>
+                    <div class="pix-key" id="pixKey">
+                        00020126580014BR.GOV.BCB.PIX01360fd40b94-5f17-4115-9e25-c4464bc447f95204000053039865802BR5921Amauri Mourao Pereira6009SAO PAULO621405107UCCil9dAy6304D0A3
+                    </div>
+                </div>
+                
+                <button class="copy-btn" onclick="copiarPix()" id="copyBtn">
+                    Copiar Chave Pix
+                </button>
+                
+                <p class="copy-success" id="copySuccess">
+                    ✔ Chave Pix copiada! Agradecemos o apoio e a colaboração 🤍
+                </p>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Copie todo o JavaScript relacionado aos presentes do código original
+        // LISTA DE PRESENTES COMPLETA (50+ itens)
+        const presentes = [
+            // Até R$ 100
+            ["Toma aqui uns 50 reais", 50.00, "50-reais.jpg"],
+            ["Só pra dizer que não te dei nada", 55.90, "nada.jpg"],
+            ["Lenço para a noiva não borrar toda a maquiagem", 56.99, "lenco-maquiagem.jpg"],
+            ["Ajude a noiva a comprar lingeries novas", 60.21, "lingeries.jpg"],
+            ["Ajude o noivo a comprar cuecas novas", 60.21, "cuecas.jpg"],
+            ["Ajude a comprar um Jogo de taças", 62.99, "tacas.jpg"],
+            ["Kit calmante para a noiva não se estressar com o noivo", 75.64, "kit-calmante.jpg"],
+            ["Ajude a comprar um Jogo de panelas", 82.61, "panelas.jpg"],
+            ["Ajude o casal a comer mais saudável", 86.21, "comer-saudavel.jpg"],
+            ["Ajude a noiva a renovar o guarda-roupa", 93.06, "guarda-roupa.jpg"],
+            ["Ajude os noivos a comprarem pijamas iguais", 93.06, "pijamas-iguais.jpg"],
+            ["Primeiro lugar na fila do Buffet", 93.25, "fila-buffet.jpg"],
+            ["Acessório para cortar a unha do dedão do pé do noivo", 97.71, "corta-unha.jpg"],
+            
+            // R$ 100 - 500
+            ["Sal pra pressão da noiva não abaixar no dia da festa", 101.54, "sal-pressao.jpg"],
+            ["Ajude a comprar uma Cafeteira elétrica", 110.21, "cafeteira.jpg"],
+            ["Ajude a comprar uma Churrasqueira", 120.90, "churrasqueira.jpg"],
+            ["Cobertor para a noiva estar sempre coberta de razão", 129.52, "cobertor-noiva.jpg"],
+            ["Ajude a noiva a comprar novos pijamas", 131.38, "pijamas-noiva.jpg"],
+            ["Ajude o noivo a comprar pijamas novos", 131.38, "pijamas-noivo.jpg"],
+            ["Aspirador de pó", 131.38, "aspirador.jpg"],
+            ["Taxa pra noiva não jogar o buquê pra sua namorada", 154.70, "taxa-buque-nao.jpg"],
+            ["Rolo de macarrão caso o noivo não se comporte", 155.42, "rolo-macarrao.jpg"],
+            ["Capacete contra o rolo de macarrão para o noivo", 155.42, "capacete-macarrao.jpg"],
+            ["Taxa pra noiva jogar o buquê na sua direção", 160.61, "taxa-buque-sim.jpg"],
+            ["Aluguel de um bebê para treinamento", 164.22, "bebe-treinamento.jpg"],
+            ["Estoque de café quentinho para o noivo", 165.79, "cafe-quentinho.jpg"],
+            ["Cobertor para o noivo estar sempre coberta de razão", 165.79, "cobertor-noivo.jpg"],
+            ["Diária do pedreiro para construção da nossa casa", 176.15, "pedreiro.jpg"],
+            ["Ajude a comprar Roupas de cama", 162.89, "roupas-cama.jpg"],
+            ["Calendário com lembrete para o noivo não esquecer as datas especiais", 195.42, "calendario.jpg"],
+            ["Vale compra pra noiva gastar na Shein", 212.41, "shein.jpg"],
+            ["Ajude a comprar um Fogão", 264.86, "fogao.jpg"],
+            ["Ajude a comprar um Guarda-roupa novo", 341.25, "guarda-roupa-grande.jpg"],
+            ["Um ano de barbeiro para o noivo", 331.57, "barbeiro.jpg"],
+            ["1 ano de Netflix para os noivos curtirem bons filmes", 341.93, "netflix.jpg"],
+            
+            // R$ 500 - 1.000
+            ["Ajuda financeira para o futuro casal", 405.08, "ajuda-financeira.jpg"],
+            ["Ajude a comprar uma Cama box de casal", 486.87, "cama-box.jpg"],
+            ["Ajuda para mobiliar a casa", 547.40, "mobiliar-casa.jpg"],
+            ["Psicólogo pros noivos não surtarem nos preparativos", 538.80, "psicologo.jpg"],
+            ["Ajude o casal ter uma piscina em casa", 656.88, "piscina.jpg"],
+            ["Ajude a comprar uma TV", 671.07, "tv.jpg"],
+            ["Ajuda para o casal sonhar com o carro elétrico", 744.46, "carro-eletrico.jpg"],
+            ["Ajude a comprar uma Geladeira", 781.92, "geladeira.jpg"],
+            ["Adote os boletos dos primeiros meses juntos!", 821.10, "boletos.jpg"],
+            ["Ajude o noivo a comprar uma cervejeira", 920.51, "cervejeira.jpg"],
+            
+            // Acima de R$ 1.000
+            ["Ajude a comprar uma Máquina de lavar", 400.25, "maquina-lavar.jpg"],
+            ["Ajude a comprar uma Mesa de jantar", 230.90, "mesa-jantar.jpg"],
+            ["Ajuda para mobiliar a casa", 1204.28, "mobiliar-casa2.jpg"],
+            ["Deus te iluminou e você resolveu ajudar na lua de mel", 1554.24, "lua-de-mel.jpg"],
+            ["Ajuda para a aposentadoria dos noivos", 3612.84, "aposentadoria.jpg"],
+            ["Taxa para levar alguém que não foi convidado", 6652.99, "taxa-convidado.jpg"]
+        ];
+
+        // Ordenar por preço (do mais barato para o mais caro)
+        presentes.sort((a, b) => a[1] - b[1]);
+        
+        let presenteSelecionado = { titulo: "", valor: 0 };
+
+        // FUNÇÃO PARA RENDERIZAR PRESENTES
+        function renderizarPresentes(filtro = 'todos') {
+            const container = document.getElementById('lista-presentes');
+            container.innerHTML = '';
+            
+            // Filtrar presentes
+            let presentesFiltrados = presentes;
+            
+            if (filtro === 'ate100') {
+                presentesFiltrados = presentes.filter(p => p[1] <= 100);
+            } else if (filtro === '100a500') {
+                presentesFiltrados = presentes.filter(p => p[1] > 100 && p[1] <= 500);
+            } else if (filtro === '500a1000') {
+                presentesFiltrados = presentes.filter(p => p[1] > 500 && p[1] <= 1000);
+            } else if (filtro === 'acima1000') {
+                presentesFiltrados = presentes.filter(p => p[1] > 1000);
+            }
+            
+            // Verificar se há presentes no filtro
+            if (presentesFiltrados.length === 0) {
+                container.innerHTML = `
+                    <div class="no-presentes">
+                        <h3>Nenhum presente encontrado nesta faixa de preço.</h3>
+                        <p>Selecione outra faixa de preço para ver mais opções.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Renderizar cada presente
+            presentesFiltrados.forEach((presente, index) => {
+                const [titulo, valor, imagem] = presente;
+                
+                const card = document.createElement('div');
+                card.className = 'presente-card';
+                
+                if (imagem) {
+                    card.innerHTML = `
+                        <div class="presente-imagem-container">
+                            <img src="presentes/${imagem}" alt="${titulo}" class="presente-imagem" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\"placeholder-imagem\"><span>🎁</span><span>${titulo}</span></div>'">
+                        </div>
+                        <div class="presente-info">
+                            <h3 class="presente-titulo">${titulo}</h3>
+                            <p class="presente-valor">R$ ${valor.toFixed(2).replace('.', ',')}</p>
+                            <button class="btn" onclick="selecionarPresente('${titulo.replace(/'/g, "\\'")}', ${valor})">
+                                Presentear
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    card.innerHTML = `
+                        <div class="presente-imagem-container">
+                            <div class="placeholder-imagem">
+                                <span>🎁</span>
+                                <span>${titulo}</span>
+                            </div>
+                        </div>
+                        <div class="presente-info">
+                            <h3 class="presente-titulo">${titulo}</h3>
+                            <p class="presente-valor">R$ ${valor.toFixed(2).replace('.', ',')}</p>
+                            <button class="btn" onclick="selecionarPresente('${titulo.replace(/'/g, "\\'")}', ${valor})">
+                                Presentear
+                            </button>
+                        </div>
+                    `;
+                }
+                
+                container.appendChild(card);
+            });
+        }
+
+        // FUNÇÃO PARA FILTRAR PRESENTES
+        function filtrarPresentes(filtro) {
+            renderizarPresentes(filtro);
+            
+            // Atualizar estado dos botões de filtro
+            const botoesFiltro = document.querySelectorAll('.filtro-btn');
+            botoesFiltro.forEach(botao => {
+                botao.classList.remove('active');
+            });
+            
+            // Ativar o botão clicado
+            event.target.classList.add('active');
+        }
+
+        // FUNÇÕES DO MODAL DE PAGAMENTO
+        function selecionarPresente(titulo, valor) {
+            presenteSelecionado = { titulo, valor };
+            
+            // Atualizar título do modal
+            document.getElementById('modalTitulo').textContent = titulo;
+            
+            // Mostrar modal
+            document.getElementById('modalPresente').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            // Resetar estado do modal
+            document.getElementById('pixContainer').style.display = 'none';
+            document.getElementById('copySuccess').style.display = 'none';
+            
+            // Ativar botão Pix
+            document.getElementById('btnPix').classList.add('active');
+            document.getElementById('btnCartao').classList.remove('active');
+            
+            // Mostrar o PIX por padrão
+            setTimeout(() => {
+                mostrarPix();
+            }, 100);
+        }
+        
+        function mostrarPix() {
+            document.getElementById('btnPix').classList.add('active');
+            document.getElementById('btnCartao').classList.remove('active');
+            document.getElementById('pixContainer').style.display = 'block';
+            
+            const modalContent = document.querySelector('.modal-content');
+            modalContent.scrollTop = 0;
+        }
+        
+        function abrirCartao() {
+            document.getElementById('btnCartao').classList.add('active');
+            document.getElementById('btnPix').classList.remove('active');
+            document.getElementById('pixContainer').style.display = 'none';
+            window.open('https://link.mercadopago.com.br/presenteamaurieester', '_blank');
+        }
+        
+        function copiarPix() {
+            const pixKey = document.getElementById('pixKey').textContent;
+            
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(pixKey).then(() => {
+                    mostrarSucessoCopia();
+                }).catch(err => {
+                    copiarFallback(pixKey);
+                });
+            } else {
+                copiarFallback(pixKey);
+            }
+        }
+        
+        function copiarFallback(texto) {
+            const textArea = document.createElement("textarea");
+            textArea.value = texto;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-999999px";
+            textArea.style.top = "-999999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                mostrarSucessoCopia();
+            } catch (err) {
+                console.error('Falha ao copiar: ', err);
+                alert('Não foi possível copiar a chave Pix. Por favor, copie manualmente.');
+            }
+            
+            textArea.remove();
+        }
+        
+        function mostrarSucessoCopia() {
+            const successMsg = document.getElementById('copySuccess');
+            const copyBtn = document.getElementById('copyBtn');
+            
+            successMsg.style.display = 'block';
+            copyBtn.textContent = 'Chave Copiada!';
+            copyBtn.style.background = 'linear-gradient(135deg, var(--sucesso), #45a049)';
+            
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+                copyBtn.textContent = 'Copiar Chave Pix';
+                copyBtn.style.background = 'linear-gradient(135deg, var(--laranja), var(--laranja-claro))';
+            }, 3000);
+        }
+        
+        function fecharModal() {
+            document.getElementById('modalPresente').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // FECHAR MODAL AO CLICAR FORA
+        document.getElementById('modalPresente').addEventListener('click', function(e) {
+            if (e.target === this) {
+                fecharModal();
+            }
+        });
+        
+        // TECLA ESC FECHA MODAL
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                fecharModal();
+            }
+        });
+
+        // INICIALIZAR
+        document.addEventListener('DOMContentLoaded', function() {
+            renderizarPresentes();
+        });
     </script>
 </body>
 </html>
