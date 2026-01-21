@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nosso Casamento</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -18,8 +17,38 @@
             color: #333;
         }
 
-        /* Menu Superior - REMOVIDO "Nossa História" e "Galeria" */
+        /* Cabeçalho */
         .header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(rgba(255, 250, 240, 0.9), rgba(255, 250, 240, 0.9));
+        }
+
+        .save-date {
+            font-size: 3.5rem;
+            color: #8b4513;
+            letter-spacing: 8px;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .couple-names {
+            font-size: 2.5rem;
+            color: #d2691e;
+            letter-spacing: 4px;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .wedding-date {
+            font-size: 1.8rem;
+            color: #8b4513;
+            letter-spacing: 3px;
+            font-weight: 300;
+        }
+
+        /* Menu Superior - APENAS as opções solicitadas */
+        .menu-container {
             background-color: #fff;
             padding: 1.5rem 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -48,7 +77,32 @@
             color: #d2691e;
         }
 
-        /* Layout original da linha do tempo (como na imagem) */
+        /* Seção Nossa História */
+        .story-section {
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #8b4513;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .story-content {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #666;
+            text-align: justify;
+            column-count: 2;
+            column-gap: 3rem;
+        }
+
+        /* NOVA SEÇÃO: Linha do Tempo (no estilo da imagem que você gostou) */
         .timeline-section {
             max-width: 800px;
             margin: 4rem auto;
@@ -87,10 +141,6 @@
             min-width: 60px;
         }
 
-        .timeline-content {
-            flex: 1;
-        }
-
         .timeline-date {
             font-size: 1.8rem;
             color: #8b4513;
@@ -102,6 +152,7 @@
             font-size: 1.5rem;
             color: #333;
             font-style: italic;
+            margin-bottom: 1rem;
         }
 
         .timeline-photos {
@@ -120,47 +171,15 @@
             align-items: center;
             justify-content: center;
             color: #999;
+            font-size: 1.5rem;
         }
 
-        /* Seção Nossa História (mantida do original) */
-        .story-section {
-            max-width: 1000px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-            text-align: center;
-        }
-
-        .story-title {
-            font-size: 2.5rem;
-            color: #8b4513;
-            margin-bottom: 2rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-        }
-
-        .story-content {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: #666;
-            text-align: justify;
-            column-count: 2;
-            column-gap: 3rem;
-        }
-
-        /* Seção Galeria (mantida do original) */
+        /* Seção Galeria */
         .gallery-section {
             max-width: 1200px;
             margin: 4rem auto;
             padding: 0 2rem;
             text-align: center;
-        }
-
-        .gallery-title {
-            font-size: 2.5rem;
-            color: #8b4513;
-            margin-bottom: 2rem;
-            font-weight: 300;
-            letter-spacing: 3px;
         }
 
         .gallery-grid {
@@ -181,20 +200,39 @@
             border: 2px solid #eee;
         }
 
+        /* Rodapé */
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background-color: #8b4513;
+            color: white;
+            margin-top: 4rem;
+        }
+
         /* Responsividade */
         @media (max-width: 768px) {
+            .save-date {
+                font-size: 2.5rem;
+                letter-spacing: 4px;
+            }
+            
+            .couple-names {
+                font-size: 2rem;
+                letter-spacing: 2px;
+            }
+            
             .menu {
                 gap: 1.5rem;
                 flex-wrap: wrap;
             }
             
+            .story-content {
+                column-count: 1;
+            }
+            
             .timeline-item {
                 flex-direction: column;
                 text-align: center;
-            }
-            
-            .story-content {
-                column-count: 1;
             }
             
             .gallery-grid {
@@ -209,6 +247,11 @@
                 align-items: center;
             }
             
+            .timeline-photos {
+                flex-direction: column;
+                align-items: center;
+            }
+            
             .gallery-grid {
                 grid-template-columns: 1fr;
             }
@@ -216,23 +259,28 @@
     </style>
 </head>
 <body>
-    <!-- Menu Superior - APENAS com: Início, Detalhes, Confirmação, Contato -->
+    <!-- Cabeçalho com Save the Date -->
     <header class="header">
-        <nav>
-            <ul class="menu">
-                <li><a href="#home">Início</a></li>
-                <!-- REMOVIDO: Nossa História -->
-                <!-- REMOVIDO: Galeria -->
-                <li><a href="#details">Detalhes</a></li>
-                <li><a href="#rsvp">Confirmação</a></li>
-                <li><a href="#contact">Contato</a></li>
-            </ul>
-        </nav>
+        <h1 class="save-date">SAVE THE DATE</h1>
+        <div class="couple-names">Ana & João</div>
+        <div class="wedding-date">29 DE MAIO DE 2027</div>
     </header>
 
-    <!-- Seção: NOSSA HISTÓRIA (MANTIDA na página) -->
+    <!-- Menu Superior - APENAS as opções solicitadas -->
+    <nav class="menu-container">
+        <ul class="menu">
+            <li><a href="#home">Início</a></li>
+            <!-- REMOVIDO: Nossa História -->
+            <!-- REMOVIDO: Galeria -->
+            <li><a href="#details">Detalhes</a></li>
+            <li><a href="#rsvp">Confirmação</a></li>
+            <li><a href="#contact">Contato</a></li>
+        </ul>
+    </nav>
+
+    <!-- Seção: Nossa História -->
     <section class="story-section" id="our-story">
-        <h2 class="story-title">Nossa História</h2>
+        <h2 class="section-title">Nossa História</h2>
         <div class="story-content">
             <p>Tudo começou em um dia comum que se transformou no mais extraordinário de nossas vidas. Nosso encontro foi casual, mas desde o primeiro momento soubemos que havia algo especial entre nós.</p>
             
@@ -244,7 +292,7 @@
         </div>
     </section>
 
-    <!-- NOVA SEÇÃO: LINHA DO TEMPO (no estilo da imagem) -->
+    <!-- NOVA SEÇÃO: Nossa Linha do Tempo -->
     <section class="timeline-section" id="timeline">
         <h2 class="timeline-title">Nossa Linha do Tempo</h2>
         
@@ -258,13 +306,13 @@
                     <p>O dia em que nossas histórias se entrelaçaram e uma nova jornada teve início.</p>
                     <div class="timeline-photos">
                         <div class="photo-placeholder">
-                            <i class="fas fa-camera"></i>
+                            📸
                         </div>
                         <div class="photo-placeholder">
-                            <i class="fas fa-image"></i>
+                            ❤️
                         </div>
                         <div class="photo-placeholder">
-                            <i class="fas fa-photo-video"></i>
+                            ✨
                         </div>
                     </div>
                 </div>
@@ -279,13 +327,13 @@
                     <p>O momento em que um sonho se transformou em promessa, e um pedido mudou nossos destinos para sempre.</p>
                     <div class="timeline-photos">
                         <div class="photo-placeholder">
-                            <i class="fas fa-gem"></i>
+                            💍
                         </div>
                         <div class="photo-placeholder">
-                            <i class="fas fa-kiss-wink-heart"></i>
+                            💕
                         </div>
                         <div class="photo-placeholder">
-                            <i class="fas fa-glass-cheers"></i>
+                            🥂
                         </div>
                     </div>
                 </div>
@@ -300,13 +348,13 @@
                     <p>Quando duas almas se unem em uma só jornada, celebrando o amor que cresce a cada dia.</p>
                     <div class="timeline-photos">
                         <div class="photo-placeholder">
-                            <i class="fas fa-church"></i>
+                            ⛪
                         </div>
                         <div class="photo-placeholder">
-                            <i class="fas fa-hearts"></i>
+                            💒
                         </div>
                         <div class="photo-placeholder">
-                            <i class="fas fa-wine-glass-alt"></i>
+                            🥂
                         </div>
                     </div>
                 </div>
@@ -314,33 +362,39 @@
         </div>
     </section>
 
-    <!-- Seção: GALERIA (MANTIDA na página) -->
+    <!-- Seção: Galeria -->
     <section class="gallery-section" id="gallery">
-        <h2 class="gallery-title">Nossa Galeria</h2>
+        <h2 class="section-title">Nossa Galeria</h2>
         <div class="gallery-grid">
             <div class="gallery-item">
-                <i class="fas fa-heart"></i>
+                📷
             </div>
             <div class="gallery-item">
-                <i class="fas fa-image"></i>
+                ❤️
             </div>
             <div class="gallery-item">
-                <i class="fas fa-photo-video"></i>
+                😊
             </div>
             <div class="gallery-item">
-                <i class="fas fa-camera"></i>
+                💑
             </div>
             <div class="gallery-item">
-                <i class="fas fa-smile"></i>
+                🌟
             </div>
             <div class="gallery-item">
-                <i class="fas fa-kiss-wink-heart"></i>
+                🎉
             </div>
         </div>
     </section>
 
+    <!-- Rodapé -->
+    <footer class="footer">
+        <p>Com amor, Ana & João</p>
+        <p>29 de Maio de 2027</p>
+    </footer>
+
     <script>
-        // Scroll suave para links do menu
+        // Efeito de rolagem suave para os links do menu
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -355,6 +409,28 @@
                     });
                 }
             });
+        });
+
+        // Animação simples ao rolar para a linha do tempo
+        window.addEventListener('scroll', function() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const windowHeight = window.innerHeight;
+            
+            timelineItems.forEach(item => {
+                const position = item.getBoundingClientRect().top;
+                
+                if(position < windowHeight - 100) {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Inicializar com opacidade zero para animação
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
         });
     </script>
 </body>
