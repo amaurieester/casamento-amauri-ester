@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evento | Casamento Amauri & Ester</title>
-    <!-- Copie o mesmo estilo do arquivo principal -->
-    <!-- Ou simplifique mantendo apenas o necessário -->
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
     <style>
-        /* Estilos específicos para a página de evento */
         :root {
             --rosa: #d16c7c;
             --laranja: #f08a5d;
@@ -16,6 +19,16 @@
             --branco: #ffffff;
             --cinza: #444444;
             --cinza-claro: #666666;
+            --sombra: rgba(0, 0, 0, 0.08);
+            --sombra-hover: rgba(0, 0, 0, 0.12);
+            --transicao: all 0.3s ease;
+            --borda-redonda: 24px;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
         
         body {
@@ -23,23 +36,57 @@
             background: var(--fundo);
             color: var(--cinza);
             line-height: 1.6;
-            margin: 0;
             padding: 20px;
+            min-height: 100vh;
         }
         
         .container {
             max-width: 1100px;
             margin: 0 auto;
+            padding: 20px;
         }
         
         .voltar-btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background: var(--rosa);
-            color: white;
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--rosa), var(--laranja));
+            color: var(--branco);
             text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 30px;
+            border-radius: 50px;
+            margin-bottom: 40px;
+            font-weight: 500;
+            transition: var(--transicao);
+            box-shadow: 0 5px 15px rgba(209, 108, 124, 0.3);
+        }
+        
+        .voltar-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(209, 108, 124, 0.4);
+        }
+        
+        .page-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            color: var(--laranja);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, var(--rosa), var(--laranja));
+            border-radius: 2px;
         }
         
         .eventos-container {
@@ -49,21 +96,128 @@
             margin-top: 2rem;
         }
         
-        /* Copie o restante dos estilos da seção de evento do código original */
+        @media (max-width: 768px) {
+            .eventos-container {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+        
+        .evento-card {
+            background: var(--branco);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 25px var(--sombra);
+            text-align: center;
+            transition: var(--transicao);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .evento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px var(--sombra-hover);
+        }
+        
+        .evento-imagem-container {
+            width: 100%;
+            height: 250px; /* Altura fixa para ambas as imagens */
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            position: relative;
+            flex-shrink: 0; /* Impede que a imagem encolha */
+        }
+        
+        .evento-imagem {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Garante que a imagem cubra o container */
+            object-position: center;
+            display: block;
+        }
+        
+        .evento-titulo {
+            color: var(--rosa);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .evento-local {
+            color: var(--cinza);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            flex-grow: 1; /* Faz o conteúdo ocupar espaço disponível */
+        }
+        
+        .evento-local strong {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--laranja);
+            font-size: 1.1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--rosa), var(--laranja));
+            color: var(--branco);
+            border: none;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: var(--transicao);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(209, 108, 124, 0.3);
+            margin-top: auto; /* Empurra o botão para baixo */
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(209, 108, 124, 0.4);
+        }
+        
+        .card {
+            background: var(--branco);
+            border-radius: var(--borda-redonda);
+            padding: 2.5rem;
+            box-shadow: 0 15px 40px var(--sombra);
+            transition: var(--transicao);
+            margin-bottom: 3rem;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px var(--sombra-hover);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .mb-4 {
+            margin-bottom: 2rem;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <a href="index.html" class="voltar-btn">← Voltar para Página Principal</a>
         
-        <!-- Cole aqui o conteúdo da seção "Evento" do código original -->
-        <h2>O Evento</h2>
+        <h1 class="page-title">O Evento</h1>
         
         <div class="eventos-container">
             <!-- CERIMÔNIA COM FOTO -->
             <div class="evento-card">
                 <div class="evento-imagem-container">
-                    <img src="fotos/igreja.jpg" alt="Matriz Nossa Senhora da Conceição" class="evento-imagem">
+                    <img src="fotos/igreja.jpg" alt="Matriz Nossa Senhora da Conceição" class="evento-imagem" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>⛪ Igreja</text></svg>'">
                 </div>
                 <h3 class="evento-titulo">Cerimônia</h3>
                 <div class="evento-local">
@@ -80,7 +234,7 @@
             <!-- FESTA COM FOTO -->
             <div class="evento-card">
                 <div class="evento-imagem-container">
-                    <img src="fotos/local-festa.jpg" alt="Zabelê Quiosque" class="evento-imagem">
+                    <img src="fotos/local-festa.jpg" alt="Zabelê Quiosque" class="evento-imagem" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>🎉 Local da Festa</text></svg>'">
                 </div>
                 <h3 class="evento-titulo">Festa</h3>
                 <div class="evento-local">
@@ -92,6 +246,27 @@
                 <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Zabelê+Quiosque+Av.+Brasil+2150+Serrinha+Varzea+da+Palma+MG" target="_blank" rel="noopener">
                     Ver no mapa
                 </a>
+            </div>
+        </div>
+        
+        <!-- INFORMAÇÕES ADICIONAIS -->
+        <div class="card">
+            <h3 class="text-center" style="color: var(--rosa); margin-bottom: 1.5rem;">Informações Importantes</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                <div>
+                    <h4 style="color: var(--laranja); margin-bottom: 1rem;">📅 Data e Hora</h4>
+                    <p><strong>Cerimônia:</strong> 29/05/2027 às 15:00</p>
+                    <p><strong>Festa:</strong> A partir das 18:00</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--laranja); margin-bottom: 1rem;">📍 Localização</h4>
+                    <p><strong>Cidade:</strong> Várzea da Palma - MG</p>
+                    <p>Os dois locais ficam próximos, facilitando o deslocamento.</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--laranja); margin-bottom: 1rem;">🚗 Estacionamento</h4>
+                    <p>Ambos os locais possuem estacionamento gratuito disponível para os convidados.</p>
+                </div>
             </div>
         </div>
     </div>
