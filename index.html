@@ -198,6 +198,191 @@
             }
         }
         
+        /* PLAYER DE MÚSICA ESTILIZADO */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 12px 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: var(--transicao);
+            border: 1px solid rgba(209, 108, 124, 0.2);
+            max-width: 350px;
+            width: auto;
+        }
+        
+        .music-player:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .music-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .music-btn {
+            background: transparent;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: var(--rosa);
+            transition: var(--transicao);
+            padding: 8px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .music-btn:hover {
+            background: rgba(209, 108, 124, 0.1);
+            color: var(--laranja);
+        }
+        
+        .music-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-width: 120px;
+        }
+        
+        .music-title {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--cinza);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .music-status {
+            font-size: 0.75rem;
+            color: var(--cinza-claro);
+        }
+        
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 5px;
+        }
+        
+        .volume-slider {
+            width: 80px;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 4px;
+            background: rgba(209, 108, 124, 0.2);
+            border-radius: 2px;
+            outline: none;
+        }
+        
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--rosa);
+            cursor: pointer;
+            transition: var(--transicao);
+        }
+        
+        .volume-slider::-webkit-slider-thumb:hover {
+            background: var(--laranja);
+            transform: scale(1.1);
+        }
+        
+        .volume-icon {
+            color: var(--rosa);
+            font-size: 1.1rem;
+            min-width: 20px;
+        }
+        
+        .close-player {
+            background: transparent;
+            border: none;
+            color: var(--cinza-claro);
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 5px;
+            margin-left: 5px;
+            transition: var(--transicao);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .close-player:hover {
+            background: rgba(244, 67, 54, 0.1);
+            color: var(--erro);
+        }
+        
+        .music-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9998;
+            background: linear-gradient(135deg, var(--rosa), var(--laranja));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(209, 108, 124, 0.3);
+            transition: var(--transicao);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .music-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(209, 108, 124, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .music-player {
+                bottom: 10px;
+                right: 10px;
+                left: 10px;
+                max-width: calc(100% - 20px);
+                padding: 10px 15px;
+            }
+            
+            .music-info {
+                min-width: 100px;
+            }
+            
+            .volume-slider {
+                width: 60px;
+            }
+            
+            .music-toggle {
+                bottom: 10px;
+                right: 10px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+        
         /* SEÇÕES COM MAIS ESPAÇAMENTO */
         section {
             padding: clamp(5rem, 10vw, 8rem) 20px;
@@ -815,9 +1000,138 @@
         </p>
     </footer>
 
+    <!-- PLAYER DE MÚSICA -->
+    <div id="musicPlayer" class="music-player" style="display: none;">
+        <div class="music-controls">
+            <button id="prevBtn" class="music-btn">⏮️</button>
+            <button id="playPauseBtn" class="music-btn">▶️</button>
+            <button id="nextBtn" class="music-btn">⏭️</button>
+        </div>
+        
+        <div class="music-info">
+            <div class="music-title" id="currentSong">Música 1</div>
+            <div class="music-status" id="playerStatus">Pausado</div>
+        </div>
+        
+        <div class="volume-control">
+            <span class="volume-icon">🔊</span>
+            <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.1" value="0.3">
+        </div>
+        
+        <button id="closePlayer" class="close-player">✕</button>
+    </div>
+    
+    <button id="musicToggle" class="music-toggle">🎵</button>
+
     <script>
         // DADOS DO CASAMENTO
         const dataCasamento = new Date("2027-05-29T10:00:00");
+
+        // PLAYER DE MÚSICA
+        const musicFiles = [
+            'musicas/musica1.mp3',
+            'musicas/musica2.mp3',
+            'musicas/musica3.mp3',
+            'musicas/musica4.mp3',
+            'musicas/musica5.mp3',
+            'musicas/musica6.mp3',
+            'musicas/musica7.mp3',
+            'musicas/musica8.mp3',
+            'musicas/musica9.mp3',
+            'musicas/musica10.mp3'
+        ];
+
+        let currentTrack = 0;
+        let isPlaying = false;
+        let audioPlayer = new Audio();
+        
+        // Configurar volume inicial em 30% (médio-baixo)
+        audioPlayer.volume = 0.3;
+        
+        // Elementos do player
+        const musicPlayer = document.getElementById('musicPlayer');
+        const musicToggle = document.getElementById('musicToggle');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const closePlayer = document.getElementById('closePlayer');
+        const currentSong = document.getElementById('currentSong');
+        const playerStatus = document.getElementById('playerStatus');
+
+        // Funções do player
+        function loadTrack(trackIndex) {
+            audioPlayer.src = musicFiles[trackIndex];
+            currentSong.textContent = `Música ${trackIndex + 1}`;
+            playerStatus.textContent = 'Pronto para tocar';
+        }
+
+        function playTrack() {
+            audioPlayer.play();
+            isPlaying = true;
+            playPauseBtn.textContent = '⏸️';
+            playerStatus.textContent = 'Tocando agora';
+        }
+
+        function pauseTrack() {
+            audioPlayer.pause();
+            isPlaying = false;
+            playPauseBtn.textContent = '▶️';
+            playerStatus.textContent = 'Pausado';
+        }
+
+        function nextTrack() {
+            currentTrack = (currentTrack + 1) % musicFiles.length;
+            loadTrack(currentTrack);
+            if (isPlaying) {
+                playTrack();
+            }
+        }
+
+        function prevTrack() {
+            currentTrack = (currentTrack - 1 + musicFiles.length) % musicFiles.length;
+            loadTrack(currentTrack);
+            if (isPlaying) {
+                playTrack();
+            }
+        }
+
+        // Event Listeners
+        musicToggle.addEventListener('click', () => {
+            musicPlayer.style.display = 'flex';
+            musicToggle.style.display = 'none';
+            loadTrack(currentTrack);
+            playTrack();
+        });
+
+        closePlayer.addEventListener('click', () => {
+            musicPlayer.style.display = 'none';
+            musicToggle.style.display = 'flex';
+            if (isPlaying) {
+                pauseTrack();
+            }
+        });
+
+        playPauseBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                pauseTrack();
+            } else {
+                playTrack();
+            }
+        });
+
+        nextBtn.addEventListener('click', nextTrack);
+        prevBtn.addEventListener('click', prevTrack);
+
+        volumeSlider.addEventListener('input', (e) => {
+            audioPlayer.volume = e.target.value;
+        });
+
+        // Quando a música terminar, tocar a próxima
+        audioPlayer.addEventListener('ended', nextTrack);
+
+        // Inicializar com a primeira música carregada
+        loadTrack(0);
 
         // INICIALIZAÇÃO
         document.addEventListener('DOMContentLoaded', function() {
