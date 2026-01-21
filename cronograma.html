@@ -4,17 +4,381 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cronograma | Casamento Amauri & Ester</title>
-    <!-- Estilos similares -->
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --rosa: #d16c7c;
+            --laranja: #f08a5d;
+            --laranja-claro: #ffd56b;
+            --fundo: #fff6f2;
+            --branco: #ffffff;
+            --cinza: #444444;
+            --cinza-claro: #666666;
+            --sombra: rgba(0, 0, 0, 0.08);
+            --sombra-hover: rgba(0, 0, 0, 0.12);
+            --transicao: all 0.3s ease;
+            --borda-redonda: 24px;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--fundo);
+            color: var(--cinza);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .voltar-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--rosa), var(--laranja));
+            color: var(--branco);
+            text-decoration: none;
+            border-radius: 50px;
+            margin-bottom: 40px;
+            font-weight: 500;
+            transition: var(--transicao);
+            box-shadow: 0 5px 15px rgba(209, 108, 124, 0.3);
+        }
+        
+        .voltar-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(209, 108, 124, 0.4);
+        }
+        
+        .page-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            color: var(--laranja);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, var(--rosa), var(--laranja));
+            border-radius: 2px;
+        }
+        
+        .card {
+            background: var(--branco);
+            border-radius: var(--borda-redonda);
+            padding: 2.5rem;
+            box-shadow: 0 15px 40px var(--sombra);
+            transition: var(--transicao);
+            margin-bottom: 3rem;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px var(--sombra-hover);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .mb-4 {
+            margin-bottom: 2rem;
+        }
+        
+        /* CRONOGRAMA */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto 0;
+            padding-left: 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            transform: translateX(-50%);
+            width: 2px;
+            height: calc(100% - 40px);
+            background: linear-gradient(to bottom, var(--rosa), var(--laranja));
+            top: 20px;
+        }
+        
+        @media (min-width: 992px) {
+            .timeline::before {
+                left: 50%;
+            }
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 2.5rem;
+            position: relative;
+            padding-left: 80px;
+            align-items: flex-start;
+        }
+        
+        @media (min-width: 992px) {
+            .timeline-item {
+                padding-left: 0;
+                width: 100%;
+            }
+            
+            .timeline-item:nth-child(odd) {
+                justify-content: flex-start;
+            }
+            
+            .timeline-item:nth-child(even) {
+                justify-content: flex-end;
+            }
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            left: 40px;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--laranja);
+            border-radius: 50%;
+            border: 3px solid var(--branco);
+            box-shadow: 0 0 0 3px var(--laranja);
+            z-index: 2;
+            top: 0;
+        }
+        
+        @media (min-width: 992px) {
+            .timeline-marker {
+                left: 50%;
+            }
+        }
+        
+        .timeline-hora {
+            background: var(--rosa);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-weight: 600;
+            min-width: 100px;
+            text-align: center;
+            z-index: 1;
+            position: absolute;
+            left: 0;
+            top: -5px;
+            white-space: nowrap;
+        }
+        
+        @media (min-width: 992px) {
+            .timeline-hora {
+                position: relative;
+                margin: 0 1.5rem;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-hora {
+                order: 1;
+            }
+            
+            .timeline-item:nth-child(even) .timeline-hora {
+                order: 3;
+            }
+        }
+        
+        .timeline-content {
+            background: var(--branco);
+            padding: 1.2rem 1.8rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px var(--sombra);
+            flex: 1;
+            max-width: 400px;
+            z-index: 1;
+            margin-left: 0;
+        }
+        
+        @media (min-width: 992px) {
+            .timeline-content {
+                max-width: 350px;
+                margin: 0;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content {
+                order: 2;
+            }
+            
+            .timeline-item:nth-child(even) .timeline-content {
+                order: 2;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .timeline {
+                padding-left: 20px;
+            }
+            
+            .timeline::before {
+                left: 40px;
+            }
+            
+            .timeline-item {
+                padding-left: 60px;
+            }
+            
+            .timeline-marker {
+                left: 30px;
+            }
+            
+            .timeline-hora {
+                position: relative;
+                margin-bottom: 1rem;
+                width: 100%;
+                text-align: center;
+                left: 0;
+                top: 0;
+            }
+            
+            .timeline-content {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+        
+        .timeline-content h4 {
+            color: var(--rosa);
+            margin-bottom: 0.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+        }
+        
+        .timeline-content p {
+            color: var(--cinza-claro);
+            margin-bottom: 0;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <a href="index.html" class="voltar-btn">← Voltar para Página Principal</a>
         
-        <!-- Cole aqui o conteúdo da seção "Cronograma" do código original -->
-        <h2>Cronograma do Grande Dia</h2>
+        <h1 class="page-title">Cronograma do Grande Dia</h1>
         
-        <div class="timeline">
-            <!-- Cole todo o conteúdo da timeline -->
+        <div class="card">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-hora">14:30</div>
+                    <div class="timeline-content">
+                        <h4>Chegada dos Convidados</h4>
+                        <p>Recepção na Igreja Matriz</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-hora">15:00</div>
+                    <div class="timeline-content">
+                        <h4>Cerimônia Religiosa</h4>
+                        <p>Celebração do Sacramento do Matrimônio</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-hora">16:00</div>
+                    <div class="timeline-content">
+                        <h4>Saída dos Noivos</h4>
+                        <p>Fotos e saída em cortejo</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-hora">17:30</div>
+                    <div class="timeline-content">
+                        <h4>Recepção no Local da Festa</h4>
+                        <p>Cocktail de boas-vindas</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-hora">18:00</div>
+                    <div class="timeline-content">
+                        <h4>Jantar</h4>
+                        <p>Buffet especial para os convidados</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-hora">19:30</div>
+                    <div class="timeline-content">
+                        <h4>Brindes e Discursos</h4>
+                        <p>Momentos especiais com familiares e amigos</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-hora">20:30</div>
+                    <div class="timeline-content">
+                        <h4>Primeira Dança</h4>
+                        <p>Momento romântico dos noivos</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-hora">21:00</div>
+                    <div class="timeline-content">
+                        <h4>Festa</h4>
+                        <p>Música e dança até altas horas!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- OBSERVAÇÕES -->
+        <div class="card">
+            <h3 class="text-center" style="color: var(--rosa); margin-bottom: 1.5rem;">Observações Importantes</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                <div>
+                    <h4 style="color: var(--laranja); margin-bottom: 0.8rem;">⏰ Pontualidade</h4>
+                    <p>Pedimos que cheguem com antecedência para a cerimônia, que começará pontualmente às 15:00.</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--laranja); margin-bottom: 0.8rem;">🚗 Transporte</h4>
+                    <p>O deslocamento entre a igreja e o local da festa leva aproximadamente 10 minutos.</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--laranja); margin-bottom: 0.8rem;">🎶 Música</h4>
+                    <p>A festa contará com DJ e playlist especial preparada pelos noivos.</p>
+                </div>
+            </div>
         </div>
     </div>
 </body>
