@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Dicas e Instruções | Casamento Amauri & Ester</title>
+    <meta name="description" content="Informações importantes para o casamento, dress code, hospedagem e dicas de locais para visitar em Várzea da Palma - MG">
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --rosa: #d16c7c;
+            --laranja: #f08a5d;
+            --laranja-claro: #ffd56b;
+            --fundo: #fff6f2;
+            --branco: #ffffff;
+            --cinza: #444444;
+            --cinza-claro: #666666;
+            --sombra: rgba(0, 0, 0, 0.08);
+            --sombra-hover: rgba(0, 0, 0, 0.12);
+            --transicao: all 0.3s ease;
+            --borda-redonda: 24px;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--fundo);
+            color: var(--cinza);
+            line-height: 1.6;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: var(--rosa);
+            margin-bottom: 2rem;
+            text-align: center;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(209, 108, 124, 0.2);
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            color: var(--laranja);
+            margin: 3rem 0 1.5rem 0;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, var(--rosa), var(--laranja));
+            border-radius: 2px;
+        }
+        
+        h3 {
+            color: var(--rosa);
+            margin: 2rem 0 1rem 0;
+            font-size: 1.4rem;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .section-header h2 {
+            margin: 0;
+        }
+        
+        .icon {
+            font-size: 2rem;
+        }
+        
+        .info-card {
+            background: var(--branco);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px var(--sombra);
+            margin-bottom: 2rem;
+            transition: var(--transicao);
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px var(--sombra-hover);
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .dress-code-item {
+            padding: 1.5rem;
+            background: var(--branco);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px var(--sombra);
+            text-align: center;
+            transition: var(--transicao);
+            border-left: 4px solid var(--rosa);
+        }
+        
+        .dress-code-item:hover {
+            transform: translateY(-3px);
+        }
+        
+        .dress-code-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .hotel-item, .local-item {
+            padding: 1.5rem;
+            background: var(--branco);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px var(--sombra);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--laranja);
+        }
+        
+        .hotel-nome, .local-nome {
+            font-weight: 600;
+            color: var(--laranja);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .hotel-info, .local-info {
+            color: var(--cinza-claro);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .hotel-contato, .local-contato {
+            font-size: 0.9rem;
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .instrucoes-importantes {
+            background: linear-gradient(135deg, rgba(209, 108, 124, 0.1), rgba(240, 138, 93, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 4px solid var(--rosa);
+        }
+        
+        .instrucoes-importantes h3 {
+            color: var(--rosa);
+        }
+        
+        .instrucoes-lista {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .instrucoes-lista li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.8rem;
+        }
+        
+        .instrucoes-lista li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--rosa);
+            font-weight: bold;
+        }
+        
+        .btn-voltar {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, var(--rosa), var(--laranja));
+            color: var(--branco);
+            text-decoration: none;
+            border-radius: 50px;
+            margin-top: 2rem;
+            font-weight: 600;
+            transition: var(--transicao);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-voltar:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(209, 108, 124, 0.3);
+        }
+        
+        .voltar-container {
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div style="max-width: 800px; margin: 0 auto;">
+        <h1>💡 Dicas e Instruções para o Casamento</h1>
+        
+        <div class="info-card">
+            <h2 style="color: var(--rosa);">Informações Importantes</h2>
+            <p><strong>Data:</strong> 29 de Maio de 2027</p>
+            <p><strong>Horário:</strong> A partir das 16:00 horas</p>
+            <p><strong>Local:</strong> Várzea da Palma - MG</p>
+            <p><strong>Endereço completo:</strong> Será enviado por e-mail aos confirmados</p>
+            
+            <div class="instrucoes-importantes">
+                <h3>📋 Orientações Gerais</h3>
+                <ul class="instrucoes-lista">
+                    <li>Confirme sua presença até 15 de maio de 2027</li>
+                    <li>Recomendamos chegar com 30 minutos de antecedência</li>
+                    <li>Traga seu convite impresso ou digital para apresentação na entrada</li>
+                    <li>Estacionamento disponível no local</li>
+                    <li>Cerimônia e recepção acontecerão no mesmo local</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="info-card">
+            <div class="section-header">
+                <span class="icon">👔</span>
+                <h2>Dress Code para Convidados</h2>
+            </div>
+            <p>Como se vestir para o nosso grande dia</p>
+            
+            <div class="grid-container">
+                <div class="dress-code-item">
+                    <span class="dress-code-icon">👔</span>
+                    <h3>Para os Homens</h3>
+                    <p>Terno ou Social</p>
+                    <small><strong>Cores sugeridas:</strong> Azul marinho, cinza, bege</small>
+                </div>
+                
+                <div class="dress-code-item">
+                    <span class="dress-code-icon">👗</span>
+                    <h3>Para as Mulheres</h3>
+                    <p>Vestido ou Saia Social</p>
+                    <small><strong>Cores sugeridas:</strong> Tons pastéis, estampas discretas</small>
+                </div>
+                
+                <div class="dress-code-item">
+                    <span class="dress-code-icon">🎨</span>
+                    <h3>Paleta de Cores</h3>
+                    <p>Evitar preto total</p>
+                    <small>Priorize cores claras e alegres</small>
+                </div>
+                
+                <div class="dress-code-item">
+                    <span class="dress-code-icon">👞</span>
+                    <h3>Calçados</h3>
+                    <p>Sapatos sociais ou sapatilhas</p>
+                    <small>Conforto para dançar a noite toda!</small>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(209, 108, 124, 0.05); border-radius: 10px;">
+                <p><strong>💡 Dica importante:</strong> O evento terá área externa, portanto recomendamos levar um casaco leve para possíveis mudanças de temperatura ao anoitecer.</p>
+            </div>
+        </div>
+        
+        <div class="info-card">
+            <div class="section-header">
+                <span class="icon">🏨</span>
+                <h2>Hospedagem em Várzea da Palma</h2>
+            </div>
+            <p>Sugestões de hospedagem para quem vem de fora</p>
+            
+            <div class="hotel-item">
+                <div class="hotel-nome">Hotel Fazenda Paraíso</div>
+                <div class="hotel-info">📍 Rodovia MG-124, Km 45</div>
+                <div class="hotel-info">🏠 Apartamentos com ar condicionado, Wi-Fi e café da manhã incluído</div>
+                <div class="hotel-contato">📞 (38) 3421-1234</div>
+            </div>
+            
+            <div class="hotel-item">
+                <div class="hotel-nome">Pousada Rio São Francisco</div>
+                <div class="hotel-info">📍 Av. Principal, 123 - Centro</div>
+                <div class="hotel-info">🏠 Ambiente familiar, estacionamento privativo</div>
+                <div class="hotel-contato">📞 (38) 3421-5678</div>
+            </div>
+            
+            <div class="hotel-item">
+                <div class="hotel-nome">Resort Serra do Cipó</div>
+                <div class="hotel-info">📍 Estrada Municipal, S/N - Zona Rural</div>
+                <div class="hotel-info">🏠 Piscina, área de lazer, restaurante no local</div>
+                <div class="hotel-contato">📞 (38) 3421-9012 | 💻 www.resortserradocipo.com.br</div>
+            </div>
+            
+            <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(240, 138, 93, 0.05); border-radius: 10px;">
+                <p><strong>⚠️ Importante:</strong> Recomendamos fazer reservas com antecedência, especialmente para finais de semana prolongados.</p>
+            </div>
+        </div>
+        
+        <div class="info-card">
+            <div class="section-header">
+                <span class="icon">🍽️</span>
+                <h2>Onde Comer e Visitar</h2>
+            </div>
+            <p>Dicas de bares, restaurantes e pontos turísticos em Várzea da Palma</p>
+            
+            <h3>🍴 Restaurantes</h3>
+            <div class="local-item">
+                <div class="local-nome">Restaurante Sabor Mineiro</div>
+                <div class="local-info">📍 Rua da Liberdade, 456 - Centro</div>
+                <div class="local-info">🎯 Comida típica mineira, ambiente familiar</div>
+                <div class="local-contato">⏰ Aberto das 11h às 22h | 📞 (38) 3421-3456</div>
+            </div>
+            
+            <div class="local-item">
+                <div class="local-nome">Churrascaria Pampa</div>
+                <div class="local-info">📍 Av. Brasil, 789</div>
+                <div class="local-info">🎯 Rodízio de carnes, buffet completo</div>
+                <div class="local-contato">⏰ Aberto das 11h30 às 23h | 📞 (38) 3421-7890</div>
+            </div>
+            
+            <h3>🍻 Bares</h3>
+            <div class="local-item">
+                <div class="local-nome">Bar do Zé</div>
+                <div class="local-info">📍 Praça Central, 12</div>
+                <div class="local-info">🎯 Petiscos tradicionais, ambiente descontraído</div>
+                <div class="local-contato">⏰ Aberto das 17h às 00h</div>
+            </div>
+            
+            <div class="local-item">
+                <div class="local-nome">Boteco da Esquina</div>
+                <div class="local-info">📍 Rua das Flores, 34</div>
+                <div class="local-info">🎯 Happy hour, música ao vivo aos sábados</div>
+                <div class="local-contato">⏰ Aberto das 16h às 02h</div>
+            </div>
+            
+            <h3>🏞️ Pontos Turísticos</h3>
+            <div class="local-item">
+                <div class="local-nome">Rio São Francisco</div>
+                <div class="local-info">📍 Margens do rio - acesso pela MG-124</div>
+                <div class="local-info">🎯 Passeios de barco, pesca, piquenique</div>
+                <div class="local-info">💡 Ideal para um passeio tranquilo durante o dia</div>
+            </div>
+            
+            <div class="local-item">
+                <div class="local-nome">Igreja Matriz Nossa Senhora da Piedade</div>
+                <div class="local-info">📍 Praça da Matriz, s/n</div>
+                <div class="local-info">🎯 Construção histórica do século XIX</div>
+                <div class="local-info">💡 Visitação das 8h às 17h</div>
+            </div>
+            
+            <div class="local-item">
+                <div class="local-nome">Mercado Municipal</div>
+                <div class="local-info">📍 Rua do Comércio, 100</div>
+                <div class="local-info">🎯 Artesanato local, produtos regionais</div>
+                <div class="local-info">⏰ Aberto das 7h às 18h (seg a sáb)</div>
+            </div>
+        </div>
+        
+        <div class="info-card">
+            <div class="section-header">
+                <span class="icon">🚗</span>
+                <h2>Como Chegar</h2>
+            </div>
+            
+            <h3>📍 De Carro</h3>
+            <p><strong>De Belo Horizonte:</strong> Seguir pela BR-040 até Curvelo, depois pegar a MG-124 até Várzea da Palma (aproximadamente 3 horas).</p>
+            <p><strong>De Montes Claros:</strong> Seguir pela BR-365 até Pirapora, depois MG-124 até Várzea da Palma (aproximadamente 2 horas).</p>
+            
+            <h3>🚌 De Ônibus</h3>
+            <p>Empresas que fazem o trajeto: Viação Util (saindo de BH) e Viação Pássaro Verde (saindo de Montes Claros).</p>
+            
+            <h3>✈️ De Avião</h3>
+            <p>Aeroporto mais próximo: Aeroporto de Montes Claros (MOC) - aproximadamente 150km de Várzea da Palma.</p>
+            
+            <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(209, 108, 124, 0.05); border-radius: 10px;">
+                <p><strong>🗺️ Dica:</strong> Utilize aplicativos como Google Maps ou Waze para traçar a melhor rota de sua cidade até Várzea da Palma.</p>
+            </div>
+        </div>
+        
+        <div class="voltar-container">
+            <a href="javascript:window.close()" class="btn-voltar">⬅️ Voltar para o Site do Casamento</a>
+            <p style="margin-top: 1rem; color: var(--cinza-claro); font-size: 0.9rem;">Esta página será fechada ao clicar no botão acima</p>
+        </div>
+    </div>
+</body>
+</html>
