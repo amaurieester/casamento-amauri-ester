@@ -97,10 +97,10 @@
         }
         
         .menu-lateral-toggle img {
-            width: 70%;
-            height: 70%;
+            width: 45px;
+            height: 45px;
             object-fit: contain;
-            border-radius: 5px;
+            border-radius: 50%;
         }
         
         .menu-lateral {
@@ -478,6 +478,11 @@
                 left: 15px;
                 width: 50px;
                 height: 50px;
+            }
+            
+            .menu-lateral-toggle img {
+                width: 38px;
+                height: 38px;
             }
             
             .menu-lateral {
@@ -875,16 +880,12 @@
 </head>
 
 <body>
-    <!-- MENU LATERAL (copiar este código para todas as páginas) -->
+    <!-- MENU LATERAL COM MONOGRAMA INSERIDO -->
     <div class="menu-lateral-toggle" id="menuToggle" aria-label="Abrir menu">
-        <!-- SUBSTITUA O TEXTO ABAIXO PELO SEU MONOGRAMA -->
-        <div style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--rosa); font-weight: bold;">
-            AE
-        </div>
-        <!-- 
-            Para usar uma imagem do seu monograma, substitua o div acima por:
-            <img src="caminho/para/seu/monograma.png" alt="Monograma Amauri e Ester">
-        -->
+        <!-- MONOGRAMA AMAURI & ESTER -->
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23d16c7c' opacity='0.1'/%3E%3Ctext x='50' y='68' font-family='Playfair Display, serif' font-size='48' font-weight='bold' fill='%23d16c7c' text-anchor='middle'%3EA%26E%3C/text%3E%3C/svg%3E" 
+             alt="Monograma Amauri & Ester"
+             style="width: 45px; height: 45px; border-radius: 50%; object-fit: contain;">
     </div>
     
     <div class="menu-lateral-overlay" id="menuOverlay"></div>
