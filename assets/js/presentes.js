@@ -35,13 +35,38 @@
             ["Ajude a comprar Roupas de cama", 162.89, "roupas-cama.jpg"],
             ["Calendário com lembrete para o noivo não esquecer as datas especiais", 195.42, "calendario.jpg"],
             ["Vale compra pra noiva gastar na Shein", 212.41, "shein.jpg"],
-            ["Ajude a comprar um Fogão", 264.86, "fogao.jpg"],
-            ["Ajude a comprar um Guarda-roupa novo", 341.25, "guarda-roupa-grande.jpg"],
             ["Um ano de barbeiro para o noivo", 331.57, "barbeiro.jpg"],
             ["1 ano de Netflix para os noivos curtirem bons filmes", 341.93, "netflix.jpg"],
+            ["Contribua com a mesa de doces", 341.93, "doces.jpg"],
+            ["Contribuição para pagar a fatura da lua de mel (SOCORRO)", 341.93, "lua-de-mel.jpg"],
+            ["Curso de culinária para o noivo", 341.93, "culinaria.jpg"],
+            ["Contribua com o dia da noiva", 341.93, "dia-da-noiva.jpg"],
+            ["Contribua com o dia do noivo", 341.93, "dia-do-noivo.jpg"],
+            ["Drinks na piscina do hotel", 341.93, "drinks-hotel.jpg"],
+            ["Jantar na lua de mel", 341.93, "jantar-lua-de-mel.jpg"],
+            ["Montador de móveis pro noivo não quebrar tudo", 341.93, "montador-moveis.jpg"],
+            ["Dia extra no hotel", 341.93, "dia-hotel.jpg"],
+            ["Churrasco na casa nova", 341.93, "churrasco.jpg"],
+            ["Passeio na lua de mel", 341.93, "passeio.jpg"],
+            ["Ovo para não faltar mistura", 341.93, "mistura.jpg"],
+            ["Lixa para o calcanhar da noiva", 341.93, "lixa.jpg"],
+            ["Mensalidade da academia dos noivos", 341.93, "academia.jpg"],
+            ["Alvará para meter o louco na festa", 341.93, "louco.jpg"],
+            ["Contribuição para a cerveja não acabar", 341.93, "cerveja.jpg"],
+            ["Dose de paciência para a noiva", 341.93, "paciencia.jpg"],
+            ["Taxa para dar pitaco/falar mal da festa", 341.93, "pitaco.jpg"],
+            ["Ajuda na primeira compra do mercado", 341.93, "mercado.jpg"],
+            ["Alexa para a noiva não mandar só no noivo", 341.93, "Alexa.jpg"],
+            ["Tapete de boas vindas para receber convidados", 341.93, "convidados.jpg"],
+            ["Vale um ano para a noiva não proibir o noivo de jogar futebol", 341.93, "futebol.jpg"],
+            ["Vale um ano para a noiva não proibir o noivo de sair com os amigos", 341.93, "amigos.jpg"],
+            ["Curso intensivo para o noivo adivinhar porque a noiva ta bicuda", 341.93, "bicuda.jpg"],
+                
+        
             
             // R$ 500 - 1.000
             ["Ajuda financeira para o futuro casal", 405.08, "ajuda-financeira.jpg"],
+            ["Grande Oportunidade: Seja nosso parente/amigo favorito", 920.20, "favorito.jpg"],
             ["Ajude a comprar uma Cama box de casal", 486.87, "cama-box.jpg"],
             ["Ajuda para mobiliar a casa", 547.40, "mobiliar-casa.jpg"],
             ["Psicólogo pros noivos não surtarem nos preparativos", 538.80, "psicologo.jpg"],
@@ -51,6 +76,11 @@
             ["Ajude a comprar uma Geladeira", 781.92, "geladeira.jpg"],
             ["Adote os boletos dos primeiros meses juntos!", 821.10, "boletos.jpg"],
             ["Ajude o noivo a comprar uma cervejeira", 920.51, "cervejeira.jpg"],
+            ["Eu vou dar o melhor presente porque eu sou o milior", 341.93, "milior.jpg"],
+            ["Hora extra do DJ na festa (sou inimigo do fim)", 341.93, "dj.jpg"],
+            ["Ajude a comprar um Fogão", 264.86, "fogao.jpg"],
+            ["Ajude a comprar um Guarda-roupa novo", 341.25, "guarda-roupa-grande.jpg"],
+            ["Contribua para a compra das alianças", 341.93, "aliancas.jpg"],
             
             // Acima de R$ 1.000
             ["Ajude a comprar uma Máquina de lavar", 400.25, "maquina-lavar.jpg"],
@@ -58,7 +88,10 @@
             ["Ajuda para mobiliar a casa", 1204.28, "mobiliar-casa2.jpg"],
             ["Deus te iluminou e você resolveu ajudar na lua de mel", 1554.24, "lua-de-mel.jpg"],
             ["Ajuda para a aposentadoria dos noivos", 3612.84, "aposentadoria.jpg"],
-            ["Taxa para levar alguém que não foi convidado", 6652.99, "taxa-convidado.jpg"]
+            ["Todo dinheiro que der para os noivos voltará em dobro para você", 6652.99, "dinheiro-dobro.jpg"],
+            ["Taxa para ir de branco no casamento", 6652.99, "branco.jpg"],
+            ["Ajuda para pagar a festa", 6652.99, "quitar-festa.jpg"],
+            ["Ajuda para o gato parar de reclamar que a noiva gastou muito na festa", 6652.99, "gato.jpg"]
         ];
 
         // Ordenar por preço (do mais barato para o mais caro)
