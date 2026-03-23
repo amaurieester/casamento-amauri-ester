@@ -1,918 +1,82 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- SEO OTIMIZADO -->
-    <title>Amauri & Ester | Casamento 12/06/2027 - Várzea da Palma - MG</title>
-    <meta name="description" content="Celebre conosco nosso casamento! 12 de junho de 2027 em Várzea da Palma - MG. Confirmação de presença, lista de presentes e nossa história de amor.">
-    <meta name="keywords" content="casamento, Amauri, Ester, Várzea da Palma, 12/06/2027, lista de presentes">
-    <meta name="author" content="Amauri & Ester">
-    
+    <title>Ester & Amauri | Casamento 12/06/2027 - Várzea da Palma - MG</title>
+    <meta name="description"
+        content="Celebre conosco nosso casamento! 12 de junho de 2027 em Várzea da Palma - MG. Confirmação de presença, lista de presentes e nossa história de amor.">
+    <meta name="keywords" content="casamento, Ester, Amauri, Várzea da Palma, 12/06/2027, lista de presentes">
+    <meta name="author" content="Ester & Amauri">
+
     <!-- OPEN GRAPH PARA REDES SOCIAIS -->
-    <meta property="og:title" content="Amauri & Ester | Casamento">
-    <meta property="og:description" content="12/06/2027 • Várzea da Palma - MG. Estamos ansiosos para celebrar esse momento especial com você 🤍">
+    <meta property="og:title" content="Ester & Amauri | Casamento">
+    <meta property="og:description"
+        content="12/06/2027 • Várzea da Palma - MG. Estamos ansiosos para celebrar esse momento especial com você 🤍">
     <meta property="og:image" content="https://SEUSITE.com/capa-whatsapp.jpg">
     <meta property="og:url" content="https://amaurieester.github.io/casamento-amauri-ester">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Casamento Amauri & Ester">
+    <meta property="og:site_name" content="Casamento Ester & Amauri">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    
+
     <!-- TWITTER CARDS -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Amauri & Ester | Casamento">
+    <meta name="twitter:title" content="Ester & Amauri | Casamento">
     <meta name="twitter:description" content="12/06/2027 • Várzea da Palma - MG">
-    
+
     <!-- FAVICON -->
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
-    
+    <link rel="icon" type="image/x-icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
+
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
     <!-- STYLES -->
-    <style>
-        :root {
-            --rosa: #d16c7c;
-            --laranja: #f08a5d;
-            --laranja-claro: #ffd56b;
-            --fundo: #fff6f2;
-            --branco: #ffffff;
-            --cinza: #444444;
-            --cinza-claro: #666666;
-            --sombra: rgba(0, 0, 0, 0.08);
-            --sombra-hover: rgba(0, 0, 0, 0.12);
-            --transicao: all 0.3s ease;
-            --borda-redonda: 24px;
-            --sucesso: #4CAF50;
-            --erro: #f44336;
-        }
-        
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: var(--fundo);
-            color: var(--cinza);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        /* MENU LATERAL */
-        .menu-lateral-toggle {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 1001;
-            box-shadow: 0 5px 20px var(--sombra);
-            transition: var(--transicao);
-            border: 2px solid var(--rosa);
-        }
-        
-        .menu-lateral-toggle:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px var(--sombra-hover);
-        }
-        
-        .menu-lateral-toggle img {
-            width: 45px;
-            height: 45px;
-            object-fit: contain;
-            border-radius: 50%;
-        }
-        
-        .menu-lateral {
-            position: fixed;
-            top: 0;
-            left: -300px;
-            width: 280px;
-            height: 100vh;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            z-index: 1000;
-            transition: var(--transicao);
-            padding: 100px 30px 40px;
-            box-shadow: 5px 0 30px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .menu-lateral.active {
-            left: 0;
-        }
-        
-        .menu-lateral-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transicao);
-        }
-        
-        .menu-lateral-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .menu-lateral a {
-            display: block;
-            padding: 15px 20px;
-            color: var(--rosa);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
-            border-radius: 12px;
-            transition: var(--transicao);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .menu-lateral a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(209, 108, 124, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .menu-lateral a:hover::before {
-            left: 100%;
-        }
-        
-        .menu-lateral a:hover {
-            background: rgba(209, 108, 124, 0.05);
-            color: var(--laranja);
-            transform: translateX(5px);
-        }
-        
-        .menu-lateral-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--rosa);
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transicao);
-        }
-        
-        .menu-lateral-close:hover {
-            background: rgba(209, 108, 124, 0.1);
-            transform: rotate(90deg);
-        }
-        
-        .menu-lateral-logo {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(209, 108, 124, 0.1);
-        }
-        
-        .menu-lateral-logo h3 {
-            color: var(--rosa);
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-        }
-        
-        /* REMOVER MENU SUPERIOR ANTIGO */
-        .menu {
-            display: none;
-        }
-        
-        /* TIPOGRAFIA */
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            line-height: 1.2;
-        }
-        
-        h1 {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            margin-bottom: 1rem;
-        }
-        
-        h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            color: var(--laranja);
-            margin-bottom: 2.5rem;
-            position: relative;
-            display: inline-block;
-        }
-        
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(to right, var(--rosa), var(--laranja));
-            border-radius: 2px;
-        }
-        
-        .welcome-title {
-            color: var(--rosa);
-            font-size: clamp(2rem, 4vw, 2.5rem);
-            margin-bottom: 2rem;
-            text-align: center;
-            width: 100%;
-        }
-        
-        p {
-            margin-bottom: 1.5rem;
-            font-size: clamp(1rem, 2vw, 1.1rem);
-        }
-        
-        /* PLAYER DE MÚSICA ESTILIZADO */
-        .music-player {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 9999;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 50px;
-            padding: 12px 20px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: var(--transicao);
-            border: 1px solid rgba(209, 108, 124, 0.2);
-            max-width: 380px;
-            width: auto;
-        }
-        
-        .music-player:hover {
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
-            transform: translateY(-2px);
-        }
-        
-        .music-controls {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .music-btn {
-            background: transparent;
-            border: none;
-            font-size: 1.3rem;
-            cursor: pointer;
-            color: var(--rosa);
-            transition: var(--transicao);
-            padding: 8px;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .music-btn:hover {
-            background: rgba(209, 108, 124, 0.1);
-            color: var(--laranja);
-            transform: scale(1.1);
-        }
-        
-        .music-info {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            min-width: 130px;
-        }
-        
-        .music-title {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--cinza);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
-        .music-status {
-            font-size: 0.75rem;
-            color: var(--cinza-claro);
-        }
-        
-        .volume-control {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-left: 5px;
-        }
-        
-        .volume-slider {
-            width: 90px;
-            -webkit-appearance: none;
-            appearance: none;
-            height: 6px;
-            background: linear-gradient(to right, var(--rosa), var(--laranja));
-            border-radius: 3px;
-            outline: none;
-            opacity: 0.8;
-            transition: opacity 0.2s;
-        }
-        
-        .volume-slider:hover {
-            opacity: 1;
-        }
-        
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: var(--branco);
-            cursor: pointer;
-            transition: var(--transicao);
-            border: 2px solid var(--rosa);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-        
-        .volume-slider::-webkit-slider-thumb:hover {
-            background: var(--rosa);
-            border-color: var(--laranja);
-            transform: scale(1.2);
-        }
-        
-        .volume-icon {
-            color: var(--rosa);
-            font-size: 1.2rem;
-            min-width: 24px;
-            text-align: center;
-        }
-        
-        .close-player {
-            background: transparent;
-            border: none;
-            color: var(--cinza-claro);
-            cursor: pointer;
-            font-size: 1rem;
-            padding: 5px;
-            margin-left: 5px;
-            transition: var(--transicao);
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .close-player:hover {
-            background: rgba(244, 67, 54, 0.1);
-            color: var(--erro);
-            transform: rotate(90deg);
-        }
-        
-        .music-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 9998;
-            background: linear-gradient(135deg, var(--rosa), var(--laranja));
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.3rem;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(209, 108, 124, 0.4);
-            transition: var(--transicao);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: pulse 2s infinite;
-        }
-        
-        .music-toggle:hover {
-            transform: scale(1.1) rotate(360deg);
-            box-shadow: 0 8px 25px rgba(209, 108, 124, 0.5);
-        }
-        
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 5px 20px rgba(209, 108, 124, 0.4);
-            }
-            50% {
-                box-shadow: 0 5px 25px rgba(209, 108, 124, 0.6);
-            }
-            100% {
-                box-shadow: 0 5px 20px rgba(209, 108, 124, 0.4);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .music-player {
-                bottom: 10px;
-                right: 10px;
-                left: 10px;
-                max-width: calc(100% - 20px);
-                padding: 10px 15px;
-                border-radius: 25px;
-            }
-            
-            .music-info {
-                min-width: 100px;
-            }
-            
-            .volume-slider {
-                width: 70px;
-            }
-            
-            .music-toggle {
-                bottom: 10px;
-                right: 10px;
-                width: 45px;
-                height: 45px;
-            }
-            
-            .menu-lateral-toggle {
-                top: 15px;
-                left: 15px;
-                width: 50px;
-                height: 50px;
-            }
-            
-            .menu-lateral-toggle img {
-                width: 38px;
-                height: 38px;
-            }
-            
-            .menu-lateral {
-                width: 250px;
-                padding: 80px 20px 30px;
-            }
-        }
-        
-        /* SEÇÕES COM MAIS ESPAÇAMENTO */
-        section {
-            padding: clamp(5rem, 10vw, 8rem) 20px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        
-        .card {
-            background: var(--branco);
-            border-radius: var(--borda-redonda);
-            padding: clamp(2.5rem, 6vw, 4rem);
-            box-shadow: 0 15px 40px var(--sombra);
-            transition: var(--transicao);
-            margin-bottom: 3rem;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px var(--sombra-hover);
-        }
-        
-        /* HERO SECTION */
-        .hero {
-            background: linear-gradient(135deg, var(--rosa), var(--laranja));
-            color: var(--branco);
-            text-align: center;
-            padding: clamp(6rem, 12vw, 10rem) 20px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
-            opacity: 0.1;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .hero-subtitle {
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            letter-spacing: 3px;
-            margin-bottom: 1rem;
-            opacity: 0.9;
-            text-transform: uppercase;
-        }
-        
-        .hero-date {
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
-            margin-top: 1.5rem;
-            opacity: 0.95;
-        }
-        
-        /* COUNTDOWN */
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: clamp(0.8rem, 2vw, 1.5rem);
-            margin-top: 3rem;
-            flex-wrap: wrap;
-        }
-        
-        .time-unit {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .time {
-            background: rgba(255, 255, 255, 0.2);
-            padding: clamp(1rem, 2vw, 1.5rem) clamp(1.2rem, 3vw, 2rem);
-            border-radius: 20px;
-            min-width: clamp(80px, 10vw, 100px);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .time-value {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            font-weight: 700;
-            font-family: 'Playfair Display', serif;
-            display: block;
-        }
-        
-        .time-label {
-            font-size: 0.8rem;
-            opacity: 0.9;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 5px;
-        }
-        
-        /* BOTÕES */
-        .btn {
-            display: inline-block;
-            padding: clamp(0.8rem, 2vw, 1rem) clamp(2rem, 4vw, 2.5rem);
-            border-radius: 50px;
-            background: linear-gradient(135deg, var(--rosa), var(--laranja));
-            color: var(--branco);
-            border: none;
-            cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-            text-decoration: none;
-            transition: var(--transicao);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(209, 108, 124, 0.3);
-        }
-        
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .btn:hover::after {
-            left: 100%;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(209, 108, 124, 0.4);
-        }
-        
-        .btn:active {
-            transform: translateY(-1px);
-        }
-        
-        .btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-        
-        /* FORMULÁRIOS */
-        .form-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .form-group {
-            margin-bottom: 1.8rem;
-        }
-        
-        .form-input, .form-textarea, .form-select {
-            width: 100%;
-            padding: 1.2rem 1.5rem;
-            border-radius: 12px;
-            border: 1px solid #ddd;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            transition: var(--transicao);
-            background: var(--branco);
-        }
-        
-        .form-input:focus, .form-textarea:focus, .form-select:focus {
-            outline: none;
-            border-color: var(--rosa);
-            box-shadow: 0 0 0 3px rgba(209, 108, 124, 0.1);
-        }
-        
-        .form-textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .form-input.error, .form-textarea.error, .form-select.error {
-            border-color: var(--erro);
-        }
-        
-        .error-message {
-            color: var(--erro);
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-            display: none;
-        }
-        
-        .msg-success {
-            display: none;
-            margin-top: 2rem;
-            padding: 1.2rem;
-            background: rgba(76, 175, 80, 0.1);
-            border-radius: 12px;
-            color: var(--sucesso);
-            font-weight: 500;
-            text-align: center;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .msg-error {
-            display: none;
-            margin-top: 2rem;
-            padding: 1.2rem;
-            background: rgba(244, 67, 54, 0.1);
-            border-radius: 12px;
-            color: var(--erro);
-            font-weight: 500;
-            text-align: center;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        /* LOADING ESPECÍFICO PARA FORMULÁRIO */
-        .form-loading {
-            position: relative;
-            pointer-events: none;
-        }
-        
-        .form-loading::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.7);
-            z-index: 5;
-            border-radius: var(--borda-redonda);
-        }
-        
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 2.5rem;
-            position: relative;
-            z-index: 10;
-        }
-        
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(209, 108, 124, 0.2);
-            border-top-color: var(--rosa);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1.5rem;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* ANIMAÇÕES */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideUp {
-            from { 
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* FOOTER */
-        footer {
-            background: linear-gradient(135deg, var(--rosa), var(--laranja));
-            color: var(--branco);
-            text-align: center;
-            padding: 4rem 20px;
-            margin-top: 4rem;
-        }
-        
-        .footer-heart {
-            color: #ff6b6b;
-            animation: heartbeat 1.5s ease infinite;
-            display: inline-block;
-        }
-        
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-        
-        /* UTILITIES */
-        .text-center { text-align: center; }
-        .mt-1 { margin-top: 1.5rem; }
-        .mt-2 { margin-top: 2.5rem; }
-        .mt-3 { margin-top: 3.5rem; }
-        .mt-4 { margin-top: 4.5rem; }
-        .mb-1 { margin-bottom: 1.5rem; }
-        .mb-2 { margin-bottom: 2.5rem; }
-        .mb-3 { margin-bottom: 3.5rem; }
-        .mb-4 { margin-bottom: 4.5rem; }
-        
-        /* ACCESSIBILITY */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-        
-        /* GALERIA DE FOTOS */
-        .galeria-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-            margin-bottom: 4rem;
-        }
-        
-        .foto-item {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            height: 250px;
-            cursor: pointer;
-            transition: var(--transicao);
-        }
-        
-        .foto-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-        
-        .foto-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-        
-        .foto-item:hover img {
-            transform: scale(1.05);
-        }
-        
-        .foto-legenda {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-            color: white;
-            padding: 1rem;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .foto-item:hover .foto-legenda {
-            transform: translateY(0);
-        }
-        
-        /* SCROLLBAR PERSONALIZADA */
-        .modal-content::-webkit-scrollbar {
-            width: 6px;
-        }
-        
-        .modal-content::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.05);
-            border-radius: 10px;
-        }
-        
-        .modal-content::-webkit-scrollbar-thumb {
-            background: var(--rosa);
-            border-radius: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/common.css">
+    <link rel="stylesheet" href="assets/css/index.css">
 </head>
 
 <body>
     <!-- MENU LATERAL COM MONOGRAMA INSERIDO -->
     <div class="menu-lateral-toggle" id="menuToggle" aria-label="Abrir menu">
-        <!-- MONOGRAMA AMAURI & ESTER -->
-        <img src="monograma-amauri-ester.png" 
-             alt="Monograma Amauri & Ester"
-             style="width: 45px; height: 45px; border-radius: 50%; object-fit: contain;">
+        <img src="fotos/monograma-amauri-ester.png" alt="Monograma Ester & Amauri"
+            style="width: 45px; height: 45px; object-fit: contain; border-radius: 50%; transform: scale(1.7);">
     </div>
-    
+
     <div class="menu-lateral-overlay" id="menuOverlay"></div>
-    
+
     <div class="menu-lateral" id="menuLateral">
         <button class="menu-lateral-close" id="menuClose" aria-label="Fechar menu">✕</button>
-        
+
         <div class="menu-lateral-logo">
-            <h3>Amauri & Ester</h3>
-            <p style="color: var(--cinza-claro); font-size: 0.9rem;">29/05/2027</p>
+            <h3>Ester & Amauri</h3>
+            <p style="color: var(--cinza-claro); font-size: 0.9rem;">12/06/2027</p>
         </div>
-        
+
         <a href="#inicio">Início</a>
-        <a href="evento.html" target="_blank">Evento</a>
-        <a href="cronograma.html" target="_blank">Cronograma</a>
-        <a href="dicas-instrucoes.html" target="_blank">Dicas e Instruções</a>
-        <a href="confirmacao.html" target="_blank">Confirmação</a>
-        <a href="presentes.html" target="_blank">Presentes</a>
+        <a href="evento.html">Evento</a>
+        <a href="cronograma.html">Cronograma</a>
+        <a href="dicas-instrucoes.html">Dicas e Instruções</a>
+        <a href="confirmacao.html">Confirmação</a>
+        <a href="presentes.html">Presentes</a>
     </div>
 
     <!-- HERO SECTION -->
     <header class="hero" id="inicio">
         <div class="hero-content">
             <p class="hero-subtitle">Save the date</p>
-            <h1>Amauri & Ester</h1>
-            <p class="hero-date">29 de Maio de 2027 • Várzea da Palma - MG</p>
-            
+            <h1>Ester & Amauri</h1>
+            <p class="hero-date">12 de Junho de 2027 • Várzea da Palma - MG</p>
+
             <div class="countdown">
                 <div class="time-unit">
                     <div class="time">
@@ -947,34 +111,103 @@
         <div class="text-center mb-4">
             <h2 class="welcome-title">Sejam bem-vindos ao nosso site</h2>
         </div>
-        
+
         <div class="card mb-4">
             <p class="text-center">
-                Criamos este espaço com muito carinho para compartilhar com vocês um dos momentos mais especiais das nossas vidas.<br>
-                Aqui, cada detalhe foi pensado para unir sonhos, histórias e pessoas que sempre fizeram partda nossa caminhada.
+                Criamos este espaço com muito carinho para compartilhar com vocês um dos momentos mais especiais das
+                nossas vidas.<br>
+                Aqui, cada detalhe foi pensado para unir sonhos, histórias e pessoas que sempre fizeram partda nossa
+                caminhada.
             </p>
         </div>
-        
+
+        <!-- SAVE THE DATE SECTION -->
+        <div class="save-the-date-section mb-5 text-center">
+            <h2>Save the Date</h2>
+            <p class="save-date-text">12 de Junho de 2027</p>
+
+            <div class="std-flip-container">
+                <!-- Espaço 1 -->
+                <div class="flip-card-wrapper">
+                    <div class="flip-card" onclick="this.classList.toggle('active')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="fotos/casal1.jpg" alt="Foto 1 Frente">
+                            </div>
+                            <div class="flip-card-back">
+                                <img src="fotos/casal2.jpg" alt="Foto 1 Verso">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card-date">DD/MM/AAAA</div>
+                    <div class="flip-card-title">O começo</div>
+                </div>
+
+                <!-- Espaço 2 -->
+                <div class="flip-card-wrapper">
+                    <div class="flip-card" onclick="this.classList.toggle('active')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="fotos/casal3.jpg" alt="Foto 2 Frente">
+                            </div>
+                            <div class="flip-card-back">
+                                <img src="fotos/casal4.jpg" alt="Foto 2 Verso">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card-date">DD/MM/AAAA</div>
+                    <div class="flip-card-title">O pedido</div>
+                </div>
+
+                <!-- Espaço 3 -->
+                <div class="flip-card-wrapper">
+                    <div class="flip-card" onclick="this.classList.toggle('active')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="fotos/casal5.jpg" alt="Foto 3 Frente">
+                            </div>
+                            <div class="flip-card-back">
+                                <img src="fotos/casal6.jpg" alt="Foto 3 Verso">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card-date">12/06/2027</div>
+                    <div class="flip-card-title">O casamento</div>
+                </div>
+            </div>
+
+
+        </div>
+
         <div class="text-center mb-4">
             <h2>Nossa História</h2>
         </div>
-        
+
         <div class="card">
-            <p>Tudo começou por culpa (ou mérito) de um amigo em comum: <strong>Samuel Fernando</strong>. Ele jurava que nós dois combinávamos perfeitamente. A noiva não acreditava muito e achava aquilo tudo exagero — virou quase uma aposta. Spoiler: ele estava certo.</p>
+            <p>Tudo começou por culpa (ou mérito) de um amigo em comum: <strong>Samuel Fernando</strong>. Ele jurava que
+                nós dois combinávamos perfeitamente. A noiva não acreditava muito e achava aquilo tudo exagero — virou
+                quase uma aposta. Spoiler: ele estava certo.</p>
 
-            <p>O primeiro beijo aconteceu numa noite especial, no <strong>Armazém do Rosário</strong>. E como toda boa história, a noite não terminou ali. Logo depois, fomos jogar truco na casa de um amigo, o <strong>João Pedro</strong>, e ficamos por lá até o dia amanhecer.</p>
+            <p>O primeiro beijo aconteceu numa noite especial, no <strong>Armazém do Rosário</strong>. E como toda boa
+                história, a noite não terminou ali. Logo depois, fomos jogar truco na casa de um amigo, o <strong>João
+                    Pedro</strong>, e ficamos por lá até o dia amanhecer.</p>
 
-            <p>Nesse meio tempo, a noiva já estava completamente louquinha por mais um beijo do noivo. Para que isso acontecesse, Samuel e João Pedro tiveram que tomar café frio, do dia anterior, só para despistar e criar o clima perfeito. Amizades de verdade passam por isso.</p>
+            <p>Nesse meio tempo, a noiva já estava completamente louquinha por mais um beijo do noivo. Para que isso
+                acontecesse, Samuel e João Pedro tiveram que tomar café frio, do dia anterior, só para despistar e criar
+                o clima perfeito. Amizades de verdade passam por isso.</p>
 
-            <p>Algum tempo depois, veio o pedido de namoro. A noiva estava chegando de férias e o noivo foi buscá-la dizendo que iriam sair para mais um encontro. No caminho, soltou a frase que entrou para a história:</p>
+            <p>Algum tempo depois, veio o pedido de namoro. A noiva estava chegando de férias e o noivo foi buscá-la
+                dizendo que iriam sair para mais um encontro. No caminho, soltou a frase que entrou para a história:</p>
 
-            <p class="text-center" style="font-style: italic; color: var(--rosa); padding: 1.5rem; background: rgba(209, 108, 124, 0.05); border-radius: 12px; margin: 2rem 0;">
+            <p class="text-center"
+                style="font-style: italic; color: var(--rosa); padding: 1.5rem; background: rgba(209, 108, 124, 0.05); border-radius: 12px; margin: 2rem 0;">
                 "Vai parecer que eu tô te sequestrando… mas eu não tô."
             </p>
 
             <p>(E não estava mesmo.)</p>
 
-            <p>No destino, a surpresa: um caminho de corações recortados à mão, um por um pelo noivo, velas, música de fundo e, ao final, a pergunta escrita na parede:</p>
+            <p>No destino, a surpresa: um caminho de corações recortados à mão, um por um pelo noivo, velas, música de
+                fundo e, ao final, a pergunta escrita na parede:</p>
 
             <p class="text-center" style="font-weight: 600; color: var(--laranja); font-size: 1.3rem; margin: 2rem 0;">
                 "Quer namorar comigo?"
@@ -982,15 +215,22 @@
 
             <p>O "sim" veio fácil — o coração já tinha respondido antes.</p>
 
-            <p>Desde o começo, não fomos só nós dois. Muita gente torceu, incentivou, apostou e acreditou nesse amor — amigos e família que sempre estiveram por perto, vibrando a cada passo.</p>
+            <p>Desde o começo, não fomos só nós dois. Muita gente torceu, incentivou, apostou e acreditou nesse amor —
+                amigos e família que sempre estiveram por perto, vibrando a cada passo.</p>
 
-            <p>Entre risadas, conversas que atravessaram madrugadas e muita parceria, fomos construindo um amor leve, verdadeiro e sem esforço. Daqueles que simplesmente encaixam.</p>
+            <p>Entre risadas, conversas que atravessaram madrugadas e muita parceria, fomos construindo um amor leve,
+                verdadeiro e sem esforço. Daqueles que simplesmente encaixam.</p>
 
-            <p>Depois de <strong>8 anos</strong> compartilhando a vida, as histórias, os sonhos e as certezas, decidimos dar o próximo passo.</p>
+            <p>Depois de <strong>8 anos</strong> compartilhando a vida, as histórias, os sonhos e as certezas, decidimos
+                dar o próximo passo.</p>
 
-            <p>O pedido de casamento foi exatamente a nossa cara: teve <strong>Disney</strong>, porque a noiva ama; teve <strong>discrição</strong>, porque o noivo ama; e teve <strong>Maragogi</strong>, porque o amor merecia um cenário bonito.</p>
+            <p>O pedido de casamento foi exatamente a nossa cara: teve <strong>Disney</strong>, porque a noiva ama; teve
+                <strong>discrição</strong>, porque o noivo ama; e teve <strong>Maragogi</strong>, porque o amor merecia
+                um cenário bonito.
+            </p>
 
-            <p>Só nós dois, nos bangalôs de um hotel, vivendo um momento único — enquanto nossos pais estavam no mesmo hotel e ninguém desconfiou de nada. <strong>Sigilo absoluto, missão cumprida ✔️</strong></p>
+            <p>Só nós dois, nos bangalôs de um hotel, vivendo um momento único — enquanto nossos pais estavam no mesmo
+                hotel e ninguém desconfiou de nada. <strong>Sigilo absoluto, missão cumprida ✔️</strong></p>
 
             <p class="text-center mt-4" style="font-weight: 600; color: var(--rosa); font-size: 1.4rem;">
                 E o melhor de tudo: essa história está só começando.
@@ -1004,35 +244,41 @@
             <h2>Nossos Momentos</h2>
             <p>Algumas memórias especiais da nossa caminhada</p>
         </div>
-        
+
         <div class="galeria-container">
             <div class="foto-item">
-                <img src="fotos/casal1.jpg" alt="Amauri e Ester juntos" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 1</text></svg>'">
+                <img src="fotos/casal1.jpg" alt="Ester e Amauri juntos"
+                    onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 1</text></svg>'">
                 <div class="foto-legenda">Primeiro dia após o noivado</div>
             </div>
-            
+
             <div class="foto-item">
-                <img src="fotos/casal2.jpg" alt="Noivos sorrindo" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 2</text></svg>'">
+                <img src="fotos/casal2.jpg" alt="Noivos sorrindo"
+                    onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 2</text></svg>'">
                 <div class="foto-legenda">Passeio especial e VZP</div>
             </div>
-            
+
             <div class="foto-item">
-                <img src="fotos/casal3.jpg" alt="Ensaio fotográfico" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 3</text></svg>'">
+                <img src="fotos/casal3.jpg" alt="Ensaio fotográfico"
+                    onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 3</text></svg>'">
                 <div class="foto-legenda">Samba Prime no gramado do Mineirão</div>
             </div>
-            
+
             <div class="foto-item">
-                <img src="fotos/casal4.jpg" alt="Momento especial" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 4</text></svg>'">
+                <img src="fotos/casal4.jpg" alt="Momento especial"
+                    onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 4</text></svg>'">
                 <div class="foto-legenda">Viagem especial em Família</div>
             </div>
-            
+
             <div class="foto-item">
-                <img src="fotos/casal5.jpg" alt="Com família" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 5</text></svg>'">
+                <img src="fotos/casal5.jpg" alt="Com família"
+                    onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 5</text></svg>'">
                 <div class="foto-legenda">Primeira foto após o pedido</div>
             </div>
-            
+
             <div class="foto-item">
-                <img src="fotos/casal6.jpg" alt="Preparativos" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 6</text></svg>'">
+                <img src="fotos/casal6.jpg" alt="Preparativos"
+                    onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><text x=%22200%22 y=%22150%22 font-family=%22Arial%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23666%22>📸 Foto 6</text></svg>'">
                 <div class="foto-legenda">Casamento de Sandy & Adilson</div>
             </div>
         </div>
@@ -1041,44 +287,48 @@
     <!-- MENSAGEM PARA OS NOIVOS (MANTIDA) -->
     <section id="mensagem">
         <div class="card mt-3">
-            <h3 class="text-center" style="color: var(--rosa); margin-bottom: 2rem;">Deixe uma mensagem para os noivos 🤍</h3>
-            
+            <h3 class="text-center" style="color: var(--rosa); margin-bottom: 2rem;">Deixe uma mensagem para os noivos
+                🤍</h3>
+
             <form class="form-container" id="formMensagem" onsubmit="enviarMensagem(event)">
                 <!-- Configurações do FormSubmit -->
                 <input type="hidden" name="_subject" value="💌 Nova mensagem para os noivos!">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://amaurieester.github.io/casamento-amauri-ester/obrigado-mensagem.html">
+                <input type="hidden" name="_next"
+                    value="https://amaurieester.github.io/casamento-amauri-ester/obrigado-mensagem.html">
                 <input type="text" name="_honey" style="display:none">
-                
+
                 <div class="form-group">
-                    <input type="text" class="form-input" id="nome" name="nome" placeholder="Seu nome completo *" required>
+                    <input type="text" class="form-input" id="nome" name="nome" placeholder="Seu nome completo *"
+                        required>
                     <div class="error-message" id="nome-error">Por favor, digite seu nome</div>
                 </div>
-                
+
                 <div class="form-group">
                     <input type="email" class="form-input" id="email" name="email" placeholder="Seu e-mail (opcional)">
                     <div class="error-message" id="email-error">Por favor, digite um e-mail válido</div>
                 </div>
-                
+
                 <div class="form-group">
-                    <textarea class="form-textarea" id="mensagem" name="mensagem" placeholder="Escreva sua mensagem com carinho *" required rows="5"></textarea>
+                    <textarea class="form-textarea" id="mensagem" name="mensagem"
+                        placeholder="Escreva sua mensagem com carinho *" required rows="5"></textarea>
                     <div class="error-message" id="mensagem-error">Por favor, escreva sua mensagem</div>
                 </div>
-                
+
                 <button type="submit" class="btn" id="btnEnviar" style="width: 100%;">
                     Enviar mensagem
                 </button>
-                
+
                 <div class="msg-success" id="msgSuccess">
                     <p>✅ Mensagem enviada com sucesso! Obrigado pelo carinho 🤍</p>
                     <p>Em alguns instantes você será redirecionado...</p>
                 </div>
-                
+
                 <div class="msg-error" id="msgError">
                     <p>❌ Ocorreu um erro ao enviar. Por favor, tente novamente.</p>
                 </div>
-                
+
                 <div class="loading" id="loading">
                     <div class="spinner"></div>
                     <p>Enviando sua mensagem...</p>
@@ -1089,8 +339,8 @@
 
     <!-- RODAPÉ -->
     <footer>
-        <p>Com amor, Amauri & Ester</p>
-        <p class="mt-2">29 de Maio de 2027</p>
+        <p>Com amor, Ester & Amauri</p>
+        <p class="mt-2">12 de Junho de 2027</p>
         <p class="mt-3">
             <span class="footer-heart">💍</span><br>
             Mal podemos esperar para celebrar com vocês!
@@ -1104,308 +354,22 @@
             <button id="playPauseBtn" class="music-btn">⏸️</button>
             <button id="nextBtn" class="music-btn">⏭️</button>
         </div>
-        
+
         <div class="music-info">
             <div class="music-title" id="currentSong">Música 1</div>
             <div class="music-status" id="playerStatus">Tocando agora</div>
         </div>
-        
+
         <div class="volume-control">
             <span class="volume-icon">🔊</span>
             <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.1" value="0.3">
         </div>
-        
+
         <button id="closePlayer" class="close-player">✕</button>
     </div>
 
-    <script>
-        // CONTROLE DO MENU LATERAL
-        const menuToggle = document.getElementById('menuToggle');
-        const menuLateral = document.getElementById('menuLateral');
-        const menuOverlay = document.getElementById('menuOverlay');
-        const menuClose = document.getElementById('menuClose');
-        
-        menuToggle.addEventListener('click', () => {
-            menuLateral.classList.add('active');
-            menuOverlay.classList.add('active');
-        });
-        
-        menuClose.addEventListener('click', () => {
-            menuLateral.classList.remove('active');
-            menuOverlay.classList.remove('active');
-        });
-        
-        menuOverlay.addEventListener('click', () => {
-            menuLateral.classList.remove('active');
-            menuOverlay.classList.remove('active');
-        });
-        
-        // Fechar menu ao clicar em um link
-        document.querySelectorAll('.menu-lateral a').forEach(link => {
-            link.addEventListener('click', () => {
-                menuLateral.classList.remove('active');
-                menuOverlay.classList.remove('active');
-            });
-        });
-        
-        // DADOS DO CASAMENTO
-        const dataCasamento = new Date("2027-05-29T10:00:00");
-
-        // PLAYER DE MÚSICA
-        const musicFiles = [
-            'musicas/musica1.mp3',
-            'musicas/musica2.mp3',
-            'musicas/musica3.mp3',
-            'musicas/musica4.mp3',
-            'musicas/musica5.mp3',
-            'musicas/musica6.mp3',
-            'musicas/musica7.mp3',
-            'musicas/musica8.mp3',
-            'musicas/musica9.mp3',
-            'musicas/musica10.mp3'
-        ];
-
-        let currentTrack = 0;
-        let isPlaying = true; // Inicia tocando automaticamente
-        let audioPlayer = new Audio();
-        
-        // Configurar volume inicial em 30% (médio-baixo)
-        audioPlayer.volume = 0.3;
-        
-        // Elementos do player
-        const musicPlayer = document.getElementById('musicPlayer');
-        const playPauseBtn = document.getElementById('playPauseBtn');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const volumeSlider = document.getElementById('volumeSlider');
-        const closePlayer = document.getElementById('closePlayer');
-        const currentSong = document.getElementById('currentSong');
-        const playerStatus = document.getElementById('playerStatus');
-
-        // Funções do player
-        function loadTrack(trackIndex) {
-            audioPlayer.src = musicFiles[trackIndex];
-            currentSong.textContent = `Música ${trackIndex + 1}`;
-            playerStatus.textContent = 'Tocando agora';
-        }
-
-        function playTrack() {
-            audioPlayer.play();
-            isPlaying = true;
-            playPauseBtn.textContent = '⏸️';
-            playerStatus.textContent = 'Tocando agora';
-        }
-
-        function pauseTrack() {
-            audioPlayer.pause();
-            isPlaying = false;
-            playPauseBtn.textContent = '▶️';
-            playerStatus.textContent = 'Pausado';
-        }
-
-        function nextTrack() {
-            currentTrack = (currentTrack + 1) % musicFiles.length;
-            loadTrack(currentTrack);
-            playTrack();
-        }
-
-        function prevTrack() {
-            currentTrack = (currentTrack - 1 + musicFiles.length) % musicFiles.length;
-            loadTrack(currentTrack);
-            playTrack();
-        }
-
-        // Event Listeners
-        playPauseBtn.addEventListener('click', () => {
-            if (isPlaying) {
-                pauseTrack();
-            } else {
-                playTrack();
-            }
-        });
-
-        closePlayer.addEventListener('click', () => {
-            musicPlayer.style.display = 'none';
-            pauseTrack();
-        });
-
-        nextBtn.addEventListener('click', nextTrack);
-        prevBtn.addEventListener('click', prevTrack);
-
-        volumeSlider.addEventListener('input', (e) => {
-            const volume = e.target.value;
-            audioPlayer.volume = volume;
-            
-            // Atualizar ícone do volume baseado no nível
-            const volumeIcon = document.querySelector('.volume-icon');
-            if (volume == 0) {
-                volumeIcon.textContent = '🔇';
-            } else if (volume < 0.3) {
-                volumeIcon.textContent = '🔈';
-            } else if (volume < 0.6) {
-                volumeIcon.textContent = '🔉';
-            } else {
-                volumeIcon.textContent = '🔊';
-            }
-        });
-
-        // Quando a música terminar, tocar a próxima
-        audioPlayer.addEventListener('ended', nextTrack);
-
-        // Inicializar e começar a tocar automaticamente
-        document.addEventListener('DOMContentLoaded', function() {
-            loadTrack(0);
-            playTrack();
-            
-            // Contador regressivo
-            atualizarContador();
-            setInterval(atualizarContador, 1000);
-            
-            // Inicializar animações
-            animarAoRolar();
-            
-            // Adicionar listener para quando o usuário interagir com a página
-            document.addEventListener('click', function() {
-                // Tenta tocar a música novamente se estiver pausada por política de autoplay
-                if (audioPlayer.paused && isPlaying) {
-                    playTrack().catch(e => console.log("Autoplay bloqueado:", e));
-                }
-            }, { once: true });
-        });
-
-        // FUNÇÃO PARA ENVIAR MENSAGEM PARA OS NOIVOS
-        async function enviarMensagem(event) {
-            event.preventDefault();
-            
-            const btnEnviar = document.getElementById('btnEnviar');
-            const formulario = document.getElementById('formMensagem');
-            const loading = document.getElementById('loading');
-            const msgSuccess = document.getElementById('msgSuccess');
-            const msgError = document.getElementById('msgError');
-            
-            // Validar campos
-            const nome = document.getElementById('nome').value.trim();
-            const mensagem = document.getElementById('mensagem').value.trim();
-            
-            if (!nome || !mensagem) {
-                alert('Por favor, preencha pelo menos o nome e a mensagem.');
-                return;
-            }
-            
-            // Desabilitar botão e mostrar loading
-            btnEnviar.disabled = true;
-            btnEnviar.textContent = 'Enviando...';
-            formulario.classList.add('form-loading');
-            loading.style.display = 'block';
-            msgSuccess.style.display = 'none';
-            msgError.style.display = 'none';
-            
-            // Coletar dados do formulário
-            const formData = {
-                nome: nome,
-                email: document.getElementById('email').value.trim() || 'Não informado',
-                mensagem: mensagem,
-                data: new Date().toLocaleString('pt-BR'),
-                tipo: 'Mensagem para os Noivos'
-            };
-            
-            try {
-                // ENVIAR VIA FORMSUBMIT PARA casamentoamaurieester@gmail.com
-                const response = await fetch('https://formsubmit.co/ajax/casamentoamaurieester@gmail.com', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        nome: formData.nome,
-                        email: formData.email,
-                        mensagem: formData.mensagem,
-                        data_envio: formData.data,
-                        _subject: `💌 Mensagem para os Noivos - ${formData.nome}`,
-                        _template: 'table',
-                        _captcha: 'false'
-                    })
-                });
-                
-                if (response.ok) {
-                    // Sucesso!
-                    loading.style.display = 'none';
-                    msgSuccess.style.display = 'block';
-                    
-                    // Limpar formulário
-                    formulario.reset();
-                    
-                    // Redirecionar após 3 segundos
-                    setTimeout(() => {
-                        window.location.href = 'obrigado-mensagem.html';
-                    }, 3000);
-                    
-                } else {
-                    throw new Error('Erro na resposta do servidor');
-                }
-                
-            } catch (error) {
-                console.error('Erro ao enviar mensagem:', error);
-                
-                // Mostrar mensagem de erro
-                loading.style.display = 'none';
-                msgError.style.display = 'block';
-                
-            } finally {
-                // Reabilitar botão após 3 segundos
-                setTimeout(() => {
-                    btnEnviar.disabled = false;
-                    btnEnviar.textContent = 'Enviar mensagem';
-                    formulario.classList.remove('form-loading');
-                }, 3000);
-            }
-        }
-        
-        // FUNÇÕES DO SITE
-        function atualizarContador() {
-            const agora = new Date();
-            const diferenca = dataCasamento - agora;
-            
-            if (diferenca > 0) {
-                const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
-                const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
-                const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
-                
-                document.getElementById('dias').textContent = dias.toString().padStart(2, '0');
-                document.getElementById('horas').textContent = horas.toString().padStart(2, '0');
-                document.getElementById('minutos').textContent = minutos.toString().padStart(2, '0');
-                document.getElementById('segundos').textContent = segundos.toString().padStart(2, '0');
-            } else {
-                document.querySelector('.countdown').innerHTML = '<p style="font-size: 1.5rem;">O grande dia chegou! 🎉</p>';
-            }
-        }
-        
-        // DETECTAR SCROLL PARA ANIMAÇÕES
-        function animarAoRolar() {
-            const cards = document.querySelectorAll('.card, .foto-item');
-            
-            cards.forEach(card => {
-                const cardTop = card.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (cardTop < windowHeight * 0.85) {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }
-            });
-        }
-        
-        // ESTILOS INICIAIS PARA ANIMAÇÃO
-        document.querySelectorAll('.card, .foto-item').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        });
-        
-        // INICIALIZAR ANIMAÇÕES
-        window.addEventListener('scroll', animarAoRolar);
-    </script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/index.js"></script>
 </body>
+
 </html>

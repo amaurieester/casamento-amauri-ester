@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra | Casamento Ester & Amauri</title>
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/common.css">
+    <link rel="stylesheet" href="assets/css/checkout.css">
+</head>
+
+<body>
+    <!-- MENU LATERAL -->
+    <div class="menu-lateral-toggle" id="menuToggle" aria-label="Abrir menu">
+        <img src="fotos/monograma-amauri-ester.png" alt="Monograma Ester & Amauri" style="width: 45px; height: 45px; object-fit: contain; border-radius: 50%; transform: scale(1.7);">
+    </div>
+    
+    <div class="menu-lateral-overlay" id="menuOverlay"></div>
+    
+    <div class="menu-lateral" id="menuLateral">
+        <button class="menu-lateral-close" id="menuClose" aria-label="Fechar menu">✕</button>
+        
+        <div class="menu-lateral-logo">
+            <h3>Ester & Amauri</h3>
+            <p style="color: var(--cinza-claro); font-size: 0.9rem;">12/06/2027</p>
+        </div>
+        
+        <a href="index.html">Início</a>
+        <a href="evento.html">Evento</a>
+        <a href="cronograma.html">Cronograma</a>
+        <a href="dicas-instrucoes.html">Dicas e Instruções</a>
+        <a href="confirmacao.html">Confirmação</a>
+        <a href="presentes.html">Presentes</a>
+    </div>
+    
+    <div class="container">
+        <a href="presentes.html" class="voltar-btn">← Voltar aos presentes</a>
+        
+        <h1 class="page-title">Finalizar Presente</h1>
+        <p class="page-subtitle">Quase lá! Confira os detalhes e escolha como deseja presentear</p>
+        
+        <div id="checkoutContent" class="checkout-layout">
+            <!-- COLUNA ESQUERDA: RESUMO -->
+            <div class="checkout-summary">
+                <div class="summary-card">
+                    <h2>Resumo da Escolha</h2>
+                    <div id="checkoutItems" class="checkout-items">
+                        <!-- Itens do carrinho serão listados aqui -->
+                    </div>
+                    
+                    <div class="checkout-total">
+                        <span>Total:</span>
+                        <span id="checkoutTotalValue">R$ 0,00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUNA DIREITA: PAGAMENTO -->
+            <div class="checkout-payment">
+                <div class="payment-card">
+                    <h2>Forma de Pagamento</h2>
+                    
+                    <div class="payment-options">
+                        <button class="payment-btn active" onclick="mostrarPix()" id="btnPix">
+                            Pix
+                        </button>
+                        <button class="payment-btn" onclick="abrirCartao()" id="btnCartao">
+                            Cartão / Link
+                        </button>
+                    </div>
+                    
+                    <!-- PIX -->
+                    <div class="pix-container" id="pixContainer">
+                        <div class="qrcode-container" style="background: transparent; padding: 0;">
+                            <img src="pix-qrcode.png" alt="QR Code PIX para pagamento" class="qrcode-img" onerror="this.onerror=null; this.style.display='none'" style="width: 250px; height: auto;">
+                        </div>
+                        
+                        <div class="pix-info">
+                            <p><strong>Nome:</strong> Amauri Mourão Pereira</p>
+                            <p><strong>CPF:</strong> ***.439.376-**</p>
+                            <p><strong>Instituição:</strong> Mercado Pago</p>
+                            <p class="mt-3"><strong>Chave Pix (copie e cole):</strong></p>
+                            <div class="pix-key" id="pixKey">
+                                <!-- COLOQUE A CHAVE PIX COPIA E COLA AQUI -->
+                                00020126580014BR.GOV.BCB.PIX01360fd40b94-5f17-4115-9e25-c4464bc447f95204000053039865802BR5921Amauri Mourao Pereira6009SAO PAULO621405107UCCil9dAy6304D0A3
+                            </div>
+                        </div>
+                        
+                        <button class="copy-btn" onclick="copiarPix()" id="copyBtn">
+                            Copiar Chave Pix
+                        </button>
+                        
+                        <p class="copy-success" id="copySuccess">
+                            ✔ Chave Pix copiada! Agradecemos o apoio e a colaboração 🤍
+                        </p>
+                    </div>
+
+                    <!-- CARTÃO / LINK -->
+                    <div class="cartao-container" id="cartaoContainer" style="display: none; text-align: center; padding: 2rem 0;">
+                        <h3>Pagamento Seguro</h3>
+                        <p style="margin: 1rem 0; color: #555;">Você será redirecionado para o ambiente seguro do Mercado Pago.</p>
+                        <a href="https://link.mercadopago.com.br/presenteamaurieester" target="_blank" class="btn" style="display: inline-block; background: #009ee3; color: white; text-decoration: none; font-weight: bold; border-radius: 8px;">
+                            Pagar com Mercado Pago
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            
+        </div>
+        
+        <div id="emptyCartMessage" class="empty-cart-message" style="display: none;">
+            <h2>Você ainda não escolheu nenhum presente.</h2>
+            <p>Volte para a lista de presentes e escolha um agrado para os noivos!</p>
+            <a href="presentes.html" class="btn" style="margin-top: 2rem;">Ver lista de presentes</a>
+        </div>
+        
+    </div>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <p>Com amor, Ester & Amauri</p>
+        <p class="mt-2">12 de Junho de 2027</p>
+        <p class="mt-3">
+            <span class="footer-heart">💍</span><br>
+            Mal podemos esperar para celebrar com vocês!
+        </p>
+    </footer>
+
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/checkout.js"></script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save the Date Component | Casamento Ester & Amauri</title>
+    <link rel="stylesheet" href="assets/css/common.css">
+    
+    <!-- COMEÇO DO CÓDIGO DA NOVA SEÇÃO (COPIAR DAQUI PARA BAIXO NO INDEX.HTML) -->
+    <style>
+        .save-the-date-section {
+            padding: clamp(4rem, 8vw, 6rem) 20px;
+            background: linear-gradient(135deg, rgba(209, 108, 124, 0.05), rgba(240, 138, 93, 0.05));
+            border-radius: var(--borda-redonda);
+            margin: 4rem auto;
+            max-width: 1000px;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .save-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            color: var(--rosa);
+            margin-bottom: 0.5rem;
+        }
+
+        .save-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            color: var(--laranja);
+            margin-bottom: 3rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Container do carrossel rotativo */
+        .rotating-gallery {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 2rem auto;
+            perspective: 1000px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Foto estilo Polaroid */
+        .rotating-photo {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+            transform-origin: center bottom;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .rotating-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        /* Classes de estado para a animação de girar e trocar */
+        .photo-front {
+            transform: translateY(0) rotate(0deg) scale(1.05);
+            opacity: 1;
+            z-index: 3;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .photo-middle {
+            transform: translateY(15px) rotate(8deg) scale(0.95);
+            opacity: 0.8;
+            z-index: 2;
+        }
+
+        .photo-back {
+            transform: translateY(30px) rotate(-8deg) scale(0.85);
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+        .photo-hidden {
+            /* Animação de saída girando para o lado e sumindo */
+            transform: translateX(100px) translateY(-50px) rotate(45deg) scale(0.8);
+            opacity: 0;
+            z-index: 4;
+        }
+
+        /* Pequenos corações flutuantes ao fundo */
+        .floating-heart {
+            position: absolute;
+            color: var(--rosa);
+            opacity: 0.3;
+            animation: floatUp 6s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100px) scale(0.5); opacity: 0; }
+            20% { opacity: 0.4; }
+            80% { opacity: 0.4; }
+            100% { transform: translateY(-100px) scale(1.2); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    
+    <div style="text-align: center; padding: 20px; background: #ffebee; border-bottom: 2px solid #ffcdd2; margin-bottom: 30px;">
+        <h3 style="color: #c62828;">📢 Instrução de Uso</h3>
+        <p>Você pode copiar TODO o código do `<style>` e a `<section>` abaixo e colar diretamente no seu <strong>index.html</strong> onde quiser exibir essa nova área!</p>
+        <a href="index.html" class="btn" style="padding: 10px 20px; margin-top: 10px;">Voltar para o Início</a>
+    </div>
+
+    <!-- SEÇÃO SAVE THE DATE (PODE SER COPIADA PARA O INDEX.HTML) -->
+    <section class="save-the-date-section" id="save-the-date">
+        <!-- Corações flutuantes decorativos -->
+        <div class="floating-heart" style="left: 10%; top: 30%; font-size: 20px; animation-delay: 0s;">❤️</div>
+        <div class="floating-heart" style="right: 15%; top: 50%; font-size: 15px; animation-delay: 2s;">❤️</div>
+        <div class="floating-heart" style="left: 20%; top: 70%; font-size: 25px; animation-delay: 4s;">❤️</div>
+        <div class="floating-heart" style="right: 10%; top: 20%; font-size: 18px; animation-delay: 1s;">❤️</div>
+
+        <h2 class="save-title">Save the Date</h2>
+        <p class="save-subtitle">12 de Junho de 2027</p>
+
+        <div class="rotating-gallery" id="rotatingGallery">
+            <!-- As fotos que vão girar e trocar -->
+            <div class="rotating-photo photo-front"><img src="fotos/casal1.jpg" alt="Foto 1"></div>
+            <div class="rotating-photo photo-middle"><img src="fotos/casal2.jpg" alt="Foto 2"></div>
+            <div class="rotating-photo photo-back"><img src="fotos/casal3.jpg" alt="Foto 3"></div>
+            <div class="rotating-photo photo-hidden"><img src="fotos/casal4.jpg" alt="Foto 4"></div>
+            <div class="rotating-photo photo-hidden"><img src="fotos/casal5.jpg" alt="Foto 5"></div>
+            <div class="rotating-photo photo-hidden"><img src="fotos/casal6.jpg" alt="Foto 6"></div>
+        </div>
+
+        <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto; color: var(--cinza);">
+            As melhores histórias são feitas de momentos inesquecíveis, e o nosso não estaria completo sem você! Guarde esse dia com carinho.
+        </p>
+
+        <!-- Script para a animação das fotos (PODE SER COPIADO COMO ESTÁ JUNTO DA SEÇÃO) -->
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const gallery = document.getElementById('rotatingGallery');
+                if(!gallery) return;
+
+                const photos = Array.from(gallery.querySelectorAll('.rotating-photo'));
+                let currentIndex = 0;
+
+                function rotatePhotos() {
+                    const total = photos.length;
+                    
+                    // Limpar classes
+                    photos.forEach(p => p.className = 'rotating-photo photo-hidden');
+
+                    // Definir os índices
+                    const frontIndex = currentIndex;
+                    const middleIndex = (currentIndex + 1) % total;
+                    const backIndex = (currentIndex + 2) % total;
+                    const outgoingIndex = (currentIndex - 1 + total) % total;
+
+                    // Adicionar as classes corretas
+                    photos[frontIndex].classList.add('photo-front');
+                    photos[middleIndex].classList.add('photo-middle');
+                    photos[backIndex].classList.add('photo-back');
+                    
+                    // Quem estava na frente vai "girar" e sair antes de se esconder
+                    // O timeout de css trata do resto se for smooth
+                    
+                    // O outgoing vira photo-hidden mas com transição suave da classe photo-front anterior
+                    // Já é lidado pela própria remoção da classe e adição rápida do hidden.
+                    
+                    currentIndex = (currentIndex + 1) % total;
+                }
+
+                // Iniciar a primeira foto
+                rotatePhotos();
+
+                // Trocar a cada 3.5 segundos
+                setInterval(rotatePhotos, 3500);
+            });
+        </script>
+    </section>
+    <!-- FIM DO CÓDIGO DA NOVA SEÇÃO -->
+
+    <script src="assets/js/common.js"></script>
+</body>
+</html>

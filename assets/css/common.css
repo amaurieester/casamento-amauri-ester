@@ -1,0 +1,33 @@
+
+:root {
+    --rosa: #d16c7c;
+    --laranja: #f08a5d;
+    --laranja-claro: #ffd56b;
+    --fundo: #fff6f2;
+    --branco: #ffffff;
+    --cinza: #444444;
+    --cinza-claro: #666666;
+    --sombra: rgba(0, 0, 0, 0.08);
+    --sombra-hover: rgba(0, 0, 0, 0.12);
+    --transicao: all 0.3s ease;
+    --borda-redonda: 24px;
+    --sucesso: #4CAF50;
+    --erro: #f44336;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--fundo);
+    color: var(--cinza);
+    line-height: 1.6;
+}

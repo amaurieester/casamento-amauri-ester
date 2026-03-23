@@ -3,374 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evento | Casamento Amauri & Ester</title>
+    <title>Evento | Casamento Ester & Amauri</title>
     
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
-    <style>
-        :root {
-            --rosa: #d16c7c;
-            --laranja: #f08a5d;
-            --laranja-claro: #ffd56b;
-            --fundo: #fff6f2;
-            --branco: #ffffff;
-            --cinza: #444444;
-            --cinza-claro: #666666;
-            --sombra: rgba(0, 0, 0, 0.08);
-            --sombra-hover: rgba(0, 0, 0, 0.12);
-            --transicao: all 0.3s ease;
-            --borda-redonda: 24px;
-        }
-        
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: var(--fundo);
-            color: var(--cinza);
-            line-height: 1.6;
-            padding: 20px;
-            min-height: 100vh;
-        }
-        
-        /* MENU LATERAL */
-        .menu-lateral-toggle {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 1001;
-            box-shadow: 0 5px 20px var(--sombra);
-            transition: var(--transicao);
-            border: 2px solid var(--rosa);
-        }
-        
-        .menu-lateral-toggle:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px var(--sombra-hover);
-        }
-        
-        .menu-lateral-toggle img {
-            width: 70%;
-            height: 70%;
-            object-fit: contain;
-            border-radius: 5px;
-        }
-        
-        .menu-lateral {
-            position: fixed;
-            top: 0;
-            left: -300px;
-            width: 280px;
-            height: 100vh;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            z-index: 1000;
-            transition: var(--transicao);
-            padding: 100px 30px 40px;
-            box-shadow: 5px 0 30px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .menu-lateral.active {
-            left: 0;
-        }
-        
-        .menu-lateral-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transicao);
-        }
-        
-        .menu-lateral-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .menu-lateral a {
-            display: block;
-            padding: 15px 20px;
-            color: var(--rosa);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
-            border-radius: 12px;
-            transition: var(--transicao);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .menu-lateral a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(209, 108, 124, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .menu-lateral a:hover::before {
-            left: 100%;
-        }
-        
-        .menu-lateral a:hover {
-            background: rgba(209, 108, 124, 0.05);
-            color: var(--laranja);
-            transform: translateX(5px);
-        }
-        
-        .menu-lateral-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--rosa);
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transicao);
-        }
-        
-        .menu-lateral-close:hover {
-            background: rgba(209, 108, 124, 0.1);
-            transform: rotate(90deg);
-        }
-        
-        .menu-lateral-logo {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(209, 108, 124, 0.1);
-        }
-        
-        .menu-lateral-logo h3 {
-            color: var(--rosa);
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-        }
-        
-        @media (max-width: 768px) {
-            .menu-lateral-toggle {
-                top: 15px;
-                left: 15px;
-                width: 50px;
-                height: 50px;
-            }
-            
-            .menu-lateral {
-                width: 250px;
-                padding: 80px 20px 30px;
-            }
-        }
-        
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .voltar-btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 12px 24px;
-            background: linear-gradient(135deg, var(--rosa), var(--laranja));
-            color: var(--branco);
-            text-decoration: none;
-            border-radius: 50px;
-            margin-bottom: 40px;
-            font-weight: 500;
-            transition: var(--transicao);
-            box-shadow: 0 5px 15px rgba(209, 108, 124, 0.3);
-        }
-        
-        .voltar-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(209, 108, 124, 0.4);
-        }
-        
-        .page-title {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            color: var(--laranja);
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .page-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(to right, var(--rosa), var(--laranja));
-            border-radius: 2px;
-        }
-        
-        .eventos-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
-            margin-top: 2rem;
-        }
-        
-        @media (max-width: 768px) {
-            .eventos-container {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-            }
-        }
-        
-        .evento-card {
-            background: var(--branco);
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 10px 25px var(--sombra);
-            text-align: center;
-            transition: var(--transicao);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .evento-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px var(--sombra-hover);
-        }
-        
-        .evento-imagem-container {
-            width: 100%;
-            height: 250px; /* Altura fixa para ambas as imagens */
-            border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 2rem;
-            position: relative;
-            flex-shrink: 0; /* Impede que a imagem encolha */
-        }
-        
-        .evento-imagem {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Garante que a imagem cubra o container */
-            object-position: center;
-            display: block;
-        }
-        
-        .evento-titulo {
-            color: var(--rosa);
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .evento-local {
-            color: var(--cinza);
-            line-height: 1.6;
-            margin-bottom: 2rem;
-            flex-grow: 1; /* Faz o conteúdo ocupar espaço disponível */
-        }
-        
-        .evento-local strong {
-            display: block;
-            margin-bottom: 0.8rem;
-            color: var(--laranja);
-            font-size: 1.1rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            background: linear-gradient(135deg, var(--rosa), var(--laranja));
-            color: var(--branco);
-            border: none;
-            cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-            text-decoration: none;
-            transition: var(--transicao);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(209, 108, 124, 0.3);
-            margin-top: auto; /* Empurra o botão para baixo */
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(209, 108, 124, 0.4);
-        }
-        
-        .card {
-            background: var(--branco);
-            border-radius: var(--borda-redonda);
-            padding: 2.5rem;
-            box-shadow: 0 15px 40px var(--sombra);
-            transition: var(--transicao);
-            margin-bottom: 3rem;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px var(--sombra-hover);
-        }
-        
-        .text-center {
-            text-align: center;
-        }
-        
-        .mb-4 {
-            margin-bottom: 2rem;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/common.css">
+    <link rel="stylesheet" href="assets/css/evento.css">
 </head>
 
 <body>
     <!-- MENU LATERAL -->
     <div class="menu-lateral-toggle" id="menuToggle" aria-label="Abrir menu">
-        <div style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--rosa); font-weight: bold;">
-            AE
-        </div>
+        <img src="fotos/monograma-amauri-ester.png" alt="Monograma Ester & Amauri" style="width: 45px; height: 45px; object-fit: contain; border-radius: 50%; transform: scale(1.7);">
     </div>
     
     <div class="menu-lateral-overlay" id="menuOverlay"></div>
@@ -379,16 +26,16 @@
         <button class="menu-lateral-close" id="menuClose" aria-label="Fechar menu">✕</button>
         
         <div class="menu-lateral-logo">
-            <h3>Amauri & Ester</h3>
-            <p style="color: var(--cinza-claro); font-size: 0.9rem;">29/05/2027</p>
+            <h3>Ester & Amauri</h3>
+            <p style="color: var(--cinza-claro); font-size: 0.9rem;">12/06/2027</p>
         </div>
         
         <a href="index.html">Início</a>
-        <a href="evento.html" target="_blank">Evento</a>
-        <a href="cronograma.html" target="_blank">Cronograma</a>
-        <a href="dicas-instrucoes.html" target="_blank">Dicas e Instruções</a>
-        <a href="confirmacao.html" target="_blank">Confirmação</a>
-        <a href="presentes.html" target="_blank">Presentes</a>
+        <a href="evento.html">Evento</a>
+        <a href="cronograma.html">Cronograma</a>
+        <a href="dicas-instrucoes.html">Dicas e Instruções</a>
+        <a href="confirmacao.html">Confirmação</a>
+        <a href="presentes.html">Presentes</a>
     </div>
     
     <div class="container">
@@ -438,7 +85,7 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
                 <div>
                     <h4 style="color: var(--laranja); margin-bottom: 1rem;">📅 Data e Hora</h4>
-                    <p><strong>Cerimônia:</strong> 29/05/2027 às 15:00</p>
+                    <p><strong>Cerimônia:</strong> 12/06/2027 às 15:00</p>
                     <p><strong>Festa:</strong> A partir das 18:00</p>
                 </div>
                 <div>
@@ -454,35 +101,7 @@
         </div>
     </div>
 
-    <script>
-        // CONTROLE DO MENU LATERAL
-        const menuToggle = document.getElementById('menuToggle');
-        const menuLateral = document.getElementById('menuLateral');
-        const menuOverlay = document.getElementById('menuOverlay');
-        const menuClose = document.getElementById('menuClose');
-        
-        menuToggle.addEventListener('click', () => {
-            menuLateral.classList.add('active');
-            menuOverlay.classList.add('active');
-        });
-        
-        menuClose.addEventListener('click', () => {
-            menuLateral.classList.remove('active');
-            menuOverlay.classList.remove('active');
-        });
-        
-        menuOverlay.addEventListener('click', () => {
-            menuLateral.classList.remove('active');
-            menuOverlay.classList.remove('active');
-        });
-        
-        // Fechar menu ao clicar em um link
-        document.querySelectorAll('.menu-lateral a').forEach(link => {
-            link.addEventListener('click', () => {
-                menuLateral.classList.remove('active');
-                menuOverlay.classList.remove('active');
-            });
-        });
-    </script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/evento.js"></script>
 </body>
 </html>
