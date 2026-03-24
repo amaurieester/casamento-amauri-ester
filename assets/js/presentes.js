@@ -63,7 +63,8 @@
             ["Kit sobrevivência do noivo (café, cerveja e paciência)", 300.00, "kit-sobrevivencia.jpg"],
             ["Controle remoto fake que funciona só com autorização da noiva", 140.00, "fake.jpg"],
             ["Caneca eu avisei para momentos especiais", 120.00, "avisei.jpg"],
-            ["Curso intensivo para o noivo adivinhar porque a noiva tá bicuda", 410.00, "bicuda.jpg"]
+            ["Curso intensivo para o noivo adivinhar porque a noiva tá bicuda", 410.00, "bicuda.jpg"],
+            ["Bússola para achar coisas que o noivo perde", 140.00, "bussola.jpg"]
                 
         
             
@@ -91,7 +92,7 @@
            ["Seguro do carro", 750.00, "Seguro.jpg"],
            ["Vale compras para a noiva ficar de bom humor", 580.00, "vale-compras.jpg"],
            ["Contribua para a compra das alianças", 980.00, "aliancas.jpg"],
-           ["Patrocine a despedida do noivo", 550.00, "despedida.jpg"]
+           ["Patrocine a despedida do noivo", 550.00, "despedida.jpg"],
         
             
             // Acima de R$ 1.000
