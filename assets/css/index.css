@@ -99,7 +99,7 @@ body {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(209, 108, 124, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, rgba(224, 24, 76, 0.1), transparent);
     transition: left 0.5s ease;
 }
 
@@ -108,7 +108,7 @@ body {
 }
 
 .menu-lateral a:hover {
-    background: rgba(209, 108, 124, 0.05);
+    background: rgba(251, 211, 98, 0.12);
     color: var(--laranja);
     transform: translateX(5px);
 }
@@ -132,7 +132,7 @@ body {
 }
 
 .menu-lateral-close:hover {
-    background: rgba(209, 108, 124, 0.1);
+    background: rgba(224, 24, 76, 0.1);
     transform: rotate(90deg);
 }
 
@@ -140,7 +140,7 @@ body {
     text-align: center;
     margin-bottom: 30px;
     padding-bottom: 20px;
-    border-bottom: 1px solid rgba(209, 108, 124, 0.1);
+    border-bottom: 1px solid rgba(224, 24, 76, 0.1);
 }
 
 .menu-lateral-logo h3 {
@@ -217,7 +217,7 @@ p {
     align-items: center;
     gap: 8px;
     transition: var(--transicao);
-    border: 1px solid rgba(209, 108, 124, 0.2);
+    border: 1px solid rgba(224, 24, 76, 0.2);
     max-width: calc(100vw - 40px);
     width: max-content;
     box-sizing: border-box;
@@ -253,7 +253,7 @@ p {
 }
 
 .music-btn:hover {
-    background: rgba(209, 108, 124, 0.1);
+    background: rgba(224, 24, 76, 0.1);
     color: var(--laranja);
     transform: scale(1.1);
 }
@@ -364,7 +364,7 @@ p {
     height: 50px;
     font-size: 1.3rem;
     cursor: pointer;
-    box-shadow: 0 5px 20px rgba(209, 108, 124, 0.4);
+    box-shadow: 0 5px 20px rgba(224, 24, 76, 0.4);
     transition: var(--transicao);
     display: flex;
     align-items: center;
@@ -374,20 +374,20 @@ p {
 
 .music-toggle:hover {
     transform: scale(1.1) rotate(360deg);
-    box-shadow: 0 8px 25px rgba(209, 108, 124, 0.5);
+    box-shadow: 0 8px 25px rgba(224, 24, 76, 0.5);
 }
 
 @keyframes pulse {
     0% {
-        box-shadow: 0 5px 20px rgba(209, 108, 124, 0.4);
+        box-shadow: 0 5px 20px rgba(224, 24, 76, 0.4);
     }
 
     50% {
-        box-shadow: 0 5px 25px rgba(209, 108, 124, 0.6);
+        box-shadow: 0 5px 25px rgba(224, 24, 76, 0.6);
     }
 
     100% {
-        box-shadow: 0 5px 20px rgba(209, 108, 124, 0.4);
+        box-shadow: 0 5px 20px rgba(224, 24, 76, 0.4);
     }
 }
 
@@ -441,7 +441,7 @@ section {
 
 /* HERO SECTION */
 .hero {
-    background: linear-gradient(135deg, var(--rosa), var(--laranja));
+    background: linear-gradient(135deg, var(--rosa) 0%, var(--laranja) 55%, var(--amarelo) 100%);
     color: var(--branco);
     text-align: center;
     padding: clamp(6rem, 12vw, 10rem) 20px;
@@ -502,7 +502,7 @@ section {
     border-radius: 20px;
     min-width: clamp(80px, 10vw, 100px);
     backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(251, 211, 98, 0.7);
 }
 
 .time-value {
@@ -536,7 +536,7 @@ section {
     transition: var(--transicao);
     position: relative;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(209, 108, 124, 0.3);
+    box-shadow: 0 5px 15px rgba(224, 24, 76, 0.3);
 }
 
 .btn::after {
@@ -556,7 +556,7 @@ section {
 
 .btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(209, 108, 124, 0.4);
+    box-shadow: 0 8px 20px rgba(224, 24, 76, 0.4);
 }
 
 .btn:active {
@@ -597,7 +597,7 @@ section {
 .form-select:focus {
     outline: none;
     border-color: var(--rosa);
-    box-shadow: 0 0 0 3px rgba(209, 108, 124, 0.1);
+    box-shadow: 0 0 0 3px rgba(224, 24, 76, 0.1);
 }
 
 .form-textarea {
@@ -671,7 +671,7 @@ section {
 .spinner {
     width: 40px;
     height: 40px;
-    border: 4px solid rgba(209, 108, 124, 0.2);
+    border: 4px solid rgba(224, 24, 76, 0.2);
     border-top-color: var(--rosa);
     border-radius: 50%;
     animation: spin 1s linear infinite;
@@ -709,7 +709,7 @@ section {
 
 /* FOOTER */
 footer {
-    background: linear-gradient(135deg, var(--rosa), var(--laranja));
+    background: linear-gradient(135deg, var(--rosa) 0%, var(--laranja) 55%, var(--amarelo) 100%);
     color: var(--branco);
     text-align: center;
     padding: 4rem 20px;
