@@ -153,7 +153,7 @@ async function enviarMensagem(event) {
 
     // Validar campos
     const nome = document.getElementById('nome').value.trim();
-    const mensagem = document.getElementById('mensagem').value.trim();
+    const mensagem = document.getElementById('mensagemTexto').value.trim();
 
     if (!nome || !mensagem) {
         alert('Por favor, preencha pelo menos o nome e a mensagem.');
