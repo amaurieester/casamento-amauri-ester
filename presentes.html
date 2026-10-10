@@ -1,15 +1,16 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Presentes | Casamento Ester & Amauri</title>
-    
-    <!-- FONTS -->
+
+    <!-- FONTES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="assets/css/common.css">
     <link rel="stylesheet" href="assets/css/presentes.css">
 </head>
@@ -17,73 +18,113 @@
 <body>
     <!-- MENU LATERAL -->
     <div class="menu-lateral-toggle" id="menuToggle" aria-label="Abrir menu">
-        <img src="fotos/monograma-amauri-ester.png" alt="Monograma Ester & Amauri" style="width: 45px; height: 45px; object-fit: contain; border-radius: 50%; transform: scale(1.7);">
+        <img src="fotos/monograma-amauri-ester.png"
+             alt="Monograma Ester & Amauri"
+             style="width: 45px; height: 45px; object-fit: contain; border-radius: 50%; transform: scale(1.7);">
     </div>
-    
+
     <div class="menu-lateral-overlay" id="menuOverlay"></div>
-    
+
     <div class="menu-lateral" id="menuLateral">
         <button class="menu-lateral-close" id="menuClose" aria-label="Fechar menu">✕</button>
-        
+
         <div class="menu-lateral-logo">
             <h3>Ester & Amauri</h3>
             <p style="color: var(--cinza-claro); font-size: 0.9rem;">12/06/2027</p>
         </div>
-        
+
         <a href="index.html">Início</a>
         <a href="evento.html">Evento</a>
         <a href="dicas-instrucoes.html">Dicas e Instruções</a>
         <a href="confirmacao.html">Confirmação</a>
         <a href="presentes.html">Presentes</a>
     </div>
-    
+
     <div class="container">
         <a href="index.html" class="voltar-btn">← Voltar</a>
-        
+
         <h1 class="page-title">Lista de Presentes</h1>
         <p class="page-subtitle">Escolha um presente que faça parte da nossa nova vida juntos</p>
-        
-        <!-- Filtro de preço -->
-        <div class="filtro-container">
-            <button class="filtro-btn active" onclick="filtrarPresentes('todos', this)">Todos</button>
-            <button class="filtro-btn" onclick="filtrarPresentes('ate100', this)">Até R$ 100</button>
-            <button class="filtro-btn" onclick="filtrarPresentes('100a500', this)">R$ 100 - 500</button>
-            <button class="filtro-btn" onclick="filtrarPresentes('500a1000', this)">R$ 500 - 1.000</button>
-            <button class="filtro-btn" onclick="filtrarPresentes('acima1000', this)">Acima de R$ 1.000</button>
+
+        <!-- ABAS DE CATEGORIAS -->
+        <div class="filtro-container" id="categorias-presentes">
+            <button type="button"
+                    class="filtro-btn active"
+                    data-categoria="fisicos"
+                    onclick="selecionarCategoria('fisicos', this)">
+                Presentes físicos
+            </button>
+
+            <button type="button"
+                    class="filtro-btn"
+                    data-categoria="especiais"
+                    onclick="selecionarCategoria('especiais', this)">
+                Cotas e presentes especiais
+            </button>
         </div>
-        
+
+        <!-- FILTROS DE PREÇO -->
+        <div class="filtro-container" id="filtros-preco">
+            <button type="button" class="filtro-btn active"
+                    onclick="filtrarPresentes('todos', this)">
+                Todos os valores
+            </button>
+
+            <button type="button" class="filtro-btn"
+                    onclick="filtrarPresentes('ate100', this)">
+                Até R$ 100
+            </button>
+
+            <button type="button" class="filtro-btn"
+                    onclick="filtrarPresentes('100a500', this)">
+                Acima de R$ 100 até R$ 500
+            </button>
+
+            <button type="button" class="filtro-btn"
+                    onclick="filtrarPresentes('500a1000', this)">
+                Acima de R$ 500 até R$ 1.000
+            </button>
+
+            <button type="button" class="filtro-btn"
+                    onclick="filtrarPresentes('acima1000', this)">
+                Acima de R$ 1.000
+            </button>
+        </div>
+
+        <!-- LISTA DE PRESENTES -->
         <div class="presentes-grid" id="lista-presentes">
-            <!-- JavaScript vai preencher aqui -->
+            <!-- O JavaScript preencherá esta área -->
         </div>
     </div>
 
     <!-- CARRINHO LATERAL -->
     <div class="cart-overlay" id="cartOverlay"></div>
+
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
             <h3>Seu Presente</h3>
             <button class="cart-close" id="cartClose" aria-label="Fechar carrinho">✕</button>
         </div>
-        
+
         <div class="cart-items" id="cartItems">
-            <!-- JavaScript vai preencher os itens do carrinho -->
             <div class="cart-empty">
                 <p>O carrinho está vazio.</p>
             </div>
         </div>
-        
+
         <div class="cart-footer">
             <div class="cart-total">
                 <span>Total:</span>
                 <span id="cartTotalValue">R$ 0,00</span>
             </div>
+
             <button class="btn btn-checkout" id="btnCheckout" onclick="finalizarCompra()">
                 Finalizar Compra
             </button>
         </div>
     </div>
 
-    <!-- BOTÃO FLUTUANTE CARRINHO -->
+    <!-- BOTÃO FLUTUANTE DO CARRINHO -->
     <button class="cart-toggle-btn" id="cartToggleBtn" aria-label="Abrir carrinho">
         <span class="cart-icon">🛒</span>
         <span class="cart-count" id="cartCount">0</span>
@@ -93,3 +134,4 @@
     <script src="assets/js/presentes.js"></script>
 </body>
 </html>
+```
