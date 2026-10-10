@@ -1,4 +1,3 @@
-```javascript
 // ======================================================
 // LISTA COMPLETA DE PRESENTES
 // Formato: [nome, valor, imagem]
@@ -512,4 +511,3 @@ document.addEventListener("DOMContentLoaded", function () {
     renderizarPresentes();
     atualizarCarrinhoDOM();
 });
-```
