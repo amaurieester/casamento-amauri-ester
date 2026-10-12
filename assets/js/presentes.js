@@ -67,7 +67,7 @@ const presentes = [
     ["Mensalidade da academia dos noivos", 360.00, "academia.jpg"],
     ["Alexa para a noiva não mandar só no noivo", 370.00, "Alexa.jpg"],
     ["Jantar na lua de mel", 380.00, "jantar-lua-de-mel.jpg"],
-    ["Faqueiro completo", 400.00, "faqueiro.jpg"],
+    ["Casinha para Póta e Zeca", 500.00, "casinha.jpg"],
     ["Kit de utensílios para churrasco", 400.00, "kit-utensilios-churrasco.jpg"],
     ["Um ano de barbeiro para o noivo", 400.00, "barbeiro.jpg"],
     ["Curso intensivo para o noivo adivinhar porque a noiva tá bicuda", 410.00, "bicuda.jpg"],
