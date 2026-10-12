@@ -165,7 +165,7 @@ const imagensPresentesFisicos = new Set([
     "jogo-facas.jpg",
     "liquidificador.jpg",
     "aparelho-jantar.jpg",
-    "faqueiro.jpg",
+    "casinha.jpg",
     "batedeira.jpg",
     "air-fryer.jpg",
     "ferro-passar.jpg",
