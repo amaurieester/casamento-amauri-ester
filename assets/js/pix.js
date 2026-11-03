@@ -15,11 +15,13 @@
 // imagem e o copia e cola nunca mostrarem valores diferentes.
 // ======================================================
 
-// O mesmo código que estava escrito no checkout.html, sem valor.
+// Copia e cola da conta do Mercado Pago, sem valor, como veio do
+// aplicativo. A chave é o e-mail. Antes daqui havia uma chave
+// aleatória que caía no Nubank; os noivos querem tudo numa conta só.
 const PIX_BASE =
-    '00020126580014BR.GOV.BCB.PIX01360fd40b94-5f17-4115-9e25-c4464bc447f9' +
-    '5204000053039865802BR5921Amauri Mourao Pereira6009SAO PAULO' +
-    '621405107UCCil9dAy6304D0A3';
+    '00020126480014br.gov.bcb.pix0126eng.amaurimourao@gmail.com' +
+    '5204000053039865802BR5921Amauri Mourao Pereira6009Sao Paulo' +
+    '62240520daqr210415759083406363047D54';
 
 const TAG_VALOR = '54';
 const TAG_CRC = '63';
