@@ -127,6 +127,43 @@ function doGet() {
 }
 
 // ---------------------------------------------------------------
+// PREENCHER A LISTA COM TODOS OS CONVIDADOS
+//
+// Rode esta função UMA VEZ, à mão, pelo editor do Apps Script
+// (escolha "preencherConvidados" na caixa ao lado do ▶ e clique
+// em Executar).
+//
+// Ela cria uma linha para cada convidado com "Sem resposta". Assim
+// a planilha mostra também quem ainda NÃO respondeu, que é o que
+// interessa para cobrar. Quem responder tem a linha atualizada.
+//
+// Pode rodar de novo depois de incluir convidados novos: quem já
+// está na planilha não é mexido.
+// ---------------------------------------------------------------
+
+function preencherConvidados() {
+  var planilha = SpreadsheetApp.getActiveSpreadsheet();
+  var aba = pegarAba(planilha, ABA_LISTA, CABECALHO_LISTA);
+  var incluidos = 0;
+
+  for (var i = 0; i < CONVIDADOS.length; i++) {
+    var nome = CONVIDADOS[i];
+
+    if (procurarLinha(aba, nome) !== -1) continue;
+
+    var linha = aba.getLastRow() + 1;
+    aba.getRange(linha, 1, 1, CABECALHO_LISTA.length).setValues([[
+      linha - 1, nome, 'Sem resposta', '', '', ''
+    ]]);
+    incluidos++;
+  }
+
+  SpreadsheetApp.getActiveSpreadsheet().toast(
+    incluidos + ' convidado(s) incluído(s).', 'Lista preenchida', 5
+  );
+}
+
+// ---------------------------------------------------------------
 // APOIO
 // ---------------------------------------------------------------
 

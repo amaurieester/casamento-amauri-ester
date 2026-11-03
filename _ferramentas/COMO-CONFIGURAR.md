@@ -72,7 +72,28 @@ Se preferir, é só me mandar o endereço que eu faço esse passo e publico.
 
 ---
 
-## 5. Testar
+## 5. Ver também quem ainda NÃO respondeu (opcional, mas vale a pena)
+
+Por padrão a planilha só mostra quem já respondeu. Para ela listar
+**todos** os convidados — inclusive os que ainda não deram resposta:
+
+1. Volte ao editor do Apps Script.
+2. Na barra de cima, na caixa ao lado do ▶ **Executar**, escolha
+   **`preencherConvidados`**.
+3. Clique em **Executar**.
+
+Cada convidado ganha uma linha com `Sem resposta`. Quem responder tem a
+linha atualizada para `Sim` ou `Não`.
+
+Assim dá para filtrar a coluna **Confirmação** por `Sem resposta` e saber
+exatamente quem falta cobrar.
+
+Pode rodar de novo depois de incluir convidados novos — quem já está na
+planilha não é alterado.
+
+---
+
+## 6. Testar
 
 Entre na página de confirmação do site, responda com um nome da lista e
 confira se a linha apareceu na planilha.
