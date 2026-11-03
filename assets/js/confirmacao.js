@@ -12,7 +12,7 @@
 // Endereço do App da Web do Apps Script, terminado em /exec.
 // Vazio = o site usa só o e-mail, como antes.
 // O passo a passo está em _ferramentas/COMO-CONFIGURAR.md
-const URL_PLANILHA = "";
+const URL_PLANILHA = "https://script.google.com/macros/s/AKfycbwYhozXKjN40H7AXrDzzUmhURJaRo1HTfuZTXegHCklbuXFqsQQWuwTlJii51VG2JU/exec";
 
 const URL_FORMSPREE = "https://formspree.io/f/xaqqdzwd";
 
