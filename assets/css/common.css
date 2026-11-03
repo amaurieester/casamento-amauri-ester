@@ -31,3 +31,318 @@ body {
     color: var(--cinza);
     line-height: 1.6;
 }
+
+/* ============================================================
+   RÓTULO "MENU" NO MONOGRAMA
+   Deixa evidente que o monograma abre o menu de navegação.
+   A classe .com-rotulo é aplicada pelo common.js, o que garante
+   prioridade sobre o CSS de cada página.
+   ============================================================ */
+.menu-lateral-toggle.com-rotulo::after {
+    content: 'MENU';
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--branco);
+    color: var(--rosa);
+    border: 2px solid var(--rosa);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    line-height: 1;
+    padding: 5px 10px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+/* Com o menu aberto o rótulo sai da frente do nome dos noivos */
+.menu-lateral-toggle.com-rotulo.menu-aberto::after {
+    display: none;
+}
+
+/* Pulsa até o visitante abrir o menu pela primeira vez */
+.menu-lateral-toggle.chamar-atencao {
+    animation: pulsoMenu 2.4s ease-out infinite;
+}
+
+@keyframes pulsoMenu {
+    0% {
+        box-shadow: 0 5px 20px var(--sombra), 0 0 0 0 rgba(224, 24, 76, 0.5);
+    }
+
+    70% {
+        box-shadow: 0 5px 20px var(--sombra), 0 0 0 16px rgba(224, 24, 76, 0);
+    }
+
+    100% {
+        box-shadow: 0 5px 20px var(--sombra), 0 0 0 0 rgba(224, 24, 76, 0);
+    }
+}
+
+/* ============================================================
+   PLAYER DE MÚSICA (presente em todas as páginas)
+   ============================================================ */
+.music-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 40px;
+    padding: 8px 35px 8px 12px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transicao);
+    border: 1px solid rgba(224, 24, 76, 0.2);
+    max-width: calc(100vw - 40px);
+    width: max-content;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.music-player:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    transform: translateY(-2px);
+}
+
+.music-controls {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.music-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    color: var(--rosa);
+    transition: var(--transicao);
+    padding: 4px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.music-btn:hover {
+    background: rgba(224, 24, 76, 0.1);
+    color: var(--laranja);
+    transform: scale(1.1);
+}
+
+.music-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    min-width: 70px;
+    max-width: 130px;
+}
+
+.music-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--cinza);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.music-status {
+    display: none;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-left: 0;
+}
+
+.volume-slider {
+    width: 55px;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    background: linear-gradient(to right, var(--rosa), var(--laranja));
+    border-radius: 2px;
+    outline: none;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.volume-slider:hover {
+    opacity: 1;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--branco);
+    cursor: pointer;
+    transition: var(--transicao);
+    border: 2px solid var(--rosa);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+    background: var(--rosa);
+    border-color: var(--laranja);
+    transform: scale(1.2);
+}
+
+.volume-icon {
+    color: var(--rosa);
+    font-size: 1rem;
+    min-width: 16px;
+    text-align: center;
+}
+
+.close-player {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    background: rgba(244, 67, 54, 0.05);
+    border: none;
+    color: var(--cinza-claro);
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: var(--transicao);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-player:hover {
+    background: rgba(244, 67, 54, 0.15);
+    color: var(--erro);
+    transform: translateY(-50%) rotate(90deg);
+}
+
+/* Botão redondo que reabre o player depois de fechado */
+.music-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9998;
+    background: linear-gradient(135deg, var(--rosa), var(--laranja));
+    color: var(--branco);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(224, 24, 76, 0.4);
+    transition: var(--transicao);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulsoMusica 2s infinite;
+}
+
+.music-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(224, 24, 76, 0.5);
+}
+
+@keyframes pulsoMusica {
+    0% {
+        box-shadow: 0 5px 20px rgba(224, 24, 76, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 5px 25px rgba(224, 24, 76, 0.6);
+    }
+
+    100% {
+        box-shadow: 0 5px 20px rgba(224, 24, 76, 0.4);
+    }
+}
+
+/* Aviso exibido quando o navegador bloqueia o som automático
+   (iPhone/iPad sempre exigem um toque na tela) */
+.aviso-musica {
+    position: fixed;
+    bottom: 86px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--rosa), var(--laranja));
+    color: var(--branco);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 22px;
+    cursor: pointer;
+    box-shadow: 0 6px 22px rgba(224, 24, 76, 0.4);
+    max-width: calc(100vw - 32px);
+    white-space: nowrap;
+    animation: pulsoMusica 2s infinite;
+}
+
+.aviso-musica.visivel {
+    display: flex;
+}
+
+/* Espaço no fim da página para o player não cobrir conteúdo */
+body.com-player-musica footer {
+    padding-bottom: 7rem;
+}
+
+body.com-player-musica.sem-rodape {
+    padding-bottom: 100px;
+}
+
+@media (max-width: 768px) {
+    .menu-lateral-toggle.com-rotulo::after {
+        top: calc(100% + 8px);
+        font-size: 0.62rem;
+        padding: 4px 9px;
+    }
+
+    .music-toggle {
+        bottom: 10px;
+        right: 10px;
+        width: 45px;
+        height: 45px;
+    }
+
+    .aviso-musica {
+        bottom: 92px;
+        font-size: 0.8rem;
+        padding: 11px 18px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .menu-lateral-toggle.chamar-atencao,
+    .music-toggle,
+    .aviso-musica {
+        animation: none;
+    }
+}

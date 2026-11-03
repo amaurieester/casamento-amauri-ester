@@ -1,144 +1,16 @@
-menuClose.addEventListener('click', () => {
-    menuLateral.classList.remove('active');
-    menuOverlay.classList.remove('active');
-});
-
-menuOverlay.addEventListener('click', () => {
-    menuLateral.classList.remove('active');
-    menuOverlay.classList.remove('active');
-});
-
-// Fechar menu ao clicar em um link
-document.querySelectorAll('.menu-lateral a').forEach(link => {
-    link.addEventListener('click', () => {
-        menuLateral.classList.remove('active');
-        menuOverlay.classList.remove('active');
-    });
-});
-
 // DADOS DO CASAMENTO
 const dataCasamento = new Date("2027-06-12T10:00:00");
 
-// PLAYER DE MÚSICA
-const musicFiles = [
-    'musicas/musica1.mp3',
-    'musicas/musica2.mp3',
-    'musicas/musica3.mp3',
-    'musicas/musica4.mp3',
-    'musicas/musica5.mp3',
-    'musicas/musica6.mp3',
-    'musicas/musica7.mp3',
-    'musicas/musica8.mp3',
-    'musicas/musica9.mp3',
-    'musicas/musica10.mp3'
-];
+// O menu lateral e o player de música ficam no common.js,
+// para funcionarem igual em todas as páginas do site.
 
-let currentTrack = 0;
-let isPlaying = true; // Inicia tocando automaticamente
-let audioPlayer = new Audio();
-
-// Configurar volume inicial em 30% (médio-baixo)
-audioPlayer.volume = 0.3;
-
-// Elementos do player
-const musicPlayer = document.getElementById('musicPlayer');
-const playPauseBtn = document.getElementById('playPauseBtn');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-const volumeSlider = document.getElementById('volumeSlider');
-const closePlayer = document.getElementById('closePlayer');
-const currentSong = document.getElementById('currentSong');
-const playerStatus = document.getElementById('playerStatus');
-
-// Funções do player
-function loadTrack(trackIndex) {
-    audioPlayer.src = musicFiles[trackIndex];
-    currentSong.textContent = `Música ${trackIndex + 1}`;
-    playerStatus.textContent = 'Tocando agora';
-}
-
-function playTrack() {
-    audioPlayer.play();
-    isPlaying = true;
-    playPauseBtn.textContent = '⏸️';
-    playerStatus.textContent = 'Tocando agora';
-}
-
-function pauseTrack() {
-    audioPlayer.pause();
-    isPlaying = false;
-    playPauseBtn.textContent = '▶️';
-    playerStatus.textContent = 'Pausado';
-}
-
-function nextTrack() {
-    currentTrack = (currentTrack + 1) % musicFiles.length;
-    loadTrack(currentTrack);
-    playTrack();
-}
-
-function prevTrack() {
-    currentTrack = (currentTrack - 1 + musicFiles.length) % musicFiles.length;
-    loadTrack(currentTrack);
-    playTrack();
-}
-
-// Event Listeners
-playPauseBtn.addEventListener('click', () => {
-    if (isPlaying) {
-        pauseTrack();
-    } else {
-        playTrack();
-    }
-});
-
-closePlayer.addEventListener('click', () => {
-    musicPlayer.style.display = 'none';
-    pauseTrack();
-});
-
-nextBtn.addEventListener('click', nextTrack);
-prevBtn.addEventListener('click', prevTrack);
-
-volumeSlider.addEventListener('input', (e) => {
-    const volume = e.target.value;
-    audioPlayer.volume = volume;
-
-    // Atualizar ícone do volume baseado no nível
-    const volumeIcon = document.querySelector('.volume-icon');
-    if (volume == 0) {
-        volumeIcon.textContent = '🔇';
-    } else if (volume < 0.3) {
-        volumeIcon.textContent = '🔈';
-    } else if (volume < 0.6) {
-        volumeIcon.textContent = '🔉';
-    } else {
-        volumeIcon.textContent = '🔊';
-    }
-});
-
-// Quando a música terminar, tocar a próxima
-audioPlayer.addEventListener('ended', nextTrack);
-
-// Inicializar e começar a tocar automaticamente
 document.addEventListener('DOMContentLoaded', function () {
-    loadTrack(0);
-    playTrack();
-
     // Contador regressivo
     atualizarContador();
     setInterval(atualizarContador, 1000);
 
     // Inicializar animações
     animarAoRolar();
-
-    // Adicionar listener para quando o usuário interagir com a página
-    document.addEventListener('click', function () {
-        // Tenta tocar a música novamente se estiver pausada por política de autoplay
-        if (audioPlayer.paused && isPlaying) {
-            playTrack().catch(e => console.log("Autoplay bloqueado:", e));
-        }
-    }, { once: true });
 });
 
 // FUNÇÃO PARA ENVIAR MENSAGEM PARA OS NOIVOS
