@@ -1,122 +1,234 @@
-# Lista automática de confirmações
+# Ligar a lista automática de confirmações
 
-Isto liga a página de confirmação do site a uma planilha do Google que
-se preenche sozinha. Leva uns 10 minutos e só precisa ser feito **uma vez**.
+Guia para quem nunca mexeu nisso. São 6 passos.
 
-Enquanto não for configurado, o site continua funcionando normalmente e
-mandando as confirmações por e-mail, como já fazia.
+**Faça no computador**, não no celular — no celular o menu que a gente
+precisa não aparece.
 
----
+**Enquanto você não fizer isso, nada quebra.** O site continua recebendo
+as confirmações por e-mail, como já faz hoje.
 
-## 1. Criar a planilha
-
-1. Abra <https://sheets.new> (cria uma planilha em branco na sua conta Google).
-2. Dê um nome a ela no canto superior esquerdo, por exemplo
-   **Confirmações — Casamento Ester & Amauri**.
-
-Não precisa criar colunas nem abas. O script faz isso sozinho na primeira resposta.
+Se travar em algum passo, **pare e me diga em qual** — não precisa terminar
+sozinho. O passo 6 eu faço por você.
 
 ---
 
-## 2. Colar o script
+## Passo 1 — Criar a planilha
 
-1. Nessa mesma planilha, vá em **Extensões → Apps Script**.
-2. Abre uma aba nova com um arquivo chamado `Código.gs`, contendo
-   `function myFunction() { }`. **Apague tudo.**
-3. Abra o arquivo `planilha-confirmacoes.gs` (está nesta mesma pasta),
-   copie todo o conteúdo e cole ali.
-4. Clique no ícone de disquete (**Salvar projeto**).
+1. Abra o navegador e digite na barra de endereço: **`sheets.new`**
+   (é um atalho do Google; não precisa do "www" nem do ".com")
+2. Aperte Enter.
+3. Se pedir login, entre com a conta Google de vocês.
 
----
+**O que você deve estar vendo:** uma planilha em branco, com o nome
+*Planilha sem título* no canto superior esquerdo.
 
-## 3. Publicar
+4. Clique nesse nome *Planilha sem título* e digite:
+   **Confirmações — Casamento Ester & Amauri**
 
-1. No canto superior direito, clique em **Implantar → Nova implantação**.
-2. Clique na engrenagem ao lado de "Selecionar tipo" e escolha **App da Web**.
-3. Preencha:
-   - **Descrição:** `Confirmações do site`
-   - **Executar como:** `Eu (seu e-mail)`
-   - **Quem pode acessar:** `Qualquer pessoa`
-4. Clique em **Implantar**.
-
-> **Sobre o "Qualquer pessoa":** isso libera apenas o *envio* de respostas,
-> que é o que o site precisa. A planilha em si continua privada — ninguém
-> além de você consegue ver a lista. O script também recusa qualquer nome
-> que não esteja na lista de convidados.
-
-5. O Google vai pedir autorização. Clique em **Autorizar acesso**, escolha
-   sua conta e, na tela de aviso, clique em **Avançado → Acessar
-   (nome do projeto)** e depois em **Permitir**.
-6. No fim aparece um endereço terminado em **`/exec`**. **Copie esse endereço.**
+Pronto. Não mexa em mais nada aqui. Não precisa criar colunas: elas
+aparecem sozinhas depois.
 
 ---
 
-## 4. Ligar no site
+## Passo 2 — Abrir o editor de script
 
-1. Abra o arquivo `assets/js/confirmacao.js`.
-2. Logo no começo tem esta linha:
+Na barra de menus da planilha (onde está *Arquivo, Editar, Ver, Inserir,
+Formatar, Dados, Ferramentas, **Extensões**, Ajuda*):
 
-   ```js
-   const URL_PLANILHA = "";
-   ```
+1. Clique em **Extensões**.
+2. No menu que abrir, clique em **Apps Script**.
 
-3. Cole o endereço entre as aspas:
+**O que você deve estar vendo:** abriu uma **aba nova** no navegador, com
+cara de editor de programação. No alto à esquerda está escrito
+*Projeto sem título*. No meio da tela tem um texto curto parecido com isto:
 
-   ```js
-   const URL_PLANILHA = "https://script.google.com/macros/s/AKfy.../exec";
-   ```
+```
+function myFunction() {
 
-4. Salve e publique o site.
+}
+```
 
-Se preferir, é só me mandar o endereço que eu faço esse passo e publico.
+> **Não aparece "Extensões"?** Você provavelmente está no aplicativo do
+> celular ou numa planilha que não é sua. Faça pelo computador, numa
+> planilha criada por você.
 
 ---
 
-## 5. Ver também quem ainda NÃO respondeu (opcional, mas vale a pena)
+## Passo 3 — Colar o script
 
-Por padrão a planilha só mostra quem já respondeu. Para ela listar
-**todos** os convidados — inclusive os que ainda não deram resposta:
+Primeiro, **copiar**:
 
-1. Volte ao editor do Apps Script.
-2. Na barra de cima, na caixa ao lado do ▶ **Executar**, escolha
-   **`preencherConvidados`**.
-3. Clique em **Executar**.
+1. Aqui no VS Code, abra o arquivo `_ferramentas/planilha-confirmacoes.gs`.
+2. Clique uma vez dentro do texto dele.
+3. Aperte **Ctrl + A** (seleciona tudo) e depois **Ctrl + C** (copia).
 
-Cada convidado ganha uma linha com `Sem resposta`. Quem responder tem a
-linha atualizada para `Sim` ou `Não`.
+Agora, **colar**:
 
-Assim dá para filtrar a coluna **Confirmação** por `Sem resposta` e saber
-exatamente quem falta cobrar.
+4. Volte para a aba do navegador com o editor do Apps Script.
+5. Clique uma vez em cima daquele texto `function myFunction() { }`.
+6. Aperte **Ctrl + A** e depois a tecla **Delete**. A área tem que ficar
+   **completamente vazia**.
+7. Aperte **Ctrl + V** para colar.
+8. Aperte **Ctrl + S** para salvar.
 
-Pode rodar de novo depois de incluir convidados novos — quem já está na
+**O que você deve estar vendo:** uma tela cheia de texto que começa com
+`/**` e `LISTA AUTOMÁTICA DE CONFIRMAÇÕES`. No alto à esquerda, o nome do
+projeto parou de aparecer em itálico (sinal de que salvou).
+
+---
+
+## Passo 4 — Publicar
+
+1. No **canto superior direito** da tela, clique no botão azul
+   **Implantar**.
+2. No menuzinho que cai, clique em **Nova implantação**.
+
+**O que você deve estar vendo:** uma janela cinza no meio da tela,
+escrito *Nova implantação*. Do lado esquerdo dela tem um **ícone de
+engrenagem** (⚙️), ao lado das palavras *Selecionar tipo*.
+
+3. Clique nessa **engrenagem**.
+4. Na lista que abrir, clique em **Aplicativo da Web**
+   (pode aparecer como *App da Web*).
+
+**O que você deve estar vendo:** a janela cresceu e agora mostra três
+campos: *Descrição*, *Executar como* e *Quem pode acessar*.
+
+5. Preencha assim:
+
+   | Campo | O que colocar |
+   | --- | --- |
+   | **Descrição** | `Confirmações do site` (pode deixar vazio também) |
+   | **Executar como** | deixe como está (é o seu e-mail) |
+   | **Quem pode acessar** | mude para **Qualquer pessoa** |
+
+   > O campo *Quem pode acessar* quase sempre vem como **Apenas eu**.
+   > **Você precisa trocar para "Qualquer pessoa"**, senão o site não
+   > consegue enviar nada. Esse é o erro mais comum.
+
+6. Clique no botão **Implantar**, embaixo à direita da janela.
+
+---
+
+## Passo 5 — Autorizar (a tela que assusta)
+
+O Google vai pedir permissão. **Vai aparecer um aviso de "app não
+verificado". Isso é normal** — acontece com todo script feito por conta
+própria, e o "app" aqui é o seu próprio script, dentro da sua conta. Ele
+não manda nada para fora nem dá acesso a mais ninguém.
+
+1. Clique em **Autorizar acesso**.
+2. Abre uma janelinha. Clique na **conta Google de vocês**.
+3. Aparece uma tela escrito **"O Google não verificou este app"**.
+   - Clique em **Avançado**, no canto **inferior esquerdo** (é um texto
+     pequeno, fácil de não ver).
+   - Aí embaixo aparece um link: **"Acessar Projeto sem título (não
+     seguro)"**. Clique nele.
+4. Na tela seguinte, role até o fim e clique em **Permitir**.
+
+> **Por que "não seguro"?** O Google escreve isso em todo script que não
+> passou pela revisão paga dele. Como o script é seu e roda dentro da sua
+> conta, pode seguir.
+
+---
+
+## Passo 6 — Copiar o endereço e me mandar
+
+**O que você deve estar vendo:** uma janela dizendo *Implantação atualizada*
+ou *Nova implantação*, com um endereço bem longo embaixo de
+**URL do app da Web**, terminando em **`/exec`**.
+
+Algo assim:
+
+```
+https://script.google.com/macros/s/AKfycbx.../exec
+```
+
+1. Clique no botão **Copiar** ao lado desse endereço.
+2. **Me mande esse endereço aqui no chat.** Eu coloco no site e publico.
+
+Se quiser fazer você mesmo: abra `assets/js/confirmacao.js`, e na linha 15
+troque
+
+```js
+const URL_PLANILHA = "";
+```
+
+por
+
+```js
+const URL_PLANILHA = "https://script.google.com/macros/s/AKfycbx.../exec";
+```
+
+mantendo as aspas.
+
+---
+
+## Depois: fazer a planilha mostrar quem ainda NÃO respondeu
+
+Sem isto, a planilha só lista quem já respondeu. Com isto, ela lista
+**todos os convidados** — e você vê quem falta cobrar.
+
+1. Volte para a aba do Apps Script.
+2. Na barra de cima tem uma caixinha ao lado do botão **▶ Executar**, com
+   nome de função escrito. Clique nela.
+3. Na lista, escolha **`preencherConvidados`**.
+4. Clique em **▶ Executar**.
+
+Volte na planilha: cada convidado agora tem uma linha com `Sem resposta`.
+Quem responder pelo site tem a linha dele atualizada para `Sim` ou `Não`.
+
+Pode repetir isso sempre que incluir convidados novos — quem já está na
 planilha não é alterado.
 
 ---
 
-## 6. Testar
+## Se a sua tela estiver em inglês
 
-Entre na página de confirmação do site, responda com um nome da lista e
-confira se a linha apareceu na planilha.
-
-Se não aparecer, abra a página no computador, aperte **F12**, vá na aba
-**Console** e veja se há alguma mensagem em vermelho.
+| Em português | Em inglês |
+| --- | --- |
+| Implantar | Deploy |
+| Nova implantação | New deployment |
+| Selecionar tipo | Select type |
+| Aplicativo da Web | Web app |
+| Executar como | Execute as |
+| Quem pode acessar | Who has access |
+| Qualquer pessoa | Anyone |
+| Autorizar acesso | Authorize access |
+| Avançado | Advanced |
+| Acessar ... (não seguro) | Go to ... (unsafe) |
+| Permitir | Allow |
+| Executar | Run |
 
 ---
 
-## Como a planilha fica
+## Se der errado
+
+| Problema | O que fazer |
+| --- | --- |
+| Não acho **Extensões** no menu | Você está no celular ou numa planilha que não é sua. Use o computador. |
+| Não acho o botão **Implantar** | É azul, no canto **superior direito** da aba do Apps Script (não é a aba da planilha). |
+| A janela não tem engrenagem | Role a janela para cima; a engrenagem fica à esquerda, perto do topo. |
+| Travou em **"App bloqueado"** | Me avise — é diferente do aviso comum e precisa de outro caminho. |
+| Publiquei mas o site não grava | Quase sempre é *Quem pode acessar* em "Apenas eu". Vá em **Implantar → Gerenciar implantações**, clique no lápis, corrija e salve. |
+
+---
+
+## Como a planilha vai ficar
 
 **Aba "Confirmações"** — uma linha por pessoa, sempre atualizada:
 
 | Número | Nome | Confirmação | Acompanhantes | Mensagem | Data e hora |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | 1 | Samuel Fernando Lima | Sim | Maria Silva | Parabéns! | 03/11/2026 14:22:10 |
 | 2 | Rodrigo Batista de Assis | Não | | Não vou conseguir | 03/11/2026 18:40:02 |
+| 3 | Hélio Morais Benevides | Sem resposta | | | |
 
 Se alguém responder de novo, a linha da pessoa é **atualizada** — não cria
 linha repetida. É isso que permite desconfirmar.
 
 **Aba "Histórico"** — toda resposta enviada, inclusive as mudanças de ideia.
-Serve para vocês verem quem trocou de resposta e quando.
 
 ---
 
@@ -126,8 +238,11 @@ O nome precisa entrar em **dois lugares**:
 
 1. `assets/js/confirmacao.js` — na lista `listaConvidados` (é o que aparece
    enquanto a pessoa digita).
-2. `_ferramentas/planilha-confirmacoes.gs` — na lista `CONVIDADOS`, e depois
-   **Implantar → Gerenciar implantações → editar → Nova versão**.
+2. `_ferramentas/planilha-confirmacoes.gs` — na lista `CONVIDADOS`. Depois
+   de mexer, vá em **Implantar → Gerenciar implantações**, clique no lápis,
+   escolha **Nova versão** e clique em **Implantar**.
 
-Se esquecer do segundo, a pessoa digita o nome, acha na lista e recebe erro
+Se esquecer o segundo, a pessoa digita o nome, acha na lista e recebe erro
 ao enviar.
+
+Mais simples: me mande os nomes que eu faço os dois.
