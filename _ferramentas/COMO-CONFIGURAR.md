@@ -220,15 +220,34 @@ precisa mexer no site de novo.
 
 ## Como a planilha vai ficar
 
-**Aba "Confirmações"** — uma linha por pessoa, sempre atualizada:
+São três abas.
 
-| Número | Nome | Confirmação | Acompanhantes | Mensagem | Data e hora |
-| --- | --- | --- | --- | --- | --- |
-| 1 | Samuel Fernando Lima | Sim | Maria Silva, João Lima | Parabéns! | 03/11/2026 14:22:10 |
-| 2 | Rodrigo Batista de Assis | Não | | Não vou conseguir | 03/11/2026 18:40:02 |
+**Aba "Resumo"** — os totais, sempre atualizados sozinhos:
 
-Se alguém responder de novo **escrevendo o nome igual**, a linha da pessoa
-é **atualizada** — não cria linha repetida. É isso que permite desconfirmar.
+| | |
+| --- | --- |
+| **Pessoas confirmadas** | 2 |
+| Não poderão ir | 1 |
+| Total de respostas | 3 |
+
+**Aba "Confirmações"** — uma linha por pessoa:
+
+| Número | Nome | Confirmação | Mensagem | Data e hora |
+| --- | --- | --- | --- | --- |
+| 1 | Maria Silva | Sim | Parabéns! | 03/11/2026 14:22:10 |
+| | Rodrigo Batista de Assis | Não | Não vou conseguir | 03/11/2026 18:40:02 |
+| 2 | João Lima | Sim | | 03/11/2026 19:05:44 |
+
+**A coluna "Número" conta apenas quem vai.** Quem respondeu "Não" fica sem
+número. Então o maior número da coluna é exatamente quantas pessoas estarão
+na festa — no exemplo acima, 2.
+
+Se alguém desconfirmar, os números seguintes andam para trás sozinhos e o
+total cai. Por isso o número de cada pessoa pode mudar ao longo do tempo:
+ele serve para contar, não para identificar ninguém.
+
+Se a pessoa responder de novo **escrevendo o nome igual**, a linha dela é
+**atualizada** — não cria linha repetida. É isso que permite desconfirmar.
 
 A comparação ignora maiúsculas, acentos e espaços a mais: `JOAO  silva`
 cai na mesma linha de `João Silva`. Mas se a pessoa escrever um nome
@@ -240,7 +259,18 @@ acontecer, é só apagar a linha repetida na mão.
 
 ---
 
-## Não existe mais lista de convidados
+## Cada pessoa confirma a si mesma
+
+Não existe campo de acompanhante. Quem for convidado precisa responder
+no site, um por um — é isso que faz a contagem bater com o número real de
+pessoas na festa.
+
+Na mensagem de convite, vale deixar isso claro: *"cada pessoa da casa
+precisa confirmar separadamente no site"*.
+
+---
+
+## Não existe lista de convidados
 
 **Qualquer nome é aceito.** O convite vai por casa, com os nomes dos
 convidados escritos na própria mensagem, então o site não confere nada —

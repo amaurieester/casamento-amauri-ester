@@ -43,9 +43,16 @@
         
         <p>Para responder, comece digitando seu nome completo abaixo:</p>
 
+        <p style="text-align: center; font-weight: 600; color: var(--rosa);">
+            Cada pessoa precisa confirmar separadamente.
+        </p>
+
         <p style="text-align: center; font-size: 0.9rem; color: var(--cinza-claro); margin-top: -0.5rem;">
-            Mudou de ideia? É só voltar aqui e responder de novo — a sua
-            resposta mais recente é a que vale.
+            Se mais alguém da sua casa foi convidado, peça para responder
+            aqui também — é assim que conseguimos contar quantas pessoas
+            estarão na festa.<br>
+            Mudou de ideia? É só voltar e responder de novo, com o mesmo
+            nome: a resposta mais recente é a que vale.
         </p>
         
         <!-- NOME DE QUEM ESTÁ RESPONDENDO -->
@@ -83,35 +90,6 @@
             </button>
         </div>
 
-        <!-- PERGUNTA SOBRE ACOMPANHANTES: só para quem confirmou -->
-        <div class="acompanhante-question" id="acompanhanteQuestion">
-            <h4>Você virá acompanhado?</h4>
-            <div class="question-buttons">
-                <button class="question-btn" onclick="respostaAcompanhante(true)">Sim</button>
-                <button class="question-btn" onclick="respostaAcompanhante(false)">Não</button>
-            </div>
-        </div>
-        
-        <!-- FORMULÁRIO DE ACOMPANHANTES -->
-        <div class="acompanhantes-form" id="acompanhantesForm">
-            <h3>Quem mais vem com você?</h3>
-            <p style="text-align: center; margin-bottom: 1.5rem; color: var(--cinza-claro); font-size: 0.9rem;">
-                Informe o nome de cada pessoa da sua casa que também vai comparecer.
-                Use o botão abaixo para incluir mais de uma.
-            </p>
-            <div id="acompanhantesList">
-                <!-- Campos de acompanhantes serão adicionados aqui -->
-            </div>
-            <button class="add-acompanhante" onclick="adicionarAcompanhante()">
-                <span>+</span>
-                Adicionar acompanhante
-            </button>
-            
-            <button class="btn btn-send" onclick="validarAcompanhantes()">
-                <span class="btn-icon">✅</span>
-                Continuar
-            </button>
-        </div>
         
         
         <!-- MENSAGEM PARA OS NOIVOS -->
