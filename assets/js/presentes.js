@@ -88,12 +88,11 @@ const presentes = [
     ["Espelho grande decorativo", 600.00, "espelho-grande.jpg"],
     ["Dois criados-mudos para o quarto do casal", 600.00, "criados-mudos.jpg"],
     ["Lookinhos novos para a lua de mel", 640.00, "lookinhos.jpg"],
-    ["Forno elétrico", 650.00, "forno-eletrico.jpg"],
+    ["Forno elétrico", 1800.00, "forno-eletrico.jpg"],
     ["Hora extra do DJ na festa (sou inimigo do fim)", 650.00, "dj.jpg"],
     ["Eu vou dar o melhor presente porque eu sou o milior", 660.00, "milior.jpg"],
     ["Cadeira de escritório", 700.00, "cadeira-escritorio.jpg"],
     ["Cama box de casal", 2500.00, "cama-box.jpg"],
-    ["Fogão", 1600.00, "fogao.jpg"],
     ["Cota amigos para sempre", 750.00, "sempre.jpg"],
     ["Dois meses de seguro do carro", 750.00, "Seguro.jpg"],
     ["Adote os boletos dos primeiros meses juntos!", 780.00, "boletos.jpg"],
@@ -114,7 +113,7 @@ const presentes = [
     ["Passagem aérea para a lua de mel", 1000.00, "aerea.jpg"],
     ["Mesa de escritório", 1200.00, "mesa-escritorio.jpg"],
 
-    ["Mesa de jantar", 1700.00, "mesa-jantar.jpg"],
+    ["Mesa de jantar", 2400.00, "mesa-jantar.jpg"],
     ["Ajuda para o gato parar de reclamar que a noiva gastou muito na festa", 1500.00, "gato.jpg"],
     ["Todo dinheiro que der para os noivos voltará em dobro para você", 2000.00, "dinheiro-dobro.jpg"],
     ["Rack com painel para TV", 800.00, "rack-painel-tv.jpg"],
@@ -123,8 +122,8 @@ const presentes = [
     ["Sofá retrátil e reclinável", 3000.00, "sofa-retratil.jpg"],
     ["Deus te iluminou e você resolveu ajudar na lua de mel", 3000.00, "lua-de-mel.jpg"],
     ["Lava-louças", 3500.00, "lava-loucas.jpg"],
-    ["Máquina de lavar", 3800.00, "maquina-lavar.jpg"],
-    ["Ar-condicionado Split Inverter", 2200.00, "ar-condicionado.jpg"],
+    ["Lava e seca", 4000.00, "maquina-lavar.jpg"],
+    ["Ar-condicionado Split Inverter", 2000.00, "ar-condicionado.jpg"],
     ["Contribuição pra a aposentadoria dos noivos", 5000.00, "aposentadoria.jpg"],
     ["Fundo emergencial para DRs com jantar caro de reconciliação", 5800.00, "dr-jantar.jpg"],
     ["Experiência gastronômica completa na lua de mel", 6000.00, "gastronomia.jpg"],
@@ -133,7 +132,26 @@ const presentes = [
     ["Patrocine a suíte master da lua de mel (com direito a stories de agradecimento 😂)", 8500.00, "suite-master.jpg"],
     ["Cota Platinum: você basicamente está financiando nossa felicidade", 8800.00, "platinum.jpg"],
     ["Cota herdeiro: garantia de convite em todos os churrascos (e talvez no testamento)", 8900.00, "herdeiro.jpg"],
-    ["Taxa para ir de branco no casamento", 25000.00, "branco.jpg"]
+    ["Taxa para ir de branco no casamento", 25000.00, "branco.jpg"],
+    ["Jarras", 75.00, "jarras.jpg"],
+    ["Conjunto de copos", 80.00, "conjunto-copos.jpg"],
+    ["Utensílios de cozinha", 85.00, "utensilios-cozinha.jpg"],
+    ["Conjunto de xícaras", 95.00, "xicaras.jpg"],
+    ["Jogo de copos", 130.00, "jogo-copos.jpg"],
+    ["Ventilador", 270.00, "ventilador.jpg"],
+    ["Mixer", 320.00, "mixer.jpg"],
+    ["Decorações para a nova casa", 750.00, "decoracoes.jpg"],
+    ["Cooktop", 820.00, "cooktop.jpg"],
+    ["Cortina blackout", 1400.00, "cortina-blackout.jpg"],
+    ["Roupas de cama e edredom", 1500.00, "roupas-cama-edredom.jpg"],
+    ["Cristaleira", 1600.00, "cristaleira.jpg"],
+    ["Móveis planejados para cozinha e quarto", 5500.00, "moveis-planejados.jpg"],
+    ["Tampão de ouvido à prova de ronco, para a noiva dormir em paz", 85.00, "tampao-ouvido.jpg"],
+    ["Seguro contra acidentes na hora do buquê", 100.00, "seguro-buque.jpg"],
+    ["Patrocínio do miojo, para os dias em que a janta queimar", 150.00, "miojo.jpg"],
+    ["Camisa do time do coração para os noivos", 500.00, "camisa-times.jpg"],
+    ["10 engradados de Heineken para o noivo", 2800.00, "heineken.jpg"],
+    ["1 ano de academia para os noivos entrarem em forma", 3200.00, "academia-casal.jpg"]
 ];
 
 // ======================================================
@@ -185,7 +203,22 @@ const imagensPresentesFisicos = new Set([
     "mesa-escritorio.jpg",
     "kit-utensilios-churrasco.jpg",
     "perfumes-casal.jpg",
-    "criados-mudos.jpg"
+    "criados-mudos.jpg",
+
+    // Incluídos em novembro de 2026
+    "jarras.jpg",
+    "conjunto-copos.jpg",
+    "utensilios-cozinha.jpg",
+    "xicaras.jpg",
+    "jogo-copos.jpg",
+    "ventilador.jpg",
+    "mixer.jpg",
+    "decoracoes.jpg",
+    "cooktop.jpg",
+    "cortina-blackout.jpg",
+    "roupas-cama-edredom.jpg",
+    "cristaleira.jpg",
+    "moveis-planejados.jpg"
 ]);
 
 // Os demais presentes são cotas, contribuições, experiências
