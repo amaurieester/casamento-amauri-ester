@@ -51,13 +51,19 @@ async function enviarMensagem(event) {
         data_hora: new Date().toLocaleString('pt-BR')
     };
 
-    // As duas vias são tentadas em paralelo: a planilha, para as
-    // mensagens ficarem todas num lugar só, e o e-mail, como aviso
-    // e reserva. Basta uma dar certo.
-    const [planilha, correio] = await Promise.all([
-        enviarParaPlanilha(dados),
-        enviarMensagemPorEmail(dados)
-    ]);
+    // A planilha é a via principal: é onde vocês leem os recados.
+    // O e-mail é só aviso, e não pode segurar a tela — quando o
+    // formsubmit.co está fora do ar ele leva ~20 s para devolver
+    // erro, e nesse tempo o convidado fica olhando "Enviando...".
+    // Por isso ele sai sem espera quando a planilha já deu certo.
+    const planilha = await enviarParaPlanilha(dados);
+
+    let correio = { ok: false, erro: 'não aguardado' };
+    if (planilha.ok) {
+        enviarMensagemPorEmail(dados);
+    } else {
+        correio = await enviarMensagemPorEmail(dados);
+    }
 
     loading.style.display = 'none';
 
@@ -82,10 +88,18 @@ async function enviarMensagem(event) {
     }, 3000);
 }
 
+// Teto de 10 s: sem isso, um serviço fora do ar deixa a chamada
+// pendurada e, quando ela é a reserva da planilha, a tela trava.
+const ESPERA_MAXIMA_EMAIL = 10000;
+
 async function enviarMensagemPorEmail(dados) {
+    const corte = new AbortController();
+    const relogio = setTimeout(() => corte.abort(), ESPERA_MAXIMA_EMAIL);
+
     try {
         const resposta = await fetch('https://formsubmit.co/ajax/casamentoamaurieester@gmail.com', {
             method: 'POST',
+            signal: corte.signal,
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
@@ -105,6 +119,9 @@ async function enviarMensagemPorEmail(dados) {
 
     } catch (erro) {
         return { ok: false, erro: String(erro) };
+
+    } finally {
+        clearTimeout(relogio);
     }
 }
 
