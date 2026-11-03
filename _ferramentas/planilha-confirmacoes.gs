@@ -38,6 +38,7 @@
 var ABA_LISTA = 'Confirmações';
 var ABA_HISTORICO = 'Histórico';
 var ABA_RESUMO = 'Resumo';
+var ABA_MENSAGENS = 'Mensagens';
 
 var CABECALHO_LISTA = [
   'Número', 'Nome', 'Confirmação', 'Mensagem', 'Data e hora'
@@ -45,6 +46,10 @@ var CABECALHO_LISTA = [
 
 var CABECALHO_HISTORICO = [
   'Data e hora', 'Nome', 'Confirmação', 'Mensagem'
+];
+
+var CABECALHO_MENSAGENS = [
+  'Número', 'Data e hora', 'Nome', 'E-mail', 'Mensagem'
 ];
 
 // Colunas da aba "Confirmações"
@@ -78,6 +83,12 @@ function doPost(e) {
 
   try {
     var dados = JSON.parse(e.postData.contents);
+
+    // A página inicial manda as mensagens para os noivos por aqui
+    // também, marcadas com tipo "mensagem".
+    if (limpar(dados.tipo).toLowerCase() === 'mensagem') {
+      return guardarMensagem(dados);
+    }
 
     var nome = arrumarNome(dados.nome);
     var status = limpar(dados.status).toUpperCase();
@@ -140,6 +151,56 @@ function doPost(e) {
 // lista: ela é particular de vocês.
 function doGet() {
   return responder({ ok: true, servico: 'confirmacoes' });
+}
+
+// ---------------------------------------------------------------
+// MENSAGENS PARA OS NOIVOS
+//
+// Vêm do formulário no fim da página inicial. Ficam na aba
+// "Mensagens", uma embaixo da outra, para vocês lerem todas num
+// lugar só em vez de abrir e-mail por e-mail.
+//
+// Aqui cada envio é SEMPRE uma linha nova: se a pessoa escrever
+// duas vezes, são dois recados diferentes, e não uma correção.
+// ---------------------------------------------------------------
+
+function guardarMensagem(dados) {
+  var nome = arrumarNome(dados.nome);
+  var email = limpar(dados.email).slice(0, 120);
+  var mensagem = limpar(dados.mensagem).slice(0, MAX_MENSAGEM);
+
+  if (nome.length < MIN_NOME || nome.length > MAX_NOME || !temLetra(nome)) {
+    return responder({ ok: false, erro: 'nome inválido' });
+  }
+
+  if (!mensagem) {
+    return responder({ ok: false, erro: 'mensagem vazia' });
+  }
+
+  if (temLink(nome) || temLink(mensagem)) {
+    return responder({ ok: false, erro: 'conteúdo não permitido' });
+  }
+
+  var planilha = SpreadsheetApp.getActiveSpreadsheet();
+  var aba = pegarAba(planilha, ABA_MENSAGENS, CABECALHO_MENSAGENS);
+  var agora = Utilities.formatDate(new Date(), FUSO, 'dd/MM/yyyy HH:mm:ss');
+  var numero = aba.getLastRow();
+
+  // Primeira mensagem: deixa a coluna do recado larga o bastante
+  if (numero === 1) {
+    aba.setColumnWidth(1, 70);
+    aba.setColumnWidth(2, 150);
+    aba.setColumnWidth(3, 200);
+    aba.setColumnWidth(4, 200);
+    aba.setColumnWidth(5, 600);
+  }
+
+  aba.appendRow([numero, agora, nome, email, mensagem]);
+
+  // Sem isto os recados longos viram uma linha só, ilegível
+  aba.getRange(numero + 1, 5).setWrap(true);
+
+  return responder({ ok: true, numero: numero });
 }
 
 // ---------------------------------------------------------------

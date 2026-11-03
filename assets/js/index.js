@@ -41,64 +41,70 @@ async function enviarMensagem(event) {
     msgError.style.display = 'none';
 
     // Coletar dados do formulário
-    const formData = {
+    const email = document.getElementById('email').value.trim();
+
+    const dados = {
+        tipo: 'mensagem',
         nome: nome,
-        email: document.getElementById('email').value.trim() || 'Não informado',
+        email: email,
         mensagem: mensagem,
-        data: new Date().toLocaleString('pt-BR'),
-        tipo: 'Mensagem para os Noivos'
+        data_hora: new Date().toLocaleString('pt-BR')
     };
 
+    // As duas vias são tentadas em paralelo: a planilha, para as
+    // mensagens ficarem todas num lugar só, e o e-mail, como aviso
+    // e reserva. Basta uma dar certo.
+    const [planilha, correio] = await Promise.all([
+        enviarParaPlanilha(dados),
+        enviarMensagemPorEmail(dados)
+    ]);
+
+    loading.style.display = 'none';
+
+    if (planilha.ok || correio.ok) {
+        msgSuccess.style.display = 'block';
+        formulario.reset();
+
+        setTimeout(() => {
+            window.location.href = 'obrigado-mensagem.html';
+        }, 3000);
+
+    } else {
+        console.error('Erro ao enviar mensagem:', planilha.erro, correio.erro);
+        msgError.style.display = 'block';
+    }
+
+    // Reabilitar botão após 3 segundos
+    setTimeout(() => {
+        btnEnviar.disabled = false;
+        btnEnviar.textContent = 'Enviar mensagem';
+        formulario.classList.remove('form-loading');
+    }, 3000);
+}
+
+async function enviarMensagemPorEmail(dados) {
     try {
-        // ENVIAR VIA FORMSUBMIT PARA casamentoamaurieester@gmail.com
-        const response = await fetch('https://formsubmit.co/ajax/casamentoamaurieester@gmail.com', {
+        const resposta = await fetch('https://formsubmit.co/ajax/casamentoamaurieester@gmail.com', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
             body: JSON.stringify({
-                nome: formData.nome,
-                email: formData.email,
-                mensagem: formData.mensagem,
-                data_envio: formData.data,
-                _subject: `💌 Mensagem para os Noivos - ${formData.nome}`,
+                nome: dados.nome,
+                email: dados.email || 'Não informado',
+                mensagem: dados.mensagem,
+                data_envio: dados.data_hora,
+                _subject: `💌 Mensagem para os Noivos - ${dados.nome}`,
                 _template: 'table',
                 _captcha: 'false'
             })
         });
 
-        if (response.ok) {
-            // Sucesso!
-            loading.style.display = 'none';
-            msgSuccess.style.display = 'block';
+        return resposta.ok ? { ok: true } : { ok: false, erro: 'HTTP ' + resposta.status };
 
-            // Limpar formulário
-            formulario.reset();
-
-            // Redirecionar após 3 segundos
-            setTimeout(() => {
-                window.location.href = 'obrigado-mensagem.html';
-            }, 3000);
-
-        } else {
-            throw new Error('Erro na resposta do servidor');
-        }
-
-    } catch (error) {
-        console.error('Erro ao enviar mensagem:', error);
-
-        // Mostrar mensagem de erro
-        loading.style.display = 'none';
-        msgError.style.display = 'block';
-
-    } finally {
-        // Reabilitar botão após 3 segundos
-        setTimeout(() => {
-            btnEnviar.disabled = false;
-            btnEnviar.textContent = 'Enviar mensagem';
-            formulario.classList.remove('form-loading');
-        }, 3000);
+    } catch (erro) {
+        return { ok: false, erro: String(erro) };
     }
 }
 

@@ -16,10 +16,8 @@
 // funcionar para a resposta ser dada como registrada.
 // ======================================================
 
-// Endereço do App da Web do Apps Script, terminado em /exec.
-// O passo a passo está em _ferramentas/COMO-CONFIGURAR.md
-const URL_PLANILHA = "https://script.google.com/macros/s/AKfycbwYhozXKjN40H7AXrDzzUmhURJaRo1HTfuZTXegHCklbuXFqsQQWuwTlJii51VG2JU/exec";
-
+// URL_PLANILHA e enviarParaPlanilha() ficam no common.js, porque a
+// página inicial também usa a mesma planilha para as mensagens.
 const URL_FORMSPREE = "https://formspree.io/f/xaqqdzwd";
 
 // Mínimo para o campo valer como nome preenchido
@@ -187,31 +185,6 @@ async function enviarConfirmacaoFinal() {
     }
 
     mostrarResultado(mensagem);
-}
-
-async function enviarParaPlanilha(dados) {
-    if (!URL_PLANILHA) return { ok: false, erro: 'planilha não configurada' };
-
-    try {
-        // text/plain evita a requisição de verificação (preflight),
-        // que o Apps Script não responde.
-        const resposta = await fetch(URL_PLANILHA, {
-            method: 'POST',
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-            body: JSON.stringify(dados)
-        });
-
-        if (!resposta.ok) return { ok: false, erro: 'HTTP ' + resposta.status };
-
-        const corpo = await resposta.json();
-
-        return corpo && corpo.ok
-            ? { ok: true }
-            : { ok: false, erro: (corpo && corpo.erro) || 'resposta inesperada' };
-
-    } catch (erro) {
-        return { ok: false, erro: String(erro) };
-    }
 }
 
 async function enviarParaFormspree(dados) {

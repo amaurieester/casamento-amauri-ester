@@ -38,6 +38,39 @@ function gravarLocal(chave, valor) {
     }
 }
 
+// ---------- PLANILHA DO GOOGLE ----------
+// Endereço do App da Web do Apps Script, terminado em /exec.
+// Recebe tanto as confirmações de presença quanto as mensagens
+// para os noivos, cada uma na sua aba.
+// O passo a passo está em _ferramentas/COMO-CONFIGURAR.md
+
+const URL_PLANILHA = "https://script.google.com/macros/s/AKfycbwYhozXKjN40H7AXrDzzUmhURJaRo1HTfuZTXegHCklbuXFqsQQWuwTlJii51VG2JU/exec";
+
+async function enviarParaPlanilha(dados) {
+    if (!URL_PLANILHA) return { ok: false, erro: 'planilha não configurada' };
+
+    try {
+        // text/plain evita a requisição de verificação (preflight),
+        // que o Apps Script não responde.
+        const resposta = await fetch(URL_PLANILHA, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(dados)
+        });
+
+        if (!resposta.ok) return { ok: false, erro: 'HTTP ' + resposta.status };
+
+        const corpo = await resposta.json();
+
+        return corpo && corpo.ok
+            ? { ok: true }
+            : { ok: false, erro: (corpo && corpo.erro) || 'resposta inesperada' };
+
+    } catch (erro) {
+        return { ok: false, erro: String(erro) };
+    }
+}
+
 // ---------- TRAVA DE ROLAGEM DA PÁGINA ----------
 // Usada pelo menu lateral e pelo carrinho de presentes: enquanto um
 // painel está aberto, a página de trás não pode rolar no lugar dele.
