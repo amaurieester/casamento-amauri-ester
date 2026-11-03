@@ -41,7 +41,12 @@
         <h1>Confirmação de Presença</h1>
         <h2>Ester & Amauri • 12 de Junho de 2027</h2>
         
-        <p>Para confirmar sua presença, comece digitando seu nome completo abaixo:</p>
+        <p>Para responder, comece digitando seu nome completo abaixo:</p>
+
+        <p style="text-align: center; font-size: 0.9rem; color: var(--cinza-claro); margin-top: -0.5rem;">
+            Mudou de ideia? É só voltar aqui e responder de novo — a sua
+            resposta mais recente é a que vale.
+        </p>
         
         <!-- ÁREA DE BUSCA PRINCIPAL -->
         <div class="search-container">
@@ -66,7 +71,20 @@
             <h3 id="previewNome">Nome da Pessoa</h3>
         </div>
         
-        <!-- PERGUNTA SOBRE ACOMPANHANTES -->
+        <!-- BOTÕES DE CONFIRMAÇÃO: é a primeira pergunta depois do nome,
+             para quem não vai comparecer poder responder de imediato -->
+        <div class="confirmation-buttons" id="confirmationButtons">
+            <button class="btn btn-confirm" onclick="confirmarPresenca()">
+                <span class="btn-icon">✅</span>
+                Sim, estarei presente!
+            </button>
+            <button class="btn btn-decline" onclick="recusarPresenca()">
+                <span class="btn-icon">❌</span>
+                Não poderei comparecer
+            </button>
+        </div>
+
+        <!-- PERGUNTA SOBRE ACOMPANHANTES: só para quem confirmou -->
         <div class="acompanhante-question" id="acompanhanteQuestion">
             <h4>Você virá acompanhado?</h4>
             <div class="question-buttons">
@@ -95,17 +113,6 @@
             </button>
         </div>
         
-        <!-- BOTÕES DE CONFIRMAÇÃO (quando não tem acompanhantes) -->
-        <div class="confirmation-buttons" id="confirmationButtons">
-            <button class="btn btn-confirm" onclick="confirmarPresenca()">
-                <span class="btn-icon">✅</span>
-                Sim, estarei presente!
-            </button>
-            <button class="btn btn-decline" onclick="recusarPresenca()">
-                <span class="btn-icon">❌</span>
-                Não poderei comparecer
-            </button>
-        </div>
         
         <!-- MENSAGEM PARA OS NOIVOS -->
         <div class="mensagem-form" id="mensagemForm">

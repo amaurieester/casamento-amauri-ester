@@ -354,4 +354,44 @@ body.com-player-musica.sem-rodape {
     .aviso-musica {
         animation: none;
     }
+
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* ============================================================
+   ROLAGEM
+   Os seletores começam com `body` só para ganhar prioridade
+   sobre o CSS de cada página, que repete .menu-lateral com
+   altura fixa.
+   ============================================================ */
+
+body .menu-lateral {
+    /* 100vh no celular é MAIOR que a área visível, porque não
+       desconta a barra do navegador: o fim do menu ficava fora
+       da tela. 100dvh é a altura real. */
+    height: 100vh;
+    height: 100dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Sem isto os links do menu se espremem para caber na altura
+   disponível (comportamento padrão do flex) em vez de
+   transbordarem — e aí não há o que rolar. */
+body .menu-lateral>* {
+    flex-shrink: 0;
+}
+
+/* Trava a página atrás enquanto um painel lateral está aberto.
+   O `position: fixed` é o que funciona no iPhone; o common.js
+   guarda e devolve a posição da rolagem. */
+body.rolagem-travada {
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100%;
+    overflow: hidden;
 }

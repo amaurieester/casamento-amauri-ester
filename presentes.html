@@ -39,9 +39,18 @@
         <a href="presentes.html">Presentes</a>
     </div>
 
-    <div class="container">
+    <!-- AÇÕES FIXAS DO TOPO -->
+    <div class="acoes-topo">
         <a href="index.html" class="voltar-btn">← Voltar</a>
 
+        <button class="cart-toggle-btn" id="cartToggleBtn" type="button" aria-label="Ver meu carrinho">
+            <span class="cart-icon">🛒</span>
+            <span class="cart-label">Carrinho</span>
+            <span class="cart-count" id="cartCount">0</span>
+        </button>
+    </div>
+
+    <div class="container">
         <h1 class="page-title">Lista de Presentes</h1>
         <p class="page-subtitle">Escolha um presente que faça parte da nossa nova vida juntos</p>
 
@@ -117,17 +126,15 @@
                 <span id="cartTotalValue">R$ 0,00</span>
             </div>
 
-            <button class="btn btn-checkout" id="btnCheckout" onclick="finalizarCompra()">
+            <button class="btn-continuar" id="btnContinuar" type="button">
+                ← Escolher mais presentes
+            </button>
+
+            <button class="btn btn-checkout" id="btnCheckout" type="button" onclick="finalizarCompra()">
                 Finalizar Compra
             </button>
         </div>
     </div>
-
-    <!-- BOTÃO FLUTUANTE DO CARRINHO -->
-    <button class="cart-toggle-btn" id="cartToggleBtn" aria-label="Abrir carrinho">
-        <span class="cart-icon">🛒</span>
-        <span class="cart-count" id="cartCount">0</span>
-    </button>
 
     <script src="assets/js/common.js"></script>
     <script src="assets/js/presentes.js"></script>

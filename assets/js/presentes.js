@@ -402,23 +402,32 @@ const cartClose = document.getElementById("cartClose");
 const cartItems = document.getElementById("cartItems");
 const cartCount = document.getElementById("cartCount");
 const cartTotalValue = document.getElementById("cartTotalValue");
+const btnContinuar = document.getElementById("btnContinuar");
+const btnCheckout = document.getElementById("btnCheckout");
+
+let carrinhoAberto = false;
 
 function abrirCarrinho() {
-    if (!cartSidebar || !cartOverlay) return;
+    if (!cartSidebar || !cartOverlay || carrinhoAberto) return;
+    carrinhoAberto = true;
 
     cartSidebar.classList.add("active");
     cartOverlay.classList.add("active");
-    document.body.style.overflow = "hidden";
+
+    // Trava a lista de presentes atrás do painel (ver common.js)
+    if (window.travarRolagem) window.travarRolagem();
 
     atualizarCarrinhoDOM();
 }
 
 function fecharCarrinho() {
-    if (!cartSidebar || !cartOverlay) return;
+    if (!cartSidebar || !cartOverlay || !carrinhoAberto) return;
+    carrinhoAberto = false;
 
     cartSidebar.classList.remove("active");
     cartOverlay.classList.remove("active");
-    document.body.style.overflow = "";
+
+    if (window.liberarRolagem) window.liberarRolagem();
 }
 
 if (cartToggleBtn) {
@@ -432,6 +441,14 @@ if (cartClose) {
 if (cartOverlay) {
     cartOverlay.addEventListener("click", fecharCarrinho);
 }
+
+if (btnContinuar) {
+    btnContinuar.addEventListener("click", fecharCarrinho);
+}
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") fecharCarrinho();
+});
 
 // ======================================================
 // ADICIONAR E REMOVER PRESENTES
@@ -486,6 +503,12 @@ function atualizarCarrinhoDOM() {
 
     cartCount.textContent = carrinho.length;
 
+    // O botão do carrinho fica sempre visível, mesmo vazio: é assim
+    // que a pessoa descobre que existe um carrinho.
+    if (btnCheckout) {
+        btnCheckout.disabled = carrinho.length === 0;
+    }
+
     if (carrinho.length === 0) {
         cartItems.innerHTML = `
             <div class="cart-empty">
@@ -498,15 +521,7 @@ function atualizarCarrinhoDOM() {
 
         cartTotalValue.textContent = formatarMoeda(0);
 
-        if (cartToggleBtn) {
-            cartToggleBtn.style.display = "none";
-        }
-
         return;
-    }
-
-    if (cartToggleBtn) {
-        cartToggleBtn.style.display = "flex";
     }
 
     cartItems.replaceChildren();

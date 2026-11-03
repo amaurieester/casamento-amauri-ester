@@ -38,6 +38,38 @@ function gravarLocal(chave, valor) {
     }
 }
 
+// ---------- TRAVA DE ROLAGEM DA PÁGINA ----------
+// Usada pelo menu lateral e pelo carrinho de presentes: enquanto um
+// painel está aberto, a página de trás não pode rolar no lugar dele.
+// O contador permite que dois painéis abertos não se atrapalhem.
+
+let travasDeRolagem = 0;
+let posicaoAntesDaTrava = 0;
+
+function travarRolagem() {
+    if (travasDeRolagem === 0) {
+        posicaoAntesDaTrava = window.scrollY || document.documentElement.scrollTop || 0;
+        document.body.style.top = (-posicaoAntesDaTrava) + 'px';
+        document.body.classList.add('rolagem-travada');
+    }
+    travasDeRolagem++;
+}
+
+function liberarRolagem() {
+    if (travasDeRolagem === 0) return;
+
+    travasDeRolagem--;
+    if (travasDeRolagem > 0) return;
+
+    document.body.classList.remove('rolagem-travada');
+    document.body.style.top = '';
+    window.scrollTo(0, posicaoAntesDaTrava);
+}
+
+// Disponíveis para os scripts das páginas (ex.: presentes.js)
+window.travarRolagem = travarRolagem;
+window.liberarRolagem = liberarRolagem;
+
 // ---------- MENU LATERAL ----------
 
 function inicializarMenu() {
@@ -62,20 +94,31 @@ function inicializarMenu() {
         menuToggle.classList.add('chamar-atencao');
     }
 
+    let menuAberto = false;
+
     function abrirMenu() {
+        if (menuAberto) return;
+        menuAberto = true;
+
         menuLateral.classList.add('active');
         menuOverlay.classList.add('active');
         menuToggle.setAttribute('aria-expanded', 'true');
         menuToggle.classList.remove('chamar-atencao');
         menuToggle.classList.add('menu-aberto');
+        menuLateral.scrollTop = 0;
+        travarRolagem();
         gravarLocal(CHAVE_JA_ABRIU, '1');
     }
 
     function fecharMenu() {
+        if (!menuAberto) return;
+        menuAberto = false;
+
         menuLateral.classList.remove('active');
         menuOverlay.classList.remove('active');
         menuToggle.setAttribute('aria-expanded', 'false');
         menuToggle.classList.remove('menu-aberto');
+        liberarRolagem();
     }
 
     menuToggle.addEventListener('click', abrirMenu);
