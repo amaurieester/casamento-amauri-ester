@@ -271,28 +271,6 @@ body.rolagem-travada {
     flex-shrink: 0;
 }
 
-.barra-botao {
-    display: inline-flex;
-    align-items: center;
-    height: 40px;
-    padding: 0 20px;
-    border-radius: 50px;
-    background: linear-gradient(135deg, var(--rosa), var(--laranja));
-    color: var(--branco);
-    text-decoration: none;
-    font-size: 0.68rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    font-weight: 600;
-    white-space: nowrap;
-    transition: var(--transicao);
-}
-
-.barra-botao:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(224, 24, 76, 0.3);
-}
-
 .barra-menu {
     display: none;
     flex-direction: column;
@@ -350,10 +328,6 @@ body.com-barra .container {
         display: flex;
     }
 
-    .barra-botao {
-        display: none;
-    }
-
     .barra-interna {
         min-height: 62px;
     }
@@ -369,6 +343,34 @@ body.com-barra .container {
 
     body.com-barra .container {
         padding-top: 24px;
+    }
+
+    .barra-interna {
+        gap: 12px;
+    }
+
+    /* No celular o carrinho em degrade parecia colado por cima da
+       barra. Em contorno ele vira parte dela. */
+    .barra-acoes .cart-toggle-btn {
+        height: 36px;
+        padding: 0 11px;
+        gap: 7px;
+        background: var(--branco);
+        border: 1.5px solid var(--rosa);
+        color: var(--rosa);
+        box-shadow: none;
+    }
+
+    .barra-acoes .cart-toggle-btn .cart-count {
+        background: var(--rosa);
+        color: var(--branco);
+        min-width: 19px;
+        height: 19px;
+        font-size: 0.72rem;
+    }
+
+    .barra-acoes .cart-toggle-btn .cart-icon {
+        font-size: 1.05rem;
     }
 }
 
@@ -446,7 +448,7 @@ body.com-barra .container {
     right: max(16px, env(safe-area-inset-right, 0px));
     bottom: calc(74px + env(safe-area-inset-bottom, 0px));
     z-index: 9999;
-    width: 234px;
+    width: 186px;
     max-width: calc(100vw - 32px);
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
@@ -454,7 +456,7 @@ body.com-barra .container {
     border: 1px solid rgba(224, 24, 76, 0.18);
     border-radius: 16px;
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
-    padding: 15px 16px;
+    padding: 12px 14px;
     display: none;
 }
 
@@ -462,28 +464,10 @@ body.com-barra .container {
     display: block;
 }
 
-.musica-faixa {
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--cinza);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.musica-de {
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--cinza-claro);
-    margin-top: 3px;
-}
-
 .musica-controles {
     display: flex;
     align-items: center;
-    gap: 6px;
-    margin-top: 12px;
+    gap: 4px;
 }
 
 .musica-btn {

@@ -82,7 +82,7 @@ var MAX_VALOR = 1000000;
 
 // Versão do desenho da aba Resumo. Mudou o desenho, muda o número e
 // a aba é refeita na próxima resposta.
-var VERSAO_RESUMO = 'v3';
+var VERSAO_RESUMO = 'v4';
 
 // ---------------------------------------------------------------
 // ENTRADA: é aqui que o site entrega tudo
@@ -391,8 +391,13 @@ function montarResumo(planilha) {
   // [rótulo, fórmula]. Fórmula nula = título de bloco.
   var blocos = [
     ['PRESENÇA', null],
-    ['Pessoas confirmadas', '=COUNTIF(' + L + '!C2:C,"Sim")'],
-    ['Não poderão ir', '=COUNTIF(' + L + '!C2:C,"Não")'],
+    // SUMPRODUCT no lugar de COUNTIF de proposito: COUNTIF precisa
+    // de virgula entre os argumentos, e em planilha configurada em
+    // portugues o separador e ponto e virgula, o que dava #ERROR!.
+    // Estas formulas nao usam separador nenhum, entao valem em
+    // qualquer idioma.
+    ['Pessoas confirmadas', '=SUMPRODUCT(--(' + L + '!C2:C="Sim"))'],
+    ['Não poderão ir', '=SUMPRODUCT(--(' + L + '!C2:C="Não"))'],
     ['Total de respostas', '=COUNTA(' + L + '!B2:B)'],
     ['', ''],
     ['PRESENTES', null],

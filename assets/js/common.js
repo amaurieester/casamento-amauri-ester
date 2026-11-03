@@ -144,6 +144,8 @@ function montarBarra() {
         '</span>' +
         '</a>' +
         '<nav class="barra-nav">' + links + '</nav>' +
+        // A barra nao leva botao de confirmar: o link ja esta no menu
+        // ao lado, e na pagina inicial virava o terceiro botao igual.
         '<div class="barra-acoes" id="barraAcoes"></div>' +
         '<button class="barra-menu" id="barraMenu" type="button" aria-label="Abrir menu" aria-expanded="false">' +
         '<span></span><span></span><span></span>' +
@@ -152,16 +154,6 @@ function montarBarra() {
 
     document.body.insertBefore(barra, document.body.firstChild);
     document.body.classList.add('com-barra');
-
-    // Na confirmação, o botão de destaque levaria à própria página
-    if (atual !== 'confirmacao.html') {
-        const acoes = barra.querySelector('#barraAcoes');
-        const cta = document.createElement('a');
-        cta.className = 'barra-botao';
-        cta.href = 'confirmacao.html';
-        cta.textContent = 'Confirmar presença';
-        acoes.appendChild(cta);
-    }
 
     return barra;
 }
@@ -233,12 +225,6 @@ const MUSICAS = [
     'musicas/musica10.mp3'
 ];
 
-// Nome e artista de cada música, na mesma ordem da lista acima.
-// Enquanto estiver vazio, o player mostra "Música 1", "Música 2"...
-// Para mostrar o nome de verdade, preencha assim:
-//   { nome: 'Perfect', artista: 'Ed Sheeran' },
-const NOMES_MUSICAS = [];
-
 // O estado fica na sessão do navegador: a música retoma de onde
 // parou a cada página aberta e zera quando a aba é fechada.
 const CHAVE_FAIXA = 'musica.faixa';
@@ -253,8 +239,6 @@ function montarPlayer() {
     painel.className = 'musica-painel';
     painel.id = 'musicaPainel';
     painel.innerHTML =
-        '<div class="musica-faixa" id="musicaFaixa">Música 1</div>' +
-        '<div class="musica-de" id="musicaStatus">Tocando</div>' +
         '<div class="musica-controles">' +
         '<button class="musica-btn" id="musicaAnterior" type="button" aria-label="Música anterior">⏮</button>' +
         '<button class="musica-btn" id="musicaTocar" type="button" aria-label="Tocar ou pausar">▶</button>' +
@@ -279,8 +263,6 @@ function inicializarPlayerMusica() {
 
     const botao = document.getElementById('musicaBotao');
     const painel = document.getElementById('musicaPainel');
-    const faixaEl = document.getElementById('musicaFaixa');
-    const statusEl = document.getElementById('musicaStatus');
     const btnTocar = document.getElementById('musicaTocar');
     const btnAnterior = document.getElementById('musicaAnterior');
     const btnProxima = document.getElementById('musicaProxima');
@@ -316,21 +298,11 @@ function inicializarPlayerMusica() {
 
     // ----- controles -----
 
-    function nomeDaFaixa(indice) {
-        const info = NOMES_MUSICAS[indice];
-        if (info && info.nome) return info;
-        return { nome: 'Música ' + (indice + 1), artista: '' };
-    }
-
     function carregarFaixa(indice, segundos) {
         faixa = indice;
         alvoTempo = segundos > 0 ? segundos : 0;
         // O fragmento #t= faz o navegador já abrir na posição certa
         audio.src = MUSICAS[indice] + (alvoTempo > 0 ? '#t=' + alvoTempo.toFixed(2) : '');
-
-        const info = nomeDaFaixa(indice);
-        faixaEl.textContent = info.nome;
-        statusEl.textContent = info.artista || ('Faixa ' + (indice + 1) + ' de ' + MUSICAS.length);
 
         gravarSessao(CHAVE_FAIXA, indice);
         gravarSessao(CHAVE_TEMPO, alvoTempo.toFixed(2));
