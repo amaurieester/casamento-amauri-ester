@@ -317,6 +317,15 @@ body.com-player-musica.sem-rodape {
     padding-bottom: 100px;
 }
 
+/* No PC o aviso fica junto do player, para não cobrir botões da página */
+@media (min-width: 769px) {
+    .aviso-musica {
+        left: auto;
+        right: 20px;
+        transform: none;
+    }
+}
+
 @media (max-width: 768px) {
     .menu-lateral-toggle.com-rotulo::after {
         top: calc(100% + 8px);
