@@ -1,7 +1,9 @@
 /* ============================================================
    SCRIPT COMUM A TODAS AS PÁGINAS
-   - Menu lateral (com rótulo "MENU" no monograma)
-   - Player de música que continua de onde parou ao trocar de página
+   - Barra superior com o menu
+   - Player de música recolhido, que continua tocando ao trocar
+     de página
+   - Contagem de visitas na planilha
    ============================================================ */
 
 // ---------- ARMAZENAMENTO (à prova de navegação privada) ----------
@@ -40,9 +42,8 @@ function gravarLocal(chave, valor) {
 
 // ---------- PLANILHA DO GOOGLE ----------
 // Endereço do App da Web do Apps Script, terminado em /exec.
-// Recebe tanto as confirmações de presença quanto as mensagens
-// para os noivos, cada uma na sua aba.
-// O passo a passo está em _ferramentas/COMO-CONFIGURAR.md
+// Recebe confirmações, mensagens, presentes e visitas, cada um na
+// sua aba. O passo a passo está em _ferramentas/COMO-CONFIGURAR.md
 
 const URL_PLANILHA = "https://script.google.com/macros/s/AKfycbwYhozXKjN40H7AXrDzzUmhURJaRo1HTfuZTXegHCklbuXFqsQQWuwTlJii51VG2JU/exec";
 
@@ -63,7 +64,7 @@ async function enviarParaPlanilha(dados) {
         const corpo = await resposta.json();
 
         return corpo && corpo.ok
-            ? { ok: true }
+            ? { ok: true, corpo: corpo }
             : { ok: false, erro: (corpo && corpo.erro) || 'resposta inesperada' };
 
     } catch (erro) {
@@ -103,75 +104,115 @@ function liberarRolagem() {
 window.travarRolagem = travarRolagem;
 window.liberarRolagem = liberarRolagem;
 
+// ---------- BARRA SUPERIOR ----------
+
+const PAGINAS = [
+    { arquivo: 'index.html', rotulo: 'Início' },
+    { arquivo: 'evento.html', rotulo: 'Evento' },
+    { arquivo: 'dicas-instrucoes.html', rotulo: 'Dicas e Instruções' },
+    { arquivo: 'confirmacao.html', rotulo: 'Confirmação' },
+    { arquivo: 'presentes.html', rotulo: 'Presentes' }
+];
+
+function paginaAtual() {
+    const nome = (location.pathname.split('/').pop() || '').toLowerCase();
+    return nome === '' ? 'index.html' : nome;
+}
+
+function montarBarra() {
+    // Só nas páginas que têm o menu lateral. As de agradecimento e a
+    // de erro têm os próprios botões de voltar.
+    if (!document.getElementById('menuLateral')) return null;
+    if (document.querySelector('.barra-topo')) return document.querySelector('.barra-topo');
+
+    const atual = paginaAtual();
+
+    const links = PAGINAS.map(p => {
+        const ativo = (p.arquivo === atual) ? ' class="ativo" aria-current="page"' : '';
+        return `<a href="${p.arquivo}"${ativo}>${p.rotulo}</a>`;
+    }).join('');
+
+    const barra = document.createElement('header');
+    barra.className = 'barra-topo';
+    barra.innerHTML =
+        '<div class="barra-interna">' +
+        '<a class="barra-marca" href="index.html">' +
+        '<img src="fotos/monograma-amauri-ester.png" alt="Monograma Ester e Amauri">' +
+        '<span class="barra-titulo">' +
+        '<span class="barra-nome">Ester &amp; Amauri</span>' +
+        '<span class="barra-data">12 · 06 · 2027</span>' +
+        '</span>' +
+        '</a>' +
+        '<nav class="barra-nav">' + links + '</nav>' +
+        '<div class="barra-acoes" id="barraAcoes"></div>' +
+        '<button class="barra-menu" id="barraMenu" type="button" aria-label="Abrir menu" aria-expanded="false">' +
+        '<span></span><span></span><span></span>' +
+        '</button>' +
+        '</div>';
+
+    document.body.insertBefore(barra, document.body.firstChild);
+    document.body.classList.add('com-barra');
+
+    // Na confirmação, o botão de destaque levaria à própria página
+    if (atual !== 'confirmacao.html') {
+        const acoes = barra.querySelector('#barraAcoes');
+        const cta = document.createElement('a');
+        cta.className = 'barra-botao';
+        cta.href = 'confirmacao.html';
+        cta.textContent = 'Confirmar presença';
+        acoes.appendChild(cta);
+    }
+
+    return barra;
+}
+
 // ---------- MENU LATERAL ----------
 
 function inicializarMenu() {
-    const menuToggle = document.getElementById('menuToggle');
     const menuLateral = document.getElementById('menuLateral');
     const menuOverlay = document.getElementById('menuOverlay');
     const menuClose = document.getElementById('menuClose');
+    const menuToggle = document.getElementById('menuToggle');
+    const barraMenu = document.getElementById('barraMenu');
 
-    if (!menuToggle || !menuLateral || !menuOverlay) return;
+    if (!menuLateral || !menuOverlay) return;
 
-    // Deixa evidente que o monograma é o botão do menu
-    menuToggle.classList.add('com-rotulo');
-    menuToggle.setAttribute('role', 'button');
-    menuToggle.setAttribute('tabindex', '0');
-    menuToggle.setAttribute('aria-label', 'Abrir menu de navegação');
-    menuToggle.setAttribute('aria-expanded', 'false');
-    menuToggle.setAttribute('title', 'Clique aqui para abrir o menu');
-
-    // Pulsa até o visitante abrir o menu pela primeira vez
-    const CHAVE_JA_ABRIU = 'menu.jaAbriu';
-    if (lerLocal(CHAVE_JA_ABRIU) !== '1') {
-        menuToggle.classList.add('chamar-atencao');
-    }
-
-    let menuAberto = false;
+    let aberto = false;
 
     function abrirMenu() {
-        if (menuAberto) return;
-        menuAberto = true;
+        if (aberto) return;
+        aberto = true;
 
         menuLateral.classList.add('active');
         menuOverlay.classList.add('active');
-        menuToggle.setAttribute('aria-expanded', 'true');
-        menuToggle.classList.remove('chamar-atencao');
-        menuToggle.classList.add('menu-aberto');
         menuLateral.scrollTop = 0;
+        if (barraMenu) barraMenu.setAttribute('aria-expanded', 'true');
         travarRolagem();
-        gravarLocal(CHAVE_JA_ABRIU, '1');
     }
 
     function fecharMenu() {
-        if (!menuAberto) return;
-        menuAberto = false;
+        if (!aberto) return;
+        aberto = false;
 
         menuLateral.classList.remove('active');
         menuOverlay.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.classList.remove('menu-aberto');
+        if (barraMenu) barraMenu.setAttribute('aria-expanded', 'false');
         liberarRolagem();
     }
 
-    menuToggle.addEventListener('click', abrirMenu);
+    if (barraMenu) barraMenu.addEventListener('click', abrirMenu);
 
-    menuToggle.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            abrirMenu();
-        }
-    });
+    // O monograma solto some quando a barra existe, mas continua
+    // funcionando se o JavaScript da barra não rodar
+    if (menuToggle) menuToggle.addEventListener('click', abrirMenu);
 
     if (menuClose) menuClose.addEventListener('click', fecharMenu);
-
     menuOverlay.addEventListener('click', fecharMenu);
 
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') fecharMenu();
     });
 
-    // Fechar menu ao clicar em um link
     document.querySelectorAll('.menu-lateral a').forEach(link => {
         link.addEventListener('click', fecharMenu);
     });
@@ -192,57 +233,63 @@ const MUSICAS = [
     'musicas/musica10.mp3'
 ];
 
+// Nome e artista de cada música, na mesma ordem da lista acima.
+// Enquanto estiver vazio, o player mostra "Música 1", "Música 2"...
+// Para mostrar o nome de verdade, preencha assim:
+//   { nome: 'Perfect', artista: 'Ed Sheeran' },
+const NOMES_MUSICAS = [];
+
 // O estado fica na sessão do navegador: a música retoma de onde
 // parou a cada página aberta e zera quando a aba é fechada.
 const CHAVE_FAIXA = 'musica.faixa';
 const CHAVE_TEMPO = 'musica.tempo';
 const CHAVE_TOCANDO = 'musica.tocando';
 const CHAVE_VOLUME = 'musica.volume';
-const CHAVE_OCULTO = 'musica.oculto';
 
 function montarPlayer() {
-    let player = document.getElementById('musicPlayer');
-    if (player) return player;
+    if (document.getElementById('musicaBotao')) return;
 
-    player = document.createElement('div');
-    player.id = 'musicPlayer';
-    player.className = 'music-player';
-    player.innerHTML =
-        '<div class="music-controls">' +
-        '<button id="prevBtn" class="music-btn" type="button" aria-label="Música anterior">⏮️</button>' +
-        '<button id="playPauseBtn" class="music-btn" type="button" aria-label="Tocar ou pausar">▶️</button>' +
-        '<button id="nextBtn" class="music-btn" type="button" aria-label="Próxima música">⏭️</button>' +
+    const painel = document.createElement('div');
+    painel.className = 'musica-painel';
+    painel.id = 'musicaPainel';
+    painel.innerHTML =
+        '<div class="musica-faixa" id="musicaFaixa">Música 1</div>' +
+        '<div class="musica-de" id="musicaStatus">Tocando</div>' +
+        '<div class="musica-controles">' +
+        '<button class="musica-btn" id="musicaAnterior" type="button" aria-label="Música anterior">⏮</button>' +
+        '<button class="musica-btn" id="musicaTocar" type="button" aria-label="Tocar ou pausar">▶</button>' +
+        '<button class="musica-btn" id="musicaProxima" type="button" aria-label="Próxima música">⏭</button>' +
+        '<button class="musica-btn fechar" id="musicaFechar" type="button" aria-label="Fechar">✕</button>' +
         '</div>' +
-        '<div class="music-info">' +
-        '<div class="music-title" id="currentSong">Música 1</div>' +
-        '<div class="music-status" id="playerStatus">Tocando agora</div>' +
-        '</div>' +
-        '<div class="volume-control">' +
-        '<span class="volume-icon">🔊</span>' +
-        '<input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.1" value="0.3" aria-label="Volume">' +
-        '</div>' +
-        '<button id="closePlayer" class="close-player" type="button" aria-label="Fechar player">✕</button>';
+        '<input type="range" class="musica-volume" id="musicaVolume" min="0" max="1" step="0.05" aria-label="Volume">';
 
-    document.body.appendChild(player);
-    return player;
+    const botao = document.createElement('button');
+    botao.className = 'musica-botao';
+    botao.id = 'musicaBotao';
+    botao.type = 'button';
+    botao.setAttribute('aria-label', 'Música do site');
+    botao.innerHTML = '<span class="musica-onda"><i></i><i></i><i></i><i></i><i></i></span>';
+
+    document.body.appendChild(painel);
+    document.body.appendChild(botao);
 }
 
 function inicializarPlayerMusica() {
-    const player = montarPlayer();
+    montarPlayer();
 
-    const playPauseBtn = document.getElementById('playPauseBtn');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const volumeSlider = document.getElementById('volumeSlider');
-    const closePlayer = document.getElementById('closePlayer');
-    const currentSong = document.getElementById('currentSong');
-    const playerStatus = document.getElementById('playerStatus');
-    const volumeIcon = player.querySelector('.volume-icon');
+    const botao = document.getElementById('musicaBotao');
+    const painel = document.getElementById('musicaPainel');
+    const faixaEl = document.getElementById('musicaFaixa');
+    const statusEl = document.getElementById('musicaStatus');
+    const btnTocar = document.getElementById('musicaTocar');
+    const btnAnterior = document.getElementById('musicaAnterior');
+    const btnProxima = document.getElementById('musicaProxima');
+    const btnFechar = document.getElementById('musicaFechar');
+    const volumeEl = document.getElementById('musicaVolume');
 
     const audio = new Audio();
     audio.preload = 'auto';
 
-    // Reserva espaço no fim da página para o player não cobrir conteúdo
     document.body.classList.add('com-player-musica');
     if (!document.querySelector('footer')) {
         document.body.classList.add('sem-rodape');
@@ -259,46 +306,75 @@ function inicializarPlayerMusica() {
     let volume = parseFloat(lerSessao(CHAVE_VOLUME));
     if (!(volume >= 0 && volume <= 1)) volume = 0.3;
 
-    // Na primeira visita o padrão é começar tocando
     const deveTocar = lerSessao(CHAVE_TOCANDO) !== '0';
-    const estavaOculto = lerSessao(CHAVE_OCULTO) === '1';
 
     audio.volume = volume;
-    volumeSlider.value = volume;
-    atualizarIconeVolume(volume);
+    volumeEl.value = volume;
 
-    // Posição a buscar logo após os metadados carregarem
     let alvoTempo = 0;
-
-    // ----- aviso de toque (quando o navegador bloqueia o som) -----
-
-    let avisoEl = null;
     let gestosArmados = false;
 
-    function mostrarAviso() {
-        // Se o visitante pausou de propósito, não insiste
-        if (lerSessao(CHAVE_TOCANDO) === '0') return;
-        if (lerSessao(CHAVE_OCULTO) === '1') return;
+    // ----- controles -----
 
-        if (!avisoEl) {
-            avisoEl = document.createElement('button');
-            avisoEl.type = 'button';
-            avisoEl.className = 'aviso-musica';
-            avisoEl.textContent = '🎵 Toque para ouvir a música';
-            avisoEl.addEventListener('click', tocar);
-            document.body.appendChild(avisoEl);
+    function nomeDaFaixa(indice) {
+        const info = NOMES_MUSICAS[indice];
+        if (info && info.nome) return info;
+        return { nome: 'Música ' + (indice + 1), artista: '' };
+    }
+
+    function carregarFaixa(indice, segundos) {
+        faixa = indice;
+        alvoTempo = segundos > 0 ? segundos : 0;
+        // O fragmento #t= faz o navegador já abrir na posição certa
+        audio.src = MUSICAS[indice] + (alvoTempo > 0 ? '#t=' + alvoTempo.toFixed(2) : '');
+
+        const info = nomeDaFaixa(indice);
+        faixaEl.textContent = info.nome;
+        statusEl.textContent = info.artista || ('Faixa ' + (indice + 1) + ' de ' + MUSICAS.length);
+
+        gravarSessao(CHAVE_FAIXA, indice);
+        gravarSessao(CHAVE_TEMPO, alvoTempo.toFixed(2));
+    }
+
+    function tocar() {
+        gravarSessao(CHAVE_TOCANDO, '1');
+        const promessa = audio.play();
+        if (promessa && promessa.catch) {
+            promessa.then(pararDePedirToque).catch(pedirToque);
         }
-        avisoEl.classList.add('visivel');
+    }
+
+    function pausar() {
+        gravarSessao(CHAVE_TOCANDO, '0');
+        audio.pause();
+        pararDePedirToque();
+    }
+
+    function proximaFaixa() {
+        carregarFaixa((faixa + 1) % MUSICAS.length, 0);
+        tocar();
+    }
+
+    function faixaAnterior() {
+        carregarFaixa((faixa - 1 + MUSICAS.length) % MUSICAS.length, 0);
+        tocar();
+    }
+
+    // ----- som bloqueado pelo navegador -----
+    // Em iPhone e iPad o navegador só libera som depois de um toque.
+    // Qualquer toque na página serve, então o botão só fica pulsando
+    // como aviso enquanto isso não acontece.
+
+    function pedirToque() {
+        if (lerSessao(CHAVE_TOCANDO) === '0') return;
+        botao.classList.add('pedindo-toque');
         armarGestos();
     }
 
-    function esconderAviso() {
-        if (avisoEl) avisoEl.classList.remove('visivel');
+    function pararDePedirToque() {
+        botao.classList.remove('pedindo-toque');
     }
 
-    // Qualquer toque/clique/tecla na página libera o som.
-    // Em iPhone e iPad o navegador só permite tocar som após um gesto,
-    // então este é o caminho normal nesses aparelhos.
     function armarGestos() {
         if (gestosArmados) return;
         gestosArmados = true;
@@ -313,55 +389,6 @@ function inicializarPlayerMusica() {
         };
 
         eventos.forEach(ev => document.addEventListener(ev, aoInteragir, true));
-    }
-
-    // ----- controles -----
-
-    function carregarFaixa(indice, segundos) {
-        faixa = indice;
-        alvoTempo = segundos > 0 ? segundos : 0;
-        // O fragmento #t= faz o navegador já abrir o arquivo na posição certa
-        audio.src = MUSICAS[indice] + (alvoTempo > 0 ? '#t=' + alvoTempo.toFixed(2) : '');
-        currentSong.textContent = 'Música ' + (indice + 1);
-        gravarSessao(CHAVE_FAIXA, indice);
-        gravarSessao(CHAVE_TEMPO, alvoTempo.toFixed(2));
-    }
-
-    function tocar() {
-        gravarSessao(CHAVE_TOCANDO, '1');
-        const promessa = audio.play();
-        if (promessa && promessa.catch) {
-            promessa.then(esconderAviso).catch(mostrarAviso);
-        }
-    }
-
-    function pausar() {
-        gravarSessao(CHAVE_TOCANDO, '0');
-        audio.pause();
-        esconderAviso();
-    }
-
-    function proximaFaixa() {
-        carregarFaixa((faixa + 1) % MUSICAS.length, 0);
-        tocar();
-    }
-
-    function faixaAnterior() {
-        carregarFaixa((faixa - 1 + MUSICAS.length) % MUSICAS.length, 0);
-        tocar();
-    }
-
-    function atualizarIconeVolume(valor) {
-        if (!volumeIcon) return;
-        if (valor == 0) {
-            volumeIcon.textContent = '🔇';
-        } else if (valor < 0.3) {
-            volumeIcon.textContent = '🔈';
-        } else if (valor < 0.6) {
-            volumeIcon.textContent = '🔉';
-        } else {
-            volumeIcon.textContent = '🔊';
-        }
     }
 
     // ----- eventos do áudio -----
@@ -380,25 +407,21 @@ function inicializarPlayerMusica() {
     });
 
     audio.addEventListener('play', () => {
-        playPauseBtn.textContent = '⏸️';
-        playerStatus.textContent = 'Tocando agora';
+        botao.classList.add('tocando');
+        btnTocar.textContent = '⏸';
         gravarSessao(CHAVE_TOCANDO, '1');
-        esconderAviso();
+        pararDePedirToque();
     });
 
     // Só mexe no visual: gravar '0' aqui faria a música não voltar
-    // depois de uma troca de página, porque o navegador dispara
-    // 'pause' ao descarregar o documento.
+    // depois de trocar de página, porque o navegador dispara 'pause'
+    // ao descarregar o documento.
     audio.addEventListener('pause', () => {
-        playPauseBtn.textContent = '▶️';
-        playerStatus.textContent = 'Pausado';
+        botao.classList.remove('tocando');
+        btnTocar.textContent = '▶';
     });
 
     audio.addEventListener('ended', proximaFaixa);
-
-    audio.addEventListener('error', () => {
-        playerStatus.textContent = 'Erro ao carregar';
-    });
 
     // Guarda a posição ~1x por segundo para retomar na próxima página
     let ultimoRegistro = 0;
@@ -415,76 +438,90 @@ function inicializarPlayerMusica() {
         }
     }
 
-    // pagehide cobre celular melhor que beforeunload
     window.addEventListener('pagehide', registrarPosicao);
     window.addEventListener('beforeunload', registrarPosicao);
     document.addEventListener('visibilitychange', registrarPosicao);
 
-    // ----- eventos dos botões -----
+    // ----- botões -----
 
-    playPauseBtn.addEventListener('click', () => {
-        if (audio.paused) {
+    function abrirPainel() {
+        painel.classList.add('aberto');
+    }
+
+    function fecharPainel() {
+        painel.classList.remove('aberto');
+    }
+
+    botao.addEventListener('click', () => {
+        // Se o som estava travado, o toque no botão já libera
+        if (botao.classList.contains('pedindo-toque')) {
             tocar();
-        } else {
-            pausar();
         }
+        painel.classList.contains('aberto') ? fecharPainel() : abrirPainel();
     });
 
-    nextBtn.addEventListener('click', proximaFaixa);
-    prevBtn.addEventListener('click', faixaAnterior);
+    btnFechar.addEventListener('click', fecharPainel);
 
-    volumeSlider.addEventListener('input', (e) => {
+    btnTocar.addEventListener('click', () => {
+        audio.paused ? tocar() : pausar();
+    });
+
+    btnProxima.addEventListener('click', proximaFaixa);
+    btnAnterior.addEventListener('click', faixaAnterior);
+
+    volumeEl.addEventListener('input', (e) => {
         const valor = parseFloat(e.target.value);
         audio.volume = valor;
         gravarSessao(CHAVE_VOLUME, valor);
-        atualizarIconeVolume(valor);
     });
 
-    closePlayer.addEventListener('click', () => {
-        player.style.display = 'none';
-        gravarSessao(CHAVE_OCULTO, '1');
-        pausar();
-        mostrarBotaoReabrir();
+    // Clicar fora fecha o painel
+    document.addEventListener('click', (e) => {
+        if (!painel.classList.contains('aberto')) return;
+        if (painel.contains(e.target) || botao.contains(e.target)) return;
+        fecharPainel();
     });
-
-    // Botão redondo para reabrir o player depois de fechado
-    let botaoReabrir = null;
-
-    function mostrarBotaoReabrir() {
-        if (!botaoReabrir) {
-            botaoReabrir = document.createElement('button');
-            botaoReabrir.type = 'button';
-            botaoReabrir.className = 'music-toggle';
-            botaoReabrir.textContent = '🎵';
-            botaoReabrir.setAttribute('aria-label', 'Reabrir a música');
-            botaoReabrir.setAttribute('title', 'Ouvir a música');
-            botaoReabrir.addEventListener('click', () => {
-                botaoReabrir.style.display = 'none';
-                player.style.display = '';
-                gravarSessao(CHAVE_OCULTO, '0');
-                tocar();
-            });
-            document.body.appendChild(botaoReabrir);
-        }
-        botaoReabrir.style.display = '';
-    }
 
     // ----- partida -----
 
     carregarFaixa(faixa, tempoInicial);
 
-    if (estavaOculto) {
-        player.style.display = 'none';
-        mostrarBotaoReabrir();
-    } else if (deveTocar) {
+    if (deveTocar) {
         tocar();
     } else {
-        playPauseBtn.textContent = '▶️';
-        playerStatus.textContent = 'Pausado';
+        btnTocar.textContent = '▶';
     }
 }
 
+// ---------- CONTAGEM DE VISITAS ----------
+// Uma linha na planilha por página aberta, no máximo uma vez por
+// página a cada visita. Vai depois do carregamento para não
+// disputar banda com as imagens.
+
+function registrarAcesso() {
+    const pagina = paginaAtual();
+    const chave = 'visita.' + pagina;
+
+    if (lerSessao(chave)) return;
+    gravarSessao(chave, '1');
+
+    const aparelho = window.matchMedia('(max-width: 820px)').matches
+        ? 'Celular'
+        : 'Computador';
+
+    enviarParaPlanilha({ tipo: 'acesso', pagina: pagina, aparelho: aparelho });
+}
+
+// ---------- PARTIDA ----------
+
 document.addEventListener('DOMContentLoaded', () => {
+    montarBarra();
     inicializarMenu();
     inicializarPlayerMusica();
+
+    if (window.requestIdleCallback) {
+        requestIdleCallback(registrarAcesso, { timeout: 6000 });
+    } else {
+        setTimeout(registrarAcesso, 2500);
+    }
 });

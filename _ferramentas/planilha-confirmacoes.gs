@@ -1,34 +1,36 @@
 /**
- * LISTA AUTOMÁTICA DE CONFIRMAÇÕES — Casamento Ester & Amauri
- * =========================================================
+ * PLANILHA DO CASAMENTO — Ester & Amauri
+ * =====================================
  *
  * Este arquivo NÃO faz parte do site. Ele é colado dentro de uma
- * Planilha Google (Extensões → Apps Script) e é o que recebe as
- * respostas da página de confirmação e preenche a planilha sozinho.
+ * Planilha Google (Extensões → Apps Script) e é o que recebe tudo
+ * o que acontece no site e preenche a planilha sozinho.
  *
  * O passo a passo da instalação está em COMO-CONFIGURAR.md,
  * nesta mesma pasta.
  *
- * O que ele faz:
- *   - Mantém a aba "Confirmações", com UMA LINHA POR PESSOA:
- *     Número | Nome | Confirmação | Mensagem | Data e hora
- *   - A coluna "Número" numera APENAS quem confirmou. Quem não vai
- *     fica sem número. Assim o último número da lista é o total de
- *     pessoas confirmadas para a festa.
- *   - Se a pessoa responder de novo COM O MESMO NOME, ATUALIZA a
- *     linha dela em vez de criar outra. É assim que dá para
- *     desconfirmar ou mudar de ideia — e a contagem se ajusta.
- *   - Mantém a aba "Resumo" com os totais sempre atualizados.
- *   - Guarda toda resposta na aba "Histórico", para vocês verem
- *     quem mudou de ideia e quando.
+ * ABAS QUE ELE MANTÉM
  *
- * NÃO HÁ ACOMPANHANTES: cada pessoa confirma a si mesma, uma por
- * uma. É isso que faz a contagem bater com o número real de
- * pessoas na festa.
+ *   Resumo        Totais de tudo, por fórmula, sempre atualizados.
  *
- * QUALQUER NOME É ACEITO. O convite é enviado por casa, com os
- * nomes dos convidados escritos na própria mensagem, então não faz
- * sentido o site conferir nome contra uma lista fechada.
+ *   Confirmações  Uma linha por pessoa:
+ *                 Número | Nome | Confirmação | Mensagem | Data e hora
+ *                 A coluna "Número" numera APENAS quem confirmou, então
+ *                 o maior número é o total de pessoas na festa. Responder
+ *                 de novo com o mesmo nome ATUALIZA a linha, e é assim
+ *                 que dá para desconfirmar.
+ *
+ *   Presentes     Quem presenteou, o que deu e quanto somou.
+ *
+ *   Mensagens     Recados deixados na página inicial.
+ *
+ *   Acessos       Uma linha por página visitada, para contar as visitas.
+ *
+ *   Histórico     Toda confirmação enviada, inclusive mudanças de ideia.
+ *
+ * NÃO HÁ ACOMPANHANTES: cada pessoa confirma a si mesma, uma por uma.
+ * QUALQUER NOME É ACEITO: o convite vai por casa, com os nomes escritos
+ * na própria mensagem.
  */
 
 // ---------------------------------------------------------------
@@ -39,6 +41,8 @@ var ABA_LISTA = 'Confirmações';
 var ABA_HISTORICO = 'Histórico';
 var ABA_RESUMO = 'Resumo';
 var ABA_MENSAGENS = 'Mensagens';
+var ABA_PRESENTES = 'Presentes';
+var ABA_ACESSOS = 'Acessos';
 
 var CABECALHO_LISTA = [
   'Número', 'Nome', 'Confirmação', 'Mensagem', 'Data e hora'
@@ -52,6 +56,14 @@ var CABECALHO_MENSAGENS = [
   'Número', 'Data e hora', 'Nome', 'E-mail', 'Mensagem'
 ];
 
+var CABECALHO_PRESENTES = [
+  'Número', 'Data e hora', 'Nome', 'Presentes escolhidos', 'Valor total', 'Qtd.'
+];
+
+var CABECALHO_ACESSOS = [
+  'Data e hora', 'Página', 'Aparelho'
+];
+
 // Colunas da aba "Confirmações"
 var COL_NUMERO = 1;
 var COL_NOME = 2;
@@ -59,18 +71,40 @@ var COL_CONFIRMACAO = 3;
 
 var FUSO = 'America/Sao_Paulo';
 
-// Limites de tamanho. O endereço do script é público (fica no
-// código do site), então sem lista de convidados estes limites são
-// o que impede alguém de encher a planilha de lixo.
+// Limites de tamanho. O endereço do script é público (fica no código
+// do site), então estes limites são o que impede alguém de encher a
+// planilha de lixo.
 var MIN_NOME = 3;
 var MAX_NOME = 80;
 var MAX_MENSAGEM = 1000;
+var MAX_PRESENTES = 1500;
+var MAX_VALOR = 1000000;
+
+// Versão do desenho da aba Resumo. Mudou o desenho, muda o número e
+// a aba é refeita na próxima resposta.
+var VERSAO_RESUMO = 'v3';
 
 // ---------------------------------------------------------------
-// ENTRADA: é aqui que o site entrega as respostas
+// ENTRADA: é aqui que o site entrega tudo
 // ---------------------------------------------------------------
 
 function doPost(e) {
+  var dados;
+
+  try {
+    dados = JSON.parse(e.postData.contents);
+  } catch (erro) {
+    return responder({ ok: false, erro: 'dados inválidos' });
+  }
+
+  var tipo = limpar(dados.tipo).toLowerCase();
+
+  // Visita de página: é o caso mais frequente de longe, então passa
+  // antes de tudo e sem trava, para não segurar fila.
+  if (tipo === 'acesso') {
+    return guardarAcesso(dados);
+  }
+
   var trava = LockService.getScriptLock();
 
   // Sem isto, duas pessoas respondendo no mesmo segundo podem
@@ -82,62 +116,9 @@ function doPost(e) {
   }
 
   try {
-    var dados = JSON.parse(e.postData.contents);
-
-    // A página inicial manda as mensagens para os noivos por aqui
-    // também, marcadas com tipo "mensagem".
-    if (limpar(dados.tipo).toLowerCase() === 'mensagem') {
-      return guardarMensagem(dados);
-    }
-
-    var nome = arrumarNome(dados.nome);
-    var status = limpar(dados.status).toUpperCase();
-    var mensagem = limpar(dados.mensagem).slice(0, MAX_MENSAGEM);
-
-    if (nome.length < MIN_NOME || nome.length > MAX_NOME || !temLetra(nome)) {
-      return responder({ ok: false, erro: 'nome inválido' });
-    }
-
-    if (status !== 'SIM' && status !== 'NAO') {
-      return responder({ ok: false, erro: 'confirmação inválida' });
-    }
-
-    if (temLink(nome) || temLink(mensagem)) {
-      return responder({ ok: false, erro: 'conteúdo não permitido' });
-    }
-
-    var agora = Utilities.formatDate(new Date(), FUSO, 'dd/MM/yyyy HH:mm:ss');
-    var confirmacao = (status === 'SIM') ? 'Sim' : 'Não';
-
-    var planilha = SpreadsheetApp.getActiveSpreadsheet();
-    var aba = pegarAba(planilha, ABA_LISTA, CABECALHO_LISTA);
-
-    var linha = procurarLinha(aba, nome);
-    var novo = (linha === -1);
-
-    if (novo) {
-      linha = aba.getLastRow() + 1;
-    }
-
-    // O número sai da renumeração logo abaixo
-    aba.getRange(linha, 1, 1, CABECALHO_LISTA.length).setValues([[
-      '', nome, confirmacao, mensagem, agora
-    ]]);
-
-    var confirmados = renumerar(aba);
-    var numero = aba.getRange(linha, COL_NUMERO).getValue();
-
-    var historico = pegarAba(planilha, ABA_HISTORICO, CABECALHO_HISTORICO);
-    historico.appendRow([agora, nome, confirmacao, mensagem]);
-
-    montarResumo(planilha);
-
-    return responder({
-      ok: true,
-      numero: numero === '' ? null : numero,
-      confirmados: confirmados,
-      atualizado: !novo
-    });
+    if (tipo === 'mensagem') return guardarMensagem(dados);
+    if (tipo === 'presente') return guardarPresente(dados);
+    return guardarConfirmacao(dados);
 
   } catch (erro) {
     return responder({ ok: false, erro: String(erro) });
@@ -147,60 +128,65 @@ function doPost(e) {
   }
 }
 
-// Só serve para testar se a publicação deu certo. Não devolve a
-// lista: ela é particular de vocês.
+// Só serve para testar se a publicação deu certo. Não devolve nada
+// da planilha: ela é particular de vocês.
 function doGet() {
-  return responder({ ok: true, servico: 'confirmacoes' });
+  return responder({ ok: true, servico: 'casamento' });
 }
 
 // ---------------------------------------------------------------
-// MENSAGENS PARA OS NOIVOS
-//
-// Vêm do formulário no fim da página inicial. Ficam na aba
-// "Mensagens", uma embaixo da outra, para vocês lerem todas num
-// lugar só em vez de abrir e-mail por e-mail.
-//
-// Aqui cada envio é SEMPRE uma linha nova: se a pessoa escrever
-// duas vezes, são dois recados diferentes, e não uma correção.
+// CONFIRMAÇÃO DE PRESENÇA
 // ---------------------------------------------------------------
 
-function guardarMensagem(dados) {
+function guardarConfirmacao(dados) {
   var nome = arrumarNome(dados.nome);
-  var email = limpar(dados.email).slice(0, 120);
+  var status = limpar(dados.status).toUpperCase();
   var mensagem = limpar(dados.mensagem).slice(0, MAX_MENSAGEM);
 
-  if (nome.length < MIN_NOME || nome.length > MAX_NOME || !temLetra(nome)) {
+  if (!nomeAceitavel(nome)) {
     return responder({ ok: false, erro: 'nome inválido' });
   }
 
-  if (!mensagem) {
-    return responder({ ok: false, erro: 'mensagem vazia' });
+  if (status !== 'SIM' && status !== 'NAO') {
+    return responder({ ok: false, erro: 'confirmação inválida' });
   }
 
   if (temLink(nome) || temLink(mensagem)) {
     return responder({ ok: false, erro: 'conteúdo não permitido' });
   }
 
-  var planilha = SpreadsheetApp.getActiveSpreadsheet();
-  var aba = pegarAba(planilha, ABA_MENSAGENS, CABECALHO_MENSAGENS);
-  var agora = Utilities.formatDate(new Date(), FUSO, 'dd/MM/yyyy HH:mm:ss');
-  var numero = aba.getLastRow();
+  var agora = carimbo();
+  var confirmacao = (status === 'SIM') ? 'Sim' : 'Não';
 
-  // Primeira mensagem: deixa a coluna do recado larga o bastante
-  if (numero === 1) {
-    aba.setColumnWidth(1, 70);
-    aba.setColumnWidth(2, 150);
-    aba.setColumnWidth(3, 200);
-    aba.setColumnWidth(4, 200);
-    aba.setColumnWidth(5, 600);
+  var planilha = SpreadsheetApp.getActiveSpreadsheet();
+  var aba = pegarAba(planilha, ABA_LISTA, CABECALHO_LISTA);
+
+  var linha = procurarLinha(aba, nome);
+  var novo = (linha === -1);
+
+  if (novo) {
+    linha = aba.getLastRow() + 1;
   }
 
-  aba.appendRow([numero, agora, nome, email, mensagem]);
+  // O número sai da renumeração logo abaixo
+  aba.getRange(linha, 1, 1, CABECALHO_LISTA.length).setValues([[
+    '', nome, confirmacao, mensagem, agora
+  ]]);
 
-  // Sem isto os recados longos viram uma linha só, ilegível
-  aba.getRange(numero + 1, 5).setWrap(true);
+  var confirmados = renumerar(aba);
+  var numero = aba.getRange(linha, COL_NUMERO).getValue();
 
-  return responder({ ok: true, numero: numero });
+  var historico = pegarAba(planilha, ABA_HISTORICO, CABECALHO_HISTORICO);
+  historico.appendRow([agora, nome, confirmacao, mensagem]);
+
+  montarResumo(planilha);
+
+  return responder({
+    ok: true,
+    numero: numero === '' ? null : numero,
+    confirmados: confirmados,
+    atualizado: !novo
+  });
 }
 
 // ---------------------------------------------------------------
@@ -239,36 +225,214 @@ function renumerar(aba) {
 }
 
 // ---------------------------------------------------------------
+// MENSAGENS PARA OS NOIVOS
+//
+// Vêm do formulário no fim da página inicial. Cada envio é SEMPRE
+// uma linha nova: se a pessoa escrever duas vezes, são dois recados
+// diferentes, e não uma correção.
+// ---------------------------------------------------------------
+
+function guardarMensagem(dados) {
+  var nome = arrumarNome(dados.nome);
+  var email = limpar(dados.email).slice(0, 120);
+  var mensagem = limpar(dados.mensagem).slice(0, MAX_MENSAGEM);
+
+  if (!nomeAceitavel(nome)) {
+    return responder({ ok: false, erro: 'nome inválido' });
+  }
+
+  if (!mensagem) {
+    return responder({ ok: false, erro: 'mensagem vazia' });
+  }
+
+  if (temLink(nome) || temLink(mensagem)) {
+    return responder({ ok: false, erro: 'conteúdo não permitido' });
+  }
+
+  var planilha = SpreadsheetApp.getActiveSpreadsheet();
+  var aba = pegarAba(planilha, ABA_MENSAGENS, CABECALHO_MENSAGENS);
+  var numero = aba.getLastRow();
+
+  if (numero === 1) {
+    aba.setColumnWidth(1, 70);
+    aba.setColumnWidth(2, 150);
+    aba.setColumnWidth(3, 200);
+    aba.setColumnWidth(4, 200);
+    aba.setColumnWidth(5, 600);
+  }
+
+  aba.appendRow([numero, carimbo(), nome, email, mensagem]);
+
+  // Sem isto os recados longos viram uma linha só, ilegível
+  aba.getRange(numero + 1, 5).setWrap(true);
+
+  montarResumo(planilha);
+
+  return responder({ ok: true, numero: numero });
+}
+
+// ---------------------------------------------------------------
+// PRESENTES
+//
+// Vem da página de finalizar presente, onde a pessoa escreve o nome
+// antes de ver as formas de pagamento.
+//
+// ATENÇÃO: isto registra o que a pessoa ESCOLHEU, não o que ela
+// pagou. O site não tem como saber se o Pix caiu. Confira sempre
+// contra o extrato do Mercado Pago.
+// ---------------------------------------------------------------
+
+function guardarPresente(dados) {
+  var nome = arrumarNome(dados.nome);
+  var itens = limpar(dados.itens).slice(0, MAX_PRESENTES);
+  var total = Number(dados.total);
+  var quantidade = Number(dados.quantidade);
+
+  if (!nomeAceitavel(nome)) {
+    return responder({ ok: false, erro: 'nome inválido' });
+  }
+
+  if (!itens) {
+    return responder({ ok: false, erro: 'nenhum presente informado' });
+  }
+
+  if (!isFinite(total) || total < 0 || total > MAX_VALOR) {
+    return responder({ ok: false, erro: 'valor inválido' });
+  }
+
+  if (!isFinite(quantidade) || quantidade < 1 || quantidade > 200) {
+    quantidade = itens.split(';').length;
+  }
+
+  if (temLink(nome) || temLink(itens)) {
+    return responder({ ok: false, erro: 'conteúdo não permitido' });
+  }
+
+  var planilha = SpreadsheetApp.getActiveSpreadsheet();
+  var aba = pegarAba(planilha, ABA_PRESENTES, CABECALHO_PRESENTES);
+  var numero = aba.getLastRow();
+
+  if (numero === 1) {
+    aba.setColumnWidth(1, 70);
+    aba.setColumnWidth(2, 150);
+    aba.setColumnWidth(3, 210);
+    aba.setColumnWidth(4, 520);
+    aba.setColumnWidth(5, 130);
+    aba.setColumnWidth(6, 70);
+  }
+
+  aba.appendRow([numero, carimbo(), nome, itens, total, quantidade]);
+
+  var linha = numero + 1;
+  aba.getRange(linha, 4).setWrap(true);
+  aba.getRange(linha, 5).setNumberFormat('R$ #,##0.00');
+
+  montarResumo(planilha);
+
+  return responder({ ok: true, numero: numero, total: total });
+}
+
+// ---------------------------------------------------------------
+// ACESSOS
+//
+// Uma linha por página aberta. O site manda no máximo uma vez por
+// página a cada visita, então a conta é de visitas, não de recargas.
+//
+// Aqui não há trava nem Resumo: é o caminho mais usado e precisa ser
+// o mais leve possível, para não gastar a cota do Apps Script.
+// ---------------------------------------------------------------
+
+function guardarAcesso(dados) {
+  var pagina = limpar(dados.pagina).slice(0, 60);
+  var aparelho = limpar(dados.aparelho).slice(0, 20);
+
+  if (!pagina) pagina = '(desconhecida)';
+  if (aparelho !== 'Celular' && aparelho !== 'Computador') aparelho = '(outro)';
+
+  var planilha = SpreadsheetApp.getActiveSpreadsheet();
+  var aba = pegarAba(planilha, ABA_ACESSOS, CABECALHO_ACESSOS);
+
+  aba.appendRow([carimbo(), pagina, aparelho]);
+
+  return responder({ ok: true });
+}
+
+// ---------------------------------------------------------------
 // RESUMO
-// Aba com os totais, para não precisar contar na mão.
+// Aba com todos os totais, para não precisar contar na mão.
 // As fórmulas se atualizam sozinhas.
 // ---------------------------------------------------------------
 
 function montarResumo(planilha) {
   var aba = planilha.getSheetByName(ABA_RESUMO);
 
-  // Já existe e já está montada: não precisa refazer
-  if (aba && limpar(aba.getRange(1, 1).getValue())) return aba;
+  // Já está montada nesta versão: não precisa refazer
+  if (aba && limpar(aba.getRange(14, 1).getValue()) === VERSAO_RESUMO) {
+    return aba;
+  }
 
   if (!aba) {
     aba = planilha.insertSheet(ABA_RESUMO, 0);
   }
 
-  aba.getRange(1, 1, 3, 1).setValues([
-    ['Pessoas confirmadas'],
-    ['Não poderão ir'],
-    ['Total de respostas']
-  ]);
+  // As fórmulas apontam para estas abas, então todas precisam existir
+  pegarAba(planilha, ABA_LISTA, CABECALHO_LISTA);
+  pegarAba(planilha, ABA_PRESENTES, CABECALHO_PRESENTES);
+  pegarAba(planilha, ABA_MENSAGENS, CABECALHO_MENSAGENS);
+  pegarAba(planilha, ABA_ACESSOS, CABECALHO_ACESSOS);
 
-  aba.getRange(1, 2).setFormula("=COUNTIF('" + ABA_LISTA + "'!C2:C,\"Sim\")");
-  aba.getRange(2, 2).setFormula("=COUNTIF('" + ABA_LISTA + "'!C2:C,\"Não\")");
-  aba.getRange(3, 2).setFormula("=COUNTA('" + ABA_LISTA + "'!B2:B)");
+  aba.clear();
 
-  aba.getRange(1, 1, 3, 1).setFontWeight('bold');
-  aba.getRange(1, 2, 3, 1).setFontSize(18).setFontWeight('bold');
-  aba.getRange(1, 1).setBackground('#fbd362');
-  aba.setColumnWidth(1, 220);
-  aba.setColumnWidth(2, 110);
+  var L = "'" + ABA_LISTA + "'";
+  var P = "'" + ABA_PRESENTES + "'";
+  var M = "'" + ABA_MENSAGENS + "'";
+  var A = "'" + ABA_ACESSOS + "'";
+
+  // [rótulo, fórmula]. Fórmula nula = título de bloco.
+  var blocos = [
+    ['PRESENÇA', null],
+    ['Pessoas confirmadas', '=COUNTIF(' + L + '!C2:C,"Sim")'],
+    ['Não poderão ir', '=COUNTIF(' + L + '!C2:C,"Não")'],
+    ['Total de respostas', '=COUNTA(' + L + '!B2:B)'],
+    ['', ''],
+    ['PRESENTES', null],
+    ['Presentes registrados', '=COUNTA(' + P + '!C2:C)'],
+    ['Valor total escolhido', '=SUM(' + P + '!E2:E)'],
+    ['', ''],
+    ['SITE', null],
+    ['Visitas às páginas', '=COUNTA(' + A + '!A2:A)'],
+    ['Recados recebidos', '=COUNTA(' + M + '!C2:C)']
+  ];
+
+  for (var i = 0; i < blocos.length; i++) {
+    var linha = i + 1;
+    var rotulo = blocos[i][0];
+    var formula = blocos[i][1];
+
+    if (!rotulo) continue;
+
+    aba.getRange(linha, 1).setValue(rotulo);
+
+    if (formula === null) {
+      aba.getRange(linha, 1, 1, 2)
+        .setFontWeight('bold')
+        .setFontSize(10)
+        .setFontColor('#8a5a00')
+        .setBackground('#fbd362');
+    } else {
+      aba.getRange(linha, 2).setFormula(formula).setFontSize(16).setFontWeight('bold');
+    }
+  }
+
+  // linha 8 é "Valor total escolhido"
+  aba.getRange(8, 2).setNumberFormat('R$ #,##0.00');
+
+  // marca da versão, em branco sobre branco para não poluir
+  aba.getRange(14, 1).setValue(VERSAO_RESUMO).setFontColor('#ffffff');
+
+  aba.setColumnWidth(1, 230);
+  aba.setColumnWidth(2, 140);
+  aba.setHiddenGridlines(true);
 
   return aba;
 }
@@ -283,6 +447,10 @@ function responder(objeto) {
     .setMimeType(ContentService.MimeType.JSON);
 }
 
+function carimbo() {
+  return Utilities.formatDate(new Date(), FUSO, 'dd/MM/yyyy HH:mm:ss');
+}
+
 function limpar(valor) {
   if (valor === null || valor === undefined) return '';
   return String(valor).trim();
@@ -291,6 +459,10 @@ function limpar(valor) {
 // Tira espaços repetidos mas preserva a grafia de quem digitou
 function arrumarNome(valor) {
   return limpar(valor).replace(/\s+/g, ' ');
+}
+
+function nomeAceitavel(nome) {
+  return nome.length >= MIN_NOME && nome.length <= MAX_NOME && temLetra(nome);
 }
 
 function temLetra(texto) {

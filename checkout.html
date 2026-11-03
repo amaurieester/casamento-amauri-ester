@@ -62,9 +62,29 @@
 
             <!-- COLUNA DIREITA: PAGAMENTO -->
             <div class="checkout-payment">
-                <div class="payment-card">
+                <!-- QUEM ESTÁ PRESENTEANDO -->
+                <div class="payment-card" id="cartaoIdentificacao">
+                    <h2>Quem está presenteando?</h2>
+                    <p class="identificacao-texto">
+                        Escreva seu nome para sabermos de quem veio o presente.
+                        Sem isso ele chega até nós sem remetente.
+                    </p>
+
+                    <input type="text" id="nomePresenteador" class="campo-nome"
+                        placeholder="Seu nome completo" autocomplete="name">
+
+                    <p class="identificacao-erro" id="erroNome"></p>
+
+                    <button class="btn" id="btnIdentificar" type="button" style="width: 100%;">
+                        Continuar para o pagamento
+                    </button>
+                </div>
+
+                <div class="payment-card" id="cartaoPagamento" style="display: none;">
+                    <p class="identificacao-ok" id="avisoRegistrado"></p>
+
                     <h2>Forma de Pagamento</h2>
-                    
+
                     <div class="payment-options">
                         <button class="payment-btn active" onclick="mostrarPix()" id="btnPix">
                             Pix

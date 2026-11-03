@@ -484,3 +484,61 @@ footer {
         padding: 1.5rem;
     }
 }
+
+/* ============================================================
+   QUEM ESTA PRESENTEANDO
+   Pergunta o nome antes de mostrar as formas de pagamento, para
+   o presente nao chegar sem remetente.
+   ============================================================ */
+
+.identificacao-texto {
+    color: var(--cinza-claro);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-bottom: 1.3rem;
+}
+
+.campo-nome {
+    width: 100%;
+    padding: 1rem 1.1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    color: var(--cinza);
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    border-radius: 10px;
+    background: var(--branco);
+    transition: var(--transicao);
+}
+
+.campo-nome:focus {
+    outline: none;
+    border-color: var(--rosa);
+    box-shadow: 0 0 0 3px rgba(224, 24, 76, 0.1);
+}
+
+.identificacao-erro {
+    display: none;
+    color: var(--erro);
+    font-size: 0.85rem;
+    margin: 0.7rem 0 0;
+}
+
+.identificacao-ok {
+    display: none;
+    background: rgba(76, 175, 80, 0.1);
+    color: #2e7d32;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 1.4rem;
+}
+
+#cartaoIdentificacao .btn {
+    margin-top: 1.3rem;
+}
+
+#cartaoIdentificacao .btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}

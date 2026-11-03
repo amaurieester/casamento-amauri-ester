@@ -578,6 +578,14 @@ function finalizarCompra() {
 // ======================================================
 
 document.addEventListener("DOMContentLoaded", function () {
+    // O carrinho passa a morar na barra superior, montada pelo
+    // common.js. Antes ele flutuava no canto e ficava escondido
+    // atrás do player de música.
+    const barraAcoes = document.getElementById("barraAcoes");
+    if (barraAcoes && cartToggleBtn) {
+        barraAcoes.appendChild(cartToggleBtn);
+    }
+
     renderizarPresentes();
     atualizarCarrinhoDOM();
 });
