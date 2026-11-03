@@ -13,6 +13,15 @@
     --borda-redonda: 24px;
     --sucesso: #4CAF50;
     --erro: #f44336;
+
+    /* Estas tres eram usadas no CSS mas nunca tinham sido definidas.
+       A pior delas era --laranja-claro: o botao "Copiar Chave Pix"
+       pede um degrade com ela, e sem a cor o degrade fica invalido,
+       o fundo some e sobrava texto branco sobre cartao branco — o
+       botao ficava invisivel. */
+    --laranja-claro: #f89a4d;
+    --azul: #1976d2;
+    --coracao: #e0184c;
 }
 
 * {

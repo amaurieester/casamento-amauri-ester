@@ -147,6 +147,17 @@
                     <div class="cartao-container" id="cartaoContainer" style="display: none; text-align: center; padding: 2rem 0;">
                         <h3>Pagamento Seguro</h3>
                         <p style="margin: 1rem 0; color: #555;">Você será redirecionado para o ambiente seguro do Mercado Pago.</p>
+
+                        <!-- No cartão o valor não vai junto: o link do Mercado Pago
+                             abre pedindo "insira o valor a pagar" e não aceita o
+                             valor pela URL. Então o valor fica aqui, com um botão
+                             para copiar, em vez de a pessoa ter de voltar. -->
+                        <div class="cartao-valor" id="cartaoValor" hidden>
+                            <p class="cartao-valor-texto">Na tela do Mercado Pago, digite o valor de</p>
+                            <p class="cartao-valor-numero" id="cartaoValorNumero"></p>
+                            <button type="button" class="copy-btn" id="btnCopiarValor">Copiar o valor</button>
+                        </div>
+
                         <a href="https://link.mercadopago.com.br/presenteamaurieester" target="_blank" class="btn" style="display: inline-block; background: #009ee3; color: white; text-decoration: none; font-weight: bold; border-radius: 8px;">
                             Pagar com Mercado Pago
                         </a>

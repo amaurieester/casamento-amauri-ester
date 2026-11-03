@@ -349,13 +349,15 @@ body {
             flex-direction: column;
         }
 
+/* Sem min-height: ele reservava 2,8 linhas mesmo para "Jarras" e
+   abria um buraco entre o nome e o preco. O alinhamento dos cartoes
+   agora vem do botao, que leva o margin-top: auto. */
 .presente-titulo {
             font-weight: 500;
             font-size: 0.95rem;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.45rem;
             color: var(--cinza);
             line-height: 1.45;
-            min-height: 2.8em;
         }
 
 .presente-valor {
@@ -363,12 +365,13 @@ body {
             font-weight: 600;
             font-size: 1.45rem;
             color: var(--laranja);
-            margin: auto 0 0.9rem;
+            margin: 0 0 0.9rem;
         }
 
 /* Contorno em vez de preenchido: com três por linha, três botões
    em degradê competiam entre si e com as fotos dos presentes. */
 .presente-card .btn {
+            margin-top: auto;
             background: transparent;
             color: var(--rosa);
             border: 2px solid var(--rosa);
@@ -721,8 +724,7 @@ body {
 
     .presente-titulo {
         font-size: 0.8rem;
-        margin-bottom: 0.6rem;
-        min-height: 3.5em;
+        margin-bottom: 0.35rem;
     }
 
     .presente-valor {
@@ -791,13 +793,11 @@ body {
     
     .presente-titulo {
         font-size: 0.78rem;
-        min-height: 3.6em;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.3rem;
     }
     
     .presente-valor {
         font-size: 1.15rem;
         margin-bottom: 0.6rem;
-        padding-top: 0.8rem;
     }
 }

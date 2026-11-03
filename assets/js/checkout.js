@@ -34,15 +34,49 @@ function prepararPix() {
 
     // O QR desenhado tem de bater com o copia e cola. Se a biblioteca
     // não carregar, a imagem antiga continua valendo — mas ela não
-    // traz valor, e o aviso precisa dizer isso.
+    // traz valor, e aí o aviso precisa aparecer. Deu certo, não se
+    // escreve nada: o valor já está no resumo logo acima.
     const desenhou = desenharQrPix(caixaQr, codigo);
 
     if (aviso) {
         aviso.textContent = desenhou
-            ? 'Valor já incluído: ' + emReais(total)
+            ? ''
             : 'Digite o valor de ' + emReais(total) + ' no aplicativo do banco.';
         aviso.classList.toggle('pix-valor-aviso', !desenhou);
     }
+
+    prepararCartao(total);
+}
+
+// No cartão o valor não acompanha: o link do Mercado Pago é do tipo
+// "insira o valor a pagar" e ignora qualquer valor passado na URL
+// (testado com amount, valor, price e transaction_amount). O melhor
+// que dá para fazer é deixar o número à mão, pronto para copiar.
+function prepararCartao(total) {
+    const caixa = document.getElementById('cartaoValor');
+    const numero = document.getElementById('cartaoValorNumero');
+    const botao = document.getElementById('btnCopiarValor');
+
+    if (!caixa || !numero || !botao) return;
+
+    numero.textContent = emReais(total);
+    caixa.hidden = false;
+
+    botao.addEventListener('click', () => {
+        // Só os dígitos: é o que o campo do Mercado Pago aceita
+        const valor = total.toFixed(2).replace('.', ',');
+
+        const avisar = () => {
+            botao.textContent = 'Valor copiado!';
+            setTimeout(() => { botao.textContent = 'Copiar o valor'; }, 3000);
+        };
+
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(valor).then(avisar).catch(() => copiarFallback(valor));
+        } else {
+            copiarFallback(valor);
+        }
+    });
 }
 
 // ======================================================

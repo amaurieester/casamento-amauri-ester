@@ -563,3 +563,30 @@ footer {
     font-weight: 600;
     font-size: 0.92rem;
 }
+
+/* Valor a digitar na tela do Mercado Pago */
+.cartao-valor {
+    margin: 1.2rem auto 1.6rem;
+    max-width: 320px;
+    background: var(--fundo);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.cartao-valor-texto {
+    margin: 0;
+    color: var(--cinza-claro);
+    font-size: 0.9rem;
+}
+
+.cartao-valor-numero {
+    margin: 0.2rem 0 0.8rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--rosa);
+}
+
+.cartao-valor .copy-btn {
+    width: 100%;
+}

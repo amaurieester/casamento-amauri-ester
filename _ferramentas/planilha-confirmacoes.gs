@@ -45,7 +45,7 @@ var ABA_PRESENTES = 'Presentes';
 var ABA_ACESSOS = 'Acessos';
 
 var CABECALHO_LISTA = [
-  'Número', 'Nome', 'Confirmação', 'Mensagem', 'Data e hora'
+  'Número', 'Nome', 'Confirmação', 'Mensagem', 'Data e hora', 'Observação'
 ];
 
 var CABECALHO_HISTORICO = [
@@ -68,6 +68,7 @@ var CABECALHO_ACESSOS = [
 var COL_NUMERO = 1;
 var COL_NOME = 2;
 var COL_CONFIRMACAO = 3;
+var COL_OBSERVACAO = 6;
 
 var FUSO = 'America/Sao_Paulo';
 
@@ -164,14 +165,36 @@ function guardarConfirmacao(dados) {
   var linha = procurarLinha(aba, nome);
   var novo = (linha === -1);
 
+  // Nome repetido NÃO vira linha nova: a resposta cai em cima da
+  // que já existia. É isso que impede uma pessoa que respondeu duas
+  // vezes de ser contada duas vezes.
+  //
+  // Para a repetição não ficar invisível, a coluna Observação conta
+  // quantas vezes aquele nome respondeu e avisa que o que vale é a
+  // última. As respostas anteriores continuam todas no Histórico.
+  var vezes = 1;
+  var observacao = '';
+
   if (novo) {
     linha = aba.getLastRow() + 1;
+
+  } else {
+    var antes = limpar(aba.getRange(linha, COL_OBSERVACAO).getValue());
+    var conta = antes.match(/(\d+)\s*vezes/);
+    vezes = conta ? (parseInt(conta[1], 10) + 1) : 2;
+
+    observacao = 'Respondeu ' + vezes + ' vezes — vale esta, de ' + agora +
+                 '. Não foi contada duas vezes. As anteriores estão no Histórico.';
   }
 
   // O número sai da renumeração logo abaixo
   aba.getRange(linha, 1, 1, CABECALHO_LISTA.length).setValues([[
-    '', nome, confirmacao, mensagem, agora
+    '', nome, confirmacao, mensagem, agora, observacao
   ]]);
+
+  if (observacao) {
+    aba.getRange(linha, COL_OBSERVACAO).setWrap(true).setFontColor('#b06000');
+  }
 
   var confirmados = renumerar(aba);
   var numero = aba.getRange(linha, COL_NUMERO).getValue();
@@ -185,7 +208,8 @@ function guardarConfirmacao(dados) {
     ok: true,
     numero: numero === '' ? null : numero,
     confirmados: confirmados,
-    atualizado: !novo
+    atualizado: !novo,
+    vezes: vezes
   });
 }
 
