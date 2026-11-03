@@ -751,6 +751,42 @@ p {
         }
 
 /* ============================================================
+   PRAZO PARA CONFIRMAR
+   Fica logo abaixo do título: é a informação que faz a pessoa
+   responder agora em vez de deixar para depois.
+   ============================================================ */
+
+.prazo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.5rem;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto 2rem;
+    padding: 0.7rem 1.5rem;
+    border: 2px solid var(--rosa);
+    border-radius: 50px;
+    background: rgba(224, 24, 76, 0.06);
+    text-align: center;
+}
+
+.prazo-rotulo {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cinza-claro);
+}
+
+.prazo strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--rosa);
+}
+
+/* ============================================================
    CELULAR
    Somados, body (20px) + .container (3rem) + .confirmation-result
    (2.5rem) comiam 108px de cada lado. Num aparelho de 390px
@@ -790,6 +826,16 @@ p {
     .back-to-site {
         margin-top: 2rem;
         padding-top: 1.5rem;
+    }
+
+    .prazo {
+        padding: 0.6rem 1.1rem;
+        margin-bottom: 1.5rem;
+        gap: 0.4rem;
+    }
+
+    .prazo strong {
+        font-size: 1.1rem;
     }
 
     /* Deixa o campo de nome do acompanhante o mais largo possível */

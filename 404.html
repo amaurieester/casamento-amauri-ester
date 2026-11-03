@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página não encontrada | Casamento Ester & Amauri</title>
+    <meta name="robots" content="noindex">
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/assets/css/common.css">
+
+    <style>
+        body {
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--rosa) 0%, var(--laranja) 55%, var(--amarelo) 100%);
+        }
+
+        .cartao {
+            background: var(--branco);
+            border-radius: var(--borda-redonda);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+            padding: clamp(2rem, 6vw, 3.5rem);
+            max-width: 540px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .monograma {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            border: 2px solid var(--rosa);
+            margin: 0 auto 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .monograma img {
+            width: 76px;
+            height: 76px;
+            object-fit: contain;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--rosa);
+            font-size: clamp(1.6rem, 5vw, 2.2rem);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: var(--cinza-claro);
+            margin-bottom: 1rem;
+            font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+        }
+
+        .atalhos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .atalhos a {
+            display: inline-block;
+            padding: 0.8rem 1.6rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 2px solid var(--rosa);
+            color: var(--rosa);
+            background: var(--branco);
+            transition: var(--transicao);
+        }
+
+        .atalhos a.principal {
+            background: linear-gradient(135deg, var(--rosa), var(--laranja));
+            color: var(--branco);
+            border-color: transparent;
+        }
+
+        .atalhos a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(224, 24, 76, 0.25);
+        }
+
+        .assinatura {
+            margin-top: 2.5rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--rosa);
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cartao">
+        <div class="monograma">
+            <img src="/fotos/monograma-amauri-ester.png" alt="Monograma Ester &amp; Amauri">
+        </div>
+
+        <h1>Essa página não existe</h1>
+
+        <p>
+            O endereço digitado não leva a lugar nenhum — deve ter faltado
+            uma letra pelo caminho.
+        </p>
+
+        <p>Escolha por onde quer seguir:</p>
+
+        <div class="atalhos">
+            <a class="principal" href="/">Início</a>
+            <a href="/evento.html">Evento</a>
+            <a href="/dicas-instrucoes.html">Dicas</a>
+            <a href="/confirmacao.html">Confirmação</a>
+            <a href="/presentes.html">Presentes</a>
+        </div>
+
+        <p class="assinatura">Ester &amp; Amauri · 12 de Junho de 2027</p>
+    </div>
+</body>
+
+</html>
