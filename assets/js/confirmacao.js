@@ -67,8 +67,6 @@ const loading = document.getElementById('loading');
 // ======================================================
 
 document.addEventListener('DOMContentLoaded', function () {
-    mostrarRespostaAnterior();
-
     // No celular, focar o campo abre o teclado e esconde metade da
     // página antes de a pessoa entender onde está.
     if (window.matchMedia('(min-width: 769px)').matches) {
@@ -86,9 +84,9 @@ document.addEventListener('DOMContentLoaded', function () {
 // ======================================================
 // RESPOSTA ANTERIOR
 //
-// Guardada só no navegador de quem respondeu. Serve para a pessoa
-// que volta ao site não achar que a resposta se perdeu e responder
-// de novo sem saber.
+// Fica guardada só no navegador de quem respondeu, para o caso de
+// voltarmos a usá-la. A tarja que avisava "neste aparelho já foi
+// respondido ..." foi retirada a pedido dos noivos.
 //
 // Na planilha, responder de novo com o mesmo nome não cria linha
 // nova: cai em cima da anterior, e por isso ninguém é contado duas
@@ -105,39 +103,6 @@ function guardarResposta(nome, status) {
             day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit'
         })
     }));
-}
-
-function lerResposta() {
-    try {
-        const guardado = lerLocal(CHAVE_RESPOSTA);
-        if (!guardado) return null;
-
-        const dados = JSON.parse(guardado);
-        return (dados && dados.nome) ? dados : null;
-
-    } catch (erro) {
-        return null;
-    }
-}
-
-function mostrarRespostaAnterior() {
-    const anterior = lerResposta();
-    const caixa = document.getElementById('respostaAnterior');
-
-    if (!anterior || !caixa) return;
-
-    const foi = anterior.status === 'confirmado'
-        ? 'que vai'
-        : 'que não vai poder ir';
-
-    caixa.innerHTML =
-        'Neste aparelho já foi respondido <strong>' + escaparHtml(anterior.nome) +
-        '</strong>, ' + foi + ', em ' + escaparHtml(anterior.quando) + '.' +
-        '<span class="resposta-anterior-nota">Responder de novo com o mesmo nome ' +
-        'substitui a resposta anterior — não conta a pessoa duas vezes. ' +
-        'Se for outra pessoa da casa, é só escrever o nome dela.</span>';
-
-    caixa.hidden = false;
 }
 
 function aoDigitarNome() {
