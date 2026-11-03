@@ -15,13 +15,17 @@
 // imagem e o copia e cola nunca mostrarem valores diferentes.
 // ======================================================
 
-// Copia e cola da conta do Mercado Pago, sem valor, como veio do
-// aplicativo. A chave é o e-mail. Antes daqui havia uma chave
-// aleatória que caía no Nubank; os noivos querem tudo numa conta só.
+// Conta do Mercado Pago, com a chave aleatória — a de e-mail ficava
+// escrita por extenso numa página pública, convite para spam.
+//
+// O campo 62 leva '***', que é o valor padrão de código estático sem
+// referência. O rótulo que vinha antes tinha sido gerado pelo
+// Mercado Pago junto com o QR da chave de e-mail e não valia para
+// esta chave.
 const PIX_BASE =
-    '00020126480014br.gov.bcb.pix0126eng.amaurimourao@gmail.com' +
+    '00020126580014br.gov.bcb.pix013601f777a9-7e61-4565-862a-d66708666f5e' +
     '5204000053039865802BR5921Amauri Mourao Pereira6009Sao Paulo' +
-    '62240520daqr210415759083406363047D54';
+    '62070503***6304F23A';
 
 const TAG_VALOR = '54';
 const TAG_CRC = '63';
