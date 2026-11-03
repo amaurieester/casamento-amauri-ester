@@ -742,3 +742,60 @@ p {
 @keyframes spin {
             to { transform: rotate(360deg); }
         }
+
+/* ============================================================
+   CELULAR
+   Somados, body (20px) + .container (3rem) + .confirmation-result
+   (2.5rem) comiam 108px de cada lado. Num aparelho de 390px
+   sobravam 174px para o texto, e tudo quebrava em três linhas.
+   ============================================================ */
+
+@media (max-width: 768px) {
+    body {
+        padding: 12px;
+    }
+
+    .container {
+        margin: 20px auto;
+        padding: 1.8rem 1.2rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.1rem;
+    }
+
+    .confirmation-result {
+        padding: 1.8rem 1.2rem;
+    }
+
+    .confirmation-result h3 {
+        font-size: 1.4rem;
+    }
+
+    .confirmation-result p {
+        font-size: 1rem;
+    }
+
+    .back-to-site {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1.5rem 1rem;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    .confirmation-result {
+        padding: 1.5rem 1rem;
+    }
+}
