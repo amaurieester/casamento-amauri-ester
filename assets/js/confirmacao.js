@@ -1,43 +1,33 @@
 // ======================================================
 // CONFIRMAÇÃO DE PRESENÇA
 //
-// Fluxo: nome → confirmar ou recusar → (se confirmou)
-// acompanhantes → mensagem → enviar.
+// Qualquer nome é aceito. O convite é enviado por casa, com os
+// nomes das pessoas convidadas na própria mensagem — por isso o
+// site não precisa (nem deve) conferir nome contra uma lista.
 //
-// A resposta vai para a planilha do Google (lista automática)
-// e para o Formspree (aviso por e-mail). Basta uma das duas
+// Fluxo: nome → confirmar ou recusar → (se confirmou) quem mais
+// vem → mensagem → enviar.
+//
+// A resposta vai para a planilha do Google (lista automática) e
+// para o Formspree (aviso por e-mail). Basta uma das duas
 // funcionar para a resposta ser dada como registrada.
 // ======================================================
 
 // Endereço do App da Web do Apps Script, terminado em /exec.
-// Vazio = o site usa só o e-mail, como antes.
 // O passo a passo está em _ferramentas/COMO-CONFIGURAR.md
 const URL_PLANILHA = "https://script.google.com/macros/s/AKfycbwYhozXKjN40H7AXrDzzUmhURJaRo1HTfuZTXegHCklbuXFqsQQWuwTlJii51VG2JU/exec";
 
 const URL_FORMSPREE = "https://formspree.io/f/xaqqdzwd";
 
-// LISTA DE CONVIDADOS (não aparece no site; serve para o
-// preenchimento automático e para validar o nome digitado).
-// Ao incluir alguém, inclua também em _ferramentas/planilha-confirmacoes.gs
-const listaConvidados = [
-    "Amauri de Jesus Pereira",
-    "Maria Rozângela Mourão Pereira",
-    "Vinícius Mourão Pereira",
-    "Deisy Aparecida Morais Benevides",
-    "Evaldo Rezende Benevides",
-    "Hélio Morais Benevides",
-    "Pedro Henrique de Freitas Reis",
-    "Rodrigo Batista de Assis",
-    "Samuel Henrique Pinto",
-    "Samuel Fernando Lima"
-];
+// Mínimo para o campo valer como nome preenchido
+const MINIMO_CARACTERES = 3;
 
 // ======================================================
-// COMPARAÇÃO DE NOMES
+// TEXTO
+// ======================================================
+
 // Ignora maiúsculas, acentos e espaços repetidos, para
-// "JOAO  silva" encontrar "João Silva".
-// ======================================================
-
+// "JOAO  silva" e "João Silva" contarem como a mesma pessoa.
 function normalizar(texto) {
     return String(texto || "")
         .trim()
@@ -47,9 +37,22 @@ function normalizar(texto) {
         .replace(/\s+/g, " ");
 }
 
-function nomeDaLista(nome) {
-    const alvo = normalizar(nome);
-    return listaConvidados.find(c => normalizar(c) === alvo) || null;
+// Tira espaços repetidos mas preserva a grafia de quem digitou
+function arrumarNome(texto) {
+    return String(texto || "").trim().replace(/\s+/g, " ");
+}
+
+function nomeValido(texto) {
+    const nome = arrumarNome(texto);
+
+    // Precisa ter ao menos uma letra: evita linha só com números
+    return nome.length >= MINIMO_CARACTERES && /[a-zA-ZÀ-ÿ]/.test(nome);
+}
+
+function escaparHtml(texto) {
+    const div = document.createElement('div');
+    div.textContent = String(texto || '');
+    return div.innerHTML;
 }
 
 // ======================================================
@@ -59,12 +62,10 @@ function nomeDaLista(nome) {
 let convidadoAtual = null;
 let acompanhantes = [];
 let teraAcompanhantes = false;
-let acompanhantesValidos = false;
 let statusPresenca = null; // 'confirmado' ou 'recusado'
 
 // ELEMENTOS DO DOM
 const nomeInput = document.getElementById('nomeInput');
-const autocompleteResults = document.getElementById('autocompleteResults');
 const statusMessage = document.getElementById('statusMessage');
 const namePreview = document.getElementById('namePreview');
 const previewNome = document.getElementById('previewNome');
@@ -87,97 +88,30 @@ document.addEventListener('DOMContentLoaded', function () {
         nomeInput.focus();
     }
 
-    nomeInput.addEventListener('input', function () {
-        const termo = this.value.trim();
-
-        if (termo.length >= 2) {
-            buscarConvidados(termo);
-        } else {
-            esconderAutocomplete();
-            resetarInterface();
-        }
-    });
+    // Os botões aparecem assim que há um nome digitado
+    nomeInput.addEventListener('input', aoDigitarNome);
 
     nomeInput.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            esconderAutocomplete();
-            verificarNome(this.value.trim());
-        }
-    });
-
-    document.addEventListener('click', function (e) {
-        if (!e.target.closest('.search-container')) {
-            esconderAutocomplete();
-        }
+        if (e.key === 'Enter') e.preventDefault();
     });
 });
 
-// ======================================================
-// PREENCHIMENTO AUTOMÁTICO DO NOME
-// ======================================================
+function aoDigitarNome() {
+    const nome = arrumarNome(nomeInput.value);
 
-function buscarConvidados(termo) {
-    const alvo = normalizar(termo);
-    mostrarAutocomplete(listaConvidados.filter(c => normalizar(c).includes(alvo)));
-}
+    // Só vale enquanto a pessoa ainda não escolheu sim/não
+    if (statusPresenca) return;
 
-function mostrarAutocomplete(resultados) {
-    if (resultados.length === 0) {
-        esconderAutocomplete();
+    if (!nomeValido(nome)) {
+        convidadoAtual = null;
+        namePreview.style.display = 'none';
+        confirmationButtons.style.display = 'none';
         return;
     }
 
-    autocompleteResults.innerHTML = '';
-
-    resultados.forEach(nome => {
-        const div = document.createElement('div');
-        div.className = 'autocomplete-result';
-
-        const interno = document.createElement('div');
-        interno.className = 'name';
-        interno.textContent = nome;
-        div.appendChild(interno);
-
-        div.addEventListener('click', function () {
-            nomeInput.value = nome;
-            esconderAutocomplete();
-            verificarNome(nome);
-        });
-
-        autocompleteResults.appendChild(div);
-    });
-
-    autocompleteResults.style.display = 'block';
-}
-
-function esconderAutocomplete() {
-    autocompleteResults.style.display = 'none';
-}
-
-// ======================================================
-// VERIFICAR O NOME DIGITADO
-// ======================================================
-
-function verificarNome(nome) {
-    const oficial = nomeDaLista(nome);
-
-    if (!oficial) {
-        mostrarMensagem(
-            `Poxa... esse nome <strong>"${escaparHtml(nome)}"</strong> não está na lista de convidados.<br>Favor entrar em contato com os noivos.`,
-            "error"
-        );
-        return;
-    }
-
+    convidadoAtual = nome;
     statusMessage.style.display = 'none';
-
-    // Guarda sempre a grafia oficial, para a planilha não encher
-    // de variações do mesmo nome.
-    convidadoAtual = oficial;
-    nomeInput.value = oficial;
-
-    previewNome.textContent = oficial;
+    previewNome.textContent = nome;
     namePreview.style.display = 'block';
     confirmationButtons.style.display = 'flex';
 }
@@ -194,23 +128,37 @@ function mostrarMensagem(texto, tipo) {
     }
 }
 
-function escaparHtml(texto) {
-    const div = document.createElement('div');
-    div.textContent = String(texto || '');
-    return div.innerHTML;
-}
-
 // ======================================================
 // CONFIRMAR OU RECUSAR
 // ======================================================
 
+function conferirNomeAntesDeSeguir() {
+    const nome = arrumarNome(nomeInput.value);
+
+    if (!nomeValido(nome)) {
+        mostrarMensagem('Por favor, digite seu nome completo antes de responder.', 'error');
+        nomeInput.focus();
+        return false;
+    }
+
+    convidadoAtual = nome;
+    nomeInput.value = nome;
+    previewNome.textContent = nome;
+    namePreview.style.display = 'block';
+    return true;
+}
+
 function confirmarPresenca() {
+    if (!conferirNomeAntesDeSeguir()) return;
+
     statusPresenca = 'confirmado';
     confirmationButtons.style.display = 'none';
     acompanhanteQuestion.style.display = 'block';
 }
 
 function recusarPresenca() {
+    if (!conferirNomeAntesDeSeguir()) return;
+
     statusPresenca = 'recusado';
     teraAcompanhantes = false;
     confirmationButtons.style.display = 'none';
@@ -251,144 +199,85 @@ function adicionarCampoAcompanhante() {
                 type="text"
                 class="form-input"
                 id="${id}"
-                placeholder="Digite o nome completo do acompanhante..."
+                placeholder="Nome completo..."
                 autocomplete="off"
             >
             <div class="validacao-status" id="status-${id}"></div>
             <button class="remove-acompanhante" type="button" onclick="removerAcompanhante('${id}')">×</button>
         </div>
         <div class="acompanhante-error" id="error-${id}"></div>
-        <div class="acompanhante-autocomplete" id="${id}-autocomplete"></div>
     `;
 
     acompanhantesList.appendChild(div);
     acompanhantes.push({ id, nome: '', valido: false });
 
     const input = document.getElementById(id);
-
-    input.addEventListener('input', function () {
-        const valor = this.value.trim();
-
-        if (valor.length >= 2) {
-            buscarAcompanhantes(valor, id);
-        } else {
-            const lista = document.getElementById(`${id}-autocomplete`);
-            if (lista) lista.style.display = 'none';
-            limparValidacaoAcompanhante(id);
-        }
-    });
-
-    input.addEventListener('blur', function () {
-        setTimeout(() => {
-            const lista = document.getElementById(`${id}-autocomplete`);
-            if (lista) lista.style.display = 'none';
-            validarAcompanhanteIndividual(id, this.value.trim());
-        }, 200);
-    });
-
+    input.addEventListener('input', () => validarAcompanhante(id, input.value));
+    input.addEventListener('blur', () => validarAcompanhante(id, input.value));
     input.focus();
 }
 
-function buscarAcompanhantes(termo, inputId) {
-    const alvo = normalizar(termo);
+function validarAcompanhante(inputId, texto) {
+    const item = acompanhantes.find(a => a.id === inputId);
+    if (!item) return;
 
-    const resultados = listaConvidados.filter(nome =>
-        normalizar(nome).includes(alvo) &&
-        normalizar(nome) !== normalizar(convidadoAtual)
-    );
-
-    mostrarAutocompleteAcompanhantes(resultados, inputId);
-}
-
-function mostrarAutocompleteAcompanhantes(resultados, inputId) {
-    const lista = document.getElementById(`${inputId}-autocomplete`);
-    if (!lista) return;
-
-    if (resultados.length === 0) {
-        lista.style.display = 'none';
-        return;
-    }
-
-    lista.innerHTML = '';
-
-    resultados.forEach(nome => {
-        const div = document.createElement('div');
-        div.className = 'acompanhante-autocomplete-item';
-        div.textContent = nome;
-
-        div.addEventListener('click', function () {
-            document.getElementById(inputId).value = nome;
-            validarAcompanhanteIndividual(inputId, nome);
-            lista.style.display = 'none';
-        });
-
-        lista.appendChild(div);
-    });
-
-    lista.style.display = 'block';
-}
-
-function limparValidacaoAcompanhante(inputId) {
-    const index = acompanhantes.findIndex(a => a.id === inputId);
-    if (index === -1) return;
-
+    const input = document.getElementById(inputId);
     const statusDiv = document.getElementById(`status-${inputId}`);
     const errorDiv = document.getElementById(`error-${inputId}`);
-    const input = document.getElementById(inputId);
+    const nome = arrumarNome(texto);
 
-    input.classList.remove('valido', 'invalido');
-    statusDiv.innerHTML = '';
-    statusDiv.className = 'validacao-status';
-    errorDiv.style.display = 'none';
-    acompanhantes[index].valido = false;
-}
-
-function validarAcompanhanteIndividual(inputId, nome) {
-    const index = acompanhantes.findIndex(a => a.id === inputId);
-    if (index === -1) return;
-
-    const statusDiv = document.getElementById(`status-${inputId}`);
-    const errorDiv = document.getElementById(`error-${inputId}`);
-    const input = document.getElementById(inputId);
-
-    const lista = document.getElementById(`${inputId}-autocomplete`);
-    if (lista) lista.style.display = 'none';
-
-    if (!nome) {
-        limparValidacaoAcompanhante(inputId);
-        return;
+    function limpar() {
+        input.classList.remove('valido', 'invalido');
+        statusDiv.innerHTML = '';
+        statusDiv.className = 'validacao-status';
+        errorDiv.style.display = 'none';
+        item.nome = '';
+        item.valido = false;
     }
 
-    function recusar(texto) {
+    function recusar(mensagem) {
         input.classList.remove('valido');
         input.classList.add('invalido');
         statusDiv.innerHTML = '❌';
         statusDiv.className = 'validacao-status status-erro';
-        errorDiv.innerHTML = texto;
+        errorDiv.textContent = mensagem;
         errorDiv.style.display = 'block';
-        acompanhantes[index].valido = false;
+        item.nome = '';
+        item.valido = false;
     }
 
-    const oficial = nomeDaLista(nome);
-
-    if (!oficial) {
-        recusar(`Poxa... esse nome <strong>"${escaparHtml(nome)}"</strong> não está na lista de convidados.<br>Favor entrar em contato com os noivos.`);
+    if (!nome) {
+        limpar();
         return;
     }
 
-    if (normalizar(oficial) === normalizar(convidadoAtual)) {
-        recusar('Este é o seu próprio nome. Informe um acompanhante diferente.');
+    if (!nomeValido(nome)) {
+        // Enquanto está digitando as primeiras letras, não acusa erro
+        limpar();
         return;
     }
 
-    input.value = oficial;
+    if (normalizar(nome) === normalizar(convidadoAtual)) {
+        recusar('Este é o seu próprio nome. Informe outra pessoa.');
+        return;
+    }
+
+    const repetido = acompanhantes.some(
+        a => a.id !== inputId && a.valido && normalizar(a.nome) === normalizar(nome)
+    );
+
+    if (repetido) {
+        recusar('Esse nome já foi informado.');
+        return;
+    }
+
     input.classList.remove('invalido');
     input.classList.add('valido');
     statusDiv.innerHTML = '✅';
     statusDiv.className = 'validacao-status status-ok';
     errorDiv.style.display = 'none';
-    acompanhantes[index].nome = oficial;
-    acompanhantes[index].valido = true;
+    item.nome = nome;
+    item.valido = true;
 }
 
 function removerAcompanhante(id) {
@@ -399,54 +288,40 @@ function removerAcompanhante(id) {
 }
 
 function validarAcompanhantes() {
-    let todosValidos = true;
     let algumPreenchido = false;
+    let algumErrado = false;
 
-    acompanhantes.forEach(acompanhante => {
-        const input = document.getElementById(acompanhante.id);
+    acompanhantes.forEach(item => {
+        const input = document.getElementById(item.id);
         if (!input) return;
 
-        const nome = input.value.trim();
+        const nome = arrumarNome(input.value);
         if (!nome) return;
 
         algumPreenchido = true;
-        validarAcompanhanteIndividual(acompanhante.id, nome);
-
-        if (!acompanhante.valido) todosValidos = false;
+        validarAcompanhante(item.id, nome);
+        if (!item.valido) algumErrado = true;
     });
 
     if (!algumPreenchido) {
-        mostrarMensagem("Por favor, informe pelo menos o nome de um acompanhante.", "error");
+        mostrarMensagem('Informe o nome de pelo menos uma pessoa, ou volte e responda que vem sozinho.', 'error');
         return;
     }
 
-    if (!todosValidos) {
-        mostrarMensagem(
-            "Alguns acompanhantes não são válidos. Por favor, corrija os nomes antes de continuar.",
-            "error"
-        );
+    if (algumErrado) {
+        mostrarMensagem('Confira os nomes marcados em vermelho antes de continuar.', 'error');
         return;
     }
 
-    const nomes = acompanhantes.filter(a => a.valido).map(a => normalizar(a.nome));
-
-    if (nomes.length !== new Set(nomes).size) {
-        mostrarMensagem("Há nomes repetidos na lista de acompanhantes. Por favor, verifique.", "error");
-        return;
-    }
-
-    acompanhantesValidos = true;
     acompanhantesForm.style.display = 'none';
     mensagemForm.style.display = 'block';
 }
 
 function listarAcompanhantes() {
-    if (!teraAcompanhantes || !acompanhantesValidos || statusPresenca !== 'confirmado') {
-        return '';
-    }
+    if (!teraAcompanhantes || statusPresenca !== 'confirmado') return '';
 
     return acompanhantes
-        .filter(a => a.valido && a.nome.trim() !== '')
+        .filter(a => a.valido && a.nome)
         .map(a => a.nome)
         .join(', ');
 }
@@ -481,8 +356,8 @@ async function enviarConfirmacaoFinal() {
 
     if (!planilha.ok && !email.ok) {
         mostrarMensagem(
-            `Não conseguimos registrar sua resposta agora. Verifique sua internet e tente de novo, ou fale direto com os noivos.`,
-            "error"
+            'Não conseguimos registrar sua resposta agora. Verifique sua internet e tente de novo, ou fale direto com os noivos.',
+            'error'
         );
         console.error('Falha no envio:', planilha.erro, email.erro);
         return;
@@ -557,7 +432,7 @@ function mostrarResultado(mensagem, nomesAcompanhantes) {
         `;
 
         if (nomesAcompanhantes) {
-            html += `<p><strong>Acompanhantes confirmados:</strong> ${escaparHtml(nomesAcompanhantes)}</p>`;
+            html += `<p><strong>Também confirmados:</strong> ${escaparHtml(nomesAcompanhantes)}</p>`;
         }
 
         if (mensagem) {
@@ -587,8 +462,8 @@ function mostrarResultado(mensagem, nomesAcompanhantes) {
 
     html += `
         <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--cinza-claro);">
-            Mudou de ideia? É só responder de novo nesta página — a resposta
-            mais recente substitui a anterior.
+            Mudou de ideia? É só responder de novo nesta página, com o mesmo
+            nome — a resposta mais recente substitui a anterior.
         </p>
     `;
 
@@ -606,23 +481,4 @@ function mostrarResultado(mensagem, nomesAcompanhantes) {
 
 function mostrarLoading(mostrar) {
     loading.style.display = mostrar ? 'block' : 'none';
-}
-
-function resetarInterface() {
-    statusMessage.style.display = 'none';
-    namePreview.style.display = 'none';
-    confirmationButtons.style.display = 'none';
-    acompanhanteQuestion.style.display = 'none';
-    acompanhantesForm.style.display = 'none';
-    mensagemForm.style.display = 'none';
-    confirmationResult.style.display = 'none';
-
-    convidadoAtual = null;
-    acompanhantes = [];
-    acompanhantesList.innerHTML = '';
-    acompanhantesValidos = false;
-    statusPresenca = null;
-    teraAcompanhantes = false;
-
-    document.getElementById('mensagemNoivos').value = '';
 }

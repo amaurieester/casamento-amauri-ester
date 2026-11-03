@@ -165,22 +165,25 @@ mantendo as aspas.
 
 ---
 
-## Depois: fazer a planilha mostrar quem ainda NÃO respondeu
+## ATUALIZAR o script depois de instalado
 
-Sem isto, a planilha só lista quem já respondeu. Com isto, ela lista
-**todos os convidados** — e você vê quem falta cobrar.
+Sempre que o arquivo `planilha-confirmacoes.gs` mudar, é preciso levar a
+mudança para dentro da planilha. **O endereço continua o mesmo** — você não
+precisa mexer no site de novo.
 
-1. Volte para a aba do Apps Script.
-2. Na barra de cima tem uma caixinha ao lado do botão **▶ Executar**, com
-   nome de função escrito. Clique nela.
-3. Na lista, escolha **`preencherConvidados`**.
-4. Clique em **▶ Executar**.
+1. Abra a planilha → **Extensões → Apps Script**.
+2. Clique dentro do código, **Ctrl + A**, **Delete**.
+3. No VS Code, abra `planilha-confirmacoes.gs`, **Ctrl + A**, **Ctrl + C**.
+4. Volte ao navegador e **Ctrl + V**. Depois **Ctrl + S** para salvar.
+5. Clique em **Implantar** (azul, canto superior direito) →
+   **Gerenciar implantações**.
+6. Clique no **ícone de lápis** ✏️ (canto superior direito da janela).
+7. Em **Versão**, troque de *Versão 1* para **Nova versão**.
+8. Clique em **Implantar** e depois em **Concluído**.
 
-Volte na planilha: cada convidado agora tem uma linha com `Sem resposta`.
-Quem responder pelo site tem a linha dele atualizada para `Sim` ou `Não`.
-
-Pode repetir isso sempre que incluir convidados novos — quem já está na
-planilha não é alterado.
+> **Não use "Nova implantação" aqui.** Aquilo cria um endereço diferente e
+> o site pararia de gravar. Para atualizar é sempre
+> *Gerenciar implantações → lápis → Nova versão*.
 
 ---
 
@@ -221,28 +224,29 @@ planilha não é alterado.
 
 | Número | Nome | Confirmação | Acompanhantes | Mensagem | Data e hora |
 | --- | --- | --- | --- | --- | --- |
-| 1 | Samuel Fernando Lima | Sim | Maria Silva | Parabéns! | 03/11/2026 14:22:10 |
+| 1 | Samuel Fernando Lima | Sim | Maria Silva, João Lima | Parabéns! | 03/11/2026 14:22:10 |
 | 2 | Rodrigo Batista de Assis | Não | | Não vou conseguir | 03/11/2026 18:40:02 |
-| 3 | Hélio Morais Benevides | Sem resposta | | | |
 
-Se alguém responder de novo, a linha da pessoa é **atualizada** — não cria
-linha repetida. É isso que permite desconfirmar.
+Se alguém responder de novo **escrevendo o nome igual**, a linha da pessoa
+é **atualizada** — não cria linha repetida. É isso que permite desconfirmar.
+
+A comparação ignora maiúsculas, acentos e espaços a mais: `JOAO  silva`
+cai na mesma linha de `João Silva`. Mas se a pessoa escrever um nome
+diferente na segunda vez (`João S.` em vez de `João Silva`), vira uma
+linha nova — não tem como o site adivinhar que é a mesma pessoa. Se isso
+acontecer, é só apagar a linha repetida na mão.
 
 **Aba "Histórico"** — toda resposta enviada, inclusive as mudanças de ideia.
 
 ---
 
-## Ao incluir um convidado novo
+## Não existe mais lista de convidados
 
-O nome precisa entrar em **dois lugares**:
+**Qualquer nome é aceito.** O convite vai por casa, com os nomes dos
+convidados escritos na própria mensagem, então o site não confere nada —
+não é preciso cadastrar ninguém em lugar nenhum.
 
-1. `assets/js/confirmacao.js` — na lista `listaConvidados` (é o que aparece
-   enquanto a pessoa digita).
-2. `_ferramentas/planilha-confirmacoes.gs` — na lista `CONVIDADOS`. Depois
-   de mexer, vá em **Implantar → Gerenciar implantações**, clique no lápis,
-   escolha **Nova versão** e clique em **Implantar**.
-
-Se esquecer o segundo, a pessoa digita o nome, acha na lista e recebe erro
-ao enviar.
-
-Mais simples: me mande os nomes que eu faço os dois.
+Como o endereço do script é público (fica no código do site), o que
+protege a planilha de lixo são limites de tamanho e um bloqueio de links,
+já embutidos no script. Na prática ninguém tem o endereço sem procurar
+por ele, mas se algum dia aparecer linha estranha, me avise.

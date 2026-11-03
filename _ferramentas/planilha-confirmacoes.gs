@@ -12,32 +12,20 @@
  * O que ele faz:
  *   - Cria e mantém a aba "Confirmações", com uma linha por pessoa:
  *     Número | Nome | Confirmação | Acompanhantes | Mensagem | Data e hora
- *   - Se a pessoa responder de novo, ATUALIZA a linha dela em vez de
- *     criar outra. Assim dá para desconfirmar ou mudar de ideia.
+ *   - Se a pessoa responder de novo COM O MESMO NOME, ATUALIZA a
+ *     linha dela em vez de criar outra. É assim que dá para
+ *     desconfirmar ou mudar de ideia.
  *   - Guarda toda resposta na aba "Histórico", para vocês verem
  *     quem mudou de ideia e quando.
+ *
+ * QUALQUER NOME É ACEITO. O convite é enviado por casa, com os
+ * nomes dos convidados escritos na própria mensagem, então não faz
+ * sentido o site conferir nome contra uma lista fechada.
  */
 
 // ---------------------------------------------------------------
 // CONFIGURAÇÃO
 // ---------------------------------------------------------------
-
-// Mesma lista que está em assets/js/confirmacao.js, no site.
-// Serve para o endereço público não poder ser usado para inventar
-// convidados. Ao incluir alguém novo, inclua NOS DOIS lugares.
-// Deixando a lista vazia ([]), o script aceita qualquer nome.
-var CONVIDADOS = [
-  'Amauri de Jesus Pereira',
-  'Maria Rozângela Mourão Pereira',
-  'Vinícius Mourão Pereira',
-  'Deisy Aparecida Morais Benevides',
-  'Evaldo Rezende Benevides',
-  'Hélio Morais Benevides',
-  'Pedro Henrique de Freitas Reis',
-  'Rodrigo Batista de Assis',
-  'Samuel Henrique Pinto',
-  'Samuel Fernando Lima'
-];
 
 var ABA_LISTA = 'Confirmações';
 var ABA_HISTORICO = 'Histórico';
@@ -51,6 +39,14 @@ var CABECALHO_HISTORICO = [
 ];
 
 var FUSO = 'America/Sao_Paulo';
+
+// Limites de tamanho. O endereço do script é público (fica no
+// código do site), então sem a lista de convidados estes limites
+// são o que impede alguém de encher a planilha de lixo.
+var MAX_NOME = 80;
+var MAX_ACOMPANHANTES = 400;
+var MAX_MENSAGEM = 1000;
+var MIN_NOME = 3;
 
 // ---------------------------------------------------------------
 // ENTRADA: é aqui que o site entrega as respostas
@@ -70,21 +66,21 @@ function doPost(e) {
   try {
     var dados = JSON.parse(e.postData.contents);
 
-    var nome = limpar(dados.nome);
+    var nome = arrumarNome(dados.nome);
     var status = limpar(dados.status).toUpperCase();
-    var acompanhantes = limpar(dados.acompanhantes);
-    var mensagem = limpar(dados.mensagem);
+    var acompanhantes = limpar(dados.acompanhantes).slice(0, MAX_ACOMPANHANTES);
+    var mensagem = limpar(dados.mensagem).slice(0, MAX_MENSAGEM);
 
-    if (!nome) {
-      return responder({ ok: false, erro: 'nome vazio' });
+    if (nome.length < MIN_NOME || nome.length > MAX_NOME || !temLetra(nome)) {
+      return responder({ ok: false, erro: 'nome inválido' });
     }
 
     if (status !== 'SIM' && status !== 'NAO') {
       return responder({ ok: false, erro: 'confirmação inválida' });
     }
 
-    if (!estaNaLista(nome)) {
-      return responder({ ok: false, erro: 'nome fora da lista de convidados' });
+    if (temLink(nome) || temLink(acompanhantes) || temLink(mensagem)) {
+      return responder({ ok: false, erro: 'conteúdo não permitido' });
     }
 
     var agora = Utilities.formatDate(new Date(), FUSO, 'dd/MM/yyyy HH:mm:ss');
@@ -127,43 +123,6 @@ function doGet() {
 }
 
 // ---------------------------------------------------------------
-// PREENCHER A LISTA COM TODOS OS CONVIDADOS
-//
-// Rode esta função UMA VEZ, à mão, pelo editor do Apps Script
-// (escolha "preencherConvidados" na caixa ao lado do ▶ e clique
-// em Executar).
-//
-// Ela cria uma linha para cada convidado com "Sem resposta". Assim
-// a planilha mostra também quem ainda NÃO respondeu, que é o que
-// interessa para cobrar. Quem responder tem a linha atualizada.
-//
-// Pode rodar de novo depois de incluir convidados novos: quem já
-// está na planilha não é mexido.
-// ---------------------------------------------------------------
-
-function preencherConvidados() {
-  var planilha = SpreadsheetApp.getActiveSpreadsheet();
-  var aba = pegarAba(planilha, ABA_LISTA, CABECALHO_LISTA);
-  var incluidos = 0;
-
-  for (var i = 0; i < CONVIDADOS.length; i++) {
-    var nome = CONVIDADOS[i];
-
-    if (procurarLinha(aba, nome) !== -1) continue;
-
-    var linha = aba.getLastRow() + 1;
-    aba.getRange(linha, 1, 1, CABECALHO_LISTA.length).setValues([[
-      linha - 1, nome, 'Sem resposta', '', '', ''
-    ]]);
-    incluidos++;
-  }
-
-  SpreadsheetApp.getActiveSpreadsheet().toast(
-    incluidos + ' convidado(s) incluído(s).', 'Lista preenchida', 5
-  );
-}
-
-// ---------------------------------------------------------------
 // APOIO
 // ---------------------------------------------------------------
 
@@ -178,6 +137,19 @@ function limpar(valor) {
   return String(valor).trim();
 }
 
+// Tira espaços repetidos mas preserva a grafia de quem digitou
+function arrumarNome(valor) {
+  return limpar(valor).replace(/\s+/g, ' ');
+}
+
+function temLetra(texto) {
+  return /[a-zA-ZÀ-ÿ]/.test(texto);
+}
+
+function temLink(texto) {
+  return /https?:\/\/|www\.|\.com|\.net|\.ru/i.test(texto);
+}
+
 // Compara ignorando maiúsculas, acentos e espaços repetidos, para
 // "JOAO  silva" encontrar "João Silva".
 function normalizar(texto) {
@@ -186,18 +158,6 @@ function normalizar(texto) {
     .normalize('NFD')
     .replace(/[̀-ͯ]/g, '')
     .replace(/\s+/g, ' ');
-}
-
-function estaNaLista(nome) {
-  if (!CONVIDADOS.length) return true;
-
-  var alvo = normalizar(nome);
-
-  for (var i = 0; i < CONVIDADOS.length; i++) {
-    if (normalizar(CONVIDADOS[i]) === alvo) return true;
-  }
-
-  return false;
 }
 
 function pegarAba(planilha, nome, cabecalho) {

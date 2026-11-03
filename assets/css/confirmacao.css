@@ -433,6 +433,13 @@ p {
             font-size: 1rem;
             transition: var(--transicao);
             flex: 1;
+            /* sem isto o campo não encolhe e o nome fica cortado */
+            min-width: 0;
+        }
+
+/* Espaço à direita para o ✅/❌, que é sobreposto ao campo */
+.acompanhante-input-wrapper .form-input {
+            padding-right: 2.4rem;
         }
 
 .form-input:focus {
@@ -783,6 +790,29 @@ p {
     .back-to-site {
         margin-top: 2rem;
         padding-top: 1.5rem;
+    }
+
+    /* Deixa o campo de nome do acompanhante o mais largo possível */
+    .acompanhante-item {
+        padding: 0.7rem;
+    }
+
+    .acompanhante-input-wrapper {
+        gap: 0.5rem;
+    }
+
+    .acompanhante-input-wrapper .form-input {
+        padding: 0.9rem 2.1rem 0.9rem 0.8rem;
+    }
+
+    .remove-acompanhante {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    .validacao-status {
+        right: 38px;
     }
 }
 

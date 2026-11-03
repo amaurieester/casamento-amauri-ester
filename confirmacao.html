@@ -48,19 +48,18 @@
             resposta mais recente é a que vale.
         </p>
         
-        <!-- ÁREA DE BUSCA PRINCIPAL -->
+        <!-- NOME DE QUEM ESTÁ RESPONDENDO -->
         <div class="search-container">
             <div class="search-input-wrapper">
-                <span class="search-icon">🔍</span>
-                <input 
-                    type="text" 
-                    class="search-input" 
+                <span class="search-icon">👤</span>
+                <input
+                    type="text"
+                    class="search-input"
                     id="nomeInput"
                     placeholder="Digite seu nome completo..."
-                    autocomplete="off"
+                    autocomplete="name"
                 >
             </div>
-            <div class="autocomplete-results" id="autocompleteResults"></div>
         </div>
         
         <!-- MENSAGENS DE STATUS -->
@@ -95,9 +94,10 @@
         
         <!-- FORMULÁRIO DE ACOMPANHANTES -->
         <div class="acompanhantes-form" id="acompanhantesForm">
-            <h3>Informe os nomes dos acompanhantes</h3>
+            <h3>Quem mais vem com você?</h3>
             <p style="text-align: center; margin-bottom: 1.5rem; color: var(--cinza-claro); font-size: 0.9rem;">
-                Obs: Os acompanhantes também devem estar na lista de convidados
+                Informe o nome de cada pessoa da sua casa que também vai comparecer.
+                Use o botão abaixo para incluir mais de uma.
             </p>
             <div id="acompanhantesList">
                 <!-- Campos de acompanhantes serão adicionados aqui -->
@@ -109,7 +109,7 @@
             
             <button class="btn btn-send" onclick="validarAcompanhantes()">
                 <span class="btn-icon">✅</span>
-                Validar e Continuar
+                Continuar
             </button>
         </div>
         
