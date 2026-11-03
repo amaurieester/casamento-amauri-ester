@@ -114,9 +114,14 @@
                     
                     <!-- PIX -->
                     <div class="pix-container" id="pixContainer">
-                        <div class="qrcode-container" style="background: transparent; padding: 0;">
+                        <!-- O QR e o copia e cola sao montados pelo pix.js com o
+                             total do carrinho dentro. Se por algum motivo isso
+                             falhar, fica esta imagem, que e o codigo sem valor. -->
+                        <div class="qrcode-container" id="pixQr" style="background: transparent; padding: 0; width: 250px; margin: 0 auto;">
                             <img src="pix-qrcode.png" alt="QR Code PIX para pagamento" class="qrcode-img" onerror="this.onerror=null; this.style.display='none'" style="width: 250px; height: auto;">
                         </div>
+
+                        <p id="pixValor" class="pix-valor"></p>
                         
                         <div class="pix-info">
                             <p><strong>Nome:</strong> Amauri Mourão Pereira</p>
@@ -171,6 +176,8 @@
     </footer>
 
     <script src="assets/js/common.js"></script>
+    <script src="assets/js/qrcode.min.js"></script>
+    <script src="assets/js/pix.js"></script>
     <script src="assets/js/checkout.js"></script>
 </body>
 </html>

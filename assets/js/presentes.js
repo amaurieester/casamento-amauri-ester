@@ -159,6 +159,55 @@ const presentes = [
 // ======================================================
 
 // Estes itens são produtos físicos reais.
+// Fotos que têm uma versão menor em presentes/m. A lista é fixa
+// de propósito: o site é estático, não dá para perguntar ao
+// servidor o que existe na pasta. Ao trocar uma foto, rode de novo
+// o script que gera as menores e acerte esta lista.
+const temVersaoMenor = new Set([
+    "50-reais.jpg", "Alexa.jpg", "Aluguel.jpg", "Seguro.jpg",
+    "academia-casal.jpg", "academia.jpg", "aerea.jpg", "air-fryer.jpg",
+    "ajuda-financeira-jpg.webp", "ajuda-financeira.jpg", "aliancas.jpg",
+    "amigos.jpg", "aparelho-jantar.jpg", "aposentadoria.jpg",
+    "ar-condicionado.jpg", "aspirador.jpg", "avisei.jpg", "batedeira.jpg",
+    "bebe-treinamento.jpg", "bicuda.jpg", "boletos.jpg", "branco.jpg",
+    "bussola.jpg", "cabeceira-cama.jpg", "cadeira-escritorio.jpg",
+    "cafe-quentinho.jpg", "cafeteira.jpg", "cama-box.jpg",
+    "camisa-times.jpg", "capacete-macarrao.jpg", "carro-eletrico.jpg",
+    "casinha.jpg", "cerveja.jpg", "cervejeira.jpg", "churrasco.jpg",
+    "churrasqueira.jpg", "cobertor-noivo.jpg", "comer-saudavel.jpg",
+    "conjunto-copos.jpg", "convidados.jpg", "cooktop.jpg", "corta-unha.jpg",
+    "cortina-blackout.jpg", "criados-mudos.jpg", "cristaleira.jpg",
+    "cuecas.jpg", "culinaria.jpg", "decoracoes.jpg", "despedida.jpg",
+    "dia-da-noiva.jpg", "dia-do-noivo.jpg", "dia-hotel.jpg",
+    "dinheiro-dobro.jpg", "dj.jpg", "doces.jpg", "dr-jantar.jpg",
+    "drinks-hotel.jpg", "espelho-grande.jpg", "fake.jpg", "favorito.jpg",
+    "ferro-passar.jpg", "fila-buffet.jpg", "fogao.jpg",
+    "forno-eletrico.jpg", "futebol.jpg", "gastronomia.jpg", "gato.jpg",
+    "geladeira.jpg", "guarda-roupa-grande.jpg", "guarda-roupa.jpg",
+    "heineken.jpg", "herdeiro.jpg", "jantar-lua-de-mel.jpg",
+    "jogo-copos.jpg", "jogo-facas.jpg", "jogo-toalhas.jpg",
+    "kit-calmante.jpg", "kit-sobrevivencia.jpg",
+    "kit-utensilios-churrasco.jpg", "lava-loucas.jpg",
+    "lenco-maquiagem.jpg", "lingeries.jpg", "liquidificador.jpg",
+    "lixa.jpg", "lookinhos.jpg", "louco.jpg", "lua-de-mel-jpg.jpg",
+    "lua-de-mel.jpg", "maquina-lavar.jpg", "mercado.jpg", "mesa-centro.jpg",
+    "mesa-escritorio.jpg", "mesa-jantar.jpg", "microondas.jpg",
+    "milior.jpg", "miojo.jpg", "mistura.jpg", "mixer.jpg",
+    "mobiliar-casa.jpg", "mobiliar-casa2.jpg", "montador-moveis.jpg",
+    "moveis-planejados.jpg", "nada.jpg", "paciencia.jpg",
+    "panela-pressao-eletrica.jpg", "panelas.jpg", "passeio.jpg",
+    "pedreiro.jpg", "perfumes-casal.jpg", "pijamas-iguais.jpg",
+    "piscina.jpg", "pitaco.jpg", "platinum.jpg", "prioridade.jpg",
+    "psicologo.jpg", "purificador-agua.jpg", "quitar-festa.jpg",
+    "rack-painel-tv.jpg", "robo-aspirador.jpg", "rolo-macarrao.jpg",
+    "roupas-cama-edredom.jpg", "roupas-cama.jpg", "sal-pressao.jpg",
+    "sanduicheira.jpg", "seguro-buque.jpg", "sempre.jpg",
+    "sofa-retratil.jpg", "suite-master.jpg", "sushi-noiva.jpg", "tacas.jpg",
+    "tampao-ouvido.jpg", "taxa-buque-sim.jpg", "taxa-convidado.jpg",
+    "tv.jpg", "utensilios-cozinha.jpg", "vale-compras.jpg",
+    "ventilador.jpg", "xicaras.jpg"
+]);
+
 const imagensPresentesFisicos = new Set([
     "tacas.jpg",
     "panelas.jpg",
@@ -315,6 +364,18 @@ function criarCartaoPresente(presente) {
     img.alt = titulo;
     img.className = "presente-imagem";
     img.loading = "lazy";
+
+    // Duas versões da mesma foto: o navegador baixa a que couber na
+    // tela. No celular o cartão mostra a foto com ~175 px de largura
+    // e a grande, de 900 px, era desperdício puro. Em tela grande ou
+    // densa ele continua escolhendo a de 900 px, então nada perde
+    // definição. A pasta presentes/m só tem as fotos que valia
+    // encolher; as que já eram pequenas ficaram de fora.
+    if (temVersaoMenor.has(imagem)) {
+        const menor = imagem.replace(/\.[^.]+$/, ".jpg");
+        img.srcset = `presentes/m/${menor} 520w, presentes/${imagem} 900w`;
+        img.sizes = "(max-width: 768px) 36vw, (max-width: 1024px) 45vw, 330px";
+    }
 
     img.onerror = function () {
         const placeholder = document.createElement("div");

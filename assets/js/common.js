@@ -270,7 +270,15 @@ function inicializarPlayerMusica() {
     const volumeEl = document.getElementById('musicaVolume');
 
     const audio = new Audio();
-    audio.preload = 'auto';
+
+    // 'none' e não 'auto': com 'auto' o navegador baixava a música
+    // inteira (1,3 MB) em toda página aberta, mesmo de quem nunca
+    // apertou o play. Medido na página de confirmação: dos 1,43 MB
+    // que ela baixava, 1,33 MB era isso.
+    //
+    // A música não perde nada: é o mesmo arquivo, só começa a vir
+    // quando alguém manda tocar, e segue carregando enquanto toca.
+    audio.preload = 'none';
 
     document.body.classList.add('com-player-musica');
     if (!document.querySelector('footer')) {

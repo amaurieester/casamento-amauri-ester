@@ -4,7 +4,46 @@ let carrinho = JSON.parse(localStorage.getItem('casamento_carrinho')) || [];
 document.addEventListener('DOMContentLoaded', function() {
     renderizarResumo();
     prepararIdentificacao();
+    prepararPix();
 });
+
+// ======================================================
+// PIX COM O TOTAL DO CARRINHO
+//
+// Monta o copia e cola e o QR já com o valor dentro, para ninguém
+// precisar digitar o total no aplicativo do banco. As contas ficam
+// no pix.js.
+// ======================================================
+
+function emReais(valor) {
+    return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+}
+
+function prepararPix() {
+    const campoChave = document.getElementById('pixKey');
+    const caixaQr = document.getElementById('pixQr');
+    const aviso = document.getElementById('pixValor');
+
+    if (!campoChave || typeof pixComValor !== 'function') return;
+
+    const total = totalDoCarrinho();
+    if (!(total > 0)) return;          // carrinho vazio: fica o código sem valor
+
+    const codigo = pixComValor(total);
+    campoChave.textContent = codigo;
+
+    // O QR desenhado tem de bater com o copia e cola. Se a biblioteca
+    // não carregar, a imagem antiga continua valendo — mas ela não
+    // traz valor, e o aviso precisa dizer isso.
+    const desenhou = desenharQrPix(caixaQr, codigo);
+
+    if (aviso) {
+        aviso.textContent = desenhou
+            ? 'Valor já incluído: ' + emReais(total)
+            : 'Digite o valor de ' + emReais(total) + ' no aplicativo do banco.';
+        aviso.classList.toggle('pix-valor-aviso', !desenhou);
+    }
+}
 
 // ======================================================
 // QUEM ESTÁ PRESENTEANDO
@@ -112,12 +151,14 @@ function renderizarResumo() {
         div.className = 'summary-item';
         div.innerHTML = `
             <div class="summary-item-title">${item.titulo}</div>
-            <div class="summary-item-price">R$ ${item.valor.toFixed(2).replace('.', ',')}</div>
+            <div class="summary-item-price">${emReais(item.valor)}</div>
         `;
         checkoutItems.appendChild(div);
     });
 
-    checkoutTotalValue.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+    // emReais e o mesmo formato usado no aviso do Pix: sem isto o
+    // resumo mostrava "R$ 1995,00" e o Pix "R$ 1.995,00".
+    checkoutTotalValue.textContent = emReais(total);
     
     // Mostrar Pix por padrão
     mostrarPix();

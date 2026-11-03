@@ -542,3 +542,24 @@ footer {
     opacity: 0.6;
     cursor: wait;
 }
+
+/* Valor que vai dentro do Pix, logo abaixo do QR. Fica à vista para
+   quem presenteia conferir antes de pagar. */
+.pix-valor {
+    text-align: center;
+    font-weight: 700;
+    color: var(--rosa);
+    margin: 0.9rem 0 0.2rem;
+    font-size: 1.05rem;
+}
+
+.pix-valor:empty {
+    display: none;
+}
+
+/* Quando o QR não pôde ser gerado com o valor dentro */
+.pix-valor.pix-valor-aviso {
+    color: var(--cinza-claro);
+    font-weight: 600;
+    font-size: 0.92rem;
+}
