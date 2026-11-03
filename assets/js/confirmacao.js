@@ -262,10 +262,6 @@ function mostrarResultado(mensagem) {
                 <strong>Data:</strong> 12 de Junho de 2027<br>
                 <strong>Local:</strong> Várzea da Palma - MG
             </p>
-            <p style="margin-top: 1rem; font-weight: 600; color: var(--rosa);">
-                Foi convidado mais alguém da sua casa? Peça para cada
-                pessoa responder aqui também.
-            </p>
         `;
     } else {
         html = `
